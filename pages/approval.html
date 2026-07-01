@@ -116,6 +116,7 @@ tbody tr:hover { background: #fbfbfc; cursor: pointer; }
   <div class="menu-item" onclick="location.href='user-management.html'">👤 用户管理</div>
   <div class="menu-item" onclick="location.href='storage.html'">💾 存储管理</div>
   <div class="menu-item" onclick="location.href='report-export.html'">📥 报告导出</div>
+<div class="menu-item" onclick="location.href='personal-center.html'">👤 个人中心</div>
 </div>
 
 <div class="main-content">
@@ -147,12 +148,75 @@ tbody tr:hover { background: #fbfbfc; cursor: pointer; }
 
   <!-- Tab 切换 -->
   <div class="tabs">
+    <div class="tab" id="tabApply" onclick="switchTab('apply')">✏️ 发起审批</div>
     <div class="tab active" id="tabPending" onclick="switchTab('pending')">待审批 <span class="badge">7</span></div>
     <div class="tab" id="tabApproved" onclick="switchTab('approved')">已批准</div>
     <div class="tab" id="tabRejected" onclick="switchTab('rejected')">已拒绝</div>
     <div class="tab" id="tabAll" onclick="switchTab('all')">全部记录</div>
   </div>
 
+
+  <!-- 发起审批 -->
+  <div id="sec-apply" style="display:none;">
+    <div class="card">
+      <div class="card-title">✏️ 发起审批申请</div>
+      <p style="color:#888;font-size:13px;margin-bottom:16px;">填写以下信息创建一条新的审批申请，提交后将通知相关审批人。</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label>关联推送记录 *</label>
+          <select id="applyPushRecord">
+            <option value="">请选择推送记录...</option>
+            <option value="PUSH-20260701-002">PUSH-20260701-002 · SIDU-CAM-002 · FAIL · 赵勇 · 15:40</option>
+            <option value="PUSH-20260701-006">PUSH-20260701-006 · SIDU-CAM-003 · ERROR · 赵勇 · 14:50</option>
+            <option value="PUSH-20260701-005">PUSH-20260701-005 · SIDU-CAM-002 · FAIL · 赵勇 · 14:55</option>
+            <option value="PUSH-20260630-011">PUSH-20260630-011 · SIDU-CAM-002 · FAIL · 赵勇 · 16:05</option>
+          </select>
+          <div class="hint" style="margin-top:4px;font-size:12px;">可在「Token管理 → 设备推送记录」查看推送ID</div>
+        </div>
+        <div class="form-group">
+          <label>申请类型 *</label>
+          <select id="applyType">
+            <option value="">选择类型...</option>
+            <option value="detect-confirm">检测结果确认</option>
+            <option value="data-export">数据导出</option>
+            <option value="config-change">配置变更</option>
+            <option value="user-auth">用户权限变更</option>
+            <option value="sig-auth">签名授权</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>优先级</label>
+          <select id="applyPriority">
+            <option value="normal">普通</option>
+            <option value="high">高优先级（24h内处理）</option>
+            <option value="urgent">紧急（需立即处理）</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>指定审批人</label>
+          <select id="applyApprover">
+            <option value="">系统自动分配</option>
+            <option value="zhang">张明（管理员）</option>
+            <option value="wang">王芳（审计员）</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>申请理由 *</label>
+        <textarea id="applyReason" rows="3" placeholder="详细描述申请原因、业务必要性和预期影响..."></textarea>
+      </div>
+      <div id="applyPreview" style="display:none;background:#fafafa;border:1px solid #e8e8e8;border-radius:8px;padding:14px;margin-bottom:16px;">
+        <div style="font-weight:600;font-size:14px;margin-bottom:8px;">📋 审批内容预览</div>
+        <div id="applyPreviewContent"></div>
+      </div>
+      <div style="display:flex;gap:12px;">
+        <button class="btn-outline" onclick="previewApply()">🔍 预览</button>
+        <button class="btn-primary" onclick="submitApply()">📤 提交审批申请</button>
+      </div>
+    </div>
+  </div>
   <!-- 主表格 -->
   <div class="card" id="mainTable">
     <div class="filter-bar">
@@ -432,16 +496,22 @@ function renderHistory() {
 function switchTab(tab) {
   currentTab = tab;
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
+  var tabEl = document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1));
+  if (tabEl) tabEl.classList.add('active');
   var mainTable = document.getElementById('mainTable');
   var historySection = document.getElementById('historySection');
-  if (tab === 'pending') {
-    mainTable.style.display = 'block';
-    historySection.style.display = 'none';
+  var secApply = document.getElementById('sec-apply');
+  if (secApply) secApply.style.display = 'none';
+  if (tab === 'apply') {
+    if (mainTable) mainTable.style.display = 'none';
+    if (historySection) historySection.style.display = 'none';
+  } else if (tab === 'pending') {
+    if (mainTable) mainTable.style.display = 'block';
+    if (historySection) historySection.style.display = 'none';
     renderPending();
   } else {
-    mainTable.style.display = 'none';
-    historySection.style.display = 'block';
+    if (mainTable) mainTable.style.display = 'none';
+    if (historySection) historySection.style.display = 'block';
     renderHistory();
   }
 }
@@ -508,6 +578,39 @@ function batchReject() { alert('批量拒绝功能演示'); }
 function exportHistory() { alert('导出审批历史'); }
 
 renderPending();
+
+function previewApply() {
+  var rec = document.getElementById('applyPushRecord').value;
+  var type = document.getElementById('applyType').value;
+  var reason = document.getElementById('applyReason').value;
+  if (!rec || !type || !reason) { alert('请填写必填项（*标记）'); return; }
+  var typeNames = {'detect-confirm':'检测结果确认','data-export':'数据导出','config-change':'配置变更','user-auth':'用户权限变更','sig-auth':'签名授权'};
+  var recInfo = {'PUSH-20260701-002':'SIDU-CAM-002 · FAIL · 赵勇 · 2026-07-01 15:40','PUSH-20260701-006':'SIDU-CAM-003 · ERROR · 赵勇 · 2026-07-01 14:50','PUSH-20260701-005':'SIDU-CAM-002 · FAIL · 赵勇 · 2026-07-01 14:55','PUSH-20260630-011':'SIDU-CAM-002 · FAIL · 赵勇 · 2026-06-30 16:05'};
+  document.getElementById('applyPreviewContent').innerHTML =
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:13px;">'+
+    '<div><span style="color:#888;">推送记录：</span><strong>'+rec+'</strong></div>'+
+    '<div><span style="color:#888;">申请类型：</span><strong>'+typeNames[type]+'</strong></div>'+
+    '<div><span style="color:#888;">申请人：</span>李华（操作员）</div>'+
+    '<div><span style="color:#888;">申请时间：</span>'+new Date().toLocaleString('zh-CN')+'</div>'+
+    '</div>'+
+    '<div style="margin-top:10px;font-size:13px;"><span style="color:#888;">申请理由：</span>'+reason.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</div>';
+  document.getElementById('applyPreview').style.display = 'block';
+}
+function submitApply() {
+  var rec = document.getElementById('applyPushRecord').value;
+  var type = document.getElementById('applyType').value;
+  var reason = document.getElementById('applyReason').value;
+  if (!rec || !type || !reason) { alert('请填写必填项（*标记）'); return; }
+  if (!confirm('确认提交审批申请？提交后将通知审批人，请勿重复提交。')) return;
+  var typeNames = {'detect-confirm':'检测结果确认','data-export':'数据导出','config-change':'配置变更','user-auth':'用户权限变更','sig-auth':'签名授权'};
+  var id = 'APR-' + new Date().toISOString().slice(0,10).replace(/-/g,'') + '-' + String(Math.floor(Math.random()*900)+100);
+  alert('✅ 审批申请已提交！\n申请编号：' + id + '\n申请类型：' + typeNames[type] + '\n\n将自动跳转至待审批列表...');
+  document.getElementById('applyPushRecord').value = '';
+  document.getElementById('applyType').value = '';
+  document.getElementById('applyReason').value = '';
+  document.getElementById('applyPreview').style.display = 'none';
+  switchTab('pending');
+}
 </script>
 </body>
 </html>

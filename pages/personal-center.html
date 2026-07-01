@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIDU-LATS - 个人中心</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f2f5;}
+.header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
+.header-left{display:flex;align-items:center;gap:20px;}
+.logo{font-size:20px;font-weight:600;color:#1890ff;}
+.breadcrumb{color:#666;font-size:14px;}
+.header-right{display:flex;align-items:center;gap:16px;}
+.layout-sider{position:fixed;left:0;top:64px;bottom:0;width:220px;background:white;box-shadow:2px 0 8px rgba(0,0,0,0.06);z-index:999;overflow-y:auto;}
+.menu-item{padding:14px 24px;cursor:pointer;display:flex;align-items:center;gap:12px;color:#333;transition:all 0.2s;border-left:3px solid transparent;font-size:14px;}
+.menu-item:hover{background:#f0f5ff;color:#1890ff;}
+.menu-item.active{background:#e6f7ff;color:#1890ff;border-left-color:#1890ff;font-weight:500;}
+.main-content{margin-left:220px;margin-top:64px;padding:24px;}
+.page-title{font-size:24px;font-weight:600;color:#333;margin-bottom:24px;}
+.card{background:white;border-radius:8px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,0.08);margin-bottom:24px;}
+.card-title{font-size:16px;font-weight:500;color:#333;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;}
+.btn-primary{background:#1890ff;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
+.btn-outline{background:white;border:1px solid #d9d9d9;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;color:#666;}
+.btn-success{background:#52c41a;color:white;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:13px;}
+.btn-danger{background:#ff4d4f;color:white;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:13px;}
+.btn-ghost{background:none;border:none;color:#1890ff;cursor:pointer;font-size:13px;padding:4px 8px;}
+.tag{padding:2px 8px;border-radius:4px;font-size:12px;}
+.tag-success{background:#f6ffed;color:#52c41a;border:1px solid #b7eb8f;}
+.tag-warning{background:#fffbe6;color:#faad14;border:1px solid #ffe58f;}
+.tag-error{background:#fff2f0;color:#ff4d4f;border:1px solid #ffccc7;}
+.tag-info{background:#e6f7ff;color:#1890ff;border:1px solid #91d5ff;}
+.tag-purple{background:#f9f0ff;color:#722ed1;border:1px solid #d3adf7;}
+.hash-val{font-family:'Courier New',monospace;font-size:11px;background:#f5f5f5;padding:2px 6px;border-radius:2px;color:#555;}
+.avatar-box{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#1890ff,#722ed1);display:flex;align-items:center;justify-content:center;font-size:28px;color:white;font-weight:700;flex-shrink:0;}
+.user-info-row{display:flex;gap:20px;align-items:center;margin-bottom:24px;}
+.user-info-meta .name{font-size:20px;font-weight:600;color:#333;}
+.user-info-meta .role{display:inline-block;padding:2px 10px;background:#e6f7ff;color:#1890ff;border-radius:12px;font-size:13px;margin-top:4px;}
+.user-info-meta .dept{font-size:13px;color:#888;margin-top:4px;}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
+.stat-card{background:white;border-radius:8px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,0.08);text-align:center;}
+.stat-card .num{font-size:28px;font-weight:600;color:#333;}
+.stat-card .lbl{font-size:13px;color:#888;margin-top:4px;}
+.info-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #f5f5f5;font-size:13px;}
+.info-row:last-child{border-bottom:none;}
+.info-row .key{color:#888;}
+.info-row .val{color:#333;font-weight:500;}
+.tabs{display:flex;border-bottom:2px solid #f0f0f0;margin-bottom:20px;}
+.tab{padding:10px 20px;cursor:pointer;font-size:14px;color:#666;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all 0.2s;}
+.tab:hover{color:#1890ff;}
+.tab.active{color:#1890ff;border-bottom-color:#1890ff;font-weight:500;}
+table{width:100%;border-collapse:collapse;}
+thead tr{background:#fafafa;border-bottom:1px solid #f0f0f0;}
+th{padding:12px;text-align:left;font-weight:500;color:#333;font-size:14px;}
+td{padding:10px 12px;font-size:13px;color:#333;border-bottom:1px solid #f5f5f5;}
+tbody tr:hover{background:#fafafa;}
+.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:2000;}
+.modal-box{background:white;border-radius:10px;width:520px;max-height:85vh;overflow-y:auto;}
+.modal-header{padding:20px 24px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;background:#fafafa;border-radius:10px 10px 0 0;}
+.modal-header h3{margin:0;font-size:17px;}
+.modal-close{background:none;border:none;font-size:22px;cursor:pointer;color:#999;}
+.modal-body{padding:24px;}
+.modal-footer{padding:16px 24px;border-top:1px solid #f0f0f0;display:flex;gap:12px;justify-content:flex-end;}
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;margin-bottom:8px;color:#333;font-weight:500;font-size:14px;}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:8px 12px;border:1px solid #d9d9d9;border-radius:4px;font-size:14px;outline:none;}
+.form-group input:focus,.form-group select:focus{border-color:#1890ff;}
+.form-group .hint{font-size:12px;color:#999;margin-top:4px;}
+.token-display{font-family:'Courier New',monospace;background:#f5f5f5;padding:10px 14px;border-radius:6px;font-size:13px;word-break:break-all;border:1px solid #e8e8e8;}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-left"><div class="logo">SIDU-LATS</div><div class="breadcrumb">个人中心</div></div>
+  <div class="header-right"><button class="btn-ghost" onclick="location.href='dashboard.html'">← 返回首页</button><button onclick="location.href='index.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:#666;font-size:14px;">退出</button></div>
+</div>
+<div class="layout-sider">
+  <div class="menu-item" onclick="location.href='dashboard.html'">📊 仪表盘</div>
+  <div class="menu-item" onclick="location.href='audit-log.html'">📋 审计日志</div>
+  <div class="menu-item" onclick="location.href='hash-chain.html'">🔗 哈希链</div>
+  <div class="menu-item" onclick="location.href='approval.html'">✅ 审批中心</div>
+  <div class="menu-item" onclick="location.href='report-export.html'">📥 报告导出</div>
+  <div class="menu-item active">👤 个人中心</div>
+  <div class="menu-item" onclick="location.href='notifications.html'">🔔 通知中心</div>
+</div>
+<div class="main-content">
+  <div class="page-title">个人中心</div>
+
+  <!-- 用户信息 -->
+  <div class="card">
+    <div class="user-info-row">
+      <div class="avatar-box">李</div>
+      <div class="user-info-meta">
+        <div class="name">李华</div>
+        <div><span class="role">操作员</span></div>
+        <div class="dept">生产部 · 工号 EMP-003</div>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:8px;">
+        <button class="btn-outline" onclick="openEditProfile()">✏️ 修改资料</button>
+        <button class="btn-outline" onclick="openChangePwd()">🔒 修改密码</button>
+      </div>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="num">156</div><div class="lbl">提交检测数</div></div>
+      <div class="stat-card"><div class="num">12</div><div class="lbl">发起审批数</div></div>
+      <div class="stat-card"><div class="num">8</div><div class="lbl">有效签名</div></div>
+      <div class="stat-card"><div class="num">89%</div><div class="lbl">审批通过率</div></div>
+    </div>
+    <div class="info-row"><span class="key">注册时间</span><span class="val">2026-01-15</span></div>
+    <div class="info-row"><span class="key">最近登录</span><span class="val">2026-07-01 15:38（今天）</span></div>
+    <div class="info-row"><span class="key">登录 IP</span><span class="val">192.168.1.105</span></div>
+    <div class="info-row"><span class="key">账户状态</span><span class="val" style="color:#52c41a;">✓ 正常</span></div>
+    <div class="info-row"><span class="key">密码强度</span><span class="val">强（Argon2id，12位）</span></div>
+    <div class="info-row"><span class="key">密码到期</span><span class="val">2026-09-28（90天后）</span></div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="tab active" id="tabMyTokens" onclick="switchTab('my-tokens')">🔑 我的 API Token</div>
+    <div class="tab" id="tabMyApps" onclick="switchTab('my-applications')">📋 我的审批申请</div>
+    <div class="tab" id="tabMySigs" onclick="switchTab('my-signatures')">✍️ 我的签名记录</div>
+  </div>
+
+  <!-- 我的 API Token -->
+  <div id="sec-my-tokens">
+    <div class="card">
+      <div class="card-title"><span>🔑 我的 API Token</span><button class="btn-primary" style="padding:4px 12px;font-size:12px;" onclick="openCreateMyToken()">+ 新建 Token</button></div>
+      <p style="color:#888;font-size:13px;margin-bottom:14px;">Token 用于让可信第三方系统通过 API 代表你的身份访问 SIDU-LATS。权限等同于你的账户，请妥善保管。</p>
+      <table>
+        <thead><tr><th>Token名称</th><th>用途</th><th>Token值</th><th>有效期至</th><th>最后使用</th><th>状态</th><th>操作</th></tr></thead>
+        <tbody id="myTokenTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 我的审批申请 -->
+  <div id="sec-my-applications" style="display:none;">
+    <div class="card">
+      <div class="card-title"><span>📋 我的审批申请记录</span><button class="btn-primary" style="padding:4px 12px;font-size:12px;" onclick="location.href='approval.html'">+ 发起新申请</button></div>
+      <table>
+        <thead><tr><th>申请编号</th><th>申请类型</th><th>申请内容</th><th>提交时间</th><th>审批人</th><th>状态</th><th>审批时间</th></tr></thead>
+        <tbody id="myAppTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 我的签名记录 -->
+  <div id="sec-my-signatures" style="display:none;">
+    <div class="card">
+      <div class="card-title">✍️ 我的电子签名记录</div>
+      <p style="color:#888;font-size:13px;margin-bottom:14px;">以下是你在系统中所有已完成的电子签名操作，每次签名均有完整法律效力，符合 FDA 21 CFR Part 11 要求。</p>
+      <table>
+        <thead><tr><th>签名时间</th><th>签名意图</th><th>签名对象</th><th>签名理由</th><th>哈希块</th><th>状态</th></tr></thead>
+        <tbody id="mySigTable"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 新建 Token 弹窗 -->
+<div id="createMyTokenModal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-header"><h3>🔑 新建个人 API Token</h3><button class="modal-close" onclick="closeCreateMyToken()">×</button></div>
+    <div class="modal-body">
+      <div style="background:#fffbe6;border:1px solid #ffe58f;border-radius:8px;padding:12px;margin-bottom:16px;font-size:13px;color:#d46b08;line-height:1.6;">⚠️ 此 Token 将获得与你账户同等的访问权限，请仅授权给可信的第三方系统。</div>
+      <div class="form-group"><label>Token 名称 *</label><input type="text" id="myTokenName" placeholder="如：MES系统-生产看板"></div>
+      <div class="form-group"><label>有效期</label><select id="myTokenExpiry"><option value="30">30天</option><option value="90">90天</option><option value="365" selected>1年（推荐）</option><option value="730">2年</option></select></div>
+      <div class="form-group"><label>用途说明</label><textarea id="myTokenDesc" rows="2" placeholder="描述此 Token 的用途..."></textarea></div>
+      <div id="myGenPanel" style="display:none;margin-top:16px;background:#f6ffed;border:1px solid #b7eb8f;border-radius:8px;padding:14px;">
+        <div style="font-weight:600;font-size:14px;color:#389e0d;margin-bottom:8px;">✅ Token 生成成功，立即复制保存！</div>
+        <div class="token-display" id="myGenTokenDisplay"></div>
+        <button onclick="copyMyGenToken()" style="margin-top:8px;background:#e6f7ff;color:#1890ff;border:1px solid #91d5ff;padding:4px 12px;border-radius:4px;cursor:pointer;font-size:13px;">📋 复制 Token</button>
+      </div>
+    </div>
+    <div class="modal-footer" id="myTokenModalFooter">
+      <button onclick="closeCreateMyToken()" style="padding:8px 20px;border:1px solid #d9d9d9;border-radius:4px;background:white;cursor:pointer;">取消</button>
+      <button onclick="generateMyToken()" class="btn-primary" style="padding:8px 20px;">生成 Token</button>
+    </div>
+  </div>
+</div>
+
+<!-- 修改资料弹窗 -->
+<div id="editProfileModal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-header"><h3>✏️ 修改个人资料</h3><button class="modal-close" onclick="document.getElementById('editProfileModal').style.display='none'">×</button></div>
+    <div class="modal-body">
+      <div class="form-group"><label>姓名</label><input type="text" value="李华"></div>
+      <div class="form-group"><label>工号</label><input type="text" value="EMP-003" readonly style="background:#f5f5f5;"></div>
+      <div class="form-group"><label>部门</label><input type="text" value="生产部"></div>
+      <div class="form-group"><label>联系电话</label><input type="text" value="138****1234"></div>
+      <div class="form-group"><label>邮箱</label><input type="email" value="lihua@company.com"></div>
+    </div>
+    <div class="modal-footer"><button onclick="document.getElementById('editProfileModal').style.display='none'" class="btn-outline">取消</button><button onclick="saveProfile()" class="btn-primary">保存</button></div>
+  </div>
+</div>
+
+<!-- 修改密码弹窗 -->
+<div id="changePwdModal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-header"><h3>🔒 修改登录密码</h3><button class="modal-close" onclick="document.getElementById('changePwdModal').style.display='none'">×</button></div>
+    <div class="modal-body">
+      <div class="form-group"><label>当前密码 *</label><input type="password" placeholder="请输入当前密码"></div>
+      <div class="form-group"><label>新密码 *（必须 8 位以上，含字母和数字）</label><input type="password" placeholder="请输入新密码"><div class="hint">建议 12 位以上，含大小写字母、数字和特殊字符</div></div>
+      <div class="form-group"><label>确认新密码 *</label><input type="password" placeholder="请再次输入新密码"></div>
+      <div style="background:#f5f5f5;border-radius:6px;padding:12px;margin-top:8px;"><div style="font-size:13px;color:#888;margin-bottom:6px;">🔐 密码要求（Argon2id）</div><div style="font-size:12px;color:#999;line-height:1.8;">· 长度 ≥ 8 位（建议 ≥ 12 位）<br>· 包含大小写字母和数字<br>· 每 90 天强制轮换</div></div>
+    </div>
+    <div class="modal-footer"><button onclick="document.getElementById('changePwdModal').style.display='none'" class="btn-outline">取消</button><button onclick="savePassword()" class="btn-primary">确认修改</button></div>
+  </div>
+</div>
+
+<script>
+var myTokens=[
+  {id:'my-token-001',name:'MES系统-生产看板',desc:'读取当日检测结果和批次信息',token:'me5-t0k3-a7b9...f2e8',expiry:'2027-01-15',lastUse:'2026-07-01 15:42',status:'有效'},
+  {id:'my-token-002',name:'质检看板-实时',desc:'实时读取PASS/FAIL统计',token:'me5-t0k3-c4d6...h8j0',expiry:'2026-07-08',lastUse:'2026-07-01 15:40',status:'即将过期'},
+];
+function renderMyTokens(){
+  var tb=document.getElementById('myTokenTable');
+  tb.innerHTML=myTokens.map(function(t){
+    var ec=t.status==='即将过期'?'tag-warning':'tag-success';
+    return '<tr><td style="font-weight:500;">'+t.name+'</td><td style="color:#666;font-size:12px;">'+t.desc+'</td><td><span class="hash-val">'+t.token+'</span> <button class="btn-ghost" style="font-size:11px;padding:2px 6px;" onclick="copyMyToken(this,\''+t.token+'\')">复制</button></td><td style="color:'+(t.status==='即将过期'?'#ff4d4f':'#666')+';font-size:12px;">'+t.expiry+'</td><td style="color:#666;font-size:12px;">'+t.lastUse+'</td><td><span class="tag '+ec+'">'+t.status+'</span></td><td><button class="btn-ghost" onclick="refreshMyToken(\''+t.id+'\')">刷新</button><button class="btn-danger" style="padding:3px 8px;font-size:12px;" onclick="revokeMyToken(\''+t.id+'\')">删除</button></td></tr>';
+  }).join('');
+}
+renderMyTokens();
+
+var myApps=[
+  {id:'APR-20260701-007',type:'配置变更',content:'误检率阈值调整 0.85→0.90',time:'2026-07-01 15:00',approver:'王芳（审计员）',status:'待审批',approveTime:'-'},
+  {id:'APR-20260630-004',type:'数据导出',content:'导出2026-06全月检测数据（CSV）',time:'2026-06-30 16:00',approver:'张明（管理员）',status:'已批准',approveTime:'2026-06-30 16:30'},
+  {id:'APR-20260628-002',type:'签名授权',content:'授权赵勇数字签名权限',time:'2026-06-28 10:00',approver:'张明（管理员）',status:'已批准',approveTime:'2026-06-28 10:15'},
+  {id:'APR-20260620-001',type:'检测任务',content:'DT-20260620-003 检测结果确认',time:'2026-06-20 14:30',approver:'王芳（审计员）',status:'已批准',approveTime:'2026-06-20 15:00'},
+];
+function renderMyApps(){
+  var tb=document.getElementById('myAppTable');
+  tb.innerHTML=myApps.map(function(a){
+    var st=a.status==='已批准'?'tag-success':a.status==='已拒绝'?'tag-error':'tag-warning';
+    return '<tr><td style="color:#1890ff;font-weight:500;">'+a.id+'</td><td>'+a.type+'</td><td style="color:#666;font-size:12px;">'+a.content+'</td><td style="color:#666;font-size:12px;">'+a.time+'</td><td>'+a.approver+'</td><td><span class="tag '+st+'">'+a.status+'</span></td><td style="color:#666;font-size:12px;">'+a.approveTime+'</td></tr>';
+  }).join('');
+}
+renderMyApps();
+
+var mySigs=[
+  {time:'2026-07-01 15:00',intent:'REVIEW',obj:'检测任务 DT-20260701-004',reason:'确认检测参数正确，同意提交',block:'#12431',status:'✓ 有效'},
+  {time:'2026-06-30 16:20',intent:'APPROVE',obj:'审批 APR-20260630-005',reason:'FAIL结果经复核无误，同意放行',block:'#12415',status:'✓ 有效'},
+  {time:'2026-06-28 10:10',intent:'APPROVE',obj:'检测任务 DT-20260628-001',reason:'B线检测结果确认，同意提交',block:'#12390',status:'✓ 有效'},
+  {time:'2026-06-25 14:05',intent:'REVIEW',obj:'审批 APR-20260625-003',reason:'参数变更合理性审查通过',block:'#12360',status:'✓ 有效'},
+];
+function renderMySigs(){
+  var tb=document.getElementById('mySigTable');
+  tb.innerHTML=mySigs.map(function(s){
+    var it=s.intent==='APPROVE'?'tag-success':'tag-info';
+    return '<tr><td style="color:#666;font-size:12px;">'+s.time+'</td><td><span class="tag '+it+'">'+s.intent+'</span></td><td style="font-size:12px;">'+s.obj+'</td><td style="color:#666;font-size:12px;">'+s.reason+'</td><td><span class="hash-val">'+s.block+'</span></td><td><span class="tag tag-success">'+s.status+'</span></td></tr>';
+  }).join('');
+}
+renderMySigs();
+
+function switchTab(tab){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+  document.getElementById('tab'+(tab==='my-tokens'?'MyTokens':tab==='my-applications'?'MyApps':'MySigs')).classList.add('active');
+  document.getElementById('sec-my-tokens').style.display=tab==='my-tokens'?'':'none';
+  document.getElementById('sec-my-applications').style.display=tab==='my-applications'?'':'none';
+  document.getElementById('sec-my-signatures').style.display=tab==='my-signatures'?'':'none';
+}
+function openCreateMyToken(){
+  document.getElementById('myGenPanel').style.display='none';
+  document.getElementById('myTokenName').value='';
+  document.getElementById('myTokenDesc').value='';
+  document.getElementById('myTokenModalFooter').innerHTML='<button onclick="closeCreateMyToken()" style="padding:8px 20px;border:1px solid #d9d9d9;border-radius:4px;background:white;cursor:pointer;">取消</button><button onclick="generateMyToken()" class="btn-primary" style="padding:8px 20px;">生成 Token</button>';
+  document.getElementById('createMyTokenModal').style.display='flex';
+}
+function closeCreateMyToken(){document.getElementById('createMyTokenModal').style.display='none';}
+function generateMyToken(){
+  var n=document.getElementById('myTokenName').value.trim();
+  if(!n){alert('请输入 Token 名称');return;}
+  var c='abcdefghijklmnopqrstuvwxyz0123456789';
+  var t='me5-'+Array.from({length:32},function(){return c[Math.floor(Math.random()*c.length)];}).join('');
+  document.getElementById('myGenTokenDisplay').textContent=t;
+  document.getElementById('myGenPanel').style.display='block';
+  document.getElementById('myTokenModalFooter').innerHTML='<button onclick="closeCreateMyToken()" class="btn-primary">关闭</button>';
+}
+function copyMyGenToken(){navigator.clipboard.writeText(document.getElementById('myGenTokenDisplay').textContent);alert('✓ Token 已复制，请妥善保管');}
+function copyMyToken(btn,t){navigator.clipboard.writeText(t);alert('✓ 已复制');}
+function refreshMyToken(id){if(confirm('刷新后旧 Token 立即失效！')){alert('✓ Token 已刷新');}}
+function revokeMyToken(id){if(confirm('删除后相关系统将无法继续访问，确定？')){alert('✓ Token 已删除');}}
+function openEditProfile(){document.getElementById('editProfileModal').style.display='flex';}
+function openChangePwd(){document.getElementById('changePwdModal').style.display='flex';}
+function saveProfile(){alert('✓ 个人资料已保存');document.getElementById('editProfileModal').style.display='none';}
+function savePassword(){alert('✓ 密码已修改，下次登录请使用新密码');document.getElementById('changePwdModal').style.display='none';}
+</script>
+</body>
+</html>
