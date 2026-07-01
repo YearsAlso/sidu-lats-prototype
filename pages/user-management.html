@@ -54,7 +54,7 @@ tbody tr:hover { background: #fafafa; }
   <div class="header-left"><div class="logo">SIDU-LATS</div><div class="breadcrumb">用户管理 &raquo; 系统用户与权限配置</div></div>
   <div class="header-right">
     <div style="display:flex;align-items:center;gap:8px;"><span style="color:#666;font-size:14px;">操作员: 张明</span></div>
-    <button onclick="location.href='login.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:#666;font-size:14px;">退出</button>
+    <button onclick="location.href='index.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:#666;font-size:14px;">退出</button>
   </div>
 </div>
 
@@ -118,7 +118,7 @@ tbody tr:hover { background: #fafafa; }
 </div>
 
 <script>
-if (!sessionStorage.getItem('lats_logged_in')) { location.href = 'login.html'; }
+if (!sessionStorage.getItem('lats_logged_in')) { location.href = 'index.html'; }
 
 var users = [
   { username: 'zhangming', name: '张明', role: '管理员', roleTag: 'error', dept: '质量管理部', email: 'zhangming@sidu.com', lastLogin: '2026-07-01 15:42', status: '启用', statusTag: 'success' },

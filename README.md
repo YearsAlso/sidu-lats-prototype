@@ -1,51 +1,48 @@
-# SIDU-LATS Phase 2 FDA 合规原型图
+# SIDU-LATS 原型图
 
-> SIDU-LATS（Lightweight Audit Trail System）Phase 2 — FDA 21 CFR Part 11 合规版前端原型
+缺陷识别数据存管系统（FDA 21 CFR Part 11 合规版）交互原型。
 
-## 预览
+## 在线预览
 
-直接在浏览器打开 `index.html` 即可查看原型图（无需服务器）。
+**GitHub Pages**: https://yearsalso.github.io/sidu-lats-prototype/
 
-👉 **GitHub Pages 预览**：[https://yearsalso.github.io/sidu-lats-prototype](https://yearsalso.github.io/sidu-lats-prototype)
+直接访问上方链接即可在浏览器中体验完整原型，无需安装任何依赖。
 
-## 包含页面
+## 页面说明
 
-| 页面 | 说明 |
+| 文件 | 说明 |
 |-----|------|
-| 登录页 | 用户名/密码登录 |
-| 仪表盘 | 状态总览/告警摘要/近期活动 |
-| 审计日志 | 多维筛选/详情追溯/导出 |
-| 哈希链管理 | Genesis Block/链可视化/验链 |
-| 审批中心 | 待审列表/签名面板/审核流程 |
-| 用户管理 | 用户CRUD/角色分配/权限矩阵 |
-| 存储介质 | 介质台账/生命周期管理 |
-| 报告导出 | 合规数据包导出配置 |
+| `login.html` | 登录页（入口） |
+| `pages/dashboard.html` | 仪表盘 - 系统状态总览 |
+| `pages/audit-log.html` | 审计日志 - 操作行为记录 |
+| `pages/hash-chain.html` | 哈希链 - 数据完整性验证 |
+| `pages/approval.html` | 审批中心 - 审批请求与签名 |
+| `pages/user-management.html` | 用户管理 - 账户与权限 |
+| `pages/storage.html` | 存储管理 - 容量与保留策略 |
+| `pages/report-export.html` | 报告导出 - 合规报告生成 |
 
-## 技术栈
+## 登录说明
 
-- Vue 3 Composition API
-- Ant Design Vue 4.x
-- Pinia 状态管理
-- Vite 构建风格（静态 HTML）
+- **用户名**：任意非空字符
+- **密码**：任意 4 位以上字符
 
-## 相关文档
+## 技术说明
 
-- [需求文档](./需求文档.md)（在 SIDU-LATS 主项目中）
-- [MVP 规划](./SIDU-LATS_Phase2_MVP_规划.md)
+- 纯原生 HTML + CSS + JavaScript，无框架依赖
+- 无需构建工具，双击 `login.html` 即可运行（本地模式）
+- 使用 `sessionStorage` 模拟登录状态
 
-## 项目结构
+## 分支说明
 
-```
-sidu-lats-prototype/
-├── index.html     # 原型图主文件（直接在浏览器打开）
-└── README.md
-```
+- `master` 分支：可直接访问的 GitHub Pages 预览版本
+- 源代码变更请提交到 `src/` 子目录
 
-## 合规说明
+## 合规功能演示
 
-本原型对应的 SIDU-LATS Phase 2 系统目标满足：
+本原型涵盖以下 FDA 21 CFR Part 11 合规功能：
 
-- FDA 21 CFR Part 11 电子记录完整性
-- ALCOA+ 数据完整性原则
-- 四角色三权分立权限体系
-- WORM 不可变存储架构
+- 🔐 电子签名（ESig）：PREVIEW / REVIEW / APPROVE / REJECT 意图分离
+- 🔗 哈希链：SHA-256 数据完整性验证
+- 📋 审计日志：ALCOA+ 合规操作记录
+- ✅ 审批流程：双人知情的配置变更审批
+- 📥 报告导出：带哈希和签名的合规报告

@@ -48,7 +48,7 @@ td { padding: 12px; font-size: 13px; color: #333; border-bottom: 1px solid #f5f5
   <div class="header-left"><div class="logo">SIDU-LATS</div><div class="breadcrumb">存储管理 &raquo; 数据存储与容量监控</div></div>
   <div class="header-right">
     <div style="display:flex;align-items:center;gap:8px;"><span style="color:#666;font-size:14px;">操作员: 张明</span></div>
-    <button onclick="location.href='login.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:#666;font-size:14px;">退出</button>
+    <button onclick="location.href='index.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:#666;font-size:14px;">退出</button>
   </div>
 </div>
 
@@ -115,7 +115,7 @@ td { padding: 12px; font-size: 13px; color: #333; border-bottom: 1px solid #f5f5
 </div>
 
 <script>
-if (!sessionStorage.getItem('lats_logged_in')) { location.href = 'login.html'; }
+if (!sessionStorage.getItem('lats_logged_in')) { location.href = 'index.html'; }
 
 var policies = [
   { type: '检测记录', duration: '5年', auto: '是', autoTag: 'success', expiry: '2031-07-01' },

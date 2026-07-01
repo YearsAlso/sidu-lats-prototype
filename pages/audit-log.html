@@ -46,7 +46,7 @@ tbody tr:last-child td { border-bottom: none; }
   <div class="header-left"><div class="logo">SIDU-LATS</div><div class="breadcrumb">审计日志 &raquo; 所有操作行为完整记录</div></div>
   <div class="header-right">
     <div style="display:flex;align-items:center;gap:8px;"><span style="color:#666;font-size:14px;">操作员: 张明</span></div>
-    <button onclick="location.href='login.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:#666;font-size:14px;">退出</button>
+    <button onclick="location.href='index.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:#666;font-size:14px;">退出</button>
   </div>
 </div>
 
@@ -107,7 +107,7 @@ tbody tr:last-child td { border-bottom: none; }
 </div>
 
 <script>
-if (!sessionStorage.getItem('lats_logged_in')) { location.href = 'login.html'; }
+if (!sessionStorage.getItem('lats_logged_in')) { location.href = 'index.html'; }
 
 const logs = [
   { time: '2026-07-01 15:42:18', user: '张明', type: '导出', typeTag: 'info', content: '导出检测报告 (ID: RPT-20260701-001)', ip: '192.168.1.105', hash: 'a8f3c9d2e1b4...' },

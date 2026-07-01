@@ -63,7 +63,7 @@ a { text-decoration: none; color: inherit; }
     <div style="display:flex;align-items:center;gap:8px;">
       <span style="color:#666;font-size:14px;">操作员: 张明</span>
     </div>
-    <button onclick="location.href='login.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:#666;font-size:14px;">退出</button>
+    <button onclick="location.href='index.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:#666;font-size:14px;">退出</button>
   </div>
 </div>
 
@@ -159,7 +159,7 @@ a { text-decoration: none; color: inherit; }
 <script>
 // 简单会话检测：未登录则跳转登录页
 if (!sessionStorage.getItem('lats_logged_in')) {
-  location.href = 'login.html';
+  location.href = 'index.html';
 }
 </script>
 </body>
