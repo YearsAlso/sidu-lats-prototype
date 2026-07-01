@@ -6,7 +6,7 @@
 <title>SIDU-LATS - 用户管理</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f4f5f7; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; background: #f4f5f7; }
 .header { background: white; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px rgba(15,23,42,0.04); position: fixed; width: 100%; top: 0; z-index: 1000; height: 64px; }
 .header-left { display: flex; align-items: center; gap: 24px; }
 .logo { font-size: 20px; font-weight: 600; color: #1f3a5f; }
@@ -59,13 +59,13 @@ tbody tr:hover { background: #fbfbfc; }
 </div>
 
 <div class="layout-sider">
-  <div class="menu-item" onclick="location.href='dashboard.html'">📊 仪表盘</div>
-  <div class="menu-item" onclick="location.href='audit-log.html'">📋 审计日志</div>
-  <div class="menu-item" onclick="location.href='hash-chain.html'">🔗 哈希链</div>
-  <div class="menu-item" onclick="location.href='approval.html'">✅ 审批中心</div>
-  <div class="menu-item active">👤 用户管理</div>
-  <div class="menu-item" onclick="location.href='storage.html'">💾 存储管理</div>
-  <div class="menu-item" onclick="location.href='report-export.html'">📥 报告导出</div>
+  <div class="menu-item" onclick="location.href='dashboard.html'"> 仪表盘</div>
+  <div class="menu-item" onclick="location.href='audit-log.html'"> 审计日志</div>
+  <div class="menu-item" onclick="location.href='hash-chain.html'"> 哈希链</div>
+  <div class="menu-item" onclick="location.href='approval.html'"> 审批中心</div>
+  <div class="menu-item active"> 用户管理</div>
+  <div class="menu-item" onclick="location.href='storage.html'"> 存储管理</div>
+  <div class="menu-item" onclick="location.href='report-export.html'"> 报告导出</div>
 </div>
 
 <div class="main-content">
@@ -156,11 +156,11 @@ function addUser() {
   var n = document.getElementById('newName').value.trim();
   var p = document.getElementById('newPwd').value;
   if (!u || !n || !p) { alert('请填写必填项'); return; }
-  alert('✓ 用户 ' + n + ' 添加成功！\n\n初始密码已生成，请告知用户首次登录后修改。');
+  alert(' 用户 ' + n + ' 添加成功！\n\n初始密码已生成，请告知用户首次登录后修改。');
   closeModal();
 }
 
-function editUser(username) { alert('编辑用户: ' + username + '\n\n（原型演示）'); }
+function editUser(username) { alert('编辑当前用户 / ' + username + '\n\n（原型演示）'); }
 function toggleStatus(username) { alert('用户 ' + username + ' 状态已切换'); }
 </script>
 </body>

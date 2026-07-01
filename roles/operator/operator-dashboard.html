@@ -6,7 +6,7 @@
 <title>SIDU-LATS - 操作员工作台</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f4f5f7;}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',system-ui,sans-serif;background:#f4f5f7;}
 .header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
 .header-left{display:flex;align-items:center;gap:20px;}
 .logo{font-size:20px;font-weight:600;color:#1f3a5f;}
@@ -50,14 +50,14 @@ td{padding:12px;font-size:13px;color:#333;border-bottom:1px solid #f0f2f5;}
 </head>
 <body>
 <div class="header">
-  <div class="header-left"><div class="logo">SIDU-LATS</div><div class="role-tag">🔧 操作员</div></div>
-  <div class="header-right"><div style="color:#666;font-size:14px;">用户: 李华</div><button onclick="location.href='operator-login.html'" style="background:none;border:1px solid #d0d4dc;padding:6px 12px;border-radius:4px;cursor:pointer;color:#666;font-size:14px;">退出</button></div>
+  <div class="header-left"><div class="logo">SIDU-LATS</div><div class="role-tag"> 操作员</div></div>
+  <div class="header-right"><div style="color:#5a6373;font-size:14px;">当前用户 / 李华</div><button onclick="location.href='operator-login.html'" style="background:none;border:1px solid #d0d4dc;padding:6px 12px;border-radius:4px;cursor:pointer;color:#5a6373;font-size:14px;">注销</button></div>
 </div>
 <div class="layout-sider">
-  <div class="menu-item active">📊 仪表盘</div>
-  <div class="menu-item" onclick="location.href='../pages/audit-log.html'">📋 我的操作记录</div>
-  <div class="menu-item" onclick="location.href='../pages/approval.html'">✅ 审批申请</div>
-  <div class="menu-item" onclick="location.href='../pages/report-export.html'">📥 我的报告</div>
+  <div class="menu-item active"> 仪表盘</div>
+  <div class="menu-item" onclick="location.href='../pages/audit-log.html'"> 我的操作记录</div>
+  <div class="menu-item" onclick="location.href='../pages/approval.html'"> 审批申请</div>
+  <div class="menu-item" onclick="location.href='../pages/report-export.html'"> 我的报告</div>
 </div>
 <div class="main-content">
   <div class="page-title">操作员工作台 <span>李华 · 生产部</span></div>
@@ -65,12 +65,12 @@ td{padding:12px;font-size:13px;color:#333;border-bottom:1px solid #f0f2f5;}
     <div class="stat-card"><div class="num">284</div><div class="lbl">今日检测</div><div class="sub" style="color:#0f7b3a;">↑ +12</div></div>
     <div class="stat-card"><div class="num" style="color:#0f7b3a;">98.6%</div><div class="lbl">合格率</div><div class="sub">目标 ≥97%</div></div>
     <div class="stat-card"><div class="num" style="color:#a36404;">3</div><div class="lbl">我的待审批</div><div class="sub">处理中</div></div>
-    <div class="stat-card"><div class="num">2</div><div class="lbl">已获授权签名</div><div class="sub" style="color:#0f7b3a;">✓ 有效</div></div>
+    <div class="stat-card"><div class="num">2</div><div class="lbl">已获授权签名</div><div class="sub" style="color:#0f7b3a;"> 有效</div></div>
   </div>
   <div class="quick-actions" style="margin-bottom:24px;">
-    <div class="quick-item"><div class="icon">🔍</div><div class="label">发起检测任务</div><div class="sub">创建新的检测任务</div></div>
-    <div class="quick-item" onclick="location.href='../pages/approval.html'"><div class="icon">📝</div><div class="label">提交审批申请</div><div class="sub">配置变更/数据导出等</div></div>
-    <div class="quick-item" onclick="location.href='../pages/report-export.html'"><div class="icon">📥</div><div class="label">导出我的报告</div><div class="sub">检测结果/统计报表</div></div>
+    <div class="quick-item"><div class="icon"></div><div class="label">发起检测任务</div><div class="sub">创建新的检测任务</div></div>
+    <div class="quick-item" onclick="location.href='../pages/approval.html'"><div class="icon"></div><div class="label">提交审批申请</div><div class="sub">配置变更/数据导出等</div></div>
+    <div class="quick-item" onclick="location.href='../pages/report-export.html'"><div class="icon"></div><div class="label">导出我的报告</div><div class="sub">检测结果/统计报表</div></div>
   </div>
   <div class="grid-2">
     <div class="card">
@@ -78,9 +78,9 @@ td{padding:12px;font-size:13px;color:#333;border-bottom:1px solid #f0f2f5;}
       <table>
         <thead><tr><th>申请编号</th><th>类型</th><th>内容摘要</th><th>提交时间</th><th>状态</th><th>进度</th></tr></thead>
         <tbody>
-          <tr><td style="color:#1f3a5f;font-weight:500;">APR-20260701-007</td><td><span class="tag tag-warning">配置变更</span></td><td>阈值调整 0.85→0.90 (A线)</td><td style="color:#666;font-size:12px;">2026-07-01 14:55</td><td><span class="tag tag-warning">待审批</span></td><td style="font-size:12px;">初审✓ → 复核中</td></tr>
-          <tr><td style="color:#1f3a5f;font-weight:500;">APR-20260701-004</td><td><span class="tag tag-error">记录删除</span></td><td>删除6月15日测试数据</td><td style="color:#666;font-size:12px;">2026-07-01 10:15</td><td><span class="tag tag-warning">待审批</span></td><td style="font-size:12px;">待初审</td></tr>
-          <tr><td style="color:#1f3a5f;font-weight:500;">APR-20260628-005</td><td><span class="tag tag-success">配置变更</span></td><td>相机参数微调 (CAM-002)</td><td style="color:#666;font-size:12px;">2026-06-28 09:30</td><td><span class="tag tag-success">已批准</span></td><td style="font-size:12px;color:#0f7b3a;">✓ 完成</td></tr>
+          <tr><td style="color:#1f3a5f;font-weight:500;">APR-20260701-007</td><td><span class="tag tag-warning">配置变更</span></td><td>阈值调整 0.85→0.90 (A线)</td><td style="color:#5a6373;font-size:12px;">2026-07-01 14:55</td><td><span class="tag tag-warning">待审批</span></td><td style="font-size:12px;">初审 → 复核中</td></tr>
+          <tr><td style="color:#1f3a5f;font-weight:500;">APR-20260701-004</td><td><span class="tag tag-error">记录删除</span></td><td>删除6月15日测试数据</td><td style="color:#5a6373;font-size:12px;">2026-07-01 10:15</td><td><span class="tag tag-warning">待审批</span></td><td style="font-size:12px;">待初审</td></tr>
+          <tr><td style="color:#1f3a5f;font-weight:500;">APR-20260628-005</td><td><span class="tag tag-success">配置变更</span></td><td>相机参数微调 (CAM-002)</td><td style="color:#5a6373;font-size:12px;">2026-06-28 09:30</td><td><span class="tag tag-success">已批准</span></td><td style="font-size:12px;color:#0f7b3a;"> 完成</td></tr>
         </tbody>
       </table>
     </div>
@@ -90,7 +90,7 @@ td{padding:12px;font-size:13px;color:#333;border-bottom:1px solid #f0f2f5;}
       <div class="timeline-item"><div class="time">2026-07-01 14:58</div><div>发起检测任务 #1285 (A线)</div></div>
       <div class="timeline-item"><div class="time">2026-07-01 10:15</div><div>提交审批申请 APR-20260701-004</div></div>
       <div class="timeline-item"><div class="time">2026-07-01 09:20</div><div>登录系统</div></div>
-      <div class="timeline-item"><div class="time">2026-06-28 09:30</div><div>提交审批 APR-20260628-005 <span class="tag tag-success" style="margin-left:6px;font-size:10px;">✓ 已批准</span></div></div>
+      <div class="timeline-item"><div class="time">2026-06-28 09:30</div><div>提交审批 APR-20260628-005 <span class="tag tag-success" style="margin-left:6px;font-size:10px;"> 已批准</span></div></div>
     </div>
   </div>
 </div>

@@ -6,7 +6,7 @@
 <title>SIDU-LATS - 审计员仪表盘</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f4f5f7;}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',system-ui,sans-serif;background:#f4f5f7;}
 .header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
 .header-left{display:flex;align-items:center;gap:20px;}
 .logo{font-size:20px;font-weight:600;color:#1f3a5f;}
@@ -27,7 +27,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .card{background:white;border-radius:8px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,0.08);margin-bottom:24px;}
 .card-title{font-size:16px;font-weight:500;color:#333;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #e8eaed;display:flex;justify-content:space-between;align-items:center;}
 .btn-primary{background:#0f7b3a;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
-.btn-outline{background:white;border:1px solid #d0d4dc;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;color:#666;}
+.btn-outline{background:white;border:1px solid #d0d4dc;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;color:#5a6373;}
 .tag{padding:2px 8px;border-radius:4px;font-size:12px;}
 .tag-success{background:#e8f3ec;color:#0f7b3a;border:1px solid #9bccaf;}
 .tag-warning{background:#faf2e0;color:#a36404;border:1px solid #e6c890;}
@@ -53,44 +53,44 @@ td{padding:12px;font-size:13px;color:#333;border-bottom:1px solid #f0f2f5;}
 </head>
 <body>
 <div class="header">
-  <div class="header-left"><div class="logo">SIDU-LATS</div><div class="role-tag">🔍 审计员</div></div>
-  <div class="header-right"><div style="color:#666;font-size:14px;">用户: 王芳</div><button onclick="location.href='auditor-login.html'" style="background:none;border:1px solid #d0d4dc;padding:6px 12px;border-radius:4px;cursor:pointer;color:#666;font-size:14px;">退出</button></div>
+  <div class="header-left"><div class="logo">SIDU-LATS</div><div class="role-tag"> 审计员</div></div>
+  <div class="header-right"><div style="color:#5a6373;font-size:14px;">当前用户 / 王芳</div><button onclick="location.href='auditor-login.html'" style="background:none;border:1px solid #d0d4dc;padding:6px 12px;border-radius:4px;cursor:pointer;color:#5a6373;font-size:14px;">注销</button></div>
 </div>
 <div class="layout-sider">
-  <div class="menu-item active">📊 仪表盘</div>
-  <div class="menu-item" onclick="location.href='../pages/audit-log.html'">📋 审计日志</div>
-  <div class="menu-item" onclick="location.href='../pages/hash-chain.html'">🔗 哈希链验证</div>
-  <div class="menu-item" onclick="location.href='../pages/approval.html'">✅ 审批中心</div>
-  <div class="menu-item" onclick="location.href='../pages/report-export.html'">📥 报告导出</div>
+  <div class="menu-item active"> 仪表盘</div>
+  <div class="menu-item" onclick="location.href='../pages/audit-log.html'"> 审计日志</div>
+  <div class="menu-item" onclick="location.href='../pages/hash-chain.html'"> 哈希链验证</div>
+  <div class="menu-item" onclick="location.href='../pages/approval.html'"> 审批中心</div>
+  <div class="menu-item" onclick="location.href='../pages/report-export.html'"> 报告导出</div>
 </div>
 <div class="main-content">
   <div class="page-title">审计员工作台 <span>合规审查与数据验证</span></div>
   <div class="verify-panel">
-    <div class="result">✓ 哈希链完整性正常 · 上次验证: 2026-07-01 15:38</div>
-    <button class="btn-primary" onclick="location.href='../pages/hash-chain.html'">🔄 重新验链</button>
+    <div class="result"> 哈希链完整性正常 · 上次验证: 2026-07-01 15:38</div>
+    <button class="btn-primary" onclick="location.href='../pages/hash-chain.html'"> 重新验链</button>
   </div>
   <div class="stat-grid">
-    <div class="stat-card"><div class="num" style="color:#0f7b3a;">✓</div><div class="lbl">哈希完整性</div><div class="sub" style="color:#0f7b3a;">验证通过</div></div>
+    <div class="stat-card"><div class="num" style="color:#0f7b3a;"></div><div class="lbl">哈希完整性</div><div class="sub" style="color:#0f7b3a;">验证通过</div></div>
     <div class="stat-card"><div class="num">128</div><div class="lbl">本月审查项</div><div class="sub">日志/报告/配置</div></div>
     <div class="stat-card"><div class="num" style="color:#a36404;">3</div><div class="lbl">待复核</div><div class="sub">需尽快处理</div></div>
-    <div class="stat-card"><div class="num">98.7%</div><div class="lbl">合规率</div><div class="sub" style="color:#0f7b3a;">✓</div></div>
+    <div class="stat-card"><div class="num">98.7%</div><div class="lbl">合规率</div><div class="sub" style="color:#0f7b3a;"></div></div>
     <div class="stat-card"><div class="num" style="color:#0f7b3a;">0</div><div class="lbl">异常项</div><div class="sub">无告警</div></div>
   </div>
   <div class="grid-2">
     <div class="card">
       <div class="card-title">审计任务中心</div>
       <div class="quick-actions">
-        <div class="quick-item" onclick="location.href='../pages/audit-log.html'"><div class="icon">📋</div><div><div class="label">审计日志审查</div><div class="sub">查看完整操作记录</div></div></div>
-        <div class="quick-item" onclick="location.href='../pages/hash-chain.html'"><div class="icon">🔗</div><div><div class="label">哈希链验证</div><div class="sub">验证数据完整性</div></div></div>
-        <div class="quick-item" onclick="location.href='../pages/approval.html'"><div class="icon">✅</div><div><div class="label">报告/导出审批</div><div class="sub">审查并签署</div></div></div>
-        <div class="quick-item" onclick="location.href='../pages/report-export.html'"><div class="icon">📥</div><div><div class="label">合规报告生成</div><div class="sub">导出审计报告</div></div></div>
+        <div class="quick-item" onclick="location.href='../pages/audit-log.html'"><div class="icon"></div><div><div class="label">审计日志审查</div><div class="sub">查看完整操作记录</div></div></div>
+        <div class="quick-item" onclick="location.href='../pages/hash-chain.html'"><div class="icon"></div><div><div class="label">哈希链验证</div><div class="sub">验证数据完整性</div></div></div>
+        <div class="quick-item" onclick="location.href='../pages/approval.html'"><div class="icon"></div><div><div class="label">报告/导出审批</div><div class="sub">审查并签署</div></div></div>
+        <div class="quick-item" onclick="location.href='../pages/report-export.html'"><div class="icon"></div><div><div class="label">合规报告生成</div><div class="sub">导出审计报告</div></div></div>
       </div>
     </div>
     <div class="card">
       <div class="card-title">近期审计发现</div>
-      <div class="timeline-item"><div class="time">2026-06-28</div><div>审查6月配置变更记录 <span class="tag tag-success" style="margin-left:8px;">合规 ✓</span></div></div>
-      <div class="timeline-item"><div class="time">2026-06-25</div><div>验证Q2哈希链完整性 <span class="tag tag-success" style="margin-left:8px;">通过 ✓</span></div></div>
-      <div class="timeline-item"><div class="time">2026-06-20</div><div>审查签名授权申请记录 <span class="tag tag-success" style="margin-left:8px;">合规 ✓</span></div></div>
+      <div class="timeline-item"><div class="time">2026-06-28</div><div>审查6月配置变更记录 <span class="tag tag-success" style="margin-left:8px;">合规 </span></div></div>
+      <div class="timeline-item"><div class="time">2026-06-25</div><div>验证Q2哈希链完整性 <span class="tag tag-success" style="margin-left:8px;">通过 </span></div></div>
+      <div class="timeline-item"><div class="time">2026-06-20</div><div>审查签名授权申请记录 <span class="tag tag-success" style="margin-left:8px;">合规 </span></div></div>
       <div class="timeline-item"><div class="time">2026-06-15</div><div>导出月审报告 <span class="tag tag-info" style="margin-left:8px;">RPT-202606</span></div></div>
     </div>
   </div>
@@ -103,7 +103,7 @@ td{padding:12px;font-size:13px;color:#333;border-bottom:1px solid #f0f2f5;}
           <td style="color:#1f3a5f;font-weight:500;">APR-20260701-003</td>
           <td><span class="tag tag-warning">配置变更</span></td><td>李华</td>
           <td>阈值调整 0.85→0.90</td>
-          <td style="color:#666;font-size:12px;">2026-07-01 14:55</td>
+          <td style="color:#5a6373;font-size:12px;">2026-07-01 14:55</td>
           <td><span style="color:#a36404;">▲ 高</span></td>
           <td><span class="tag tag-warning">待复核</span></td>
           <td><button onclick="location.href='../pages/approval.html'" class="btn-primary" style="padding:4px 10px;font-size:12px;">复核</button></td>
@@ -112,7 +112,7 @@ td{padding:12px;font-size:13px;color:#333;border-bottom:1px solid #f0f2f5;}
           <td style="color:#1f3a5f;font-weight:500;">APR-20260701-002</td>
           <td><span class="tag tag-info">数据导出</span></td><td>王芳</td>
           <td>Q2审计报告导出</td>
-          <td style="color:#666;font-size:12px;">2026-07-01 14:30</td>
+          <td style="color:#5a6373;font-size:12px;">2026-07-01 14:30</td>
           <td><span style="color:#1f3a5f;">● 中</span></td>
           <td><span class="tag tag-warning">待复核</span></td>
           <td><button onclick="location.href='../pages/approval.html'" class="btn-primary" style="padding:4px 10px;font-size:12px;">复核</button></td>
@@ -121,7 +121,7 @@ td{padding:12px;font-size:13px;color:#333;border-bottom:1px solid #f0f2f5;}
           <td style="color:#1f3a5f;font-weight:500;">APR-20260701-001</td>
           <td><span class="tag tag-info">报告签发</span></td><td>王芳</td>
           <td>6月合规月报签发</td>
-          <td style="color:#666;font-size:12px;">2026-06-30 16:20</td>
+          <td style="color:#5a6373;font-size:12px;">2026-06-30 16:20</td>
           <td><span style="color:#0f7b3a;">▼ 低</span></td>
           <td><span class="tag tag-warning">待复核</span></td>
           <td><button onclick="location.href='../pages/approval.html'" class="btn-primary" style="padding:4px 10px;font-size:12px;">复核</button></td>

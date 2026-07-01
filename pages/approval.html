@@ -6,7 +6,7 @@
 <title>SIDU-LATS - 审批中心</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f4f5f7; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; background: #f4f5f7; }
 .header { background: white; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px rgba(15,23,42,0.04); position: fixed; width: 100%; top: 0; z-index: 1000; height: 64px; }
 .header-left { display: flex; align-items: center; gap: 24px; }
 .logo { font-size: 20px; font-weight: 600; color: #1f3a5f; }
@@ -109,13 +109,13 @@ tbody tr:hover { background: #fbfbfc; cursor: pointer; }
 </div>
 
 <div class="layout-sider">
-  <div class="menu-item" onclick="location.href='dashboard.html'">📊 仪表盘</div>
-  <div class="menu-item" onclick="location.href='audit-log.html'">📋 审计日志</div>
-  <div class="menu-item" onclick="location.href='hash-chain.html'">🔗 哈希链</div>
-  <div class="menu-item active">✅ 审批中心</div>
-  <div class="menu-item" onclick="location.href='user-management.html'">👤 用户管理</div>
-  <div class="menu-item" onclick="location.href='storage.html'">💾 存储管理</div>
-  <div class="menu-item" onclick="location.href='report-export.html'">📥 报告导出</div>
+  <div class="menu-item" onclick="location.href='dashboard.html'"> 仪表盘</div>
+  <div class="menu-item" onclick="location.href='audit-log.html'"> 审计日志</div>
+  <div class="menu-item" onclick="location.href='hash-chain.html'"> 哈希链</div>
+  <div class="menu-item active"> 审批中心</div>
+  <div class="menu-item" onclick="location.href='user-management.html'"> 用户管理</div>
+  <div class="menu-item" onclick="location.href='storage.html'"> 存储管理</div>
+  <div class="menu-item" onclick="location.href='report-export.html'"> 报告导出</div>
 </div>
 
 <div class="main-content">
@@ -189,8 +189,8 @@ tbody tr:hover { background: #fbfbfc; cursor: pointer; }
       <div style="font-size:13px;color:#888;">共 <span id="rowCount">7</span> 条</div>
       <div style="display:flex;gap:8px;align-items:center;">
         <div style="font-size:13px;color:#5a6373;">批量操作:</div>
-        <button class="btn-success" onclick="batchApprove()">✅ 批量批准</button>
-        <button class="btn-danger" onclick="batchReject()">🚫 批量拒绝</button>
+        <button class="btn-success" onclick="batchApprove()"> 批量批准</button>
+        <button class="btn-danger" onclick="batchReject()"> 批量拒绝</button>
         <div style="display:flex;gap:6px;margin-left:12px;">
           <button class="btn-outline" style="padding:6px 10px;">«</button>
           <button class="btn-outline" style="padding:6px 10px;background:#e6edf5;color:#1f3a5f;border-color:#a8b8cf;">1</button>
@@ -205,7 +205,7 @@ tbody tr:hover { background: #fbfbfc; cursor: pointer; }
   <div class="card" id="historySection" style="display:none;">
     <div class="card-title">
       <span>审批历史</span>
-      <button class="btn-outline" onclick="exportHistory()">📥 导出历史</button>
+      <button class="btn-outline" onclick="exportHistory()"> 导出历史</button>
     </div>
     <table>
       <thead>
@@ -220,19 +220,19 @@ tbody tr:hover { background: #fbfbfc; cursor: pointer; }
 <div id="detailModal" class="modal-overlay" style="display:none;">
   <div class="modal-box">
     <div class="modal-header">
-      <h3 id="detailTitle">📋 审批详情</h3>
+      <h3 id="detailTitle"> 审批详情</h3>
       <button class="modal-close" onclick="closeDetail()">×</button>
     </div>
     <div class="modal-body">
       <div id="detailProcess" class="process-flow">
         <div class="process-step">
-          <div class="step-circle done">✓</div>
+          <div class="step-circle done"></div>
           <div class="step-label">提交申请</div>
           <div class="step-time" id="step1Time">—</div>
         </div>
         <div class="step-arrow">→</div>
         <div class="process-step">
-          <div class="step-circle done">✓</div>
+          <div class="step-circle done"></div>
           <div class="step-label">初审</div>
           <div class="step-time" id="step2Time">—</div>
         </div>
@@ -262,20 +262,20 @@ tbody tr:hover { background: #fbfbfc; cursor: pointer; }
       </div>
 
       <div style="margin-bottom:16px;">
-        <div style="font-weight:500;font-size:14px;margin-bottom:8px;">📝 申请内容</div>
+        <div style="font-weight:500;font-size:14px;margin-bottom:8px;"> 申请内容</div>
         <div id="dContent" style="background:#fbfbfc;padding:14px;border-radius:6px;font-size:14px;line-height:1.7;color:#1f2937;"></div>
       </div>
 
       <div style="margin-bottom:16px;">
-        <div style="font-weight:500;font-size:14px;margin-bottom:8px;">📎 附件</div>
+        <div style="font-weight:500;font-size:14px;margin-bottom:8px;"> 附件</div>
         <div style="display:flex;flex-direction:column;gap:8px;">
           <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#fbfbfc;border-radius:6px;border:1px solid #e8eaed;">
-            <span style="font-size:20px;">📄</span>
+            <span style="font-size:20px;"></span>
             <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:#1f2937;">变更参数对照表.pdf</div><div style="font-size:11px;color:#8a93a3;">234 KB · 上传于 2026-07-01 14:50</div></div>
             <button class="btn-ghost">下载</button>
           </div>
           <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#fbfbfc;border-radius:6px;border:1px solid #e8eaed;">
-            <span style="font-size:20px;">📊</span>
+            <span style="font-size:20px;"></span>
             <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:#1f2937;">历史数据对比分析.xlsx</div><div style="font-size:11px;color:#8a93a3;">1.2 MB · 上传于 2026-07-01 14:52</div></div>
             <button class="btn-ghost">下载</button>
           </div>
@@ -283,7 +283,7 @@ tbody tr:hover { background: #fbfbfc; cursor: pointer; }
       </div>
 
       <div style="margin-bottom:16px;">
-        <div style="font-weight:500;font-size:14px;margin-bottom:8px;">💬 初审意见</div>
+        <div style="font-weight:500;font-size:14px;margin-bottom:8px;"> 初审意见</div>
         <div style="background:#faf2e0;border:1px solid #e6c890;border-radius:6px;padding:12px;font-size:13px;line-height:1.6;">
           <div style="margin-bottom:8px;"><strong>王芳（QA审计员）</strong> <span style="color:#8a93a3;font-size:12px;">2026-07-01 15:05</span></div>
           <div style="color:#1f2937;">经核实，本次阈值调整涉及的生产线为A线（相机SIDU-CAM-001）。调阅近30天数据，误检率维持在0.8%~1.2%区间，调整至0.90后预计可降低约15%的过杀。建议批准。</div>
@@ -292,7 +292,7 @@ tbody tr:hover { background: #fbfbfc; cursor: pointer; }
       </div>
 
       <div>
-        <div style="font-weight:500;font-size:14px;margin-bottom:8px;">✍️ 复核签名</div>
+        <div style="font-weight:500;font-size:14px;margin-bottom:8px;">️ 复核签名</div>
         <div style="background:#e8f3ec;border:1px solid #9bccaf;border-radius:6px;padding:12px;font-size:13px;">
           <div id="sigPlaceholder" style="color:#888;text-align:center;padding:20px 0;">— 尚未签名 —</div>
         </div>
@@ -310,7 +310,7 @@ tbody tr:hover { background: #fbfbfc; cursor: pointer; }
 <div id="signModal" class="modal-overlay" style="display:none;">
   <div class="modal-box">
     <div class="modal-header">
-      <h3>✍️ 电子签名确认</h3>
+      <h3>️ 电子签名确认</h3>
       <button class="modal-close" onclick="closeModal()">×</button>
     </div>
     <div class="modal-body">
@@ -365,7 +365,7 @@ var requests = [
   { id:'APR-20260701-006', applicant:'王芳', dept:'合规部', type:'数据导出', typeTag:'info', priority:'中', urgency:60, content:'导出2026年Q2审计报告（PDF）\n\n包含内容：\n· 全部操作日志（2026-04-01 ~ 2026-06-30）\n· 哈希链验证记录\n· 审批流程记录\n· 数字签名台账\n\n用途说明：FDA季度合规审查提交', time:'2026-07-01 14:30:00', deadline:'2026-07-03 18:00', status:'待审批', statusTag:'warning', hasAttachment:false, hasFirstReview:false },
   { id:'APR-20260701-005', applicant:'张明', dept:'质量管理部', type:'签名授权', typeTag:'purple', priority:'中', urgency:50, content:'授权新用户 赵勇（zhaoyong）数字签名权限\n\n授权范围：\n· 审批签名（APPROVE/REJECT）\n· 报告签发\n· 配置变更确认\n\n有效期：2026-07-01 ~ 2027-07-01', time:'2026-07-01 11:20:15', deadline:'2026-07-04 11:20', status:'待审批', statusTag:'warning', hasAttachment:false, hasFirstReview:false },
   { id:'APR-20260701-004', applicant:'李华', dept:'生产部', type:'记录删除', typeTag:'error', priority:'紧急', urgency:95, content:'申请删除测试记录（2026-06-15）\n\n删除原因：当日数据为设备调试期间的测试数据，非真实生产数据，需清理以免影响月度统计。\n\n涉及记录数：1,284条检测记录\n数据快照已备份至: /backup/20260615_test_data.tar.gz', time:'2026-07-01 10:15:33', deadline:'2026-07-01 18:00', status:'待审批', statusTag:'warning', hasAttachment:true, hasFirstReview:false },
-  { id:'APR-20260701-003', applicant:'王芳', dept:'合规部', type:'报告签发', typeTag:'info', priority:'高', urgency:75, content:'签发2026年6月合规月报\n\n报告编号：RPT-202606-001\n报告周期：2026-06-01 ~ 2026-06-30\n数据完整性：✓ SHA-256验证通过\n签名状态：待最终签发', time:'2026-06-30 16:20:00', deadline:'2026-07-02 12:00', status:'待审批', statusTag:'warning', hasAttachment:false, hasFirstReview:true },
+  { id:'APR-20260701-003', applicant:'王芳', dept:'合规部', type:'报告签发', typeTag:'info', priority:'高', urgency:75, content:'签发2026年6月合规月报\n\n报告编号：RPT-202606-001\n报告周期：2026-06-01 ~ 2026-06-30\n数据完整性： SHA-256验证通过\n签名状态：待最终签发', time:'2026-06-30 16:20:00', deadline:'2026-07-02 12:00', status:'待审批', statusTag:'warning', hasAttachment:false, hasFirstReview:true },
   { id:'APR-20260630-009', applicant:'赵勇', dept:'生产部', type:'配置变更', typeTag:'warning', priority:'低', urgency:30, content:'调整相机曝光参数（SIDU-CAM-003）\n\n调整项：曝光时间 5000μs → 5500μs\n原因：低光照环境下图像质量改善', time:'2026-06-30 09:10:22', deadline:'2026-07-05 09:10', status:'待审批', statusTag:'warning', hasAttachment:false, hasFirstReview:false },
   { id:'APR-20260629-008', applicant:'孙丽', dept:'市场部', type:'数据导出', typeTag:'info', priority:'低', urgency:20, content:'导出Q2生产统计报表（CSV格式）\n\n用途：客户月度汇报材料', time:'2026-06-29 14:35:00', deadline:'2026-07-06 14:35', status:'待审批', statusTag:'warning', hasAttachment:false, hasFirstReview:false }
 ];
@@ -379,7 +379,7 @@ var history = [
 ];
 
 function getPriorityLabel(p) {
-  if (p === '紧急') return '<span class="priority-high">⚡ 紧急</span>';
+  if (p === '紧急') return '<span class="priority-high"> 紧急</span>';
   if (p === '高') return '<span class="priority-med">▲ 高</span>';
   if (p === '中') return '<span style="color:#1f3a5f;">● 中</span>';
   return '<span class="priority-low">▼ 低</span>';
@@ -393,7 +393,7 @@ function getUrgencyBar(pct) {
 function renderPending() {
   var tbody = document.getElementById('reqTable');
   tbody.innerHTML = requests.map(r => {
-    var firstReview = r.hasFirstReview ? '<span class="tag tag-success" style="margin-left:4px;font-size:10px;">初审✓</span>' : '';
+    var firstReview = r.hasFirstReview ? '<span class="tag tag-success" style="margin-left:4px;font-size:10px;">初审</span>' : '';
     return '<tr onclick="showDetail(\'' + r.id + '\')">' +
       '<td onclick="event.stopPropagation()"><input type="checkbox"></td>' +
       '<td style="color:#1f3a5f;font-weight:500;">' + r.id + '</td>' +
@@ -493,7 +493,7 @@ function confirmSign() {
   if (!pwd) { alert('请输入签名密码'); return; }
   var intent = document.getElementById('signIntent').value;
   var intentLabel = { PREVIEW:'预览', REVIEW:'复核', APPROVE:'批准', REJECT:'拒绝' }[intent];
-  alert('✓ 电子签名成功！\n\n签名人: 张明\n意图: ' + intent + ' (' + intentLabel + ')\n时间: ' + new Date().toLocaleString('zh-CN') + '\n签名哈希: ' + document.getElementById('signerHash').textContent + '\n\n⚠️ 本签名符合 FDA 21 CFR Part 11 规定，具有法律效力。');
+  alert(' 电子签名成功！\n\n签名人: 张明\n意图: ' + intent + ' (' + intentLabel + ')\n时间: ' + new Date().toLocaleString('zh-CN') + '\n签名哈希: ' + document.getElementById('signerHash').textContent + '\n\n️ 本签名符合 FDA 21 CFR Part 11 规定，具有法律效力。');
   closeModal();
 }
 

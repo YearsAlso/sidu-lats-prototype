@@ -6,7 +6,7 @@
 <title>SIDU-LATS - 操作员入口</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; background: linear-gradient(135deg, #1f3a5f 0%, #15293f 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; background: #f4f5f7; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
 .login-box { background: white; padding: 40px; border-radius: 4px; box-shadow: 0 1px 0 rgba(15,23,42,0.04); width: 420px; }
 .login-logo { text-align: center; margin-bottom: 28px; }
 .login-logo h1 { color: #1f3a5f; font-size: 26px; margin-bottom: 6px; }
@@ -32,10 +32,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI'
   <div class="login-logo">
     <h1>SIDU-LATS</h1>
     <p>缺陷识别数据存管系统 · 合规版</p>
-    <div class="role-badge">🔧 操作员角色演示</div>
+    <div class="role-badge"> 操作员角色演示</div>
   </div>
   <div class="demo-hint">
-    🔧 操作员（Operator）<br>
+     操作员（Operator）<br>
     权限范围：发起检测任务、提交审批申请、查看本人操作记录、查看本人报告。
   </div>
   <form id="loginForm" onsubmit="handleLogin(event)">
@@ -44,9 +44,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI'
     <button type="submit" class="btn-login">以操作员身份登录</button>
   </form>
   <div class="role-cards">
-    <div class="role-card" onclick="location.href='admin-login.html'"><div class="icon">👑</div><div class="info"><div class="name">切换：管理员</div><div class="desc">系统配置、用户管理、全权限</div></div></div>
-    <div class="role-card" onclick="location.href='auditor-login.html'"><div class="icon">🔍</div><div class="info"><div class="name">切换：审计员</div><div class="desc">审计日志审查、报告审核</div></div></div>
-    <div class="role-card" onclick="location.href='viewer-login.html'"><div class="icon">👁️</div><div class="info"><div class="name">切换：查看者</div><div class="desc">只读访问、数据查看</div></div></div>
+    <div class="role-card" onclick="location.href='admin-login.html'"><div class="icon"></div><div class="info"><div class="name">切换：管理员</div><div class="desc">系统配置、用户管理、全权限</div></div></div>
+    <div class="role-card" onclick="location.href='auditor-login.html'"><div class="icon"></div><div class="info"><div class="name">切换：审计员</div><div class="desc">审计日志审查、报告审核</div></div></div>
+    <div class="role-card" onclick="location.href='viewer-login.html'"><div class="icon">️</div><div class="info"><div class="name">切换：查看者</div><div class="desc">只读访问、数据查看</div></div></div>
   </div>
   <div class="footer">© 2026 SIDU · FDA 21 CFR Part 11 · ALCOA+</div>
 </div>

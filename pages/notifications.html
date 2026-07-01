@@ -6,7 +6,7 @@
 <title>SIDU-LATS - 通知中心</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f4f5f7;}
+body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',system-ui,sans-serif;background:#f4f5f7;}
 .header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
 .header-left{display:flex;align-items:center;gap:20px;}
 .logo{font-size:20px;font-weight:600;color:#1f3a5f;}
@@ -79,23 +79,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <div class="breadcrumb">通知中心 &raquo; 审批提醒与系统通知</div>
   </div>
   <div class="header-right">
-    <button class="bell-btn">🔔<span class="badge">5</span></button>
-    <span style="color:#5a6373;font-size:14px;">用户: 张明</span>
+    <button class="bell-btn"><span class="badge">5</span></button>
+    <span style="color:#5a6373;font-size:14px;">当前用户 / 张明</span>
     <button onclick="location.href='index.html'" style="background:none;border:1px solid #d0d4dc;padding:6px 12px;border-radius:4px;cursor:pointer;color:#5a6373;font-size:14px;">注销</button>
   </div>
 </div>
 
 <div class="layout-sider">
-  <div class="menu-item" onclick="location.href='dashboard.html'">📊 仪表盘</div>
-  <div class="menu-item" onclick="location.href='audit-log.html'">📋 审计日志</div>
-  <div class="menu-item" onclick="location.href='hash-chain.html'">🔗 哈希链</div>
-  <div class="menu-item" onclick="location.href='approval.html'">✅ 审批中心</div>
-  <div class="menu-item" onclick="location.href='user-management.html'">👤 用户管理</div>
-  <div class="menu-item" onclick="location.href='token-management.html'">🔑 Token管理</div>
-  <div class="menu-item" onclick="location.href='system-settings.html'">⚙️ 系统设置</div>
-  <div class="menu-item" onclick="location.href='storage.html'">💾 存储管理</div>
-  <div class="menu-item" onclick="location.href='report-export.html'">📥 报告导出</div>
-  <div class="menu-item" onclick="location.href='notifications.html'" style="background:#e6edf5;color:#1f3a5f;border-left-color:#1f3a5f;font-weight:500;">🔔 通知中心</div>
+  <div class="menu-item" onclick="location.href='dashboard.html'"> 仪表盘</div>
+  <div class="menu-item" onclick="location.href='audit-log.html'"> 审计日志</div>
+  <div class="menu-item" onclick="location.href='hash-chain.html'"> 哈希链</div>
+  <div class="menu-item" onclick="location.href='approval.html'"> 审批中心</div>
+  <div class="menu-item" onclick="location.href='user-management.html'"> 用户管理</div>
+  <div class="menu-item" onclick="location.href='token-management.html'"> Token管理</div>
+  <div class="menu-item" onclick="location.href='system-settings.html'">️ 系统设置</div>
+  <div class="menu-item" onclick="location.href='storage.html'"> 存储管理</div>
+  <div class="menu-item" onclick="location.href='report-export.html'"> 报告导出</div>
+  <div class="menu-item" onclick="location.href='notifications.html'" style="background:#e6edf5;color:#1f3a5f;border-left-color:#1f3a5f;font-weight:500;"> 通知中心</div>
 </div>
 
 <div class="main-content">
@@ -106,7 +106,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <div class="stat-card"><div class="num" style="color:#b3261e;">3</div><div class="lbl">待处理</div></div>
     <div class="stat-card"><div class="num" style="color:#a36404;">2</div><div class="lbl">紧急告警</div></div>
     <div class="stat-card"><div class="num">28</div><div class="lbl">今日已处理</div></div>
-    <div class="stat-card"><div class="num" style="color:#0f7b3a;">✓</div><div class="lbl">通知服务状态</div></div>
+    <div class="stat-card"><div class="num" style="color:#0f7b3a;"></div><div class="lbl">通知服务状态</div></div>
   </div>
 
   <!-- Tab -->
@@ -123,18 +123,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <div class="card-title">
       <span>通知列表</span>
       <div style="display:flex;gap:8px;">
-        <button class="btn-outline" style="padding:4px 12px;font-size:12px;" onclick="markAllRead()">✓ 全部标为已读</button>
-        <button class="btn-outline" style="padding:4px 12px;font-size:12px;" onclick="alert('设置保存成功')">⚙️ 通知设置</button>
+        <button class="btn-outline" style="padding:4px 12px;font-size:12px;" onclick="markAllRead()"> 全部标为已读</button>
+        <button class="btn-outline" style="padding:4px 12px;font-size:12px;" onclick="alert('设置保存成功')">️ 通知设置</button>
       </div>
     </div>
 
     <!-- 通知项1：紧急 -->
     <div class="notif-item unread">
-      <div class="notif-icon icon-urgent">⚠️</div>
+      <div class="notif-icon icon-urgent">️</div>
       <div class="notif-body">
-        <div class="notif-title"><span class="unread-dot"></span>⚠️ 紧急：存储空间即将耗尽</div>
+        <div class="notif-title"><span class="unread-dot"></span>️ 紧急：存储空间即将耗尽</div>
         <div class="notif-desc">D盘（WORM数据盘）使用率已达 92%，剩余空间仅 160 GB。建议立即清理或扩容，以避免影响数据写入。</div>
-        <div class="notif-meta">📅 2026-07-01 15:50 · 💾 存储告警 · 发送给：全体管理员</div>
+        <div class="notif-meta"> 2026-07-01 15:50 ·  存储告警 · 发送给：全体管理员</div>
       </div>
       <div class="notif-actions">
         <button class="btn-view" onclick="location.href='storage.html'">查看存储</button>
@@ -144,11 +144,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
     <!-- 通知项2：紧急 -->
     <div class="notif-item unread">
-      <div class="notif-icon icon-urgent">⚡</div>
+      <div class="notif-icon icon-urgent"></div>
       <div class="notif-body">
-        <div class="notif-title"><span class="unread-dot"></span>⚡ 紧急：Token 即将过期（SIDU-CAM-003）</div>
+        <div class="notif-title"><span class="unread-dot"></span> 紧急：Token 即将过期（SIDU-CAM-003）</div>
         <div class="notif-desc">SIDU-CAM-003（海康威视相机）的设备 Token 将于 <strong>7天内</strong>（2026-07-08）过期。过期后该设备将无法推送数据。请及时续期。</div>
-        <div class="notif-meta">📅 2026-07-01 15:30 · 🔑 Token管理 · 发送给：管理员</div>
+        <div class="notif-meta"> 2026-07-01 15:30 ·  Token管理 · 发送给：管理员</div>
       </div>
       <div class="notif-actions">
         <button class="btn-approve" onclick="location.href='token-management.html'">立即续期</button>
@@ -158,11 +158,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
     <!-- 通知项3：审批 -->
     <div class="notif-item unread">
-      <div class="notif-icon icon-approval">📋</div>
+      <div class="notif-icon icon-approval"></div>
       <div class="notif-body">
-        <div class="notif-title"><span class="unread-dot"></span>📋 您有新的审批申请待处理（李华 · 配置变更）</div>
+        <div class="notif-title"><span class="unread-dot"></span> 您有新的审批申请待处理（李华 · 配置变更）</div>
         <div class="notif-desc">申请人李华提交了配置变更申请（阈值 0.85→0.90），请尽快审批。申请编号：APR-20260701-007，截止时间：2026-07-02 14:55。</div>
-        <div class="notif-meta">📅 2026-07-01 15:00 · ✅ 审批中心 · 来自：李华（生产部）</div>
+        <div class="notif-meta"> 2026-07-01 15:00 ·  审批中心 · 来自：李华（生产部）</div>
       </div>
       <div class="notif-actions">
         <button class="btn-approve" onclick="location.href='approval.html'">批准</button>
@@ -172,11 +172,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
     <!-- 通知项4：审批 -->
     <div class="notif-item unread">
-      <div class="notif-icon icon-approval">📋</div>
+      <div class="notif-icon icon-approval"></div>
       <div class="notif-body">
-        <div class="notif-title"><span class="unread-dot"></span>📋 您有新的审批申请待处理（王芳 · 数据导出）</div>
+        <div class="notif-title"><span class="unread-dot"></span> 您有新的审批申请待处理（王芳 · 数据导出）</div>
         <div class="notif-desc">申请人王芳申请导出2026年Q2审计报告（PDF），请审批。申请编号：APR-20260701-006，截止时间：2026-07-03 18:00。</div>
-        <div class="notif-meta">📅 2026-07-01 14:35 · ✅ 审批中心 · 来自：王芳（合规部）</div>
+        <div class="notif-meta"> 2026-07-01 14:35 ·  审批中心 · 来自：王芳（合规部）</div>
       </div>
       <div class="notif-actions">
         <button class="btn-approve" onclick="location.href='approval.html'">批准</button>
@@ -186,11 +186,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
     <!-- 通知项5：审批 -->
     <div class="notif-item">
-      <div class="notif-icon icon-approval">📋</div>
+      <div class="notif-icon icon-approval"></div>
       <div class="notif-body">
-        <div class="notif-title">📋 您有新的审批申请待处理（张明 · 签名授权）</div>
+        <div class="notif-title"> 您有新的审批申请待处理（张明 · 签名授权）</div>
         <div class="notif-desc">申请人张明申请授权新用户赵勇数字签名权限，请审批。申请编号：APR-20260701-005，截止时间：2026-07-04 11:20。</div>
-        <div class="notif-meta">📅 2026-07-01 11:25 · ✅ 审批中心 · 来自：张明</div>
+        <div class="notif-meta"> 2026-07-01 11:25 ·  审批中心 · 来自：张明</div>
       </div>
       <div class="notif-actions">
         <button class="btn-approve" onclick="location.href='approval.html'">批准</button>
@@ -200,11 +200,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
     <!-- 通知项6：设备 -->
     <div class="notif-item">
-      <div class="notif-icon icon-device">📡</div>
+      <div class="notif-icon icon-device"></div>
       <div class="notif-body">
-        <div class="notif-title">📡 设备 SIDU-CAM-003 离线告警</div>
+        <div class="notif-title"> 设备 SIDU-CAM-003 离线告警</div>
         <div class="notif-desc">设备 SIDU-CAM-003（C线相机）已连续 72 小时未推送数据。上次在线：2026-06-28 10:15。请检查设备网络或 Token 状态。</div>
-        <div class="notif-meta">📅 2026-06-30 10:15 · 📡 设备管理 · ⚠ 设备离线</div>
+        <div class="notif-meta"> 2026-06-30 10:15 ·  设备管理 ·  设备离线</div>
       </div>
       <div class="notif-actions">
         <button class="btn-view" onclick="location.href='token-management.html'">查看Token</button>
@@ -213,11 +213,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
     <!-- 通知项7：系统 -->
     <div class="notif-item">
-      <div class="notif-icon icon-system">✅</div>
+      <div class="notif-icon icon-system"></div>
       <div class="notif-body">
-        <div class="notif-title">✅ 系统自动完成哈希链验证</div>
+        <div class="notif-title"> 系统自动完成哈希链验证</div>
         <div class="notif-desc">哈希链验证通过（2026-07-01 15:38）。链长度 12,847 块，全链 SHA-256 校验和正常，无篡改迹象。</div>
-        <div class="notif-meta">📅 2026-07-01 15:38 · 🔗 哈希链 · 自动触发</div>
+        <div class="notif-meta"> 2026-07-01 15:38 ·  哈希链 · 自动触发</div>
       </div>
       <div class="notif-actions">
         <button class="btn-view" onclick="location.href='hash-chain.html'">查看详情</button>
@@ -226,11 +226,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
     <!-- 通知项8：Token -->
     <div class="notif-item">
-      <div class="notif-icon icon-token">🔑</div>
+      <div class="notif-icon icon-token"></div>
       <div class="notif-body">
-        <div class="notif-title">🔑 用户 API Token 被使用（MES集成-生产系统）</div>
+        <div class="notif-title"> 用户 API Token 被使用（MES集成-生产系统）</div>
         <div class="notif-desc">Token "MES集成-生产系统" 刚刚被使用。调用方 IP：192.168.1.50，调用时间：2026-07-01 15:42，接口：POST /api/v1/detect。</div>
-        <div class="notif-meta">📅 2026-07-01 15:42 · 🔑 Token · 正常</div>
+        <div class="notif-meta"> 2026-07-01 15:42 ·  Token · 正常</div>
       </div>
       <div class="notif-actions">
         <button class="btn-view" onclick="location.href='token-management.html'">查看详情</button>
@@ -240,27 +240,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
   <!-- 通知渠道配置 -->
   <div class="card">
-    <div class="card-title">📳 通知渠道配置</div>
+    <div class="card-title"> 通知渠道配置</div>
     <p style="color:#888;font-size:13px;margin-bottom:16px;">配置通知推送渠道，不同类型通知可发送到不同渠道。系统通知可同时推送到多个渠道。</p>
     <div class="channel-grid">
       <div class="channel-item active">
-        <div class="icon">💬</div>
+        <div class="icon"></div>
         <div>
           <div class="name">系统内通知</div>
-          <div class="status">✓ 已启用 · 实时推送</div>
+          <div class="status"> 已启用 · 实时推送</div>
         </div>
         <div style="margin-left:auto;"><span class="tag tag-success">主渠道</span></div>
       </div>
       <div class="channel-item active">
-        <div class="icon">📧</div>
+        <div class="icon"></div>
         <div>
           <div class="name">邮件通知</div>
-          <div class="status">✓ 已启用 · zhangming@company.com</div>
+          <div class="status"> 已启用 · zhangming@company.com</div>
         </div>
         <div style="margin-left:auto;"><button class="btn-outline" style="padding:3px 8px;font-size:11px;">编辑</button></div>
       </div>
       <div class="channel-item">
-        <div class="icon">🔔</div>
+        <div class="icon"></div>
         <div>
           <div class="name">企业微信</div>
           <div class="status">○ 未配置</div>
@@ -268,7 +268,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         <div style="margin-left:auto;"><button class="btn-primary" style="padding:3px 8px;font-size:11px;">配置</button></div>
       </div>
       <div class="channel-item">
-        <div class="icon">📱</div>
+        <div class="icon"></div>
         <div>
           <div class="name">飞书</div>
           <div class="status">○ 未配置</div>
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         <div style="margin-left:auto;"><button class="btn-primary" style="padding:3px 8px;font-size:11px;">配置</button></div>
       </div>
       <div class="channel-item">
-        <div class="icon">☁️</div>
+        <div class="icon">️</div>
         <div>
           <div class="name">WebSocket 推送</div>
           <div class="status">○ 未启用</div>
@@ -284,7 +284,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         <div style="margin-left:auto;"><button class="btn-outline" style="padding:3px 8px;font-size:11px;">启用</button></div>
       </div>
       <div class="channel-item">
-        <div class="icon">🔕</div>
+        <div class="icon"></div>
         <div>
           <div class="name">SMS 短信</div>
           <div class="status">○ 未配置（需购买套餐）</div>
@@ -296,24 +296,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
   <!-- 通知规则 -->
   <div class="card">
-    <div class="card-title">📋 通知触发规则</div>
+    <div class="card-title"> 通知触发规则</div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
       <div style="background:#fbfbfc;padding:16px;border-radius:8px;border:1px solid #e8eaed;">
-        <div style="font-weight:600;font-size:14px;color:#1f2937;margin-bottom:10px;">✅ 审批通知</div>
+        <div style="font-weight:600;font-size:14px;color:#1f2937;margin-bottom:10px;"> 审批通知</div>
         <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">触发时机</span><span style="font-size:13px;">新申请提交时</span></div>
         <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">通知对象</span><span style="font-size:13px;">审批人</span></div>
         <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">渠道</span><span style="font-size:13px;">系统+邮件+微信</span></div>
         <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">催办间隔</span><span style="font-size:13px;">超时后每4小时</span></div>
       </div>
       <div style="background:#f7e7e5;padding:16px;border-radius:8px;border:1px solid #d9a8a3;">
-        <div style="font-weight:600;font-size:14px;color:#cf1322;margin-bottom:10px;">⚠️ 紧急告警</div>
+        <div style="font-weight:600;font-size:14px;color:#cf1322;margin-bottom:10px;">️ 紧急告警</div>
         <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">触发时机</span><span style="font-size:13px;">存储>90% / Token过期</span></div>
         <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">通知对象</span><span style="font-size:13px;">全体管理员</span></div>
         <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">渠道</span><span style="font-size:13px;">系统+邮件+微信+短信</span></div>
         <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">重复</span><span style="font-size:13px;">每30分钟直到处理</span></div>
       </div>
       <div style="background:#e8f3ec;padding:16px;border-radius:8px;border:1px solid #9bccaf;">
-        <div style="font-weight:600;font-size:14px;color:#389e0d;margin-bottom:10px;">📡 设备通知</div>
+        <div style="font-weight:600;font-size:14px;color:#389e0d;margin-bottom:10px;"> 设备通知</div>
         <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">触发时机</span><span style="font-size:13px;">设备离线/Token使用</span></div>
         <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">通知对象</span><span style="font-size:13px;">设备管理员</span></div>
         <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">渠道</span><span style="font-size:13px;">系统+邮件</span></div>
@@ -349,7 +349,7 @@ function markAllRead() {
   });
   updateBadge();
   document.querySelector('.bell-btn .badge').textContent = '0';
-  alert('✓ 全部标为已读');
+  alert(' 全部标为已读');
 }
 
 function updateBadge() {
