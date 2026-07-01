@@ -6,34 +6,29 @@
 <title>SIDU-LATS - 登录</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-.login-box { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); width: 400px; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; background: #f4f5f7; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+.login-box { background: white; padding: 40px; border-radius: 4px; box-shadow: 0 1px 0 rgba(15,23,42,0.04); width: 400px; }
 .login-logo { text-align: center; margin-bottom: 32px; }
-.login-logo h1 { color: #1890ff; font-size: 28px; margin-bottom: 8px; font-weight: 600; }
-.login-logo p { color: #666; font-size: 14px; }
-.fda-badge { background: #fff7e6; color: #d46b08; padding: 4px 12px; border-radius: 4px; font-size: 12px; display: inline-block; margin-top: 8px; border: 1px solid #ffd591; }
+.login-logo h1 { color: #1f3a5f; font-size: 28px; margin-bottom: 8px; font-weight: 600; }
+.login-logo p { color: #5a6373; font-size: 14px; }
+.fda-badge { background: #faf2e0; color: #a36404; padding: 4px 12px; border-radius: 4px; font-size: 12px; display: inline-block; margin-top: 8px; border: 1px solid #e6c890; }
 .form-group { margin-bottom: 20px; }
-.form-group label { display: block; margin-bottom: 8px; color: #333; font-weight: 500; font-size: 14px; }
-.form-group input { width: 100%; padding: 10px 12px; border: 1px solid #d9d9d9; border-radius: 6px; font-size: 14px; outline: none; transition: border-color 0.2s; }
-.form-group input:focus { border-color: #1890ff; box-shadow: 0 0 0 2px rgba(24,144,255,0.1); }
-.btn-login { width: 100%; background: #1890ff; color: white; border: none; padding: 12px; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: 500; transition: background 0.2s; }
-.btn-login:hover { background: #40a9ff; }
-.btn-login:active { background: #096dd9; }
-.footer-note { text-align: center; margin-top: 20px; font-size: 12px; color: #999; }
-.error-msg { background: #fff2f0; border: 1px solid #ffccc7; color: #ff4d4f; padding: 10px 12px; border-radius: 6px; font-size: 13px; margin-bottom: 16px; display: none; }
-.demo-hint { background: #f6ffed; border: 1px solid #b7eb8f; color: #52c41a; padding: 10px 12px; border-radius: 6px; font-size: 12px; margin-bottom: 16px; line-height: 1.6; }
+.form-group label { display: block; margin-bottom: 8px; color: #1f2937; font-weight: 500; font-size: 14px; }
+.form-group input { width: 100%; padding: 10px 12px; border: 1px solid #d0d4dc; border-radius: 6px; font-size: 14px; outline: none; transition: border-color 0.2s; }
+.form-group input:focus { border-color: #1f3a5f; box-shadow: 0 0 0 2px rgba(31,58,95,0.1); }
+.btn-login { width: 100%; background: #1f3a5f; color: white; border: none; padding: 12px; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: 500; transition: background 0.2s; }
+.btn-login:hover { background: #2d5483; }
+.btn-login:active { background: #15293f; }
+.footer-note { text-align: center; margin-top: 20px; font-size: 12px; color: #8a93a3; }
+.error-msg { background: #f7e7e5; border: 1px solid #d9a8a3; color: #b3261e; padding: 10px 12px; border-radius: 6px; font-size: 13px; margin-bottom: 16px; display: none; }
 </style>
 </head>
 <body>
 <div class="login-box">
   <div class="login-logo">
     <h1>SIDU-LATS</h1>
-    <p>缺陷识别数据存管系统 · 合规版</p>
+    <p>缺陷识别数据存管系统</p>
     <span class="fda-badge">FDA 21 CFR Part 11</span>
-  </div>
-
-  <div class="demo-hint">
-    💡 演示说明：任意用户名 + 任意密码（≥4位）即可登录
   </div>
 
   <div id="errorMsg" class="error-msg">用户名或密码错误，请重试</div>
