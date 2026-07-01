@@ -5,159 +5,113 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SIDU-LATS - 报告导出</title>
 <style>
-<<<<<<< HEAD
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; background: #f4f5f7; }
-.header { background: white; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px rgba(15,23,42,0.04); position: fixed; width: 100%; top: 0; z-index: 1000; height: 64px; }
-.header-left { display: flex; align-items: center; gap: 24px; }
-.logo { font-size: 20px; font-weight: 600; color: #1f3a5f; }
-.breadcrumb { color: #5a6373; font-size: 14px; }
-.header-right { display: flex; align-items: center; gap: 16px; }
-.layout-sider { position: fixed; left: 0; top: 64px; bottom: 0; width: 220px; background: white; box-shadow: 1px 0 0 rgba(15,23,42,0.04); z-index: 999; overflow-y: auto; }
-.menu-item { padding: 14px 24px; cursor: pointer; display: flex; align-items: center; gap: 12px; color: #1f2937; transition: all 0.2s; border-left: 3px solid transparent; font-size: 14px; }
-.menu-item:hover { background: #e6edf5; color: #1f3a5f; }
-.menu-item.active { background: #e6edf5; color: #1f3a5f; border-left-color: #1f3a5f; font-weight: 500; }
-.main-content { margin-left: 220px; margin-top: 64px; padding: 24px; }
-.page-title { font-size: 24px; font-weight: 600; color: #1f2937; margin-bottom: 24px; }
-.page-title span { font-size: 14px; color: #8a93a3; font-weight: 400; margin-left: 12px; }
-.card { background: white; border-radius: 6px; padding: 24px; box-shadow: 0 1px 2px rgba(15,23,42,0.04); margin-bottom: 24px; }
-.card-title { font-size: 16px; font-weight: 500; color: #1f2937; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #e8eaed; }
-.btn-primary { background: #1f3a5f; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; }
-.btn-primary:hover { background: #2d5483; }
-.tag { padding: 2px 8px; border-radius: 4px; font-size: 12px; }
-.tag-success { background: #e8f3ec; color: #0f7b3a; border: 1px solid #9bccaf; }
-.tag-info { background: #e6edf5; color: #1f3a5f; border: 1px solid #a8b8cf; }
-.hash-val { font-family: 'Monaco','Menlo',monospace; font-size: 12px; background: #f4f5f7; padding: 2px 6px; border-radius: 2px; }
-table { width: 100%; border-collapse: collapse; }
-thead tr { background: #fbfbfc; border-bottom: 1px solid #e8eaed; }
-th { padding: 12px; text-align: left; font-weight: 500; color: #1f2937; font-size: 14px; }
-td { padding: 12px; font-size: 13px; color: #1f2937; border-bottom: 1px solid #f4f5f7; }
-.quick-actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-.quick-action-item { display: flex; align-items: center; gap: 12px; padding: 16px; background: #fbfbfc; border-radius: 6px; cursor: pointer; transition: all 0.2s; border: 1px solid transparent; }
-.quick-action-item:hover { background: #e6edf5; border-color: #a8b8cf; }
-.quick-action-item .icon { font-size: 24px; }
-.quick-action-item .info .title { font-weight: 500; margin-bottom: 4px; }
-.quick-action-item .info .desc { font-size: 12px; color: #8a93a3; }
-.form-group { margin-bottom: 16px; }
-.form-group label { display: block; margin-bottom: 8px; color: #1f2937; font-weight: 500; font-size: 14px; }
-.form-group input, .form-group select { width: 100%; padding: 8px 12px; border: 1px solid #d0d4dc; border-radius: 4px; font-size: 14px; outline: none; }
-.form-group input:focus, .form-group select:focus { border-color: #1f3a5f; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.checkbox-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; cursor: pointer; }
-.checkbox-row input { cursor: pointer; }
-=======
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',system-ui,sans-serif;background:#f4f5f7;}
-.header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';background:#f5f5f5;}
+.header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.03);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
 .header-left{display:flex;align-items:center;gap:24px;}
-.logo{font-size:20px;font-weight:600;color:#1f3a5f;}
-.breadcrumb{color:#5a6373;font-size:14px;}
+.logo{font-size:20px;font-weight:600;color:#1677ff;}
+.breadcrumb{color:rgba(0,0,0,0.65);font-size:14px;}
 .header-right{display:flex;align-items:center;gap:16px;}
-.layout-sider{position:fixed;left:0;top:64px;bottom:0;width:220px;background:white;box-shadow:2px 0 8px rgba(0,0,0,0.06);z-index:999;overflow-y:auto;}
-.menu-item{padding:14px 24px;cursor:pointer;display:flex;align-items:center;gap:12px;color:#333;transition:all 0.2s;border-left:3px solid transparent;font-size:14px;}
-.menu-item:hover{background:#e6edf5;color:#1f3a5f;}
-.menu-item.active{background:#e6edf5;color:#1f3a5f;border-left-color:#1f3a5f;font-weight:500;}
+.layout-sider{position:fixed;left:0;top:64px;bottom:0;width:220px;background:white;box-shadow:2px 0 8px rgba(0,0,0,0.03);z-index:999;overflow-y:auto;}
+.menu-item{padding:14px 24px;cursor:pointer;display:flex;align-items:center;gap:12px;color:rgba(0,0,0,0.88);transition:all 0.2s;border-left:3px solid transparent;font-size:14px;}
+.menu-item:hover{background:#e6f4ff;color:#1677ff;}
+.menu-item.active{background:#e6f4ff;color:#1677ff;border-left-color:#1677ff;font-weight:500;}
 .main-content{margin-left:220px;margin-top:64px;padding:24px;}
-.page-title{font-size:24px;font-weight:600;color:#333;margin-bottom:24px;}
-.page-title span{font-size:14px;color:#999;font-weight:400;margin-left:12px;}
-.card{background:white;border-radius:8px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,0.08);margin-bottom:24px;}
-.card-title{font-size:16px;font-weight:500;color:#333;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;}
-.btn-primary{background:#1f3a5f;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
-.btn-primary:hover{background:#2d5483;}
-.btn-outline{background:white;border:1px solid #d9d9d9;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;color:#5a6373;}
-.btn-ghost{background:none;border:none;color:#1f3a5f;cursor:pointer;font-size:13px;padding:4px 8px;}
+.page-title{font-size:24px;font-weight:600;color:rgba(0,0,0,0.88);margin-bottom:24px;}
+.page-title span{font-size:14px;color:rgba(0,0,0,0.45);font-weight:400;margin-left:12px;}
+.card{background:white;border-radius:8px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,0.03);margin-bottom:24px;}
+.card-title{font-size:16px;font-weight:500;color:rgba(0,0,0,0.88);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;}
+.btn-primary{background:#1677ff;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
+.btn-primary:hover{background:#4096ff;}
+.btn-outline{background:white;border:1px solid #d9d9d9;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;color:rgba(0,0,0,0.65);}
+.btn-ghost{background:none;border:none;color:#1677ff;cursor:pointer;font-size:13px;padding:4px 8px;}
 .tag{padding:2px 8px;border-radius:4px;font-size:12px;}
-.tag-success{background:#e8f3ec;color:#0f7b3a;border:1px solid #9bccaf;}
-.tag-warning{background:#faf2e0;color:#a36404;border:1px solid #e6c890;}
-.tag-info{background:#e6edf5;color:#1f3a5f;border:1px solid #a8b8cf;}
-.tag-purple{background:#efe7f5;color:#5b3a8c;border:1px solid #b89cd1;}
-.hash-val{font-family:'Courier New',monospace;font-size:11px;background:#f5f5f5;padding:2px 6px;border-radius:2px;color:#555;word-break:break-all;}
+.tag-success{background:#f6ffed;color:#52c41a;border:1px solid #b7eb8f;}
+.tag-warning{background:#fffbe6;color:#faad14;border:1px solid #ffe58f;}
+.tag-info{background:#e6f4ff;color:#1677ff;border:1px solid #91caff;}
+.tag-purple{background:#f9f0ff;color:#722ed1;border:1px solid #d3adf7;}
+.hash-val{font-family:'Courier New',monospace;font-size:11px;background:#f5f5f5;padding:2px 6px;border-radius:2px;color:rgba(0,0,0,0.65);word-break:break-all;}
 table{width:100%;border-collapse:collapse;}
 thead tr{background:#fafafa;border-bottom:1px solid #f0f0f0;}
-th{padding:12px;text-align:left;font-weight:500;color:#333;font-size:14px;}
-td{padding:12px;font-size:13px;color:#333;border-bottom:1px solid #f5f5f5;}
+th{padding:12px;text-align:left;font-weight:500;color:rgba(0,0,0,0.88);font-size:14px;}
+td{padding:12px;font-size:13px;color:rgba(0,0,0,0.88);border-bottom:1px solid #f5f5f5;}
 tbody tr:hover{background:#fafafa;}
 .form-group{margin-bottom:16px;}
-.form-group label{display:block;margin-bottom:8px;color:#333;font-weight:500;font-size:14px;}
+.form-group label{display:block;margin-bottom:8px;color:rgba(0,0,0,0.88);font-weight:500;font-size:14px;}
 .form-group input,.form-group select,.form-group textarea{width:100%;padding:8px 12px;border:1px solid #d9d9d9;border-radius:4px;font-size:14px;outline:none;}
-.form-group input:focus,.form-group select:focus{border-color:#1f3a5f;}
+.form-group input:focus,.form-group select:focus{border-color:#1677ff;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .checkbox-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer;font-size:14px;}
 .checkbox-row input{cursor:pointer;}
-.preview-card{display:flex;gap:20px;align-items:flex-start;margin-bottom:16px;padding:16px;background:#f9f9f9;border-radius:8px;border:1px solid #f0f0f0;}
-.preview-thumb{width:120px;height:160px;background:white;border:1px solid #e8e8e8;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;transition:border-color 0.2s;overflow:hidden;}
-.preview-thumb:hover{border-color:#1f3a5f;}
+.preview-card{display:flex;gap:20px;align-items:flex-start;margin-bottom:16px;padding:16px;background:#fafafa;border-radius:8px;border:1px solid #f0f0f0;}
+.preview-thumb{width:120px;height:160px;background:white;border:1px solid #f0f0f0;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;transition:border-color 0.2s;overflow:hidden;}
+.preview-thumb:hover{border-color:#1677ff;}
 .preview-thumb .pdf-icon{font-size:40px;margin-bottom:8px;}
-.preview-thumb .pdf-label{font-size:11px;color:#999;}
-.preview-thumb .pdf-size{font-size:10px;color:#ccc;margin-top:4px;}
+.preview-thumb .pdf-label{font-size:11px;color:rgba(0,0,0,0.45);}
+.preview-thumb .pdf-size{font-size:10px;color:#d9d9d9;margin-top:4px;}
 .preview-info{flex:1;min-width:0;}
-.preview-info .report-title{font-weight:600;font-size:15px;color:#333;margin-bottom:6px;}
-.preview-info .report-meta{font-size:13px;color:#888;line-height:1.8;}
-.preview-info .report-meta strong{color:#555;}
+.preview-info .report-title{font-weight:600;font-size:15px;color:rgba(0,0,0,0.88);margin-bottom:6px;}
+.preview-info .report-meta{font-size:13px;color:rgba(0,0,0,0.45);line-height:1.8;}
+.preview-info .report-meta strong{color:rgba(0,0,0,0.65);}
 .preview-info .report-tags{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
 .preview-actions{display:flex;flex-direction:column;gap:8px;flex-shrink:0;}
 .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:2000;}
-.modal-box{background:white;border-radius:10px;width:900px;max-height:85vh;overflow-y:auto;}
-.modal-header{padding:20px 24px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;background:#fafafa;border-radius:10px 10px 0 0;}
+.modal-box{background:white;border-radius:8px;width:900px;max-height:85vh;overflow-y:auto;}
+.modal-header{padding:20px 24px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;background:#fafafa;border-radius:8px 8px 0 0;}
 .modal-header h3{margin:0;font-size:17px;}
-.modal-close{background:none;border:none;font-size:24px;cursor:pointer;color:#999;line-height:1;}
+.modal-close{background:none;border:none;font-size:24px;cursor:pointer;color:rgba(0,0,0,0.45);line-height:1;}
 .modal-body{padding:24px;}
 .modal-footer{padding:16px 24px;border-top:1px solid #f0f0f0;display:flex;gap:12px;justify-content:flex-end;}
-.sample-json{background:#1e1e1e;color:#d4d4d4;padding:16px;border-radius:6px;font-size:12.5px;font-family:'Courier New',monospace;line-height:1.7;white-space:pre;overflow-x:auto;max-height:400px;overflow-y:auto;}
+.sample-json{background:rgba(0,0,0,0.88);color:#d9d9d9;padding:16px;border-radius:6px;font-size:12.5px;font-family:'Courier New',monospace;line-height:1.7;white-space:pre;overflow-x:auto;max-height:400px;overflow-y:auto;}
 .sample-json .key{color:#9cdcfe;}
 .sample-json .str{color:#ce9178;}
 .sample-json .num{color:#b5cea8;}
 .sample-json .bool{color:#569cd6;}
 .sample-json .null{color:#569cd6;}
-.fda-stamp{position:absolute;top:20px;right:30px;font-size:42px;color:rgba(24,144,255,0.12);font-weight:700;transform:rotate(-15deg);pointer-events:none;}
-.report-preview-area{position:relative;border:1px solid #e8e8e8;border-radius:8px;padding:24px;background:white;}
-.report-header-row{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #1f3a5f;padding-bottom:16px;margin-bottom:20px;}
-.report-logo{font-size:22px;font-weight:700;color:#1f3a5f;}
-.report-id{font-size:13px;color:#888;text-align:right;}
+.fda-stamp{position:absolute;top:20px;right:30px;font-size:42px;color:rgba(22,119,255,0.12);font-weight:700;transform:rotate(-15deg);pointer-events:none;}
+.report-preview-area{position:relative;border:1px solid #f0f0f0;border-radius:8px;padding:24px;background:white;}
+.report-header-row{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #1677ff;padding-bottom:16px;margin-bottom:20px;}
+.report-logo{font-size:22px;font-weight:700;color:#1677ff;}
+.report-id{font-size:13px;color:rgba(0,0,0,0.45);text-align:right;}
 .report-section{margin-bottom:20px;}
-.report-section h4{font-size:14px;color:#333;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #f0f0f0;}
+.report-section h4{font-size:14px;color:rgba(0,0,0,0.88);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #f0f0f0;}
 .report-table{width:100%;border-collapse:collapse;font-size:13px;}
-.report-table th{background:#f5f5f5;padding:8px 10px;text-align:left;font-weight:500;color:#555;border:1px solid #e8e8e8;}
-.report-table td{padding:8px 10px;border:1px solid #e8e8e8;color:#333;}
-.hash-block{font-family:'Courier New',monospace;font-size:11px;background:#f5f5f5;padding:8px 12px;border-radius:4px;border:1px solid #e8e8e8;word-break:break-all;color:#333;line-height:1.6;}
+.report-table th{background:#f5f5f5;padding:8px 10px;text-align:left;font-weight:500;color:rgba(0,0,0,0.65);border:1px solid #f0f0f0;}
+.report-table td{padding:8px 10px;border:1px solid #f0f0f0;color:rgba(0,0,0,0.88);}
+.hash-block{font-family:'Courier New',monospace;font-size:11px;background:#f5f5f5;padding:8px 12px;border-radius:4px;border:1px solid #f0f0f0;word-break:break-all;color:rgba(0,0,0,0.88);line-height:1.6;}
 .sig-block{border:1px solid #d9d9d9;border-radius:6px;padding:14px;background:#fafafa;margin-top:8px;}
 .sig-row{display:flex;gap:24px;flex-wrap:wrap;}
 .sig-item{font-size:13px;}
-.sig-item .label{color:#888;font-size:11px;margin-bottom:2px;}
-.sig-item .value{font-weight:500;color:#333;}
+.sig-item .label{color:rgba(0,0,0,0.45);font-size:11px;margin-bottom:2px;}
+.sig-item .value{font-weight:500;color:rgba(0,0,0,0.88);}
 .filter-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px;}
 .filter-bar select,.filter-bar input{padding:6px 12px;border:1px solid #d9d9d9;border-radius:4px;font-size:14px;outline:none;}
 .tab-bar{display:flex;border-bottom:2px solid #f0f0f0;margin-bottom:20px;}
-.tab{padding:10px 20px;cursor:pointer;font-size:14px;color:#5a6373;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all 0.2s;}
-.tab:hover{color:#1f3a5f;}
-.tab.active{color:#1f3a5f;border-bottom-color:#1f3a5f;font-weight:500;}
->>>>>>> origin/master
+.tab{padding:10px 20px;cursor:pointer;font-size:14px;color:rgba(0,0,0,0.65);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all 0.2s;}
+.tab:hover{color:#1677ff;}
+.tab.active{color:#1677ff;border-bottom-color:#1677ff;font-weight:500;}
 </style>
 </head>
 <body>
 <div class="header">
   <div class="header-left"><div class="logo">SIDU-LATS</div><div class="breadcrumb">报告导出 &raquo; 合规报告生成与导出</div></div>
-<<<<<<< HEAD
   <div class="header-right">
-    <div style="display:flex;align-items:center;gap:8px;"><span style="color:#5a6373;font-size:14px;">当前用户 / 张明</span></div>
-    <button onclick="location.href='index.html'" style="background:none;border:1px solid #d0d4dc;padding:6px 12px;border-radius:4px;cursor:pointer;color:#5a6373;font-size:14px;">注销</button>
+    <div style="display:flex;align-items:center;gap:8px;"><span style="color:rgba(0,0,0,0.65);font-size:14px;">当前用户 / 张明</span></div>
+    <button onclick="location.href='index.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:rgba(0,0,0,0.65);font-size:14px;">注销</button>
   </div>
-=======
-  <div class="header-right"><span style="color:#5a6373;font-size:14px;">审计员: 王芳</span><button onclick="location.href='index.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:#5a6373;font-size:14px;">注销</button></div>
->>>>>>> origin/master
 </div>
 
 <div class="layout-sider">
-  <div class="menu-item" onclick="location.href='dashboard.html'"> 仪表盘</div>
-  <div class="menu-item" onclick="location.href='audit-log.html'"> 审计日志</div>
-  <div class="menu-item" onclick="location.href='hash-chain.html'"> 哈希链</div>
-  <div class="menu-item" onclick="location.href='approval.html'"> 审批中心</div>
-  <div class="menu-item" onclick="location.href='user-management.html'"> 用户管理</div>
-  <div class="menu-item" onclick="location.href='token-management.html'"> Token管理</div>
-  <div class="menu-item" onclick="location.href='system-settings.html'">️ 系统设置</div>
-  <div class="menu-item" onclick="location.href='storage.html'"> 存储管理</div>
-  <div class="menu-item active"> 报告导出</div>
-  <div class="menu-item" onclick="location.href='notifications.html'"> 通知中心</div>
+  <div class="menu-item" onclick="location.href='dashboard.html'">仪表盘</div>
+  <div class="menu-item" onclick="location.href='audit-log.html'">审计日志</div>
+  <div class="menu-item" onclick="location.href='hash-chain.html'">哈希链</div>
+  <div class="menu-item" onclick="location.href='approval.html'">审批中心</div>
+  <div class="menu-item" onclick="location.href='user-management.html'">用户管理</div>
+  <div class="menu-item" onclick="location.href='token-management.html'">Token 管理</div>
+  <div class="menu-item" onclick="location.href='system-settings.html'">系统设置</div>
+  <div class="menu-item" onclick="location.href='storage.html'">存储管理</div>
+  <div class="menu-item active" onclick="location.href='report-export.html'">报告导出</div>
+  <div class="menu-item" onclick="location.href='notifications.html'">通知中心</div>
 </div>
 
 <div class="main-content">
@@ -222,35 +176,35 @@ tbody tr:hover{background:#fafafa;}
       <div class="card">
         <div class="card-title"> 快捷报告</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          <div style="padding:14px;background:#e6edf5;border-radius:8px;border:1px solid #a8b8cf;cursor:pointer;" onclick="quickReport('today')">
+          <div style="padding:14px;background:#e6f4ff;border-radius:8px;border:1px solid #91caff;cursor:pointer;" onclick="quickReport('today')">
             <div style="font-size:22px;margin-bottom:6px;"></div>
-            <div style="font-weight:600;font-size:14px;color:#333;">今日报告</div>
-            <div style="font-size:12px;color:#888;margin-top:4px;">2026-07-01 操作日志</div>
+            <div style="font-weight:600;font-size:14px;color:rgba(0,0,0,0.88);">今日报告</div>
+            <div style="font-size:12px;color:rgba(0,0,0,0.45);margin-top:4px;">2026-07-01 操作日志</div>
           </div>
-          <div style="padding:14px;background:#e8f3ec;border-radius:8px;border:1px solid #9bccaf;cursor:pointer;" onclick="quickReport('week')">
+          <div style="padding:14px;background:#f6ffed;border-radius:8px;border:1px solid #b7eb8f;cursor:pointer;" onclick="quickReport('week')">
             <div style="font-size:22px;margin-bottom:6px;"></div>
-            <div style="font-weight:600;font-size:14px;color:#333;">本周报告</div>
-            <div style="font-size:12px;color:#888;margin-top:4px;">2026-06-25 ~ 07-01</div>
+            <div style="font-weight:600;font-size:14px;color:rgba(0,0,0,0.88);">本周报告</div>
+            <div style="font-size:12px;color:rgba(0,0,0,0.45);margin-top:4px;">2026-06-25 ~ 07-01</div>
           </div>
-          <div style="padding:14px;background:#faf2e0;border-radius:8px;border:1px solid #e6c890;cursor:pointer;" onclick="quickReport('month')">
+          <div style="padding:14px;background:#fffbe6;border-radius:8px;border:1px solid #ffe58f;cursor:pointer;" onclick="quickReport('month')">
             <div style="font-size:22px;margin-bottom:6px;">️</div>
-            <div style="font-weight:600;font-size:14px;color:#333;">本月报告</div>
-            <div style="font-size:12px;color:#888;margin-top:4px;">2026年6月全月</div>
+            <div style="font-weight:600;font-size:14px;color:rgba(0,0,0,0.88);">本月报告</div>
+            <div style="font-size:12px;color:rgba(0,0,0,0.45);margin-top:4px;">2026年6月全月</div>
           </div>
-          <div style="padding:14px;background:#efe7f5;border-radius:8px;border:1px solid #b89cd1;cursor:pointer;" onclick="quickReport('compliance')">
+          <div style="padding:14px;background:#f9f0ff;border-radius:8px;border:1px solid #d3adf7;cursor:pointer;" onclick="quickReport('compliance')">
             <div style="font-size:22px;margin-bottom:6px;"></div>
-            <div style="font-weight:600;font-size:14px;color:#333;">合规证明</div>
-            <div style="font-size:12px;color:#888;margin-top:4px;">FDA Part 11 摘要</div>
+            <div style="font-weight:600;font-size:14px;color:rgba(0,0,0,0.88);">合规证明</div>
+            <div style="font-size:12px;color:rgba(0,0,0,0.45);margin-top:4px;">FDA Part 11 摘要</div>
           </div>
         </div>
-        <div style="margin-top:16px;padding:14px;background:#faf2e0;border:1px solid #e6c890;border-radius:8px;">
+        <div style="margin-top:16px;padding:14px;background:#fffbe6;border:1px solid #ffe58f;border-radius:8px;">
           <div style="font-weight:500;font-size:13px;color:#d46b08;margin-bottom:8px;">️ 报告导出需审批</div>
-          <div style="font-size:12px;color:#888;line-height:1.6;">根据数据安全策略，导出超1000条记录或含签名的报告，需由审计员或管理员在 <strong>审批中心</strong> 提交申请，经审批通过后方可下载。</div>
+          <div style="font-size:12px;color:rgba(0,0,0,0.45);line-height:1.6;">根据数据安全策略，导出超1000条记录或含签名的报告，需由审计员或管理员在 <strong>审批中心</strong> 提交申请，经审批通过后方可下载。</div>
         </div>
         <div style="margin-top:12px;padding:14px;background:#f5f5f5;border-radius:8px;">
-          <div style="font-weight:500;font-size:13px;color:#333;margin-bottom:8px;"> 待审批导出申请</div>
+          <div style="font-weight:500;font-size:13px;color:rgba(0,0,0,0.88);margin-bottom:8px;"> 待审批导出申请</div>
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-size:13px;color:#5a6373;">APR-20260701-006（Q2审计报告）</span>
+            <span style="font-size:13px;color:rgba(0,0,0,0.65);">APR-20260701-006（Q2审计报告）</span>
             <span class="tag tag-warning">审批中</span>
           </div>
         </div>
@@ -285,7 +239,7 @@ tbody tr:hover{background:#fafafa;}
     <div class="card">
       <div class="card-title">
         <span>️ 报告内容示例</span>
-        <span style="font-size:12px;color:#999;font-weight:400;">以下为真实报告内容结构，可点击预览</span>
+        <span style="font-size:12px;color:rgba(0,0,0,0.45);font-weight:400;">以下为真实报告内容结构，可点击预览</span>
       </div>
 
       <!-- 报告1：审计报告 -->
@@ -309,7 +263,7 @@ tbody tr:hover{background:#fafafa;}
             <span class="tag tag-info">PDF</span>
             <span class="tag tag-success">含哈希校验</span>
             <span class="tag tag-purple">含电子签名</span>
-            <span class="tag" style="background:#faf2e0;color:#a36404;border:1px solid #e6c890;">FDA合规格式</span>
+            <span class="tag" style="background:#fffbe6;color:#faad14;border:1px solid #ffe58f;">FDA合规格式</span>
           </div>
         </div>
         <div class="preview-actions">
@@ -339,7 +293,7 @@ tbody tr:hover{background:#fafafa;}
           <div class="report-tags">
             <span class="tag tag-info">PDF</span>
             <span class="tag tag-success"> 验证通过</span>
-            <span class="tag" style="background:#f7e7e5;color:#b3261e;border:1px solid #d9a8a3;">WORM合规</span>
+            <span class="tag" style="background:#fff2f0;color:#ff4d4f;border:1px solid #ffccc7;">WORM合规</span>
           </div>
         </div>
         <div class="preview-actions">
@@ -367,7 +321,7 @@ tbody tr:hover{background:#fafafa;}
             <div><strong>IP 地址：</strong>192.168.1.105 · 设备：SIDU-IPC-001</div>
           </div>
           <div class="report-tags">
-            <span class="tag" style="background:#efe7f5;color:#5b3a8c;border:1px solid #b89cd1;">JSON</span>
+            <span class="tag" style="background:#f9f0ff;color:#722ed1;border:1px solid #d3adf7;">JSON</span>
             <span class="tag tag-success"> 签名有效</span>
             <span class="tag tag-info">RSASSA-PKCS1</span>
           </div>
@@ -399,8 +353,8 @@ tbody tr:hover{background:#fafafa;}
           <div class="report-tags">
             <span class="tag tag-info">PDF</span>
             <span class="tag tag-success"> 合规</span>
-            <span class="tag" style="background:#faf2e0;color:#a36404;border:1px solid #e6c890;">FDA Part 11</span>
-            <span class="tag" style="background:#e8f3ec;color:#389e0d;border:1px solid #9bccaf;">ALCOA+</span>
+            <span class="tag" style="background:#fffbe6;color:#faad14;border:1px solid #ffe58f;">FDA Part 11</span>
+            <span class="tag" style="background:#f6ffed;color:#389e0d;border:1px solid #b7eb8f;">ALCOA+</span>
           </div>
         </div>
         <div class="preview-actions">
@@ -450,38 +404,20 @@ var historyData = [
   {id:'RPT-20260501-001',type:'合规摘要',range:'2025-H2',format:'pdf',size:'312 KB',creator:'张明',time:'2026-05-01 11:00',hash:'sha256:f3a8b9c0d1e2...'}
 ];
 
-<<<<<<< HEAD
-document.getElementById('historyTable').innerHTML = history.map(h => `
-  <tr>
-    <td style="color:#1f3a5f;font-weight:500;">${h.id}</td>
-    <td>${h.type}</td>
-    <td style="color:#5a6373;font-size:13px;">${h.range}</td>
-    <td><span class="tag tag-info">${h.format.toUpperCase()}</span></td>
-    <td>${h.creator}</td>
-    <td style="color:#5a6373;font-size:13px;">${h.time}</td>
-    <td><span class="hash-val">${h.hash}</span></td>
-    <td>
-      <button style="background:none;border:none;color:#1f3a5f;cursor:pointer;font-size:13px;margin-right:8px;" onclick="downloadReport('${h.id}')">下载</button>
-      <button style="background:none;border:none;color:#1f3a5f;cursor:pointer;font-size:13px;" onclick="verifyReport('${h.id}')">验证</button>
-    </td>
-  </tr>
-`).join('');
-=======
 document.getElementById('historyTable').innerHTML = historyData.map(h => {
   var typeTagClass = h.type.includes('审计')?'tag-info':h.type.includes('哈希')?'tag-success':h.type.includes('签名')?'tag-purple':'tag-warning';
   return '<tr>'+
-    '<td style="color:#1f3a5f;font-weight:500;">'+h.id+'</td>'+
+    '<td style="color:#1677ff;font-weight:500;">'+h.id+'</td>'+
     '<td><span class="tag '+typeTagClass+'">'+h.type+'</span></td>'+
-    '<td style="color:#5a6373;font-size:13px;">'+h.range+'</td>'+
+    '<td style="color:rgba(0,0,0,0.65);font-size:13px;">'+h.range+'</td>'+
     '<td><span class="tag tag-info">'+h.format.toUpperCase()+'</span></td>'+
-    '<td style="color:#888;font-size:13px;">'+h.size+'</td>'+
+    '<td style="color:rgba(0,0,0,0.45);font-size:13px;">'+h.size+'</td>'+
     '<td>'+h.creator+'</td>'+
-    '<td style="color:#5a6373;font-size:12px;">'+h.time+'</td>'+
+    '<td style="color:rgba(0,0,0,0.65);font-size:12px;">'+h.time+'</td>'+
     '<td><span class="hash-val">'+h.hash+'</span></td>'+
     '<td><button class="btn-ghost" onclick="downloadReport(\''+h.id+'\')">下载</button><button class="btn-ghost" onclick="verifyReport(\''+h.id+'\')">验证</button></td>'+
   '</tr>';
 }).join('');
->>>>>>> origin/master
 
 // ========== Tab 切换 ==========
 function switchTab(el, tab) {
@@ -529,12 +465,12 @@ var PREVIEW_CONTENT = {
       <div class="report-header-row">
         <div>
           <div class="report-logo">SIDU-LATS 审计报告</div>
-          <div style="font-size:13px;color:#888;margin-top:4px;">FDA 21 CFR Part 11 合规 · ALCOA+ 标准</div>
+          <div style="font-size:13px;color:rgba(0,0,0,0.45);margin-top:4px;">FDA 21 CFR Part 11 合规 · ALCOA+ 标准</div>
         </div>
         <div class="report-id">
           <div style="font-weight:600;font-size:14px;">RPT-20260701-001</div>
-          <div style="font-size:12px;color:#888;">生成: 2026-07-01 15:42</div>
-          <div style="font-size:12px;color:#888;">王芳（审计员）</div>
+          <div style="font-size:12px;color:rgba(0,0,0,0.45);">生成: 2026-07-01 15:42</div>
+          <div style="font-size:12px;color:rgba(0,0,0,0.45);">王芳（审计员）</div>
         </div>
       </div>
 
@@ -569,7 +505,7 @@ var PREVIEW_CONTENT = {
             <tr><td>06-30 15:42</td><td>系统</td><td>存储管理</td><td>存储空间告警 D盘使用率 92%</td><td> 警告</td><td>localhost</td></tr>
           </tbody>
         </table>
-        <div style="font-size:12px;color:#999;text-align:center;margin-top:8px;">（共 3,847 条记录，此处仅显示前 12 条）</div>
+        <div style="font-size:12px;color:rgba(0,0,0,0.45);text-align:center;margin-top:8px;">（共 3,847 条记录，此处仅显示前 12 条）</div>
       </div>
 
       <div class="report-section">
@@ -591,8 +527,8 @@ sha256:8f2d1a0b3c5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a...
             <div class="sig-item"><div class="label">签署时间</div><div class="value">2026-07-01 15:42:18</div></div>
             <div class="sig-item"><div class="label">意图</div><div class="value">REVIEW（复核）</div></div>
           </div>
-          <div style="margin-top:10px;font-size:12px;color:#888;">签名理由: 确认本报告内容真实、完整、准确，反映系统2026年6月全部操作活动。</div>
-          <div style="margin-top:6px;font-size:11px;color:#aaa;font-family:monospace;">数字签名: RSA-SHA256: 8f3a9b2c...1d4e5f6a7b8c9d0e...</div>
+          <div style="margin-top:10px;font-size:12px;color:rgba(0,0,0,0.45);">签名理由: 确认本报告内容真实、完整、准确，反映系统2026年6月全部操作活动。</div>
+          <div style="margin-top:6px;font-size:11px;color:rgba(0,0,0,0.35);font-family:monospace;">数字签名: RSA-SHA256: 8f3a9b2c...1d4e5f6a7b8c9d0e...</div>
         </div>
       </div>
     </div>`
@@ -605,11 +541,11 @@ sha256:8f2d1a0b3c5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a...
       <div class="report-header-row">
         <div>
           <div class="report-logo">SIDU-LATS 哈希验证报告</div>
-          <div style="font-size:13px;color:#888;margin-top:4px;">区块链式哈希链 · 完整性证明</div>
+          <div style="font-size:13px;color:rgba(0,0,0,0.45);margin-top:4px;">区块链式哈希链 · 完整性证明</div>
         </div>
         <div class="report-id">
           <div style="font-weight:600;font-size:14px;">RPT-20260628-003</div>
-          <div style="font-size:12px;color:#888;">生成: 2026-06-28 16:30</div>
+          <div style="font-size:12px;color:rgba(0,0,0,0.45);">生成: 2026-06-28 16:30</div>
         </div>
       </div>
 
@@ -633,7 +569,7 @@ sha256:8f2d1a0b3c5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a...
           <tbody>
             <tr>
               <td>00001</td><td>2026-01-01 00:00:00</td>
-              <td style="font-family:monospace;font-size:10px;color:#999;">—（创世块）—</td>
+              <td style="font-family:monospace;font-size:10px;color:rgba(0,0,0,0.45);">—（创世块）—</td>
               <td style="font-family:monospace;font-size:10px;">e3b0c44298fc1c1...</td>
               <td style="font-family:monospace;font-size:10px;">a87ff679a2f3e71d...</td>
             </tr>
@@ -656,11 +592,11 @@ sha256:8f2d1a0b3c5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a...
               <td>12431</td><td>2026-06-28 15:00:00</td>
               <td style="font-family:monospace;font-size:10px;">1a2b3c4d5e6f7a8b...</td>
               <td style="font-family:monospace;font-size:10px;">9c8d7e6f5a4b3c2d...</td>
-              <td style="font-family:monospace;font-size:10px;font-weight:600;color:#0f7b3a;">a87ff679a2f3e71d9181a...</td>
+              <td style="font-family:monospace;font-size:10px;font-weight:600;color:#52c41a;">a87ff679a2f3e71d9181a...</td>
             </tr>
           </tbody>
         </table>
-        <div style="font-size:12px;color:#999;text-align:center;margin-top:8px;">（完整链数据见附件 chain.json，共 12,431 条记录）</div>
+        <div style="font-size:12px;color:rgba(0,0,0,0.45);text-align:center;margin-top:8px;">（完整链数据见附件 chain.json，共 12,431 条记录）</div>
       </div>
 
       <div class="report-section">
@@ -681,7 +617,7 @@ sha256:8f2d1a0b3c5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a...
             <div class="sig-item"><div class="label">验证时间</div><div class="value">2026-06-28 16:30:05</div></div>
             <div class="sig-item"><div class="label">意图</div><div class="value">REVIEW</div></div>
           </div>
-          <div style="margin-top:8px;font-size:11px;color:#aaa;font-family:monospace;">签名: RSA-SHA256: b2c3d4e5...9a8b7c6d5e4f3a2b1</div>
+          <div style="margin-top:8px;font-size:11px;color:rgba(0,0,0,0.35);font-family:monospace;">签名: RSA-SHA256: b2c3d4e5...9a8b7c6d5e4f3a2b1</div>
         </div>
       </div>
     </div>`
@@ -690,7 +626,7 @@ sha256:8f2d1a0b3c5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a...
   signature: {
     title: '️ 签名证书 · RPT-20260615-001',
     content: `<div style="font-family:'Courier New',monospace;font-size:13px;">
-      <div style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:8px;font-size:12px;line-height:1.8;white-space:pre;overflow-x:auto;max-height:500px;overflow-y:auto;">{
+      <div style="background:rgba(0,0,0,0.88);color:#d9d9d9;padding:20px;border-radius:8px;font-size:12px;line-height:1.8;white-space:pre;overflow-x:auto;max-height:500px;overflow-y:auto;">{
   <span class="key">"certificate_id"</span>: <span class="str">"CERT-20260615-7A3F"</span>,
   <span class="key">"signature_type"</span>: <span class="str">"Electronic Signature / FDA 21 CFR Part 11"</span>,
 
@@ -751,9 +687,9 @@ sha256:8f2d1a0b3c5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a...
   <span class="key">"issued_at"</span>: <span class="str">"2026-06-15 14:20:33 CST"</span>,
   <span class="key">"report_id"</span>: <span class="str">"RPT-20260615-001"</span>
 }</div>
-      <div style="margin-top:16px;padding:14px;background:#e8f3ec;border:1px solid #9bccaf;border-radius:8px;">
+      <div style="margin-top:16px;padding:14px;background:#f6ffed;border:1px solid #b7eb8f;border-radius:8px;">
         <div style="font-weight:600;font-size:14px;color:#389e0d;margin-bottom:8px;"> 签名验证通过</div>
-        <div style="font-size:13px;color:#555;line-height:1.7;">
+        <div style="font-size:13px;color:rgba(0,0,0,0.65);line-height:1.7;">
           · 签名值经 RSA 公钥验证 <br>
           · 时间戳在有效期内 <br>
           · 哈希链块 #9847 存在且未断裂 <br>
@@ -770,12 +706,12 @@ sha256:8f2d1a0b3c5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a...
       <div class="report-header-row">
         <div>
           <div class="report-logo">SIDU-LATS 合规摘要报告</div>
-          <div style="font-size:13px;color:#888;margin-top:4px;">FDA 21 CFR Part 11 · ALCOA+ · 内部审计</div>
+          <div style="font-size:13px;color:rgba(0,0,0,0.45);margin-top:4px;">FDA 21 CFR Part 11 · ALCOA+ · 内部审计</div>
         </div>
         <div class="report-id">
           <div style="font-weight:600;font-size:14px;">RPT-20260620-002</div>
-          <div style="font-size:12px;color:#888;">生成: 2026-06-20 10:15</div>
-          <div style="font-size:12px;color:#888;">张明（管理员）</div>
+          <div style="font-size:12px;color:rgba(0,0,0,0.45);">生成: 2026-06-20 10:15</div>
+          <div style="font-size:12px;color:rgba(0,0,0,0.45);">张明（管理员）</div>
         </div>
       </div>
 
@@ -828,14 +764,14 @@ sha256:8f2d1a0b3c5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a...
 
       <div class="report-section">
         <h4> 改进建议</h4>
-        <div style="background:#faf2e0;border:1px solid #e6c890;border-radius:8px;padding:14px;">
+        <div style="background:#fffbe6;border:1px solid #ffe58f;border-radius:8px;padding:14px;">
           <div style="font-weight:600;font-size:14px;color:#d46b08;margin-bottom:8px;">️ 改进项</div>
-          <div style="font-size:13px;color:#555;line-height:1.8;margin-bottom:8px;">
+          <div style="font-size:13px;color:rgba(0,0,0,0.65);line-height:1.8;margin-bottom:8px;">
             <strong>1. 蓝光归档频率：</strong>建议将季度归档改为月度归档，确保离线介质始终包含近30天数据。<br>
             <strong>2. 数据保留策略：</strong>当前日志保留期为1年，建议扩展至FDA最低要求的2年，以满足监管审查需求。<br>
             <strong>3. 审计报告签名：</strong>合规摘要报告建议由独立审计员（而非管理员）签署，以增强公信力。
           </div>
-          <div style="font-size:12px;color:#888;">建议执行时间：2026年Q2内</div>
+          <div style="font-size:12px;color:rgba(0,0,0,0.45);">建议执行时间：2026年Q2内</div>
         </div>
       </div>
 
@@ -848,7 +784,7 @@ sha256:8f2d1a0b3c5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a...
             <div class="sig-item"><div class="label">签署时间</div><div class="value">2026-06-20 10:15:42</div></div>
             <div class="sig-item"><div class="label">意图</div><div class="value">APPROVE</div></div>
           </div>
-          <div style="margin-top:8px;font-size:11px;color:#aaa;font-family:monospace;">签名: RSA-SHA256: c3d4e5f6a7b8c9d0e1f2...</div>
+          <div style="margin-top:8px;font-size:11px;color:rgba(0,0,0,0.35);font-family:monospace;">签名: RSA-SHA256: c3d4e5f6a7b8c9d0e1f2...</div>
         </div>
       </div>
     </div>`

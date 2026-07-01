@@ -17,7 +17,7 @@ model: sonnet
 - **不应**出现侧栏菜单 emoji(`📊📋🔗✅👤💾📥🔔⚙🔑`)
 - **不应**出现超大立体阴影 `0 8px 32px rgba(0,0,0,0.2)`
 - 文本色应使用 antd 的 `rgba(0,0,0,0.88 / 0.65 / 0.45)` 体系,而非随意灰值
-- 圆角应落在 antd 体系(`2/4/6/8px`),不应出现 `10px/12px/20px` 等超大圆角
+- 圆角应落在 antd 体系(`2/4/6/8px`),主结构组件(卡片/模态框/按钮/输入框)**不应**出现 `10px/12px/20px` 等超大圆角。例外:pill 形 badge/胶囊标签/圆形计数徽章(如 `.role-badge` 20px、`.role-tag` 12px、`.tab .badge` 10px)允许,antd Badge 计数本身用 `10px`
 
 > 说明:旧的 `docs/superpowers/specs/2026-07-01-sidu-lats-deai-design.md`(去 AI 味/工程合规风)已废弃,其色组(`#1f3a5f` 等)**不再适用**。若发现改动引入了 deai 规范的色组,记为违规。
 

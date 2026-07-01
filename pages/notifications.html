@@ -6,70 +6,70 @@
 <title>SIDU-LATS - 通知中心</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',system-ui,sans-serif;background:#f4f5f7;}
-.header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';background:#f5f5f5;}
+.header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.03);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
 .header-left{display:flex;align-items:center;gap:20px;}
-.logo{font-size:20px;font-weight:600;color:#1f3a5f;}
-.breadcrumb{color:#5a6373;font-size:14px;}
+.logo{font-size:20px;font-weight:600;color:#1677ff;}
+.breadcrumb{color:rgba(0,0,0,0.65);font-size:14px;}
 .header-right{display:flex;align-items:center;gap:12px;}
 .bell-btn{position:relative;background:none;border:none;cursor:pointer;font-size:20px;padding:8px;}
-.bell-btn .badge{position:absolute;top:2px;right:2px;background:#b3261e;color:white;font-size:10px;font-weight:700;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 4px;}
-.layout-sider{position:fixed;left:0;top:64px;bottom:0;width:220px;background:white;box-shadow:2px 0 8px rgba(0,0,0,0.06);z-index:999;overflow-y:auto;}
-.menu-item{padding:14px 24px;cursor:pointer;display:flex;align-items:center;gap:12px;color:#1f2937;transition:all 0.2s;border-left:3px solid transparent;font-size:14px;}
-.menu-item:hover{background:#e6edf5;color:#1f3a5f;}
-.menu-item.active{background:#e6edf5;color:#1f3a5f;border-left-color:#1f3a5f;font-weight:500;}
+.bell-btn .badge{position:absolute;top:2px;right:2px;background:#ff4d4f;color:white;font-size:10px;font-weight:700;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:0 4px;}
+.layout-sider{position:fixed;left:0;top:64px;bottom:0;width:220px;background:white;box-shadow:2px 0 8px rgba(0,0,0,0.03);z-index:999;overflow-y:auto;}
+.menu-item{padding:14px 24px;cursor:pointer;display:flex;align-items:center;gap:12px;color:rgba(0,0,0,0.88);transition:all 0.2s;border-left:3px solid transparent;font-size:14px;}
+.menu-item:hover{background:#e6f4ff;color:#1677ff;}
+.menu-item.active{background:#e6f4ff;color:#1677ff;border-left-color:#1677ff;font-weight:500;}
 .main-content{margin-left:220px;margin-top:64px;padding:24px;}
-.page-title{font-size:24px;font-weight:600;color:#1f2937;margin-bottom:24px;}
-.page-title span{font-size:14px;color:#8a93a3;font-weight:400;margin-left:12px;}
-.card{background:white;border-radius:8px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,0.08);margin-bottom:24px;}
-.card-title{font-size:16px;font-weight:500;color:#1f2937;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #e8eaed;display:flex;justify-content:space-between;align-items:center;}
-.btn-primary{background:#1f3a5f;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
-.btn-outline{background:white;border:1px solid #d0d4dc;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;color:#5a6373;}
+.page-title{font-size:24px;font-weight:600;color:rgba(0,0,0,0.88);margin-bottom:24px;}
+.page-title span{font-size:14px;color:rgba(0,0,0,0.45);font-weight:400;margin-left:12px;}
+.card{background:white;border-radius:8px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,0.03);margin-bottom:24px;}
+.card-title{font-size:16px;font-weight:500;color:rgba(0,0,0,0.88);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;}
+.btn-primary{background:#1677ff;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
+.btn-outline{background:white;border:1px solid #d9d9d9;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;color:rgba(0,0,0,0.65);}
 .tag{padding:2px 8px;border-radius:4px;font-size:12px;}
-.tag-success{background:#e8f3ec;color:#0f7b3a;border:1px solid #9bccaf;}
-.tag-warning{background:#faf2e0;color:#a36404;border:1px solid #e6c890;}
-.tag-error{background:#f7e7e5;color:#b3261e;border:1px solid #d9a8a3;}
-.tag-info{background:#e6edf5;color:#1f3a5f;border:1px solid #a8b8cf;}
-.tag-purple{background:#efe7f5;color:#5b3a8c;border:1px solid #b89cd1;}
+.tag-success{background:#f6ffed;color:#52c41a;border:1px solid #b7eb8f;}
+.tag-warning{background:#fffbe6;color:#faad14;border:1px solid #ffe58f;}
+.tag-error{background:#fff2f0;color:#ff4d4f;border:1px solid #ffccc7;}
+.tag-info{background:#e6f4ff;color:#1677ff;border:1px solid #91caff;}
+.tag-purple{background:#f9f0ff;color:#722ed1;border:1px solid #d3adf7;}
 .filter-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px;}
-.filter-bar select,.filter-bar input{padding:6px 12px;border:1px solid #d0d4dc;border-radius:4px;font-size:14px;outline:none;}
-.filter-bar select:focus,.filter-bar input:focus{border-color:#1f3a5f;}
+.filter-bar select,.filter-bar input{padding:6px 12px;border:1px solid #d9d9d9;border-radius:4px;font-size:14px;outline:none;}
+.filter-bar select:focus,.filter-bar input:focus{border-color:#1677ff;}
 .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
-.stat-card{background:white;border-radius:8px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,0.08);text-align:center;}
-.stat-card .num{font-size:28px;font-weight:600;color:#1f2937;}
-.stat-card .lbl{font-size:13px;color:#888;margin-top:4px;}
-.notif-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid #f0f2f5;transition:background 0.15s;cursor:pointer;}
+.stat-card{background:white;border-radius:8px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,0.03);text-align:center;}
+.stat-card .num{font-size:28px;font-weight:600;color:rgba(0,0,0,0.88);}
+.stat-card .lbl{font-size:13px;color:rgba(0,0,0,0.45);margin-top:4px;}
+.notif-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid #fafafa;transition:background 0.15s;cursor:pointer;}
 .notif-item:last-child{border-bottom:none;}
-.notif-item:hover{background:#fbfbfc;}
-.notif-item.unread{background:#e6edf5;border-left:3px solid #1f3a5f;padding-left:13px;border-radius:0 4px 4px 0;}
+.notif-item:hover{background:#fafafa;}
+.notif-item.unread{background:#e6f4ff;border-left:3px solid #1677ff;padding-left:13px;border-radius:0 4px 4px 0;}
 .notif-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
-.icon-approval{background:#faf2e0;color:#a36404;}
-.icon-urgent{background:#f7e7e5;color:#b3261e;}
-.icon-device{background:#e6edf5;color:#1f3a5f;}
-.icon-system{background:#e8f3ec;color:#0f7b3a;}
-.icon-token{background:#efe7f5;color:#5b3a8c;}
+.icon-approval{background:#fffbe6;color:#faad14;}
+.icon-urgent{background:#fff2f0;color:#ff4d4f;}
+.icon-device{background:#e6f4ff;color:#1677ff;}
+.icon-system{background:#f6ffed;color:#52c41a;}
+.icon-token{background:#f9f0ff;color:#722ed1;}
 .notif-body{flex:1;min-width:0;}
-.notif-title{font-weight:500;font-size:14px;color:#1f2937;margin-bottom:4px;}
-.notif-title .unread-dot{width:8px;height:8px;background:#b3261e;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle;}
-.notif-desc{font-size:13px;color:#5a6373;line-height:1.5;margin-bottom:6px;}
-.notif-meta{font-size:12px;color:#8a93a3;}
+.notif-title{font-weight:500;font-size:14px;color:rgba(0,0,0,0.88);margin-bottom:4px;}
+.notif-title .unread-dot{width:8px;height:8px;background:#ff4d4f;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle;}
+.notif-desc{font-size:13px;color:rgba(0,0,0,0.65);line-height:1.5;margin-bottom:6px;}
+.notif-meta{font-size:12px;color:rgba(0,0,0,0.45);}
 .notif-actions{display:flex;gap:8px;align-items:center;flex-shrink:0;}
 .notif-actions button{padding:4px 10px;border-radius:4px;font-size:12px;cursor:pointer;border:none;}
-.btn-approve{background:#0f7b3a;color:white;}
-.btn-reject{background:#b3261e;color:white;}
-.btn-view{background:#f0f2f5;color:#1f2937;border:1px solid #d0d4dc;}
-.tabs{display:flex;border-bottom:2px solid #e8eaed;margin-bottom:20px;}
-.tab{padding:10px 20px;cursor:pointer;font-size:14px;color:#5a6373;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all 0.2s;}
-.tab:hover{color:#1f3a5f;}
-.tab.active{color:#1f3a5f;border-bottom-color:#1f3a5f;font-weight:500;}
-.tab .badge{background:#b3261e;color:white;font-size:11px;padding:1px 6px;border-radius:10px;margin-left:6px;}
+.btn-approve{background:#52c41a;color:white;}
+.btn-reject{background:#ff4d4f;color:white;}
+.btn-view{background:#fafafa;color:rgba(0,0,0,0.88);border:1px solid #d9d9d9;}
+.tabs{display:flex;border-bottom:2px solid #f0f0f0;margin-bottom:20px;}
+.tab{padding:10px 20px;cursor:pointer;font-size:14px;color:rgba(0,0,0,0.65);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all 0.2s;}
+.tab:hover{color:#1677ff;}
+.tab.active{color:#1677ff;border-bottom-color:#1677ff;font-weight:500;}
+.tab .badge{background:#ff4d4f;color:white;font-size:11px;padding:1px 6px;border-radius:10px;margin-left:6px;}
 .channel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-.channel-item{display:flex;align-items:center;gap:12px;padding:16px;background:#fbfbfc;border-radius:8px;border:1px solid #e8eaed;cursor:pointer;transition:all 0.2s;}
-.channel-item:hover{border-color:#1f3a5f;background:#e6edf5;}
-.channel-item.active{border-color:#0f7b3a;background:#e8f3ec;}
+.channel-item{display:flex;align-items:center;gap:12px;padding:16px;background:#fafafa;border-radius:8px;border:1px solid #f0f0f0;cursor:pointer;transition:all 0.2s;}
+.channel-item:hover{border-color:#1677ff;background:#e6f4ff;}
+.channel-item.active{border-color:#52c41a;background:#f6ffed;}
 .channel-item .icon{font-size:24px;}
-.channel-item .name{font-weight:500;font-size:14px;color:#1f2937;}
-.channel-item .status{font-size:12px;color:#888;margin-top:2px;}
+.channel-item .name{font-weight:500;font-size:14px;color:rgba(0,0,0,0.88);}
+.channel-item .status{font-size:12px;color:rgba(0,0,0,0.45);margin-top:2px;}
 </style>
 </head>
 <body>
@@ -80,22 +80,22 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',syste
   </div>
   <div class="header-right">
     <button class="bell-btn"><span class="badge">5</span></button>
-    <span style="color:#5a6373;font-size:14px;">当前用户 / 张明</span>
-    <button onclick="location.href='index.html'" style="background:none;border:1px solid #d0d4dc;padding:6px 12px;border-radius:4px;cursor:pointer;color:#5a6373;font-size:14px;">注销</button>
+    <span style="color:rgba(0,0,0,0.65);font-size:14px;">当前用户 / 张明</span>
+    <button onclick="location.href='index.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:rgba(0,0,0,0.65);font-size:14px;">注销</button>
   </div>
 </div>
 
 <div class="layout-sider">
-  <div class="menu-item" onclick="location.href='dashboard.html'"> 仪表盘</div>
-  <div class="menu-item" onclick="location.href='audit-log.html'"> 审计日志</div>
-  <div class="menu-item" onclick="location.href='hash-chain.html'"> 哈希链</div>
-  <div class="menu-item" onclick="location.href='approval.html'"> 审批中心</div>
-  <div class="menu-item" onclick="location.href='user-management.html'"> 用户管理</div>
-  <div class="menu-item" onclick="location.href='token-management.html'"> Token管理</div>
-  <div class="menu-item" onclick="location.href='system-settings.html'">️ 系统设置</div>
-  <div class="menu-item" onclick="location.href='storage.html'"> 存储管理</div>
-  <div class="menu-item" onclick="location.href='report-export.html'"> 报告导出</div>
-  <div class="menu-item" onclick="location.href='notifications.html'" style="background:#e6edf5;color:#1f3a5f;border-left-color:#1f3a5f;font-weight:500;"> 通知中心</div>
+  <div class="menu-item" onclick="location.href='dashboard.html'">仪表盘</div>
+  <div class="menu-item" onclick="location.href='audit-log.html'">审计日志</div>
+  <div class="menu-item" onclick="location.href='hash-chain.html'">哈希链</div>
+  <div class="menu-item" onclick="location.href='approval.html'">审批中心</div>
+  <div class="menu-item" onclick="location.href='user-management.html'">用户管理</div>
+  <div class="menu-item" onclick="location.href='token-management.html'">Token 管理</div>
+  <div class="menu-item" onclick="location.href='system-settings.html'">系统设置</div>
+  <div class="menu-item" onclick="location.href='storage.html'">存储管理</div>
+  <div class="menu-item" onclick="location.href='report-export.html'">报告导出</div>
+  <div class="menu-item active" onclick="location.href='notifications.html'">通知中心</div>
 </div>
 
 <div class="main-content">
@@ -103,10 +103,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',syste
 
   <!-- 统计 -->
   <div class="stat-grid">
-    <div class="stat-card"><div class="num" style="color:#b3261e;">3</div><div class="lbl">待处理</div></div>
-    <div class="stat-card"><div class="num" style="color:#a36404;">2</div><div class="lbl">紧急告警</div></div>
+    <div class="stat-card"><div class="num" style="color:#ff4d4f;">3</div><div class="lbl">待处理</div></div>
+    <div class="stat-card"><div class="num" style="color:#faad14;">2</div><div class="lbl">紧急告警</div></div>
     <div class="stat-card"><div class="num">28</div><div class="lbl">今日已处理</div></div>
-    <div class="stat-card"><div class="num" style="color:#0f7b3a;"></div><div class="lbl">通知服务状态</div></div>
+    <div class="stat-card"><div class="num" style="color:#52c41a;"></div><div class="lbl">通知服务状态</div></div>
   </div>
 
   <!-- Tab -->
@@ -241,7 +241,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',syste
   <!-- 通知渠道配置 -->
   <div class="card">
     <div class="card-title"> 通知渠道配置</div>
-    <p style="color:#888;font-size:13px;margin-bottom:16px;">配置通知推送渠道，不同类型通知可发送到不同渠道。系统通知可同时推送到多个渠道。</p>
+    <p style="color:rgba(0,0,0,0.45);font-size:13px;margin-bottom:16px;">配置通知推送渠道，不同类型通知可发送到不同渠道。系统通知可同时推送到多个渠道。</p>
     <div class="channel-grid">
       <div class="channel-item active">
         <div class="icon"></div>
@@ -298,26 +298,26 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',syste
   <div class="card">
     <div class="card-title"> 通知触发规则</div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
-      <div style="background:#fbfbfc;padding:16px;border-radius:8px;border:1px solid #e8eaed;">
-        <div style="font-weight:600;font-size:14px;color:#1f2937;margin-bottom:10px;"> 审批通知</div>
-        <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">触发时机</span><span style="font-size:13px;">新申请提交时</span></div>
-        <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">通知对象</span><span style="font-size:13px;">审批人</span></div>
-        <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">渠道</span><span style="font-size:13px;">系统+邮件+微信</span></div>
-        <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">催办间隔</span><span style="font-size:13px;">超时后每4小时</span></div>
+      <div style="background:#fafafa;padding:16px;border-radius:8px;border:1px solid #f0f0f0;">
+        <div style="font-weight:600;font-size:14px;color:rgba(0,0,0,0.88);margin-bottom:10px;"> 审批通知</div>
+        <div class="info-row" style="padding:6px 0;"><span style="color:rgba(0,0,0,0.45);font-size:13px;">触发时机</span><span style="font-size:13px;">新申请提交时</span></div>
+        <div class="info-row" style="padding:6px 0;"><span style="color:rgba(0,0,0,0.45);font-size:13px;">通知对象</span><span style="font-size:13px;">审批人</span></div>
+        <div class="info-row" style="padding:6px 0;"><span style="color:rgba(0,0,0,0.45);font-size:13px;">渠道</span><span style="font-size:13px;">系统+邮件+微信</span></div>
+        <div class="info-row" style="padding:6px 0;"><span style="color:rgba(0,0,0,0.45);font-size:13px;">催办间隔</span><span style="font-size:13px;">超时后每4小时</span></div>
       </div>
-      <div style="background:#f7e7e5;padding:16px;border-radius:8px;border:1px solid #d9a8a3;">
+      <div style="background:#fff2f0;padding:16px;border-radius:8px;border:1px solid #ffccc7;">
         <div style="font-weight:600;font-size:14px;color:#cf1322;margin-bottom:10px;">️ 紧急告警</div>
-        <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">触发时机</span><span style="font-size:13px;">存储>90% / Token过期</span></div>
-        <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">通知对象</span><span style="font-size:13px;">全体管理员</span></div>
-        <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">渠道</span><span style="font-size:13px;">系统+邮件+微信+短信</span></div>
-        <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">重复</span><span style="font-size:13px;">每30分钟直到处理</span></div>
+        <div class="info-row" style="padding:6px 0;"><span style="color:rgba(0,0,0,0.45);font-size:13px;">触发时机</span><span style="font-size:13px;">存储>90% / Token过期</span></div>
+        <div class="info-row" style="padding:6px 0;"><span style="color:rgba(0,0,0,0.45);font-size:13px;">通知对象</span><span style="font-size:13px;">全体管理员</span></div>
+        <div class="info-row" style="padding:6px 0;"><span style="color:rgba(0,0,0,0.45);font-size:13px;">渠道</span><span style="font-size:13px;">系统+邮件+微信+短信</span></div>
+        <div class="info-row" style="padding:6px 0;"><span style="color:rgba(0,0,0,0.45);font-size:13px;">重复</span><span style="font-size:13px;">每30分钟直到处理</span></div>
       </div>
-      <div style="background:#e8f3ec;padding:16px;border-radius:8px;border:1px solid #9bccaf;">
+      <div style="background:#f6ffed;padding:16px;border-radius:8px;border:1px solid #b7eb8f;">
         <div style="font-weight:600;font-size:14px;color:#389e0d;margin-bottom:10px;"> 设备通知</div>
-        <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">触发时机</span><span style="font-size:13px;">设备离线/Token使用</span></div>
-        <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">通知对象</span><span style="font-size:13px;">设备管理员</span></div>
-        <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">渠道</span><span style="font-size:13px;">系统+邮件</span></div>
-        <div class="info-row" style="padding:6px 0;"><span style="color:#888;font-size:13px;">离线判定</span><span style="font-size:13px;">1小时无数据</span></div>
+        <div class="info-row" style="padding:6px 0;"><span style="color:rgba(0,0,0,0.45);font-size:13px;">触发时机</span><span style="font-size:13px;">设备离线/Token使用</span></div>
+        <div class="info-row" style="padding:6px 0;"><span style="color:rgba(0,0,0,0.45);font-size:13px;">通知对象</span><span style="font-size:13px;">设备管理员</span></div>
+        <div class="info-row" style="padding:6px 0;"><span style="color:rgba(0,0,0,0.45);font-size:13px;">渠道</span><span style="font-size:13px;">系统+邮件</span></div>
+        <div class="info-row" style="padding:6px 0;"><span style="color:rgba(0,0,0,0.45);font-size:13px;">离线判定</span><span style="font-size:13px;">1小时无数据</span></div>
       </div>
     </div>
   </div>
@@ -336,7 +336,7 @@ function dismissNotif(btn) {
   var item = btn.closest('.notif-item');
   item.style.opacity = '0.5';
   item.style.pointerEvents = 'none';
-  item.querySelector('.notif-actions').innerHTML = '<span style="font-size:12px;color:#888;">已处理</span>';
+  item.querySelector('.notif-actions').innerHTML = '<span style="font-size:12px;color:rgba(0,0,0,0.45);">已处理</span>';
   item.classList.remove('unread');
   item.querySelector('.unread-dot')?.remove();
   updateBadge();

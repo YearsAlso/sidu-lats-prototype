@@ -6,96 +6,96 @@
 <title>SIDU-LATS - 审批中心</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; background: #f4f5f7; }
-.header { background: white; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px rgba(15,23,42,0.04); position: fixed; width: 100%; top: 0; z-index: 1000; height: 64px; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'; background: #f5f5f5; }
+.header { background: white; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px rgba(0,0,0,0.03); position: fixed; width: 100%; top: 0; z-index: 1000; height: 64px; }
 .header-left { display: flex; align-items: center; gap: 24px; }
-.logo { font-size: 20px; font-weight: 600; color: #1f3a5f; }
-.breadcrumb { color: #5a6373; font-size: 14px; }
+.logo { font-size: 20px; font-weight: 600; color: #1677ff; }
+.breadcrumb { color: rgba(0,0,0,0.65); font-size: 14px; }
 .header-right { display: flex; align-items: center; gap: 16px; }
-.layout-sider { position: fixed; left: 0; top: 64px; bottom: 0; width: 220px; background: white; box-shadow: 1px 0 0 rgba(15,23,42,0.04); z-index: 999; overflow-y: auto; }
-.menu-item { padding: 14px 24px; cursor: pointer; display: flex; align-items: center; gap: 12px; color: #1f2937; transition: all 0.2s; border-left: 3px solid transparent; font-size: 14px; }
-.menu-item:hover { background: #e6edf5; color: #1f3a5f; }
-.menu-item.active { background: #e6edf5; color: #1f3a5f; border-left-color: #1f3a5f; font-weight: 500; }
+.layout-sider { position: fixed; left: 0; top: 64px; bottom: 0; width: 220px; background: white; box-shadow: 1px 0 0 rgba(0,0,0,0.03); z-index: 999; overflow-y: auto; }
+.menu-item { padding: 14px 24px; cursor: pointer; display: flex; align-items: center; gap: 12px; color: rgba(0,0,0,0.88); transition: all 0.2s; border-left: 3px solid transparent; font-size: 14px; }
+.menu-item:hover { background: #e6f4ff; color: #1677ff; }
+.menu-item.active { background: #e6f4ff; color: #1677ff; border-left-color: #1677ff; font-weight: 500; }
 .main-content { margin-left: 220px; margin-top: 64px; padding: 24px; }
-.page-title { font-size: 24px; font-weight: 600; color: #1f2937; margin-bottom: 24px; }
-.page-title span { font-size: 14px; color: #8a93a3; font-weight: 400; margin-left: 12px; }
-.card { background: white; border-radius: 6px; padding: 24px; box-shadow: 0 1px 2px rgba(15,23,42,0.04); margin-bottom: 24px; }
-.card-title { font-size: 16px; font-weight: 500; color: #1f2937; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #e8eaed; display: flex; justify-content: space-between; align-items: center; }
-.btn-primary { background: #1f3a5f; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; }
-.btn-primary:hover { background: #2d5483; }
-.btn-success { background: #0f7b3a; color: white; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 13px; }
-.btn-danger { background: #b3261e; color: white; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 13px; }
-.btn-outline { padding: 6px 14px; border: 1px solid #d0d4dc; background: white; font-size: 13px; cursor: pointer; border-radius: 4px; color: #5a6373; }
-.btn-ghost { background: none; border: none; color: #1f3a5f; cursor: pointer; font-size: 13px; padding: 4px 8px; }
+.page-title { font-size: 24px; font-weight: 600; color: rgba(0,0,0,0.88); margin-bottom: 24px; }
+.page-title span { font-size: 14px; color: rgba(0,0,0,0.45); font-weight: 400; margin-left: 12px; }
+.card { background: white; border-radius: 6px; padding: 24px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); margin-bottom: 24px; }
+.card-title { font-size: 16px; font-weight: 500; color: rgba(0,0,0,0.88); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
+.btn-primary { background: #1677ff; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; }
+.btn-primary:hover { background: #4096ff; }
+.btn-success { background: #52c41a; color: white; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 13px; }
+.btn-danger { background: #ff4d4f; color: white; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 13px; }
+.btn-outline { padding: 6px 14px; border: 1px solid #d9d9d9; background: white; font-size: 13px; cursor: pointer; border-radius: 4px; color: rgba(0,0,0,0.65); }
+.btn-ghost { background: none; border: none; color: #1677ff; cursor: pointer; font-size: 13px; padding: 4px 8px; }
 .tag { padding: 2px 8px; border-radius: 4px; font-size: 12px; }
-.tag-success { background: #e8f3ec; color: #0f7b3a; border: 1px solid #9bccaf; }
-.tag-warning { background: #faf2e0; color: #a36404; border: 1px solid #e6c890; }
-.tag-error { background: #f7e7e5; color: #b3261e; border: 1px solid #d9a8a3; }
-.tag-info { background: #e6edf5; color: #1f3a5f; border: 1px solid #a8b8cf; }
-.tag-purple { background: #efe7f5; color: #5b3a8c; border: 1px solid #b89cd1; }
-.hash-val { font-family: 'Monaco','Menlo',monospace; font-size: 12px; background: #f0f2f5; padding: 2px 6px; border-radius: 2px; color: #555; }
+.tag-success { background: #f6ffed; color: #52c41a; border: 1px solid #b7eb8f; }
+.tag-warning { background: #fffbe6; color: #faad14; border: 1px solid #ffe58f; }
+.tag-error { background: #fff2f0; color: #ff4d4f; border: 1px solid #ffccc7; }
+.tag-info { background: #e6f4ff; color: #1677ff; border: 1px solid #91caff; }
+.tag-purple { background: #f9f0ff; color: #722ed1; border: 1px solid #d3adf7; }
+.hash-val { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 12px; background: #fafafa; padding: 2px 6px; border-radius: 2px; color: rgba(0,0,0,0.65); }
 .stat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 24px; }
-.stat-card { background: white; border-radius: 6px; padding: 18px 20px; box-shadow: 0 1px 2px rgba(15,23,42,0.04); text-align: center; }
-.stat-card .num { font-size: 28px; font-weight: 600; color: #1f2937; }
-.stat-card .num.warn { color: #a36404; }
-.stat-card .num.danger { color: #b3261e; }
-.stat-card .num.ok { color: #0f7b3a; }
-.stat-card .lbl { font-size: 13px; color: #888; margin-top: 4px; }
-.tabs { display: flex; gap: 0; border-bottom: 2px solid #e8eaed; margin-bottom: 20px; }
-.tab { padding: 10px 20px; cursor: pointer; font-size: 14px; color: #5a6373; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
-.tab:hover { color: #1f3a5f; }
-.tab.active { color: #1f3a5f; border-bottom-color: #1f3a5f; font-weight: 500; }
-.tab .badge { background: #b3261e; color: white; font-size: 11px; padding: 1px 6px; border-radius: 6px; margin-left: 6px; }
+.stat-card { background: white; border-radius: 6px; padding: 18px 20px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); text-align: center; }
+.stat-card .num { font-size: 28px; font-weight: 600; color: rgba(0,0,0,0.88); }
+.stat-card .num.warn { color: #faad14; }
+.stat-card .num.danger { color: #ff4d4f; }
+.stat-card .num.ok { color: #52c41a; }
+.stat-card .lbl { font-size: 13px; color: rgba(0,0,0,0.45); margin-top: 4px; }
+.tabs { display: flex; gap: 0; border-bottom: 2px solid #f0f0f0; margin-bottom: 20px; }
+.tab { padding: 10px 20px; cursor: pointer; font-size: 14px; color: rgba(0,0,0,0.65); border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab:hover { color: #1677ff; }
+.tab.active { color: #1677ff; border-bottom-color: #1677ff; font-weight: 500; }
+.tab .badge { background: #ff4d4f; color: white; font-size: 11px; padding: 1px 6px; border-radius: 6px; margin-left: 6px; }
 .filter-bar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
-.filter-bar select, .filter-bar input { padding: 6px 12px; border: 1px solid #d0d4dc; border-radius: 4px; font-size: 14px; outline: none; }
-.filter-bar select:focus, .filter-bar input:focus { border-color: #1f3a5f; }
+.filter-bar select, .filter-bar input { padding: 6px 12px; border: 1px solid #d9d9d9; border-radius: 4px; font-size: 14px; outline: none; }
+.filter-bar select:focus, .filter-bar input:focus { border-color: #1677ff; }
 table { width: 100%; border-collapse: collapse; }
-thead tr { background: #fbfbfc; border-bottom: 1px solid #e8eaed; }
-th { padding: 12px; text-align: left; font-weight: 500; color: #1f2937; font-size: 14px; }
-td { padding: 12px; font-size: 13px; color: #1f2937; border-bottom: 1px solid #f0f2f5; }
-tbody tr:hover { background: #fbfbfc; cursor: pointer; }
+thead tr { background: #fafafa; border-bottom: 1px solid #f0f0f0; }
+th { padding: 12px; text-align: left; font-weight: 500; color: rgba(0,0,0,0.88); font-size: 14px; }
+td { padding: 12px; font-size: 13px; color: rgba(0,0,0,0.88); border-bottom: 1px solid #fafafa; }
+tbody tr:hover { background: #fafafa; cursor: pointer; }
 .timeline-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px; }
-.dot-green { background: #0f7b3a; }
-.dot-yellow { background: #a36404; }
-.dot-red { background: #b3261e; }
-.dot-blue { background: #1f3a5f; }
-.dot-purple { background: #5b3a8c; }
+.dot-green { background: #52c41a; }
+.dot-yellow { background: #faad14; }
+.dot-red { background: #ff4d4f; }
+.dot-blue { background: #1677ff; }
+.dot-purple { background: #722ed1; }
 .priority-bar { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; }
-.priority-high { color: #b3261e; }
-.priority-med { color: #a36404; }
-.priority-low { color: #0f7b3a; }
-.urgency-bar { height: 4px; background: #e8eaed; border-radius: 2px; overflow: hidden; margin-top: 4px; width: 80px; }
+.priority-high { color: #ff4d4f; }
+.priority-med { color: #faad14; }
+.priority-low { color: #52c41a; }
+.urgency-bar { height: 4px; background: #f0f0f0; border-radius: 2px; overflow: hidden; margin-top: 4px; width: 80px; }
 .urgency-fill { height: 100%; border-radius: 2px; }
 .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 2000; }
-.modal-box { background: white; border-radius: 6px; width: 680px; max-height: 85vh; overflow-y: auto; }
-.modal-header { padding: 20px 24px; border-bottom: 1px solid #e8eaed; display: flex; justify-content: space-between; align-items: center; background: #fbfbfc; border-radius: 10px 10px 0 0; }
+.modal-box { background: white; border-radius: 8px; width: 680px; max-height: 85vh; overflow-y: auto; }
+.modal-header { padding: 20px 24px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; background: #fafafa; border-radius: 8px 8px 0 0; }
 .modal-header h3 { margin: 0; font-size: 17px; }
-.modal-close { background: none; border: none; font-size: 22px; cursor: pointer; color: #8a93a3; }
+.modal-close { background: none; border: none; font-size: 22px; cursor: pointer; color: rgba(0,0,0,0.45); }
 .modal-body { padding: 24px; }
-.modal-footer { padding: 16px 24px; border-top: 1px solid #e8eaed; display: flex; gap: 12px; justify-content: flex-end; }
+.modal-footer { padding: 16px 24px; border-top: 1px solid #f0f0f0; display: flex; gap: 12px; justify-content: flex-end; }
 .form-group { margin-bottom: 16px; }
-.form-group label { display: block; margin-bottom: 8px; color: #1f2937; font-weight: 500; font-size: 14px; }
-.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 8px 12px; border: 1px solid #d0d4dc; border-radius: 4px; font-size: 14px; outline: none; resize: vertical; }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #1f3a5f; }
-.signature-panel { background: #fbfbfc; border: 1px solid #e8e8e8; border-radius: 6px; padding: 16px; margin-top: 16px; }
-.signature-panel .label { font-size: 13px; color: #5a6373; margin-bottom: 10px; font-weight: 500; }
+.form-group label { display: block; margin-bottom: 8px; color: rgba(0,0,0,0.88); font-weight: 500; font-size: 14px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 8px 12px; border: 1px solid #d9d9d9; border-radius: 4px; font-size: 14px; outline: none; resize: vertical; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #1677ff; }
+.signature-panel { background: #fafafa; border: 1px solid #f0f0f0; border-radius: 6px; padding: 16px; margin-top: 16px; }
+.signature-panel .label { font-size: 13px; color: rgba(0,0,0,0.65); margin-bottom: 10px; font-weight: 500; }
 .signature-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-.signature-row .key { font-size: 13px; color: #888; }
-.signature-row .val { font-size: 13px; color: #1f2937; }
+.signature-row .key { font-size: 13px; color: rgba(0,0,0,0.45); }
+.signature-row .val { font-size: 13px; color: rgba(0,0,0,0.88); }
 .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-.detail-item { background: #fbfbfc; padding: 12px; border-radius: 6px; }
-.detail-item .lbl { font-size: 12px; color: #8a93a3; margin-bottom: 4px; }
-.detail-item .val { font-size: 14px; color: #1f2937; font-weight: 500; }
+.detail-item { background: #fafafa; padding: 12px; border-radius: 6px; }
+.detail-item .lbl { font-size: 12px; color: rgba(0,0,0,0.45); margin-bottom: 4px; }
+.detail-item .val { font-size: 14px; color: rgba(0,0,0,0.88); font-weight: 500; }
 .process-flow { display: flex; align-items: center; gap: 0; margin: 20px 0; }
 .process-step { display: flex; flex-direction: column; align-items: center; min-width: 120px; }
 .step-circle { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
-.step-circle.done { background: #0f7b3a; color: white; }
-.step-circle.active { background: #1f3a5f; color: white; }
-.step-circle.pending { background: #e8eaed; color: #8a93a3; border: 2px dashed #d0d4dc; }
-.step-label { font-size: 11px; color: #5a6373; text-align: center; }
-.step-time { font-size: 10px; color: #8a93a3; margin-top: 2px; }
-.step-arrow { color: #d0d4dc; font-size: 16px; margin: 0 4px; margin-bottom: 20px; }
-.empty-state { text-align: center; padding: 60px 0; color: #8a93a3; }
+.step-circle.done { background: #52c41a; color: white; }
+.step-circle.active { background: #1677ff; color: white; }
+.step-circle.pending { background: #f0f0f0; color: rgba(0,0,0,0.45); border: 2px dashed #d9d9d9; }
+.step-label { font-size: 11px; color: rgba(0,0,0,0.65); text-align: center; }
+.step-time { font-size: 10px; color: rgba(0,0,0,0.45); margin-top: 2px; }
+.step-arrow { color: #d9d9d9; font-size: 16px; margin: 0 4px; margin-bottom: 20px; }
+.empty-state { text-align: center; padding: 60px 0; color: rgba(0,0,0,0.45); }
 .empty-state .icon { font-size: 48px; margin-bottom: 16px; opacity: 0.5; }
 </style>
 </head>
@@ -103,19 +103,22 @@ tbody tr:hover { background: #fbfbfc; cursor: pointer; }
 <div class="header">
   <div class="header-left"><div class="logo">SIDU-LATS</div><div class="breadcrumb">审批中心 &raquo; 待处理审批请求</div></div>
   <div class="header-right">
-    <div style="display:flex;align-items:center;gap:8px;"><span style="color:#5a6373;font-size:14px;">当前用户 / 张明</span></div>
-    <button onclick="location.href='index.html'" style="background:none;border:1px solid #d0d4dc;padding:6px 12px;border-radius:4px;cursor:pointer;color:#5a6373;font-size:14px;">注销</button>
+    <div style="display:flex;align-items:center;gap:8px;"><span style="color:rgba(0,0,0,0.65);font-size:14px;">当前用户 / 张明</span></div>
+    <button onclick="location.href='index.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:rgba(0,0,0,0.65);font-size:14px;">注销</button>
   </div>
 </div>
 
 <div class="layout-sider">
-  <div class="menu-item" onclick="location.href='dashboard.html'"> 仪表盘</div>
-  <div class="menu-item" onclick="location.href='audit-log.html'"> 审计日志</div>
-  <div class="menu-item" onclick="location.href='hash-chain.html'"> 哈希链</div>
-  <div class="menu-item active"> 审批中心</div>
-  <div class="menu-item" onclick="location.href='user-management.html'"> 用户管理</div>
-  <div class="menu-item" onclick="location.href='storage.html'"> 存储管理</div>
-  <div class="menu-item" onclick="location.href='report-export.html'"> 报告导出</div>
+  <div class="menu-item" onclick="location.href='dashboard.html'">仪表盘</div>
+  <div class="menu-item" onclick="location.href='audit-log.html'">审计日志</div>
+  <div class="menu-item" onclick="location.href='hash-chain.html'">哈希链</div>
+  <div class="menu-item active" onclick="location.href='approval.html'">审批中心</div>
+  <div class="menu-item" onclick="location.href='user-management.html'">用户管理</div>
+  <div class="menu-item" onclick="location.href='token-management.html'">Token 管理</div>
+  <div class="menu-item" onclick="location.href='system-settings.html'">系统设置</div>
+  <div class="menu-item" onclick="location.href='storage.html'">存储管理</div>
+  <div class="menu-item" onclick="location.href='report-export.html'">报告导出</div>
+  <div class="menu-item" onclick="location.href='notifications.html'">通知中心</div>
 </div>
 
 <div class="main-content">
@@ -186,14 +189,14 @@ tbody tr:hover { background: #fbfbfc; cursor: pointer; }
     </table>
 
     <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;">
-      <div style="font-size:13px;color:#888;">共 <span id="rowCount">7</span> 条</div>
+      <div style="font-size:13px;color:rgba(0,0,0,0.45);">共 <span id="rowCount">7</span> 条</div>
       <div style="display:flex;gap:8px;align-items:center;">
-        <div style="font-size:13px;color:#5a6373;">批量操作:</div>
+        <div style="font-size:13px;color:rgba(0,0,0,0.65);">批量操作:</div>
         <button class="btn-success" onclick="batchApprove()"> 批量批准</button>
         <button class="btn-danger" onclick="batchReject()"> 批量拒绝</button>
         <div style="display:flex;gap:6px;margin-left:12px;">
           <button class="btn-outline" style="padding:6px 10px;">«</button>
-          <button class="btn-outline" style="padding:6px 10px;background:#e6edf5;color:#1f3a5f;border-color:#a8b8cf;">1</button>
+          <button class="btn-outline" style="padding:6px 10px;background:#e6f4ff;color:#1677ff;border-color:#91caff;">1</button>
           <button class="btn-outline" style="padding:6px 10px;">2</button>
           <button class="btn-outline" style="padding:6px 10px;">»</button>
         </div>
@@ -263,20 +266,20 @@ tbody tr:hover { background: #fbfbfc; cursor: pointer; }
 
       <div style="margin-bottom:16px;">
         <div style="font-weight:500;font-size:14px;margin-bottom:8px;"> 申请内容</div>
-        <div id="dContent" style="background:#fbfbfc;padding:14px;border-radius:6px;font-size:14px;line-height:1.7;color:#1f2937;"></div>
+        <div id="dContent" style="background:#fafafa;padding:14px;border-radius:6px;font-size:14px;line-height:1.7;color:rgba(0,0,0,0.88);"></div>
       </div>
 
       <div style="margin-bottom:16px;">
         <div style="font-weight:500;font-size:14px;margin-bottom:8px;"> 附件</div>
         <div style="display:flex;flex-direction:column;gap:8px;">
-          <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#fbfbfc;border-radius:6px;border:1px solid #e8eaed;">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#fafafa;border-radius:6px;border:1px solid #f0f0f0;">
             <span style="font-size:20px;"></span>
-            <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:#1f2937;">变更参数对照表.pdf</div><div style="font-size:11px;color:#8a93a3;">234 KB · 上传于 2026-07-01 14:50</div></div>
+            <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:rgba(0,0,0,0.88);">变更参数对照表.pdf</div><div style="font-size:11px;color:rgba(0,0,0,0.45);">234 KB · 上传于 2026-07-01 14:50</div></div>
             <button class="btn-ghost">下载</button>
           </div>
-          <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#fbfbfc;border-radius:6px;border:1px solid #e8eaed;">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#fafafa;border-radius:6px;border:1px solid #f0f0f0;">
             <span style="font-size:20px;"></span>
-            <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:#1f2937;">历史数据对比分析.xlsx</div><div style="font-size:11px;color:#8a93a3;">1.2 MB · 上传于 2026-07-01 14:52</div></div>
+            <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:rgba(0,0,0,0.88);">历史数据对比分析.xlsx</div><div style="font-size:11px;color:rgba(0,0,0,0.45);">1.2 MB · 上传于 2026-07-01 14:52</div></div>
             <button class="btn-ghost">下载</button>
           </div>
         </div>
@@ -284,23 +287,23 @@ tbody tr:hover { background: #fbfbfc; cursor: pointer; }
 
       <div style="margin-bottom:16px;">
         <div style="font-weight:500;font-size:14px;margin-bottom:8px;"> 初审意见</div>
-        <div style="background:#faf2e0;border:1px solid #e6c890;border-radius:6px;padding:12px;font-size:13px;line-height:1.6;">
-          <div style="margin-bottom:8px;"><strong>王芳（QA审计员）</strong> <span style="color:#8a93a3;font-size:12px;">2026-07-01 15:05</span></div>
-          <div style="color:#1f2937;">经核实，本次阈值调整涉及的生产线为A线（相机SIDU-CAM-001）。调阅近30天数据，误检率维持在0.8%~1.2%区间，调整至0.90后预计可降低约15%的过杀。建议批准。</div>
+        <div style="background:#fffbe6;border:1px solid #ffe58f;border-radius:6px;padding:12px;font-size:13px;line-height:1.6;">
+          <div style="margin-bottom:8px;"><strong>王芳（QA审计员）</strong> <span style="color:rgba(0,0,0,0.45);font-size:12px;">2026-07-01 15:05</span></div>
+          <div style="color:rgba(0,0,0,0.88);">经核实，本次阈值调整涉及的生产线为A线（相机SIDU-CAM-001）。调阅近30天数据，误检率维持在0.8%~1.2%区间，调整至0.90后预计可降低约15%的过杀。建议批准。</div>
           <div style="margin-top:8px;"><span class="hash-val">sig-3a2b1c...</span></div>
         </div>
       </div>
 
       <div>
         <div style="font-weight:500;font-size:14px;margin-bottom:8px;">️ 复核签名</div>
-        <div style="background:#e8f3ec;border:1px solid #9bccaf;border-radius:6px;padding:12px;font-size:13px;">
-          <div id="sigPlaceholder" style="color:#888;text-align:center;padding:20px 0;">— 尚未签名 —</div>
+        <div style="background:#f6ffed;border:1px solid #b7eb8f;border-radius:6px;padding:12px;font-size:13px;">
+          <div id="sigPlaceholder" style="color:rgba(0,0,0,0.45);text-align:center;padding:20px 0;">— 尚未签名 —</div>
         </div>
       </div>
     </div>
     <div class="modal-footer" id="detailFooter">
-      <button onclick="closeDetail()" style="padding:8px 20px;border:1px solid #d0d4dc;border-radius:4px;background:white;cursor:pointer;">取消</button>
-      <button onclick="openSignFromDetail('REJECT')" style="padding:8px 20px;background:#b3261e;color:white;border:none;border-radius:4px;cursor:pointer;font-size:14px;">拒绝</button>
+      <button onclick="closeDetail()" style="padding:8px 20px;border:1px solid #d9d9d9;border-radius:4px;background:white;cursor:pointer;">取消</button>
+      <button onclick="openSignFromDetail('REJECT')" style="padding:8px 20px;background:#ff4d4f;color:white;border:none;border-radius:4px;cursor:pointer;font-size:14px;">拒绝</button>
       <button onclick="openSignFromDetail('APPROVE')" class="btn-primary" style="padding:8px 20px;">批准</button>
     </div>
   </div>
@@ -314,12 +317,12 @@ tbody tr:hover { background: #fbfbfc; cursor: pointer; }
       <button class="modal-close" onclick="closeModal()">×</button>
     </div>
     <div class="modal-body">
-      <p style="margin-bottom:16px;color:#5a6373;font-size:14px;">请确认以下审批内容，并选择签署意图：</p>
-      <div style="background:#fbfbfc;padding:12px;border-radius:6px;margin-bottom:16px;font-size:14px;line-height:1.6;">
-        <div id="signContent" style="color:#1f2937;"></div>
+      <p style="margin-bottom:16px;color:rgba(0,0,0,0.65);font-size:14px;">请确认以下审批内容，并选择签署意图：</p>
+      <div style="background:#fafafa;padding:12px;border-radius:6px;margin-bottom:16px;font-size:14px;line-height:1.6;">
+        <div id="signContent" style="color:rgba(0,0,0,0.88);"></div>
       </div>
       <div class="form-group">
-        <label>签署意图 * <span style="font-weight:400;color:#8a93a3;font-size:12px;">（FDA 21 CFR Part 11 要求明确意图）</span></label>
+        <label>签署意图 * <span style="font-weight:400;color:rgba(0,0,0,0.45);font-size:12px;">（FDA 21 CFR Part 11 要求明确意图）</span></label>
         <select id="signIntent">
           <option value="PREVIEW">PREVIEW — 预览/检查</option>
           <option value="REVIEW">REVIEW — 复核/审查</option>
@@ -332,7 +335,7 @@ tbody tr:hover { background: #fbfbfc; cursor: pointer; }
         <textarea id="signComment" rows="3" placeholder="可选：填写审批意见..."></textarea>
       </div>
       <div class="form-group">
-        <label>签名密码 * <span style="font-weight:400;color:#8a93a3;font-size:12px;">（独立于登录密码）</span></label>
+        <label>签名密码 * <span style="font-weight:400;color:rgba(0,0,0,0.45);font-size:12px;">（独立于登录密码）</span></label>
         <input type="password" id="signPwd" placeholder="请输入签名专用密码">
       </div>
       <div class="signature-panel">
@@ -343,11 +346,11 @@ tbody tr:hover { background: #fbfbfc; cursor: pointer; }
         <div class="signature-row"><span class="key">时间戳:</span><span class="val" id="signerTime">—</span></div>
         <div class="signature-row"><span class="key">签署意图:</span><span class="val" id="signerIntent">—</span></div>
         <div class="signature-row"><span class="key">签名哈希:</span><span class="val hash-val" id="signerHash">—</span></div>
-        <div class="signature-row"><span class="key">合规声明:</span><span class="val" style="font-size:11px;color:#888;">本签名符合 FDA 21 CFR Part 11 电子签名规定</span></div>
+        <div class="signature-row"><span class="key">合规声明:</span><span class="val" style="font-size:11px;color:rgba(0,0,0,0.45);">本签名符合 FDA 21 CFR Part 11 电子签名规定</span></div>
       </div>
     </div>
     <div class="modal-footer">
-      <button onclick="closeModal()" style="padding:8px 20px;border:1px solid #d0d4dc;border-radius:4px;background:white;cursor:pointer;">取消</button>
+      <button onclick="closeModal()" style="padding:8px 20px;border:1px solid #d9d9d9;border-radius:4px;background:white;cursor:pointer;">取消</button>
       <button onclick="confirmSign()" class="btn-primary" style="padding:8px 20px;">确认签名</button>
     </div>
   </div>
@@ -381,13 +384,13 @@ var history = [
 function getPriorityLabel(p) {
   if (p === '紧急') return '<span class="priority-high"> 紧急</span>';
   if (p === '高') return '<span class="priority-med">▲ 高</span>';
-  if (p === '中') return '<span style="color:#1f3a5f;">● 中</span>';
+  if (p === '中') return '<span style="color:#1677ff;">● 中</span>';
   return '<span class="priority-low">▼ 低</span>';
 }
 
 function getUrgencyBar(pct) {
-  var color = pct >= 80 ? '#b3261e' : pct >= 50 ? '#a36404' : '#0f7b3a';
-  return '<div class="urgency-bar"><div class="urgency-fill" style="width:' + pct + '%;background:' + color + ';"></div></div><div style="font-size:11px;color:#888;margin-top:2px;">' + pct + '%</div>';
+  var color = pct >= 80 ? '#ff4d4f' : pct >= 50 ? '#faad14' : '#52c41a';
+  return '<div class="urgency-bar"><div class="urgency-fill" style="width:' + pct + '%;background:' + color + ';"></div></div><div style="font-size:11px;color:rgba(0,0,0,0.45);margin-top:2px;">' + pct + '%</div>';
 }
 
 function renderPending() {
@@ -396,14 +399,14 @@ function renderPending() {
     var firstReview = r.hasFirstReview ? '<span class="tag tag-success" style="margin-left:4px;font-size:10px;">初审</span>' : '';
     return '<tr onclick="showDetail(\'' + r.id + '\')">' +
       '<td onclick="event.stopPropagation()"><input type="checkbox"></td>' +
-      '<td style="color:#1f3a5f;font-weight:500;">' + r.id + '</td>' +
-      '<td><div style="font-weight:500;">' + r.applicant + '</div><div style="font-size:11px;color:#8a93a3;">' + r.dept + '</div></td>' +
+      '<td style="color:#1677ff;font-weight:500;">' + r.id + '</td>' +
+      '<td><div style="font-weight:500;">' + r.applicant + '</div><div style="font-size:11px;color:rgba(0,0,0,0.45);">' + r.dept + '</div></td>' +
       '<td><span class="tag tag-' + r.typeTag + '">' + r.type + '</span>' + firstReview + '</td>' +
       '<td style="max-width:220px;"><div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="' + r.content.split("\n")[0] + '">' + r.content.split("\n")[0] + '</div></td>' +
       '<td>' + getPriorityLabel(r.priority) + '</td>' +
       '<td>' + getUrgencyBar(r.urgency) + '</td>' +
-      '<td style="color:#5a6373;font-size:12px;">' + r.time + '</td>' +
-      '<td><span style="color:' + (r.urgency >= 80 ? '#b3261e' : '#5a6373') + ';font-size:12px;">' + r.deadline + '</span></td>' +
+      '<td style="color:rgba(0,0,0,0.65);font-size:12px;">' + r.time + '</td>' +
+      '<td><span style="color:' + (r.urgency >= 80 ? '#ff4d4f' : 'rgba(0,0,0,0.65)') + ';font-size:12px;">' + r.deadline + '</span></td>' +
       '<td><span class="tag tag-' + r.statusTag + '">' + r.status + '</span></td>' +
       '<td onclick="event.stopPropagation()">' +
         '<button class="btn-success" onclick="openSign(\'' + r.id + '\',\'' + r.content.split("\n")[0] + '\',\'APPROVE\')">批准</button> ' +
@@ -417,12 +420,12 @@ function renderPending() {
 function renderHistory() {
   document.getElementById('histTable').innerHTML = history.map(h => {
     return '<tr onclick="showDetail(\'' + h.id + '\')">' +
-      '<td style="color:#1f3a5f;font-weight:500;">' + h.id + '</td>' +
-      '<td><div style="font-weight:500;">' + h.applicant + '</div><div style="font-size:11px;color:#8a93a3;">' + h.dept + '</div></td>' +
+      '<td style="color:#1677ff;font-weight:500;">' + h.id + '</td>' +
+      '<td><div style="font-weight:500;">' + h.applicant + '</div><div style="font-size:11px;color:rgba(0,0,0,0.45);">' + h.dept + '</div></td>' +
       '<td><span class="tag tag-' + h.typeTag + '">' + h.type + '</span></td>' +
-      '<td style="max-width:200px;color:#5a6373;font-size:12px;">' + h.content + '</td>' +
+      '<td style="max-width:200px;color:rgba(0,0,0,0.65);font-size:12px;">' + h.content + '</td>' +
       '<td>' + h.approver + '</td>' +
-      '<td style="color:#5a6373;font-size:12px;">' + h.time + '</td>' +
+      '<td style="color:rgba(0,0,0,0.65);font-size:12px;">' + h.time + '</td>' +
       '<td><span class="tag tag-' + h.resultTag + '">' + h.result + '</span></td>' +
       '<td><span class="hash-val">' + h.sig + '</span></td>' +
       '<td><button class="btn-ghost" onclick="showDetail(\'' + h.id + '\')">详情</button></td></tr>';

@@ -6,85 +6,85 @@
 <title>SIDU-LATS - Token 管理</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',system-ui,sans-serif;background:#f4f5f7;}
-.header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';background:#f5f5f5;}
+.header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.03);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
 .header-left{display:flex;align-items:center;gap:20px;}
-.logo{font-size:20px;font-weight:600;color:#1f3a5f;}
-.breadcrumb{color:#5a6373;font-size:14px;}
+.logo{font-size:20px;font-weight:600;color:#1677ff;}
+.breadcrumb{color:rgba(0,0,0,0.65);font-size:14px;}
 .header-right{display:flex;align-items:center;gap:16px;}
-.layout-sider{position:fixed;left:0;top:64px;bottom:0;width:220px;background:white;box-shadow:2px 0 8px rgba(0,0,0,0.06);z-index:999;overflow-y:auto;}
-.menu-item{padding:14px 24px;cursor:pointer;display:flex;align-items:center;gap:12px;color:#1f2937;transition:all 0.2s;border-left:3px solid transparent;font-size:14px;}
-.menu-item:hover{background:#e6edf5;color:#1f3a5f;}
-.menu-item.active{background:#e6edf5;color:#1f3a5f;border-left-color:#1f3a5f;font-weight:500;}
+.layout-sider{position:fixed;left:0;top:64px;bottom:0;width:220px;background:white;box-shadow:2px 0 8px rgba(0,0,0,0.03);z-index:999;overflow-y:auto;}
+.menu-item{padding:14px 24px;cursor:pointer;display:flex;align-items:center;gap:12px;color:rgba(0,0,0,0.88);transition:all 0.2s;border-left:3px solid transparent;font-size:14px;}
+.menu-item:hover{background:#e6f4ff;color:#1677ff;}
+.menu-item.active{background:#e6f4ff;color:#1677ff;border-left-color:#1677ff;font-weight:500;}
 .main-content{margin-left:220px;margin-top:64px;padding:24px;}
-.page-title{font-size:24px;font-weight:600;color:#1f2937;margin-bottom:24px;}
-.page-title span{font-size:14px;color:#8a93a3;font-weight:400;margin-left:12px;}
-.card{background:white;border-radius:8px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,0.08);margin-bottom:24px;}
-.card-title{font-size:16px;font-weight:500;color:#1f2937;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #e8eaed;display:flex;justify-content:space-between;align-items:center;}
-.btn-primary{background:#1f3a5f;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
-.btn-primary:hover{background:#2d5483;}
-.btn-success{background:#0f7b3a;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
-.btn-danger{background:#b3261e;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
-.btn-warning{background:#a36404;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
-.btn-outline{background:white;border:1px solid #d0d4dc;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;color:#5a6373;}
-.btn-ghost{background:none;border:none;color:#1f3a5f;cursor:pointer;font-size:13px;padding:4px 8px;}
+.page-title{font-size:24px;font-weight:600;color:rgba(0,0,0,0.88);margin-bottom:24px;}
+.page-title span{font-size:14px;color:rgba(0,0,0,0.45);font-weight:400;margin-left:12px;}
+.card{background:white;border-radius:8px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,0.03);margin-bottom:24px;}
+.card-title{font-size:16px;font-weight:500;color:rgba(0,0,0,0.88);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;}
+.btn-primary{background:#1677ff;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
+.btn-primary:hover{background:#4096ff;}
+.btn-success{background:#52c41a;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
+.btn-danger{background:#ff4d4f;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
+.btn-warning{background:#faad14;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
+.btn-outline{background:white;border:1px solid #d9d9d9;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;color:rgba(0,0,0,0.65);}
+.btn-ghost{background:none;border:none;color:#1677ff;cursor:pointer;font-size:13px;padding:4px 8px;}
 .form-group{margin-bottom:16px;}
-.form-group label{display:block;margin-bottom:8px;color:#1f2937;font-weight:500;font-size:14px;}
-.form-group input,.form-group select,.form-group textarea{width:100%;padding:8px 12px;border:1px solid #d0d4dc;border-radius:4px;font-size:14px;outline:none;}
-.form-group input:focus,.form-group select:focus{border-color:#1f3a5f;}
-.form-group .hint{font-size:12px;color:#8a93a3;margin-top:4px;}
+.form-group label{display:block;margin-bottom:8px;color:rgba(0,0,0,0.88);font-weight:500;font-size:14px;}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:8px 12px;border:1px solid #d9d9d9;border-radius:4px;font-size:14px;outline:none;}
+.form-group input:focus,.form-group select:focus{border-color:#1677ff;}
+.form-group .hint{font-size:12px;color:rgba(0,0,0,0.45);margin-top:4px;}
 .tag{padding:2px 8px;border-radius:4px;font-size:12px;}
-.tag-success{background:#e8f3ec;color:#0f7b3a;border:1px solid #9bccaf;}
-.tag-warning{background:#faf2e0;color:#a36404;border:1px solid #e6c890;}
-.tag-error{background:#f7e7e5;color:#b3261e;border:1px solid #d9a8a3;}
-.tag-info{background:#e6edf5;color:#1f3a5f;border:1px solid #a8b8cf;}
-.tag-purple{background:#efe7f5;color:#5b3a8c;border:1px solid #b89cd1;}
-.hash-val{font-family:'Monaco','Menlo',monospace;font-size:12px;background:#f0f2f5;padding:2px 6px;border-radius:2px;color:#555;}
+.tag-success{background:#f6ffed;color:#52c41a;border:1px solid #b7eb8f;}
+.tag-warning{background:#fffbe6;color:#faad14;border:1px solid #ffe58f;}
+.tag-error{background:#fff2f0;color:#ff4d4f;border:1px solid #ffccc7;}
+.tag-info{background:#e6f4ff;color:#1677ff;border:1px solid #91caff;}
+.tag-purple{background:#f9f0ff;color:#722ed1;border:1px solid #d3adf7;}
+.hash-val{font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;font-size:12px;background:#fafafa;padding:2px 6px;border-radius:2px;color:rgba(0,0,0,0.65);}
 table{width:100%;border-collapse:collapse;}
-thead tr{background:#fbfbfc;border-bottom:1px solid #e8eaed;}
-th{padding:12px;text-align:left;font-weight:500;color:#1f2937;font-size:14px;}
-td{padding:12px;font-size:13px;color:#1f2937;border-bottom:1px solid #f0f2f5;}
-tbody tr:hover{background:#fbfbfc;}
+thead tr{background:#fafafa;border-bottom:1px solid #f0f0f0;}
+th{padding:12px;text-align:left;font-weight:500;color:rgba(0,0,0,0.88);font-size:14px;}
+td{padding:12px;font-size:13px;color:rgba(0,0,0,0.88);border-bottom:1px solid #fafafa;}
+tbody tr:hover{background:#fafafa;}
 .filter-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px;}
-.filter-bar select,.filter-bar input{padding:6px 12px;border:1px solid #d0d4dc;border-radius:4px;font-size:14px;outline:none;}
-.filter-bar select:focus,.filter-bar input:focus{border-color:#1f3a5f;}
+.filter-bar select,.filter-bar input{padding:6px 12px;border:1px solid #d9d9d9;border-radius:4px;font-size:14px;outline:none;}
+.filter-bar select:focus,.filter-bar input:focus{border-color:#1677ff;}
 .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:2000;}
-.modal-box{background:white;border-radius:10px;width:520px;max-height:80vh;overflow-y:auto;}
-.modal-header{padding:20px 24px;border-bottom:1px solid #e8eaed;display:flex;justify-content:space-between;align-items:center;background:#fbfbfc;border-radius:10px 10px 0 0;}
+.modal-box{background:white;border-radius:8px;width:520px;max-height:80vh;overflow-y:auto;}
+.modal-header{padding:20px 24px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;background:#fafafa;border-radius:8px 8px 0 0;}
 .modal-header h3{margin:0;font-size:17px;}
-.modal-close{background:none;border:none;font-size:22px;cursor:pointer;color:#8a93a3;}
+.modal-close{background:none;border:none;font-size:22px;cursor:pointer;color:rgba(0,0,0,0.45);}
 .modal-body{padding:24px;}
-.modal-footer{padding:16px 24px;border-top:1px solid #e8eaed;display:flex;gap:12px;justify-content:flex-end;}
-.info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f0f2f5;font-size:14px;}
+.modal-footer{padding:16px 24px;border-top:1px solid #f0f0f0;display:flex;gap:12px;justify-content:flex-end;}
+.info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #fafafa;font-size:14px;}
 .info-row:last-child{border-bottom:none;}
-.info-row .key{color:#888;}
-.info-row .val{color:#1f2937;font-weight:500;}
+.info-row .key{color:rgba(0,0,0,0.45);}
+.info-row .val{color:rgba(0,0,0,0.88);font-weight:500;}
 .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
-.stat-card{background:white;border-radius:8px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,0.08);text-align:center;}
-.stat-card .num{font-size:28px;font-weight:600;color:#1f2937;}
-.stat-card .lbl{font-size:13px;color:#888;margin-top:4px;}
-.stat-card .sub{font-size:11px;color:#0f7b3a;margin-top:4px;}
-.token-display{font-family:'Courier New',monospace;background:#f0f2f5;padding:10px 14px;border-radius:6px;font-size:13px;color:#1f2937;word-break:break-all;border:1px solid #e8e8e8;margin:8px 0;}
-.copy-btn{background:#e6edf5;color:#1f3a5f;border:1px solid #a8b8cf;padding:3px 10px;border-radius:4px;cursor:pointer;font-size:12px;}
+.stat-card{background:white;border-radius:8px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,0.03);text-align:center;}
+.stat-card .num{font-size:28px;font-weight:600;color:rgba(0,0,0,0.88);}
+.stat-card .lbl{font-size:13px;color:rgba(0,0,0,0.45);margin-top:4px;}
+.stat-card .sub{font-size:11px;color:#52c41a;margin-top:4px;}
+.token-display{font-family:'Courier New',monospace;background:#fafafa;padding:10px 14px;border-radius:6px;font-size:13px;color:rgba(0,0,0,0.88);word-break:break-all;border:1px solid #f0f0f0;margin:8px 0;}
+.copy-btn{background:#e6f4ff;color:#1677ff;border:1px solid #91caff;padding:3px 10px;border-radius:4px;cursor:pointer;font-size:12px;}
 </style>
 </head>
 <body>
 <div class="header">
   <div class="header-left"><div class="logo">SIDU-LATS</div><div class="breadcrumb">系统设置 &raquo; Token 管理</div></div>
-  <div class="header-right"><span style="color:#5a6373;font-size:14px;">管理员: 张明</span><button onclick="location.href='index.html'" style="background:none;border:1px solid #d0d4dc;padding:6px 12px;border-radius:4px;cursor:pointer;color:#5a6373;font-size:14px;">注销</button></div>
+  <div class="header-right"><span style="color:rgba(0,0,0,0.65);font-size:14px;">管理员: 张明</span><button onclick="location.href='index.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:rgba(0,0,0,0.65);font-size:14px;">注销</button></div>
 </div>
 
 <div class="layout-sider">
-  <div class="menu-item" onclick="location.href='dashboard.html'"> 仪表盘</div>
-  <div class="menu-item" onclick="location.href='audit-log.html'"> 审计日志</div>
-  <div class="menu-item" onclick="location.href='hash-chain.html'"> 哈希链</div>
-  <div class="menu-item" onclick="location.href='approval.html'"> 审批中心</div>
-  <div class="menu-item" onclick="location.href='user-management.html'"> 用户管理</div>
-  <div class="menu-item" onclick="location.href='token-management.html'" style="background:#e6edf5;color:#1f3a5f;border-left-color:#1f3a5f;font-weight:500;"> Token管理</div>
-  <div class="menu-item" onclick="location.href='system-settings.html'">️ 系统设置</div>
-  <div class="menu-item" onclick="location.href='storage.html'"> 存储管理</div>
-  <div class="menu-item" onclick="location.href='report-export.html'"> 报告导出</div>
-  <div class="menu-item" onclick="location.href='notifications.html'"> 通知中心</div>
+  <div class="menu-item" onclick="location.href='dashboard.html'">仪表盘</div>
+  <div class="menu-item" onclick="location.href='audit-log.html'">审计日志</div>
+  <div class="menu-item" onclick="location.href='hash-chain.html'">哈希链</div>
+  <div class="menu-item" onclick="location.href='approval.html'">审批中心</div>
+  <div class="menu-item" onclick="location.href='user-management.html'">用户管理</div>
+  <div class="menu-item active" onclick="location.href='token-management.html'">Token 管理</div>
+  <div class="menu-item" onclick="location.href='system-settings.html'">系统设置</div>
+  <div class="menu-item" onclick="location.href='storage.html'">存储管理</div>
+  <div class="menu-item" onclick="location.href='report-export.html'">报告导出</div>
+  <div class="menu-item" onclick="location.href='notifications.html'">通知中心</div>
 </div>
 
 <div class="main-content">
@@ -92,9 +92,9 @@ tbody tr:hover{background:#fbfbfc;}
 
   <div class="stat-grid">
     <div class="stat-card"><div class="num">5</div><div class="lbl">Token 总数</div></div>
-    <div class="stat-card"><div class="num" style="color:#0f7b3a;">4</div><div class="lbl">有效 Token</div></div>
-    <div class="stat-card"><div class="num" style="color:#a36404;">1</div><div class="lbl">即将过期</div><div class="sub">7天内到期</div></div>
-    <div class="stat-card"><div class="num" style="color:#b3261e;">0</div><div class="lbl">已失效</div></div>
+    <div class="stat-card"><div class="num" style="color:#52c41a;">4</div><div class="lbl">有效 Token</div></div>
+    <div class="stat-card"><div class="num" style="color:#faad14;">1</div><div class="lbl">即将过期</div><div class="sub">7天内到期</div></div>
+    <div class="stat-card"><div class="num" style="color:#ff4d4f;">0</div><div class="lbl">已失效</div></div>
   </div>
 
   <!-- Tab：设备 Token -->
@@ -103,7 +103,7 @@ tbody tr:hover{background:#fbfbfc;}
       <span> 设备 Token（用于边缘设备数据推送）</span>
       <button class="btn-primary" style="padding:4px 12px;font-size:12px;" onclick="openCreateModal('device')">+ 生成设备 Token</button>
     </div>
-    <p style="color:#888;font-size:13px;margin-bottom:14px;">设备 Token 用于边缘相机/工控机的数据推送认证。设备通过 HTTPS 请求将检测数据上报，需在 Header 中携带 <code style="background:#f0f2f5;padding:2px 6px;border-radius:3px;font-size:12px;">Authorization: Bearer &lt;token&gt;</code> 进行认证。</p>
+    <p style="color:rgba(0,0,0,0.45);font-size:13px;margin-bottom:14px;">设备 Token 用于边缘相机/工控机的数据推送认证。设备通过 HTTPS 请求将检测数据上报，需在 Header 中携带 <code style="background:#fafafa;padding:2px 6px;border-radius:3px;font-size:12px;">Authorization: Bearer &lt;token&gt;</code> 进行认证。</p>
 
     <div class="filter-bar">
       <select id="deviceStatusFilter"><option value="">全部状态</option><option>有效</option><option>即将过期</option><option>已禁用</option></select>
@@ -120,8 +120,8 @@ tbody tr:hover{background:#fbfbfc;}
           <td>工业相机（IDS uEye）</td>
           <td>192.168.1.101</td>
           <td><span class="hash-val">cam-001-a3f8...7d2c</span> <button class="copy-btn" onclick="copyToken(this)">复制</button></td>
-          <td style="color:#5a6373;font-size:12px;">2026-01-01</td>
-          <td style="color:#5a6373;font-size:12px;">2027-01-01</td>
+          <td style="color:rgba(0,0,0,0.65);font-size:12px;">2026-01-01</td>
+          <td style="color:rgba(0,0,0,0.65);font-size:12px;">2027-01-01</td>
           <td><span class="tag tag-success">有效</span></td>
           <td>
             <button class="btn-ghost" onclick="showTokenDetail('device','cam001')">详情</button>
@@ -134,8 +134,8 @@ tbody tr:hover{background:#fbfbfc;}
           <td>工业相机（Basler）</td>
           <td>192.168.1.102</td>
           <td><span class="hash-val">cam-002-b9e1...3a4f</span> <button class="copy-btn" onclick="copyToken(this)">复制</button></td>
-          <td style="color:#5a6373;font-size:12px;">2026-01-01</td>
-          <td style="color:#5a6373;font-size:12px;">2027-01-01</td>
+          <td style="color:rgba(0,0,0,0.65);font-size:12px;">2026-01-01</td>
+          <td style="color:rgba(0,0,0,0.65);font-size:12px;">2027-01-01</td>
           <td><span class="tag tag-success">有效</span></td>
           <td>
             <button class="btn-ghost" onclick="showTokenDetail('device','cam002')">详情</button>
@@ -148,8 +148,8 @@ tbody tr:hover{background:#fbfbfc;}
           <td>工业相机（海康威视）</td>
           <td>192.168.1.103</td>
           <td><span class="hash-val">cam-003-c7f2...1d8e</span> <button class="copy-btn" onclick="copyToken(this)">复制</button></td>
-          <td style="color:#5a6373;font-size:12px;">2026-01-01</td>
-          <td style="color:#5a6373;font-size:12px;"><span style="color:#b3261e;">2026-07-08</span></td>
+          <td style="color:rgba(0,0,0,0.65);font-size:12px;">2026-01-01</td>
+          <td style="color:rgba(0,0,0,0.65);font-size:12px;"><span style="color:#ff4d4f;">2026-07-08</span></td>
           <td><span class="tag tag-warning"> 即将过期</span></td>
           <td>
             <button class="btn-ghost" onclick="showTokenDetail('device','cam003')">详情</button>
@@ -162,8 +162,8 @@ tbody tr:hover{background:#fbfbfc;}
           <td>工控机（Edge）</td>
           <td>192.168.1.200</td>
           <td><span class="hash-val">ipc-001-d2a5...8c3f</span> <button class="copy-btn" onclick="copyToken(this)">复制</button></td>
-          <td style="color:#5a6373;font-size:12px;">2026-03-15</td>
-          <td style="color:#5a6373;font-size:12px;">2027-03-15</td>
+          <td style="color:rgba(0,0,0,0.65);font-size:12px;">2026-03-15</td>
+          <td style="color:rgba(0,0,0,0.65);font-size:12px;">2027-03-15</td>
           <td><span class="tag tag-success">有效</span></td>
           <td>
             <button class="btn-ghost" onclick="showTokenDetail('device','ipc001')">详情</button>
@@ -181,7 +181,7 @@ tbody tr:hover{background:#fbfbfc;}
       <span> 用户 API Token（用于第三方系统集成）</span>
       <button class="btn-primary" style="padding:4px 12px;font-size:12px;" onclick="openCreateModal('user')">+ 生成用户 Token</button>
     </div>
-    <p style="color:#888;font-size:13px;margin-bottom:14px;">用户 API Token 用于第三方系统（如 MES/ERP）通过 API 访问 SIDU-LATS。用户可拥有多个 Token，建议按用途分别生成以便管理。</p>
+    <p style="color:rgba(0,0,0,0.45);font-size:13px;margin-bottom:14px;">用户 API Token 用于第三方系统（如 MES/ERP）通过 API 访问 SIDU-LATS。用户可拥有多个 Token，建议按用途分别生成以便管理。</p>
 
     <div class="filter-bar">
       <select><option value="">全部用户</option><option>张明（管理员）</option><option>王芳（审计员）</option><option>李华（操作员）</option><option>赵勇（操作员）</option></select>
@@ -197,8 +197,8 @@ tbody tr:hover{background:#fbfbfc;}
           <td>张明（管理员）</td>
           <td>MES系统实时拉取检测数据</td>
           <td><span class="hash-val">user-api-x7k9...m3n2</span> <button class="copy-btn" onclick="copyToken(this)">复制</button></td>
-          <td style="color:#5a6373;font-size:12px;">2026-05-01</td>
-          <td style="color:#5a6373;font-size:12px;">2026-07-01 15:42</td>
+          <td style="color:rgba(0,0,0,0.65);font-size:12px;">2026-05-01</td>
+          <td style="color:rgba(0,0,0,0.65);font-size:12px;">2026-07-01 15:42</td>
           <td><span class="tag tag-success">有效</span></td>
           <td>
             <button class="btn-ghost" onclick="showTokenDetail('user','mes001')">详情</button>
@@ -210,8 +210,8 @@ tbody tr:hover{background:#fbfbfc;}
           <td>王芳（审计员）</td>
           <td>财务系统自动导出月度报表</td>
           <td><span class="hash-val">user-api-p2q8...r5s1</span> <button class="copy-btn" onclick="copyToken(this)">复制</button></td>
-          <td style="color:#5a6373;font-size:12px;">2026-05-10</td>
-          <td style="color:#5a6373;font-size:12px;">2026-07-01 09:15</td>
+          <td style="color:rgba(0,0,0,0.65);font-size:12px;">2026-05-10</td>
+          <td style="color:rgba(0,0,0,0.65);font-size:12px;">2026-07-01 09:15</td>
           <td><span class="tag tag-success">有效</span></td>
           <td>
             <button class="btn-ghost" onclick="showTokenDetail('user','fin001')">详情</button>
@@ -227,8 +227,8 @@ tbody tr:hover{background:#fbfbfc;}
     <div class="card-title"> 设备 Token 接入示例</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
       <div>
-        <div style="font-weight:600;font-size:14px;margin-bottom:10px;color:#1f2937;">cURL 示例（数据推送）</div>
-        <pre style="background:#1e1e1e;color:#d4d4d4;padding:14px;border-radius:6px;font-size:12px;font-family:'Courier New',monospace;overflow-x:auto;line-height:1.6;">curl -X POST \
+        <div style="font-weight:600;font-size:14px;margin-bottom:10px;color:rgba(0,0,0,0.88);">cURL 示例（数据推送）</div>
+        <pre style="background:rgba(0,0,0,0.88);color:#d9d9d9;padding:14px;border-radius:6px;font-size:12px;font-family:'Courier New',monospace;overflow-x:auto;line-height:1.6;">curl -X POST \
   https://lats.example.com/api/v1/detect \
   -H "Authorization: Bearer cam-001-a3f8...7d2c" \
   -H "Content-Type: application/json" \
@@ -242,8 +242,8 @@ tbody tr:hover{background:#fbfbfc;}
   }'</pre>
       </div>
       <div>
-        <div style="font-weight:600;font-size:14px;margin-bottom:10px;color:#1f2937;">Python 示例</div>
-        <pre style="background:#1e1e1e;color:#d4d4d4;padding:14px;border-radius:6px;font-size:12px;font-family:'Courier New',monospace;overflow-x:auto;line-height:1.6;">import requests
+        <div style="font-weight:600;font-size:14px;margin-bottom:10px;color:rgba(0,0,0,0.88);">Python 示例</div>
+        <pre style="background:rgba(0,0,0,0.88);color:#d9d9d9;padding:14px;border-radius:6px;font-size:12px;font-family:'Courier New',monospace;overflow-x:auto;line-height:1.6;">import requests
 
 TOKEN = "cam-001-a3f8...7d2c"
 URL = "https://lats.example.com/api/v1/detect"
@@ -307,15 +307,15 @@ print(resp.status_code, resp.json())</pre>
         <textarea id="tokenDesc" rows="2" placeholder="描述此 Token 的用途..."></textarea>
       </div>
 
-      <div id="generatedTokenPanel" style="display:none;margin-top:16px;background:#e8f3ec;border:1px solid #9bccaf;border-radius:8px;padding:14px;">
+      <div id="generatedTokenPanel" style="display:none;margin-top:16px;background:#f6ffed;border:1px solid #b7eb8f;border-radius:8px;padding:14px;">
         <div style="font-weight:600;font-size:14px;color:#389e0d;margin-bottom:8px;"> Token 生成成功</div>
-        <div style="font-size:13px;color:#888;margin-bottom:8px;">请立即复制保存，关闭后将无法再次查看完整 Token。</div>
+        <div style="font-size:13px;color:rgba(0,0,0,0.45);margin-bottom:8px;">请立即复制保存，关闭后将无法再次查看完整 Token。</div>
         <div class="token-display" id="generatedTokenDisplay">—</div>
         <button class="copy-btn" style="margin-top:4px;" onclick="copyGenToken()"> 复制 Token</button>
       </div>
     </div>
     <div class="modal-footer" id="modalFooter">
-      <button onclick="closeModal()" style="padding:8px 20px;border:1px solid #d0d4dc;border-radius:4px;background:white;cursor:pointer;">取消</button>
+      <button onclick="closeModal()" style="padding:8px 20px;border:1px solid #d9d9d9;border-radius:4px;background:white;cursor:pointer;">取消</button>
       <button onclick="generateToken()" class="btn-primary" style="padding:8px 20px;">生成 Token</button>
     </div>
   </div>
@@ -329,7 +329,7 @@ function openCreateModal(type) {
   document.getElementById('generatedTokenPanel').style.display = 'none';
   document.getElementById('tokenName').value = '';
   document.getElementById('tokenDesc').value = '';
-  document.getElementById('modalFooter').innerHTML = '<button onclick="closeModal()" style="padding:8px 20px;border:1px solid #d0d4dc;border-radius:4px;background:white;cursor:pointer;">取消</button><button onclick="generateToken()" class="btn-primary" style="padding:8px 20px;">生成 Token</button>';
+  document.getElementById('modalFooter').innerHTML = '<button onclick="closeModal()" style="padding:8px 20px;border:1px solid #d9d9d9;border-radius:4px;background:white;cursor:pointer;">取消</button><button onclick="generateToken()" class="btn-primary" style="padding:8px 20px;">生成 Token</button>';
   document.getElementById('createModal').style.display = 'flex';
 }
 
@@ -342,7 +342,7 @@ function generateToken() {
   var token = name.split('-')[0].toLowerCase().substring(0,4) + '-' + Array.from({length:32},()=>chars[Math.floor(Math.random()*chars.length)]).join('');
   document.getElementById('generatedTokenDisplay').textContent = token;
   document.getElementById('generatedTokenPanel').style.display = 'block';
-  document.getElementById('modalFooter').innerHTML = '<button onclick="closeModal()" style="padding:8px 20px;border:1px solid #d0d4dc;border-radius:4px;background:white;cursor:pointer;">关闭</button>';
+  document.getElementById('modalFooter').innerHTML = '<button onclick="closeModal()" style="padding:8px 20px;border:1px solid #d9d9d9;border-radius:4px;background:white;cursor:pointer;">关闭</button>';
 }
 
 function copyGenToken() { navigator.clipboard.writeText(document.getElementById('generatedTokenDisplay').textContent); alert(' Token 已复制'); }
