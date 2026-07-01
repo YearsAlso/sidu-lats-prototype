@@ -6,41 +6,41 @@
 <title>SIDU-LATS - 报告导出</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f2f5; }
-.header { background: white; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); position: fixed; width: 100%; top: 0; z-index: 1000; height: 64px; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f4f5f7; }
+.header { background: white; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px rgba(15,23,42,0.04); position: fixed; width: 100%; top: 0; z-index: 1000; height: 64px; }
 .header-left { display: flex; align-items: center; gap: 24px; }
-.logo { font-size: 20px; font-weight: 600; color: #1890ff; }
-.breadcrumb { color: #666; font-size: 14px; }
+.logo { font-size: 20px; font-weight: 600; color: #1f3a5f; }
+.breadcrumb { color: #5a6373; font-size: 14px; }
 .header-right { display: flex; align-items: center; gap: 16px; }
-.layout-sider { position: fixed; left: 0; top: 64px; bottom: 0; width: 220px; background: white; box-shadow: 2px 0 8px rgba(0,0,0,0.06); z-index: 999; overflow-y: auto; }
-.menu-item { padding: 14px 24px; cursor: pointer; display: flex; align-items: center; gap: 12px; color: #333; transition: all 0.2s; border-left: 3px solid transparent; font-size: 14px; }
-.menu-item:hover { background: #f0f5ff; color: #1890ff; }
-.menu-item.active { background: #e6f7ff; color: #1890ff; border-left-color: #1890ff; font-weight: 500; }
+.layout-sider { position: fixed; left: 0; top: 64px; bottom: 0; width: 220px; background: white; box-shadow: 1px 0 0 rgba(15,23,42,0.04); z-index: 999; overflow-y: auto; }
+.menu-item { padding: 14px 24px; cursor: pointer; display: flex; align-items: center; gap: 12px; color: #1f2937; transition: all 0.2s; border-left: 3px solid transparent; font-size: 14px; }
+.menu-item:hover { background: #e6edf5; color: #1f3a5f; }
+.menu-item.active { background: #e6edf5; color: #1f3a5f; border-left-color: #1f3a5f; font-weight: 500; }
 .main-content { margin-left: 220px; margin-top: 64px; padding: 24px; }
-.page-title { font-size: 24px; font-weight: 600; color: #333; margin-bottom: 24px; }
-.page-title span { font-size: 14px; color: #999; font-weight: 400; margin-left: 12px; }
-.card { background: white; border-radius: 8px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); margin-bottom: 24px; }
-.card-title { font-size: 16px; font-weight: 500; color: #333; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #f0f0f0; }
-.btn-primary { background: #1890ff; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; }
-.btn-primary:hover { background: #40a9ff; }
+.page-title { font-size: 24px; font-weight: 600; color: #1f2937; margin-bottom: 24px; }
+.page-title span { font-size: 14px; color: #8a93a3; font-weight: 400; margin-left: 12px; }
+.card { background: white; border-radius: 6px; padding: 24px; box-shadow: 0 1px 2px rgba(15,23,42,0.04); margin-bottom: 24px; }
+.card-title { font-size: 16px; font-weight: 500; color: #1f2937; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #e8eaed; }
+.btn-primary { background: #1f3a5f; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; }
+.btn-primary:hover { background: #2d5483; }
 .tag { padding: 2px 8px; border-radius: 4px; font-size: 12px; }
-.tag-success { background: #f6ffed; color: #52c41a; border: 1px solid #b7eb8f; }
-.tag-info { background: #e6f7ff; color: #1890ff; border: 1px solid #91d5ff; }
-.hash-val { font-family: 'Monaco','Menlo',monospace; font-size: 12px; background: #f5f5f5; padding: 2px 6px; border-radius: 2px; }
+.tag-success { background: #e8f3ec; color: #0f7b3a; border: 1px solid #9bccaf; }
+.tag-info { background: #e6edf5; color: #1f3a5f; border: 1px solid #a8b8cf; }
+.hash-val { font-family: 'Monaco','Menlo',monospace; font-size: 12px; background: #f0f2f5; padding: 2px 6px; border-radius: 2px; }
 table { width: 100%; border-collapse: collapse; }
-thead tr { background: #fafafa; border-bottom: 1px solid #f0f0f0; }
-th { padding: 12px; text-align: left; font-weight: 500; color: #333; font-size: 14px; }
-td { padding: 12px; font-size: 13px; color: #333; border-bottom: 1px solid #f5f5f5; }
+thead tr { background: #fbfbfc; border-bottom: 1px solid #e8eaed; }
+th { padding: 12px; text-align: left; font-weight: 500; color: #1f2937; font-size: 14px; }
+td { padding: 12px; font-size: 13px; color: #1f2937; border-bottom: 1px solid #f0f2f5; }
 .quick-actions { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-.quick-action-item { display: flex; align-items: center; gap: 12px; padding: 16px; background: #f9f9f9; border-radius: 8px; cursor: pointer; transition: all 0.2s; border: 1px solid transparent; }
-.quick-action-item:hover { background: #e6f7ff; border-color: #91d5ff; }
+.quick-action-item { display: flex; align-items: center; gap: 12px; padding: 16px; background: #fbfbfc; border-radius: 6px; cursor: pointer; transition: all 0.2s; border: 1px solid transparent; }
+.quick-action-item:hover { background: #e6edf5; border-color: #a8b8cf; }
 .quick-action-item .icon { font-size: 24px; }
 .quick-action-item .info .title { font-weight: 500; margin-bottom: 4px; }
-.quick-action-item .info .desc { font-size: 12px; color: #999; }
+.quick-action-item .info .desc { font-size: 12px; color: #8a93a3; }
 .form-group { margin-bottom: 16px; }
-.form-group label { display: block; margin-bottom: 8px; color: #333; font-weight: 500; font-size: 14px; }
-.form-group input, .form-group select { width: 100%; padding: 8px 12px; border: 1px solid #d9d9d9; border-radius: 4px; font-size: 14px; outline: none; }
-.form-group input:focus, .form-group select:focus { border-color: #1890ff; }
+.form-group label { display: block; margin-bottom: 8px; color: #1f2937; font-weight: 500; font-size: 14px; }
+.form-group input, .form-group select { width: 100%; padding: 8px 12px; border: 1px solid #d0d4dc; border-radius: 4px; font-size: 14px; outline: none; }
+.form-group input:focus, .form-group select:focus { border-color: #1f3a5f; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .checkbox-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; cursor: pointer; }
 .checkbox-row input { cursor: pointer; }
@@ -50,8 +50,8 @@ td { padding: 12px; font-size: 13px; color: #333; border-bottom: 1px solid #f5f5
 <div class="header">
   <div class="header-left"><div class="logo">SIDU-LATS</div><div class="breadcrumb">报告导出 &raquo; 合规报告生成与导出</div></div>
   <div class="header-right">
-    <div style="display:flex;align-items:center;gap:8px;"><span style="color:#666;font-size:14px;">操作员: 张明</span></div>
-    <button onclick="location.href='index.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:#666;font-size:14px;">退出</button>
+    <div style="display:flex;align-items:center;gap:8px;"><span style="color:#5a6373;font-size:14px;">当前用户 / 张明</span></div>
+    <button onclick="location.href='index.html'" style="background:none;border:1px solid #d0d4dc;padding:6px 12px;border-radius:4px;cursor:pointer;color:#5a6373;font-size:14px;">注销</button>
   </div>
 </div>
 
@@ -157,16 +157,16 @@ var history = [
 
 document.getElementById('historyTable').innerHTML = history.map(h => `
   <tr>
-    <td style="color:#1890ff;font-weight:500;">${h.id}</td>
+    <td style="color:#1f3a5f;font-weight:500;">${h.id}</td>
     <td>${h.type}</td>
-    <td style="color:#666;font-size:13px;">${h.range}</td>
+    <td style="color:#5a6373;font-size:13px;">${h.range}</td>
     <td><span class="tag tag-info">${h.format.toUpperCase()}</span></td>
     <td>${h.creator}</td>
-    <td style="color:#666;font-size:13px;">${h.time}</td>
+    <td style="color:#5a6373;font-size:13px;">${h.time}</td>
     <td><span class="hash-val">${h.hash}</span></td>
     <td>
-      <button style="background:none;border:none;color:#1890ff;cursor:pointer;font-size:13px;margin-right:8px;" onclick="downloadReport('${h.id}')">下载</button>
-      <button style="background:none;border:none;color:#1890ff;cursor:pointer;font-size:13px;" onclick="verifyReport('${h.id}')">验证</button>
+      <button style="background:none;border:none;color:#1f3a5f;cursor:pointer;font-size:13px;margin-right:8px;" onclick="downloadReport('${h.id}')">下载</button>
+      <button style="background:none;border:none;color:#1f3a5f;cursor:pointer;font-size:13px;" onclick="verifyReport('${h.id}')">验证</button>
     </td>
   </tr>
 `).join('');

@@ -6,49 +6,49 @@
 <title>SIDU-LATS - 系统设置</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f2f5;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f4f5f7;}
 .header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
 .header-left{display:flex;align-items:center;gap:20px;}
-.logo{font-size:20px;font-weight:600;color:#1890ff;}
-.breadcrumb{color:#666;font-size:14px;}
+.logo{font-size:20px;font-weight:600;color:#1f3a5f;}
+.breadcrumb{color:#5a6373;font-size:14px;}
 .header-right{display:flex;align-items:center;gap:16px;}
 .layout-sider{position:fixed;left:0;top:64px;bottom:0;width:220px;background:white;box-shadow:2px 0 8px rgba(0,0,0,0.06);z-index:999;overflow-y:auto;}
-.menu-item{padding:14px 24px;cursor:pointer;display:flex;align-items:center;gap:12px;color:#333;transition:all 0.2s;border-left:3px solid transparent;font-size:14px;}
-.menu-item:hover{background:#f0f5ff;color:#1890ff;}
-.menu-item.active{background:#e6f7ff;color:#1890ff;border-left-color:#1890ff;font-weight:500;}
+.menu-item{padding:14px 24px;cursor:pointer;display:flex;align-items:center;gap:12px;color:#1f2937;transition:all 0.2s;border-left:3px solid transparent;font-size:14px;}
+.menu-item:hover{background:#e6edf5;color:#1f3a5f;}
+.menu-item.active{background:#e6edf5;color:#1f3a5f;border-left-color:#1f3a5f;font-weight:500;}
 .main-content{margin-left:220px;margin-top:64px;padding:24px;}
-.page-title{font-size:24px;font-weight:600;color:#333;margin-bottom:24px;}
-.page-title span{font-size:14px;color:#999;font-weight:400;margin-left:12px;}
+.page-title{font-size:24px;font-weight:600;color:#1f2937;margin-bottom:24px;}
+.page-title span{font-size:14px;color:#8a93a3;font-weight:400;margin-left:12px;}
 .card{background:white;border-radius:8px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,0.08);margin-bottom:24px;}
-.card-title{font-size:16px;font-weight:500;color:#333;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;}
-.btn-primary{background:#1890ff;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
-.btn-primary:hover{background:#40a9ff;}
-.btn-success{background:#52c41a;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
-.btn-danger{background:#ff4d4f;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
-.btn-outline{background:white;border:1px solid #d9d9d9;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;color:#666;}
+.card-title{font-size:16px;font-weight:500;color:#1f2937;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #e8eaed;display:flex;justify-content:space-between;align-items:center;}
+.btn-primary{background:#1f3a5f;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
+.btn-primary:hover{background:#2d5483;}
+.btn-success{background:#0f7b3a;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
+.btn-danger{background:#b3261e;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
+.btn-outline{background:white;border:1px solid #d0d4dc;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;color:#5a6373;}
 .form-group{margin-bottom:16px;}
-.form-group label{display:block;margin-bottom:8px;color:#333;font-weight:500;font-size:14px;}
-.form-group input,.form-group select,.form-group textarea{width:100%;padding:8px 12px;border:1px solid #d9d9d9;border-radius:4px;font-size:14px;outline:none;}
-.form-group input:focus,.form-group select:focus{border-color:#1890ff;}
-.form-group input[readonly]{background:#fafafa;color:#888;}
-.form-group .hint{font-size:12px;color:#999;margin-top:4px;}
+.form-group label{display:block;margin-bottom:8px;color:#1f2937;font-weight:500;font-size:14px;}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:8px 12px;border:1px solid #d0d4dc;border-radius:4px;font-size:14px;outline:none;}
+.form-group input:focus,.form-group select:focus{border-color:#1f3a5f;}
+.form-group input[readonly]{background:#fbfbfc;color:#888;}
+.form-group .hint{font-size:12px;color:#8a93a3;margin-top:4px;}
 .tag{padding:2px 8px;border-radius:4px;font-size:12px;}
-.tag-success{background:#f6ffed;color:#52c41a;border:1px solid #b7eb8f;}
-.tag-warning{background:#fffbe6;color:#faad14;border:1px solid #ffe58f;}
-.tag-error{background:#fff2f0;color:#ff4d4f;border:1px solid #ffccc7;}
-.tag-info{background:#e6f7ff;color:#1890ff;border:1px solid #91d5ff;}
+.tag-success{background:#e8f3ec;color:#0f7b3a;border:1px solid #9bccaf;}
+.tag-warning{background:#faf2e0;color:#a36404;border:1px solid #e6c890;}
+.tag-error{background:#f7e7e5;color:#b3261e;border:1px solid #d9a8a3;}
+.tag-info{background:#e6edf5;color:#1f3a5f;border:1px solid #a8b8cf;}
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
 .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
-.info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f5f5f5;font-size:14px;}
+.info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f0f2f5;font-size:14px;}
 .info-row:last-child{border-bottom:none;}
 .info-row .key{color:#888;}
-.info-row .val{color:#333;font-weight:500;}
-.disk-item{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#f9f9f9;border-radius:8px;border:1px solid #f0f0f0;margin-bottom:10px;}
+.info-row .val{color:#1f2937;font-weight:500;}
+.disk-item{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#fbfbfc;border-radius:8px;border:1px solid #e8eaed;margin-bottom:10px;}
 .disk-item .icon{font-size:22px;}
 .disk-item .info{flex:1;}
-.disk-item .name{font-weight:500;font-size:14px;color:#333;}
-.disk-item .meta{font-size:12px;color:#999;margin-top:2px;}
-.disk-item .capacity-bar{height:6px;background:#f0f0f0;border-radius:3px;margin-top:6px;overflow:hidden;}
+.disk-item .name{font-weight:500;font-size:14px;color:#1f2937;}
+.disk-item .meta{font-size:12px;color:#8a93a3;margin-top:2px;}
+.disk-item .capacity-bar{height:6px;background:#e8eaed;border-radius:3px;margin-top:6px;overflow:hidden;}
 .disk-item .capacity-fill{height:100%;border-radius:3px;}
 .disk-item .usage{font-size:12px;color:#888;margin-top:4px;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
@@ -57,7 +57,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <body>
 <div class="header">
   <div class="header-left"><div class="logo">SIDU-LATS</div><div class="breadcrumb">系统设置 &raquo; 参数配置</div></div>
-  <div class="header-right"><span style="color:#666;font-size:14px;">管理员: 张明</span><button onclick="location.href='index.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:#666;font-size:14px;">退出</button></div>
+  <div class="header-right"><span style="color:#5a6373;font-size:14px;">管理员: 张明</span><button onclick="location.href='index.html'" style="background:none;border:1px solid #d0d4dc;padding:6px 12px;border-radius:4px;cursor:pointer;color:#5a6373;font-size:14px;">注销</button></div>
 </div>
 
 <div class="layout-sider">
@@ -67,7 +67,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   <div class="menu-item" onclick="location.href='approval.html'">✅ 审批中心</div>
   <div class="menu-item" onclick="location.href='user-management.html'">👤 用户管理</div>
   <div class="menu-item" onclick="location.href='token-management.html'">🔑 Token管理</div>
-  <div class="menu-item" onclick="location.href='system-settings.html'" style="background:#e6f7ff;color:#1890ff;border-left-color:#1890ff;font-weight:500;">⚙️ 系统设置</div>
+  <div class="menu-item" onclick="location.href='system-settings.html'" style="background:#e6edf5;color:#1f3a5f;border-left-color:#1f3a5f;font-weight:500;">⚙️ 系统设置</div>
   <div class="menu-item" onclick="location.href='storage.html'">💾 存储管理</div>
   <div class="menu-item" onclick="location.href='report-export.html'">📥 报告导出</div>
   <div class="menu-item" onclick="location.href='notifications.html'">🔔 通知中心</div>
@@ -90,7 +90,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         <div class="info">
           <div class="name">C: 系统盘</div>
           <div class="meta">NTFS · 500 GB · SIDU-LATS v2.1 安装目录</div>
-          <div class="capacity-bar"><div class="capacity-fill" style="width:68%;background:#1890ff;"></div></div>
+          <div class="capacity-bar"><div class="capacity-fill" style="width:68%;background:#1f3a5f;"></div></div>
           <div class="usage">已用 340 GB · 可用 160 GB</div>
         </div>
         <span class="tag tag-info">系统</span>
@@ -101,7 +101,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         <div class="info">
           <div class="name">D: 数据盘（WORM）</div>
           <div class="meta">NTFS + WORM · 2 TB · 合规数据存储</div>
-          <div class="capacity-bar"><div class="capacity-fill" style="width:42%;background:#52c41a;"></div></div>
+          <div class="capacity-bar"><div class="capacity-fill" style="width:42%;background:#0f7b3a;"></div></div>
           <div class="usage">已用 840 GB · 可用 1.16 TB</div>
         </div>
         <span class="tag tag-success">WORM</span>
@@ -112,7 +112,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         <div class="info">
           <div class="name">E: 归档盘</div>
           <div class="meta">NTFS · 4 TB · 历史数据归档</div>
-          <div class="capacity-bar"><div class="capacity-fill" style="width:28%;background:#faad14;"></div></div>
+          <div class="capacity-bar"><div class="capacity-fill" style="width:28%;background:#a36404;"></div></div>
           <div class="usage">已用 1.12 TB · 可用 2.88 TB</div>
         </div>
         <span class="tag tag-warning">归档</span>
@@ -200,12 +200,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         <div class="hint">将 WORM 合规数据刻录至蓝光光盘，实现离线长期保存</div>
       </div>
 
-      <div style="background:#fffbe6;border:1px solid #ffe58f;border-radius:8px;padding:14px;margin-top:16px;">
-        <div style="font-weight:500;font-size:14px;color:#333;margin-bottom:8px;">📋 当前备份计划</div>
+      <div style="background:#faf2e0;border:1px solid #e6c890;border-radius:8px;padding:14px;margin-top:16px;">
+        <div style="font-weight:500;font-size:14px;color:#1f2937;margin-bottom:8px;">📋 当前备份计划</div>
         <div class="info-row"><span class="key">下次日志备份</span><span class="val">2026-07-02 02:00（明天）</span></div>
         <div class="info-row"><span class="key">最近归档</span><span class="val">2026-06-30 00:00 ✓</span></div>
         <div class="info-row"><span class="key">最近蓝光刻录</span><span class="val">2026-04-01 ✓</span></div>
-        <div class="info-row"><span class="key">备份磁盘健康</span><span class="val" style="color:#52c41a;">✓ 正常</span></div>
+        <div class="info-row"><span class="key">备份磁盘健康</span><span class="val" style="color:#0f7b3a;">✓ 正常</span></div>
       </div>
     </div>
   </div>
@@ -219,32 +219,32 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <p style="color:#888;font-size:13px;margin-bottom:16px;">配置边缘设备（相机/工控机）的数据推送接入方式，Token 用于设备身份认证。</p>
 
     <div class="grid-3">
-      <div style="background:#f9f9f9;padding:16px;border-radius:8px;border:1px solid #f0f0f0;">
-        <div style="font-weight:600;font-size:14px;color:#333;margin-bottom:10px;">SIDU-CAM-001（A线相机）</div>
+      <div style="background:#fbfbfc;padding:16px;border-radius:8px;border:1px solid #e8eaed;">
+        <div style="font-weight:600;font-size:14px;color:#1f2937;margin-bottom:10px;">SIDU-CAM-001（A线相机）</div>
         <div class="info-row"><span class="key">设备型号</span><span class="val">IDS uEye</span></div>
         <div class="info-row"><span class="key">IP地址</span><span class="val">192.168.1.101</span></div>
         <div class="info-row"><span class="key">推送协议</span><span class="val">HTTPS REST</span></div>
-        <div class="info-row"><span class="key">Token状态</span><span class="val" style="color:#52c41a;">✓ 有效</span></div>
+        <div class="info-row"><span class="key">Token状态</span><span class="val" style="color:#0f7b3a;">✓ 有效</span></div>
         <div class="info-row"><span class="key">最后推送</span><span class="val">2026-07-01 15:42</span></div>
         <div class="info-row"><span class="key">Token</span><span class="val" style="font-family:monospace;font-size:11px;color:#888;">cam-001-a3f8...7d2c</span></div>
       </div>
 
-      <div style="background:#f9f9f9;padding:16px;border-radius:8px;border:1px solid #f0f0f0;">
-        <div style="font-weight:600;font-size:14px;color:#333;margin-bottom:10px;">SIDU-CAM-002（B线相机）</div>
+      <div style="background:#fbfbfc;padding:16px;border-radius:8px;border:1px solid #e8eaed;">
+        <div style="font-weight:600;font-size:14px;color:#1f2937;margin-bottom:10px;">SIDU-CAM-002（B线相机）</div>
         <div class="info-row"><span class="key">设备型号</span><span class="val">Basler acA2500</span></div>
         <div class="info-row"><span class="key">IP地址</span><span class="val">192.168.1.102</span></div>
         <div class="info-row"><span class="key">推送协议</span><span class="val">HTTPS REST</span></div>
-        <div class="info-row"><span class="key">Token状态</span><span class="val" style="color:#52c41a;">✓ 有效</span></div>
+        <div class="info-row"><span class="key">Token状态</span><span class="val" style="color:#0f7b3a;">✓ 有效</span></div>
         <div class="info-row"><span class="key">最后推送</span><span class="val">2026-07-01 15:41</span></div>
         <div class="info-row"><span class="key">Token</span><span class="val" style="font-family:monospace;font-size:11px;color:#888;">cam-002-b9e1...3a4f</span></div>
       </div>
 
-      <div style="background:#fff2f0;padding:16px;border-radius:8px;border:1px solid #ffccc7;">
-        <div style="font-weight:600;font-size:14px;color:#333;margin-bottom:10px;">SIDU-CAM-003（C线相机）</div>
+      <div style="background:#f7e7e5;padding:16px;border-radius:8px;border:1px solid #d9a8a3;">
+        <div style="font-weight:600;font-size:14px;color:#1f2937;margin-bottom:10px;">SIDU-CAM-003（C线相机）</div>
         <div class="info-row"><span class="key">设备型号</span><span class="val">海康威视</span></div>
         <div class="info-row"><span class="key">IP地址</span><span class="val">192.168.1.103</span></div>
         <div class="info-row"><span class="key">推送协议</span><span class="val">MQTT</span></div>
-        <div class="info-row"><span class="key">Token状态</span><span class="val" style="color:#ff4d4f;">⚠ 即将过期</span></div>
+        <div class="info-row"><span class="key">Token状态</span><span class="val" style="color:#b3261e;">⚠ 即将过期</span></div>
         <div class="info-row"><span class="key">最后推送</span><span class="val">2026-06-28 10:15</span></div>
         <div class="info-row"><span class="key">Token</span><span class="val" style="font-family:monospace;font-size:11px;color:#888;">cam-003-c7f2...1d8e</span></div>
       </div>
