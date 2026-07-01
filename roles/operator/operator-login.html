@@ -6,21 +6,21 @@
 <title>SIDU-LATS - 操作员入口</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
-.login-box { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); width: 420px; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif; background: linear-gradient(135deg, #1f3a5f 0%, #15293f 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+.login-box { background: white; padding: 40px; border-radius: 4px; box-shadow: 0 1px 0 rgba(15,23,42,0.04); width: 420px; }
 .login-logo { text-align: center; margin-bottom: 28px; }
-.login-logo h1 { color: #1890ff; font-size: 26px; margin-bottom: 6px; }
+.login-logo h1 { color: #1f3a5f; font-size: 26px; margin-bottom: 6px; }
 .login-logo p { color: #666; font-size: 14px; }
-.role-badge { display: inline-block; background: #e6f7ff; color: #096dd9; border: 1px solid #91d5ff; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-top: 10px; }
-.demo-hint { background: #e6f7ff; border: 1px solid #91d5ff; color: #096dd9; padding: 10px 12px; border-radius: 6px; font-size: 12px; margin-bottom: 16px; line-height: 1.6; }
+.role-badge { display: inline-block; background: #e6edf5; color: #15293f; border: 1px solid #a8b8cf; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-top: 10px; }
+.demo-hint { background: #e6edf5; border: 1px solid #a8b8cf; color: #15293f; padding: 10px 12px; border-radius: 6px; font-size: 12px; margin-bottom: 16px; line-height: 1.6; }
 .form-group { margin-bottom: 16px; }
 .form-group label { display: block; margin-bottom: 6px; color: #333; font-weight: 500; font-size: 14px; }
-.form-group input { width: 100%; padding: 10px 12px; border: 1px solid #d9d9d9; border-radius: 6px; font-size: 14px; outline: none; }
-.form-group input:focus { border-color: #1890ff; }
-.btn-login { width: 100%; background: #1890ff; color: white; border: none; padding: 12px; border-radius: 6px; font-size: 15px; cursor: pointer; font-weight: 600; }
+.form-group input { width: 100%; padding: 10px 12px; border: 1px solid #d0d4dc; border-radius: 6px; font-size: 14px; outline: none; }
+.form-group input:focus { border-color: #1f3a5f; }
+.btn-login { width: 100%; background: #1f3a5f; color: white; border: none; padding: 12px; border-radius: 6px; font-size: 15px; cursor: pointer; font-weight: 600; }
 .role-cards { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
-.role-card { display: flex; align-items: center; gap: 12px; padding: 12px; border: 1px solid #f0f0f0; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
-.role-card:hover { border-color: #1890ff; background: #e6f7ff; }
+.role-card { display: flex; align-items: center; gap: 12px; padding: 12px; border: 1px solid #e8eaed; border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+.role-card:hover { border-color: #1f3a5f; background: #e6edf5; }
 .role-card .icon { font-size: 22px; }
 .role-card .info .name { font-weight: 600; font-size: 14px; color: #333; }
 .role-card .info .desc { font-size: 12px; color: #888; margin-top: 2px; }
@@ -60,7 +60,7 @@ function handleLogin(e) {
   sessionStorage.setItem('lats_user', u);
   sessionStorage.setItem('lats_role', 'operator');
   sessionStorage.setItem('lats_role_name', '操作员');
-  sessionStorage.setItem('lats_role_color', '#096dd9');
+  sessionStorage.setItem('lats_role_color', '#15293f');
   location.href = 'operator-dashboard.html';
 }
 </script>

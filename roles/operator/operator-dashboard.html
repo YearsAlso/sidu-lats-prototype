@@ -6,16 +6,16 @@
 <title>SIDU-LATS - 操作员工作台</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f2f5;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f4f5f7;}
 .header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
 .header-left{display:flex;align-items:center;gap:20px;}
-.logo{font-size:20px;font-weight:600;color:#1890ff;}
-.role-tag{background:#e6f7ff;color:#096dd9;border:1px solid #91d5ff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;}
+.logo{font-size:20px;font-weight:600;color:#1f3a5f;}
+.role-tag{background:#e6edf5;color:#15293f;border:1px solid #a8b8cf;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;}
 .header-right{display:flex;align-items:center;gap:16px;}
 .layout-sider{position:fixed;left:0;top:64px;bottom:0;width:220px;background:white;box-shadow:2px 0 8px rgba(0,0,0,0.06);z-index:999;overflow-y:auto;}
 .menu-item{padding:14px 24px;cursor:pointer;display:flex;align-items:center;gap:12px;color:#333;transition:all 0.2s;border-left:3px solid transparent;font-size:14px;}
-.menu-item:hover{background:#e6f7ff;color:#1890ff;}
-.menu-item.active{background:#e6f7ff;color:#1890ff;border-left-color:#1890ff;font-weight:500;}
+.menu-item:hover{background:#e6edf5;color:#1f3a5f;}
+.menu-item.active{background:#e6edf5;color:#1f3a5f;border-left-color:#1f3a5f;font-weight:500;}
 .main-content{margin-left:220px;margin-top:64px;padding:24px;}
 .page-title{font-size:24px;font-weight:600;color:#333;margin-bottom:24px;}
 .page-title span{font-size:14px;color:#999;font-weight:400;margin-left:12px;}
@@ -25,23 +25,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .stat-card .lbl{font-size:13px;color:#888;margin-top:4px;}
 .stat-card .sub{font-size:11px;margin-top:4px;}
 .card{background:white;border-radius:8px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,0.08);margin-bottom:24px;}
-.card-title{font-size:16px;font-weight:500;color:#333;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #f0f0f0;}
-.btn-primary{background:#1890ff;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
+.card-title{font-size:16px;font-weight:500;color:#333;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #e8eaed;}
+.btn-primary{background:#1f3a5f;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
 .tag{padding:2px 8px;border-radius:4px;font-size:12px;}
-.tag-success{background:#f6ffed;color:#52c41a;border:1px solid #b7eb8f;}
-.tag-warning{background:#fffbe6;color:#faad14;border:1px solid #ffe58f;}
-.tag-error{background:#fff2f0;color:#ff4d4f;border:1px solid #ffccc7;}
-.tag-info{background:#e6f7ff;color:#1890ff;border:1px solid #91d5ff;}
+.tag-success{background:#e8f3ec;color:#0f7b3a;border:1px solid #9bccaf;}
+.tag-warning{background:#faf2e0;color:#a36404;border:1px solid #e6c890;}
+.tag-error{background:#f7e7e5;color:#b3261e;border:1px solid #d9a8a3;}
+.tag-info{background:#e6edf5;color:#1f3a5f;border:1px solid #a8b8cf;}
 table{width:100%;border-collapse:collapse;}
-thead tr{background:#fafafa;border-bottom:1px solid #f0f0f0;}
+thead tr{background:#fbfbfc;border-bottom:1px solid #e8eaed;}
 th{padding:12px;text-align:left;font-weight:500;color:#333;font-size:14px;}
-td{padding:12px;font-size:13px;color:#333;border-bottom:1px solid #f5f5f5;}
-.timeline-item{padding:12px 0;border-bottom:1px dashed #f0f0f0;font-size:14px;}
+td{padding:12px;font-size:13px;color:#333;border-bottom:1px solid #f0f2f5;}
+.timeline-item{padding:12px 0;border-bottom:1px dashed #e8eaed;font-size:14px;}
 .timeline-item:last-child{border-bottom:none;}
 .timeline-item .time{color:#999;font-size:12px;margin-bottom:4px;}
 .quick-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-.quick-item{display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px 16px;background:#f9f9f9;border-radius:8px;cursor:pointer;transition:all 0.2s;border:1px solid transparent;}
-.quick-item:hover{background:#e6f7ff;border-color:#91d5ff;}
+.quick-item{display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px 16px;background:#fbfbfc;border-radius:8px;cursor:pointer;transition:all 0.2s;border:1px solid transparent;}
+.quick-item:hover{background:#e6edf5;border-color:#a8b8cf;}
 .quick-item .icon{font-size:28px;}
 .quick-item .label{font-weight:500;font-size:13px;color:#333;text-align:center;}
 .quick-item .sub{font-size:11px;color:#888;text-align:center;}
@@ -51,7 +51,7 @@ td{padding:12px;font-size:13px;color:#333;border-bottom:1px solid #f5f5f5;}
 <body>
 <div class="header">
   <div class="header-left"><div class="logo">SIDU-LATS</div><div class="role-tag">🔧 操作员</div></div>
-  <div class="header-right"><div style="color:#666;font-size:14px;">用户: 李华</div><button onclick="location.href='operator-login.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:#666;font-size:14px;">退出</button></div>
+  <div class="header-right"><div style="color:#666;font-size:14px;">用户: 李华</div><button onclick="location.href='operator-login.html'" style="background:none;border:1px solid #d0d4dc;padding:6px 12px;border-radius:4px;cursor:pointer;color:#666;font-size:14px;">退出</button></div>
 </div>
 <div class="layout-sider">
   <div class="menu-item active">📊 仪表盘</div>
@@ -62,10 +62,10 @@ td{padding:12px;font-size:13px;color:#333;border-bottom:1px solid #f5f5f5;}
 <div class="main-content">
   <div class="page-title">操作员工作台 <span>李华 · 生产部</span></div>
   <div class="stat-grid">
-    <div class="stat-card"><div class="num">284</div><div class="lbl">今日检测</div><div class="sub" style="color:#52c41a;">↑ +12</div></div>
-    <div class="stat-card"><div class="num" style="color:#52c41a;">98.6%</div><div class="lbl">合格率</div><div class="sub">目标 ≥97%</div></div>
-    <div class="stat-card"><div class="num" style="color:#faad14;">3</div><div class="lbl">我的待审批</div><div class="sub">处理中</div></div>
-    <div class="stat-card"><div class="num">2</div><div class="lbl">已获授权签名</div><div class="sub" style="color:#52c41a;">✓ 有效</div></div>
+    <div class="stat-card"><div class="num">284</div><div class="lbl">今日检测</div><div class="sub" style="color:#0f7b3a;">↑ +12</div></div>
+    <div class="stat-card"><div class="num" style="color:#0f7b3a;">98.6%</div><div class="lbl">合格率</div><div class="sub">目标 ≥97%</div></div>
+    <div class="stat-card"><div class="num" style="color:#a36404;">3</div><div class="lbl">我的待审批</div><div class="sub">处理中</div></div>
+    <div class="stat-card"><div class="num">2</div><div class="lbl">已获授权签名</div><div class="sub" style="color:#0f7b3a;">✓ 有效</div></div>
   </div>
   <div class="quick-actions" style="margin-bottom:24px;">
     <div class="quick-item"><div class="icon">🔍</div><div class="label">发起检测任务</div><div class="sub">创建新的检测任务</div></div>
@@ -78,9 +78,9 @@ td{padding:12px;font-size:13px;color:#333;border-bottom:1px solid #f5f5f5;}
       <table>
         <thead><tr><th>申请编号</th><th>类型</th><th>内容摘要</th><th>提交时间</th><th>状态</th><th>进度</th></tr></thead>
         <tbody>
-          <tr><td style="color:#1890ff;font-weight:500;">APR-20260701-007</td><td><span class="tag tag-warning">配置变更</span></td><td>阈值调整 0.85→0.90 (A线)</td><td style="color:#666;font-size:12px;">2026-07-01 14:55</td><td><span class="tag tag-warning">待审批</span></td><td style="font-size:12px;">初审✓ → 复核中</td></tr>
-          <tr><td style="color:#1890ff;font-weight:500;">APR-20260701-004</td><td><span class="tag tag-error">记录删除</span></td><td>删除6月15日测试数据</td><td style="color:#666;font-size:12px;">2026-07-01 10:15</td><td><span class="tag tag-warning">待审批</span></td><td style="font-size:12px;">待初审</td></tr>
-          <tr><td style="color:#1890ff;font-weight:500;">APR-20260628-005</td><td><span class="tag tag-success">配置变更</span></td><td>相机参数微调 (CAM-002)</td><td style="color:#666;font-size:12px;">2026-06-28 09:30</td><td><span class="tag tag-success">已批准</span></td><td style="font-size:12px;color:#52c41a;">✓ 完成</td></tr>
+          <tr><td style="color:#1f3a5f;font-weight:500;">APR-20260701-007</td><td><span class="tag tag-warning">配置变更</span></td><td>阈值调整 0.85→0.90 (A线)</td><td style="color:#666;font-size:12px;">2026-07-01 14:55</td><td><span class="tag tag-warning">待审批</span></td><td style="font-size:12px;">初审✓ → 复核中</td></tr>
+          <tr><td style="color:#1f3a5f;font-weight:500;">APR-20260701-004</td><td><span class="tag tag-error">记录删除</span></td><td>删除6月15日测试数据</td><td style="color:#666;font-size:12px;">2026-07-01 10:15</td><td><span class="tag tag-warning">待审批</span></td><td style="font-size:12px;">待初审</td></tr>
+          <tr><td style="color:#1f3a5f;font-weight:500;">APR-20260628-005</td><td><span class="tag tag-success">配置变更</span></td><td>相机参数微调 (CAM-002)</td><td style="color:#666;font-size:12px;">2026-06-28 09:30</td><td><span class="tag tag-success">已批准</span></td><td style="font-size:12px;color:#0f7b3a;">✓ 完成</td></tr>
         </tbody>
       </table>
     </div>
