@@ -20,30 +20,56 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 .page-title { font-size: 24px; font-weight: 600; color: #333; margin-bottom: 24px; }
 .page-title span { font-size: 14px; color: #999; font-weight: 400; margin-left: 12px; }
 .card { background: white; border-radius: 8px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); margin-bottom: 24px; }
-.card-title { font-size: 16px; font-weight: 500; color: #333; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #f0f0f0; }
+.card-title { font-size: 16px; font-weight: 500; color: #333; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
 .btn-primary { background: #1890ff; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; }
 .btn-primary:hover { background: #40a9ff; }
-.btn-success { background: #52c41a; color: white; border: none; padding: 4px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; }
-.btn-danger { background: #ff4d4f; color: white; border: none; padding: 4px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; }
-.btn-outline { padding: 4px 12px; border: 1px solid #d9d9d9; background: white; font-size: 12px; cursor: pointer; border-radius: 4px; }
+.btn-success { background: #52c41a; color: white; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 13px; }
+.btn-danger { background: #ff4d4f; color: white; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 13px; }
+.btn-outline { padding: 6px 14px; border: 1px solid #d9d9d9; background: white; font-size: 13px; cursor: pointer; border-radius: 4px; color: #666; }
+.btn-ghost { background: none; border: none; color: #1890ff; cursor: pointer; font-size: 13px; padding: 4px 8px; }
 .tag { padding: 2px 8px; border-radius: 4px; font-size: 12px; }
 .tag-success { background: #f6ffed; color: #52c41a; border: 1px solid #b7eb8f; }
 .tag-warning { background: #fffbe6; color: #faad14; border: 1px solid #ffe58f; }
 .tag-error { background: #fff2f0; color: #ff4d4f; border: 1px solid #ffccc7; }
 .tag-info { background: #e6f7ff; color: #1890ff; border: 1px solid #91d5ff; }
-.hash-val { font-family: 'Monaco','Menlo',monospace; font-size: 12px; background: #f5f5f5; padding: 2px 6px; border-radius: 2px; }
+.tag-purple { background: #f9f0ff; color: #722ed1; border: 1px solid #d3adf7; }
+.hash-val { font-family: 'Monaco','Menlo',monospace; font-size: 12px; background: #f5f5f5; padding: 2px 6px; border-radius: 2px; color: #555; }
+.stat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 24px; }
+.stat-card { background: white; border-radius: 8px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); text-align: center; }
+.stat-card .num { font-size: 28px; font-weight: 600; color: #333; }
+.stat-card .num.warn { color: #faad14; }
+.stat-card .num.danger { color: #ff4d4f; }
+.stat-card .num.ok { color: #52c41a; }
+.stat-card .lbl { font-size: 13px; color: #888; margin-top: 4px; }
+.tabs { display: flex; gap: 0; border-bottom: 2px solid #f0f0f0; margin-bottom: 20px; }
+.tab { padding: 10px 20px; cursor: pointer; font-size: 14px; color: #666; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab:hover { color: #1890ff; }
+.tab.active { color: #1890ff; border-bottom-color: #1890ff; font-weight: 500; }
+.tab .badge { background: #ff4d4f; color: white; font-size: 11px; padding: 1px 6px; border-radius: 10px; margin-left: 6px; }
+.filter-bar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
+.filter-bar select, .filter-bar input { padding: 6px 12px; border: 1px solid #d9d9d9; border-radius: 4px; font-size: 14px; outline: none; }
+.filter-bar select:focus, .filter-bar input:focus { border-color: #1890ff; }
 table { width: 100%; border-collapse: collapse; }
 thead tr { background: #fafafa; border-bottom: 1px solid #f0f0f0; }
 th { padding: 12px; text-align: left; font-weight: 500; color: #333; font-size: 14px; }
 td { padding: 12px; font-size: 13px; color: #333; border-bottom: 1px solid #f5f5f5; }
-tbody tr:hover { background: #fafafa; }
-.filter-bar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
-.filter-bar select, .filter-bar input { padding: 6px 12px; border: 1px solid #d9d9d9; border-radius: 4px; font-size: 14px; outline: none; }
-.filter-bar select:focus, .filter-bar input:focus { border-color: #1890ff; }
+tbody tr:hover { background: #fafafa; cursor: pointer; }
+.timeline-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+.dot-green { background: #52c41a; }
+.dot-yellow { background: #faad14; }
+.dot-red { background: #ff4d4f; }
+.dot-blue { background: #1890ff; }
+.dot-purple { background: #722ed1; }
+.priority-bar { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; }
+.priority-high { color: #ff4d4f; }
+.priority-med { color: #faad14; }
+.priority-low { color: #52c41a; }
+.urgency-bar { height: 4px; background: #f0f0f0; border-radius: 2px; overflow: hidden; margin-top: 4px; width: 80px; }
+.urgency-fill { height: 100%; border-radius: 2px; }
 .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 2000; }
-.modal-box { background: white; border-radius: 8px; width: 520px; max-height: 80vh; overflow-y: auto; }
-.modal-header { padding: 20px 24px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
-.modal-header h3 { margin: 0; font-size: 18px; }
+.modal-box { background: white; border-radius: 10px; width: 680px; max-height: 85vh; overflow-y: auto; }
+.modal-header { padding: 20px 24px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; background: #fafafa; border-radius: 10px 10px 0 0; }
+.modal-header h3 { margin: 0; font-size: 17px; }
 .modal-close { background: none; border: none; font-size: 22px; cursor: pointer; color: #999; }
 .modal-body { padding: 24px; }
 .modal-footer { padding: 16px 24px; border-top: 1px solid #f0f0f0; display: flex; gap: 12px; justify-content: flex-end; }
@@ -52,9 +78,25 @@ tbody tr:hover { background: #fafafa; }
 .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 8px 12px; border: 1px solid #d9d9d9; border-radius: 4px; font-size: 14px; outline: none; resize: vertical; }
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #1890ff; }
 .signature-panel { background: #f9f9f9; border: 1px solid #e8e8e8; border-radius: 6px; padding: 16px; margin-top: 16px; }
-.signature-panel .label { font-size: 13px; color: #666; margin-bottom: 8px; }
+.signature-panel .label { font-size: 13px; color: #666; margin-bottom: 10px; font-weight: 500; }
 .signature-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-.signature-row .value { font-size: 13px; color: #333; }
+.signature-row .key { font-size: 13px; color: #888; }
+.signature-row .val { font-size: 13px; color: #333; }
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+.detail-item { background: #fafafa; padding: 12px; border-radius: 6px; }
+.detail-item .lbl { font-size: 12px; color: #999; margin-bottom: 4px; }
+.detail-item .val { font-size: 14px; color: #333; font-weight: 500; }
+.process-flow { display: flex; align-items: center; gap: 0; margin: 20px 0; }
+.process-step { display: flex; flex-direction: column; align-items: center; min-width: 120px; }
+.step-circle { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+.step-circle.done { background: #52c41a; color: white; }
+.step-circle.active { background: #1890ff; color: white; }
+.step-circle.pending { background: #f0f0f0; color: #999; border: 2px dashed #d9d9d9; }
+.step-label { font-size: 11px; color: #666; text-align: center; }
+.step-time { font-size: 10px; color: #999; margin-top: 2px; }
+.step-arrow { color: #d9d9d9; font-size: 16px; margin: 0 4px; margin-bottom: 20px; }
+.empty-state { text-align: center; padding: 60px 0; color: #999; }
+.empty-state .icon { font-size: 48px; margin-bottom: 16px; opacity: 0.5; }
 </style>
 </head>
 <body>
@@ -77,27 +119,190 @@ tbody tr:hover { background: #fafafa; }
 </div>
 
 <div class="main-content">
-  <div class="page-title">审批中心 <span>待处理审批请求</span></div>
+  <div class="page-title">审批中心 <span>待处理审批请求 · FDA ALCOA+ 合规</span></div>
 
-  <div class="card">
-    <div class="filter-bar">
-      <select id="statusFilter"><option value="">全部状态</option><option value="待审批">待审批</option><option value="已批准">已批准</option><option value="已拒绝">已拒绝</option></select>
-      <select id="typeFilter2"><option value="">全部类型</option><option value="配置变更">配置变更</option><option value="数据导出">数据导出</option><option value="签名授权">签名授权</option><option value="记录删除">记录删除</option></select>
-      <input type="text" id="kwFilter2" placeholder="搜索关键词..." style="flex:1;max-width:200px;">
-      <button class="btn-primary" onclick="filterApproval()">查询</button>
+  <!-- 统计概览 -->
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="num warn">7</div>
+      <div class="lbl">待审批</div>
     </div>
-    <table>
-      <thead><tr><th>申请编号</th><th>申请人</th><th>类型</th><th>申请内容</th><th>申请时间</th><th>状态</th><th>操作</th></tr></thead>
-      <tbody id="reqTable"></tbody>
-    </table>
+    <div class="stat-card">
+      <div class="num danger">2</div>
+      <div class="lbl">紧急</div>
+    </div>
+    <div class="stat-card">
+      <div class="num ok">156</div>
+      <div class="lbl">本月已审批</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">98.7%</div>
+      <div class="lbl">通过率</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">4.2h</div>
+      <div class="lbl">平均处理时长</div>
+    </div>
   </div>
 
-  <div class="card">
-    <div class="card-title">审批历史</div>
+  <!-- Tab 切换 -->
+  <div class="tabs">
+    <div class="tab active" id="tabPending" onclick="switchTab('pending')">待审批 <span class="badge">7</span></div>
+    <div class="tab" id="tabApproved" onclick="switchTab('approved')">已批准</div>
+    <div class="tab" id="tabRejected" onclick="switchTab('rejected')">已拒绝</div>
+    <div class="tab" id="tabAll" onclick="switchTab('all')">全部记录</div>
+  </div>
+
+  <!-- 主表格 -->
+  <div class="card" id="mainTable">
+    <div class="filter-bar">
+      <select id="typeFilter"><option value="">全部类型</option><option>配置变更</option><option>数据导出</option><option>签名授权</option><option>记录删除</option><option>报告签发</option><option>系统参数</option></select>
+      <select id="priorityFilter"><option value="">全部优先级</option><option>紧急</option><option>高</option><option>中</option><option>低</option></select>
+      <select id="deptFilter"><option value="">全部部门</option><option>质量管理部</option><option>生产部</option><option>合规部</option><option>技术部</option></select>
+      <input type="date" id="dateFrom" placeholder="开始日期">
+      <input type="date" id="dateTo" placeholder="结束日期">
+      <input type="text" id="kwInput" placeholder="搜索申请人/编号/内容..." style="flex:1;max-width:220px;">
+      <button class="btn-primary" onclick="filterReqs()">查询</button>
+      <button class="btn-outline" onclick="resetFilter()">重置</button>
+    </div>
+
     <table>
-      <thead><tr><th>申请编号</th><th>申请人</th><th>类型</th><th>审批人</th><th>审批时间</th><th>结果</th><th>签名</th></tr></thead>
+      <thead>
+        <tr>
+          <th style="width:40px;"><input type="checkbox"></th>
+          <th>申请编号</th>
+          <th>申请人</th>
+          <th>类型</th>
+          <th>申请内容</th>
+          <th>优先级</th>
+          <th>紧急程度</th>
+          <th>申请时间</th>
+          <th>截止时间</th>
+          <th>状态</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="reqTable"></tbody>
+    </table>
+
+    <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-size:13px;color:#888;">共 <span id="rowCount">7</span> 条</div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <div style="font-size:13px;color:#666;">批量操作:</div>
+        <button class="btn-success" onclick="batchApprove()">✅ 批量批准</button>
+        <button class="btn-danger" onclick="batchReject()">🚫 批量拒绝</button>
+        <div style="display:flex;gap:6px;margin-left:12px;">
+          <button class="btn-outline" style="padding:6px 10px;">«</button>
+          <button class="btn-outline" style="padding:6px 10px;background:#e6f7ff;color:#1890ff;border-color:#91d5ff;">1</button>
+          <button class="btn-outline" style="padding:6px 10px;">2</button>
+          <button class="btn-outline" style="padding:6px 10px;">»</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 审批历史 -->
+  <div class="card" id="historySection" style="display:none;">
+    <div class="card-title">
+      <span>审批历史</span>
+      <button class="btn-outline" onclick="exportHistory()">📥 导出历史</button>
+    </div>
+    <table>
+      <thead>
+        <tr><th>申请编号</th><th>申请人</th><th>类型</th><th>申请内容</th><th>审批人</th><th>审批时间</th><th>结果</th><th>签名哈希</th><th>操作</th></tr>
+      </thead>
       <tbody id="histTable"></tbody>
     </table>
+  </div>
+</div>
+
+<!-- 详情弹窗 -->
+<div id="detailModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="detailTitle">📋 审批详情</h3>
+      <button class="modal-close" onclick="closeDetail()">×</button>
+    </div>
+    <div class="modal-body">
+      <div id="detailProcess" class="process-flow">
+        <div class="process-step">
+          <div class="step-circle done">✓</div>
+          <div class="step-label">提交申请</div>
+          <div class="step-time" id="step1Time">—</div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="process-step">
+          <div class="step-circle done">✓</div>
+          <div class="step-label">初审</div>
+          <div class="step-time" id="step2Time">—</div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="process-step">
+          <div class="step-circle active">2</div>
+          <div class="step-label">复核</div>
+          <div class="step-time">—</div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="process-step">
+          <div class="step-circle pending">?</div>
+          <div class="step-label">最终批准</div>
+          <div class="step-time">—</div>
+        </div>
+      </div>
+
+      <div class="detail-grid">
+        <div class="detail-item"><div class="lbl">申请编号</div><div class="val" id="dId">—</div></div>
+        <div class="detail-item"><div class="lbl">申请状态</div><div class="val" id="dStatus">—</div></div>
+        <div class="detail-item"><div class="lbl">申请人</div><div class="val" id="dApplicant">—</div></div>
+        <div class="detail-item"><div class="lbl">所属部门</div><div class="val" id="dDept">—</div></div>
+        <div class="detail-item"><div class="lbl">申请类型</div><div class="val" id="dType">—</div></div>
+        <div class="detail-item"><div class="lbl">紧急程度</div><div class="val" id="dUrgency">—</div></div>
+        <div class="detail-item"><div class="lbl">申请时间</div><div class="val" id="dTime">—</div></div>
+        <div class="detail-item"><div class="lbl">截止时间</div><div class="val" id="dDeadline">—</div></div>
+      </div>
+
+      <div style="margin-bottom:16px;">
+        <div style="font-weight:500;font-size:14px;margin-bottom:8px;">📝 申请内容</div>
+        <div id="dContent" style="background:#fafafa;padding:14px;border-radius:6px;font-size:14px;line-height:1.7;color:#333;"></div>
+      </div>
+
+      <div style="margin-bottom:16px;">
+        <div style="font-weight:500;font-size:14px;margin-bottom:8px;">📎 附件</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#fafafa;border-radius:6px;border:1px solid #f0f0f0;">
+            <span style="font-size:20px;">📄</span>
+            <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:#333;">变更参数对照表.pdf</div><div style="font-size:11px;color:#999;">234 KB · 上传于 2026-07-01 14:50</div></div>
+            <button class="btn-ghost">下载</button>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#fafafa;border-radius:6px;border:1px solid #f0f0f0;">
+            <span style="font-size:20px;">📊</span>
+            <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:#333;">历史数据对比分析.xlsx</div><div style="font-size:11px;color:#999;">1.2 MB · 上传于 2026-07-01 14:52</div></div>
+            <button class="btn-ghost">下载</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:16px;">
+        <div style="font-weight:500;font-size:14px;margin-bottom:8px;">💬 初审意见</div>
+        <div style="background:#fffbe6;border:1px solid #ffe58f;border-radius:6px;padding:12px;font-size:13px;line-height:1.6;">
+          <div style="margin-bottom:8px;"><strong>王芳（QA审计员）</strong> <span style="color:#999;font-size:12px;">2026-07-01 15:05</span></div>
+          <div style="color:#333;">经核实，本次阈值调整涉及的生产线为A线（相机SIDU-CAM-001）。调阅近30天数据，误检率维持在0.8%~1.2%区间，调整至0.90后预计可降低约15%的过杀。建议批准。</div>
+          <div style="margin-top:8px;"><span class="hash-val">sig-3a2b1c...</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-weight:500;font-size:14px;margin-bottom:8px;">✍️ 复核签名</div>
+        <div style="background:#f6ffed;border:1px solid #b7eb8f;border-radius:6px;padding:12px;font-size:13px;">
+          <div id="sigPlaceholder" style="color:#888;text-align:center;padding:20px 0;">— 尚未签名 —</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer" id="detailFooter">
+      <button onclick="closeDetail()" style="padding:8px 20px;border:1px solid #d9d9d9;border-radius:4px;background:white;cursor:pointer;">取消</button>
+      <button onclick="openSignFromDetail('REJECT')" style="padding:8px 20px;background:#ff4d4f;color:white;border:none;border-radius:4px;cursor:pointer;font-size:14px;">拒绝</button>
+      <button onclick="openSignFromDetail('APPROVE')" class="btn-primary" style="padding:8px 20px;">批准</button>
+    </div>
   </div>
 </div>
 
@@ -110,28 +315,35 @@ tbody tr:hover { background: #fafafa; }
     </div>
     <div class="modal-body">
       <p style="margin-bottom:16px;color:#666;font-size:14px;">请确认以下审批内容，并选择签署意图：</p>
-      <div style="background:#fafafa;padding:12px;border-radius:6px;margin-bottom:16px;font-size:14px;">
+      <div style="background:#fafafa;padding:12px;border-radius:6px;margin-bottom:16px;font-size:14px;line-height:1.6;">
         <div id="signContent" style="color:#333;"></div>
       </div>
       <div class="form-group">
-        <label>签署意图 *</label>
-        <select id="signIntent" style="width:100%;padding:8px 12px;border:1px solid #d9d9d9;border-radius:4px;font-size:14px;">
-          <option value="PREVIEW">初审 (PREVIEW)</option>
-          <option value="REVIEW">复核 (REVIEW)</option>
-          <option value="APPROVE">批准 (APPROVE)</option>
-          <option value="REJECT">拒绝 (REJECT)</option>
+        <label>签署意图 * <span style="font-weight:400;color:#999;font-size:12px;">（FDA 21 CFR Part 11 要求明确意图）</span></label>
+        <select id="signIntent">
+          <option value="PREVIEW">PREVIEW — 预览/检查</option>
+          <option value="REVIEW">REVIEW — 复核/审查</option>
+          <option value="APPROVE">APPROVE — 批准</option>
+          <option value="REJECT">REJECT — 拒绝</option>
         </select>
       </div>
       <div class="form-group">
-        <label>签名密码 *</label>
-        <input type="password" id="signPwd" placeholder="请输入签名密码" style="width:100%;padding:8px 12px;border:1px solid #d9d9d9;border-radius:4px;font-size:14px;">
+        <label>签署意见</label>
+        <textarea id="signComment" rows="3" placeholder="可选：填写审批意见..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>签名密码 * <span style="font-weight:400;color:#999;font-size:12px;">（独立于登录密码）</span></label>
+        <input type="password" id="signPwd" placeholder="请输入签名专用密码">
       </div>
       <div class="signature-panel">
         <div class="label">签名凭证预览</div>
-        <div class="signature-row"><span class="value">签名人:</span><span class="value" id="signerName">张明</span></div>
-        <div class="signature-row"><span class="value">时间戳:</span><span class="value" id="signerTime">—</span></div>
-        <div class="signature-row"><span class="value">签署意图:</span><span class="value" id="signerIntent">—</span></div>
-        <div class="signature-row"><span class="value">签名哈希:</span><span class="value hash-val" id="signerHash">—</span></div>
+        <div class="signature-row"><span class="key">签名人:</span><span class="val" id="signerName">张明</span></div>
+        <div class="signature-row"><span class="key">职务:</span><span class="val">管理员</span></div>
+        <div class="signature-row"><span class="key">部门:</span><span class="val">质量管理部</span></div>
+        <div class="signature-row"><span class="key">时间戳:</span><span class="val" id="signerTime">—</span></div>
+        <div class="signature-row"><span class="key">签署意图:</span><span class="val" id="signerIntent">—</span></div>
+        <div class="signature-row"><span class="key">签名哈希:</span><span class="val hash-val" id="signerHash">—</span></div>
+        <div class="signature-row"><span class="key">合规声明:</span><span class="val" style="font-size:11px;color:#888;">本签名符合 FDA 21 CFR Part 11 电子签名规定</span></div>
       </div>
     </div>
     <div class="modal-footer">
@@ -144,79 +356,158 @@ tbody tr:hover { background: #fafafa; }
 <script>
 if (!sessionStorage.getItem('lats_logged_in')) { location.href = 'index.html'; }
 
-var currentSignId = '';
+var currentTab = 'pending';
+var currentDetailId = '';
+var currentSignIntent = 'APPROVE';
 
 var requests = [
-  { id: 'APR-20260701-007', applicant: '李华', type: '配置变更', typeTag: 'warning', content: '修改检测阈值: 0.85→0.90', time: '2026-07-01 14:55:12', status: '待审批', statusTag: 'warning' },
-  { id: 'APR-20260701-006', applicant: '王芳', type: '数据导出', typeTag: 'info', content: '导出2026年Q2审计报告', time: '2026-07-01 14:30:00', status: '待审批', statusTag: 'warning' },
-  { id: 'APR-20260701-005', applicant: '张明', type: '签名授权', typeTag: 'info', content: '授权新用户数字签名权限', time: '2026-07-01 11:20:15', status: '待审批', statusTag: 'warning' },
-  { id: 'APR-20260701-004', applicant: '李华', type: '记录删除', typeTag: 'error', content: '申请删除测试记录 (2026-06-15)', time: '2026-07-01 10:15:33', status: '待审批', statusTag: 'warning' }
+  { id:'APR-20260701-007', applicant:'李华', dept:'生产部', type:'配置变更', typeTag:'warning', priority:'高', urgency:85, content:'修改检测阈值: 0.85→0.90\n\n调整原因：近期A线误检率偏高（0.8%~1.2%），调整为0.90可减少过杀，预计降低15%误检。\n\n影响范围：SIDU-CAM-001（相机A线）\n调整前后对比：误检率从1.1%→0.9%，预计日均减少~50次误报。', time:'2026-07-01 14:55:12', deadline:'2026-07-02 14:55', status:'待审批', statusTag:'warning', hasAttachment:true, hasFirstReview:true },
+  { id:'APR-20260701-006', applicant:'王芳', dept:'合规部', type:'数据导出', typeTag:'info', priority:'中', urgency:60, content:'导出2026年Q2审计报告（PDF）\n\n包含内容：\n· 全部操作日志（2026-04-01 ~ 2026-06-30）\n· 哈希链验证记录\n· 审批流程记录\n· 数字签名台账\n\n用途说明：FDA季度合规审查提交', time:'2026-07-01 14:30:00', deadline:'2026-07-03 18:00', status:'待审批', statusTag:'warning', hasAttachment:false, hasFirstReview:false },
+  { id:'APR-20260701-005', applicant:'张明', dept:'质量管理部', type:'签名授权', typeTag:'purple', priority:'中', urgency:50, content:'授权新用户 赵勇（zhaoyong）数字签名权限\n\n授权范围：\n· 审批签名（APPROVE/REJECT）\n· 报告签发\n· 配置变更确认\n\n有效期：2026-07-01 ~ 2027-07-01', time:'2026-07-01 11:20:15', deadline:'2026-07-04 11:20', status:'待审批', statusTag:'warning', hasAttachment:false, hasFirstReview:false },
+  { id:'APR-20260701-004', applicant:'李华', dept:'生产部', type:'记录删除', typeTag:'error', priority:'紧急', urgency:95, content:'申请删除测试记录（2026-06-15）\n\n删除原因：当日数据为设备调试期间的测试数据，非真实生产数据，需清理以免影响月度统计。\n\n涉及记录数：1,284条检测记录\n数据快照已备份至: /backup/20260615_test_data.tar.gz', time:'2026-07-01 10:15:33', deadline:'2026-07-01 18:00', status:'待审批', statusTag:'warning', hasAttachment:true, hasFirstReview:false },
+  { id:'APR-20260701-003', applicant:'王芳', dept:'合规部', type:'报告签发', typeTag:'info', priority:'高', urgency:75, content:'签发2026年6月合规月报\n\n报告编号：RPT-202606-001\n报告周期：2026-06-01 ~ 2026-06-30\n数据完整性：✓ SHA-256验证通过\n签名状态：待最终签发', time:'2026-06-30 16:20:00', deadline:'2026-07-02 12:00', status:'待审批', statusTag:'warning', hasAttachment:false, hasFirstReview:true },
+  { id:'APR-20260630-009', applicant:'赵勇', dept:'生产部', type:'配置变更', typeTag:'warning', priority:'低', urgency:30, content:'调整相机曝光参数（SIDU-CAM-003）\n\n调整项：曝光时间 5000μs → 5500μs\n原因：低光照环境下图像质量改善', time:'2026-06-30 09:10:22', deadline:'2026-07-05 09:10', status:'待审批', statusTag:'warning', hasAttachment:false, hasFirstReview:false },
+  { id:'APR-20260629-008', applicant:'孙丽', dept:'市场部', type:'数据导出', typeTag:'info', priority:'低', urgency:20, content:'导出Q2生产统计报表（CSV格式）\n\n用途：客户月度汇报材料', time:'2026-06-29 14:35:00', deadline:'2026-07-06 14:35', status:'待审批', statusTag:'warning', hasAttachment:false, hasFirstReview:false }
 ];
 
 var history = [
-  { id: 'APR-20260701-003', applicant: '李华', type: '配置变更', typeTag: 'warning', approver: '张明', time: '2026-07-01 15:35:22', result: '已批准', resultTag: 'success', sig: 'sig-8f7e6d5c...' },
-  { id: 'APR-20260701-002', applicant: '王芳', type: '数据导出', typeTag: 'info', approver: '张明', time: '2026-07-01 12:20:10', result: '已批准', resultTag: 'success', sig: 'sig-1a2b3c4d...' },
-  { id: 'APR-20260701-001', applicant: '李华', type: '签名授权', typeTag: 'info', approver: '张明', time: '2026-07-01 09:15:45', result: '已批准', resultTag: 'success', sig: 'sig-9f8e7d6c...' }
+  { id:'APR-20260701-003', applicant:'李华', dept:'生产部', type:'配置变更', typeTag:'warning', content:'阈值调整 0.85→0.90 (A线)', approver:'张明', time:'2026-07-01 15:35:22', result:'已批准', resultTag:'success', sig:'sig-8f7e6d5c4b3a...' },
+  { id:'APR-20260701-002', applicant:'王芳', dept:'合规部', type:'数据导出', typeTag:'info', content:'Q2审计报告导出', approver:'张明', time:'2026-07-01 12:20:10', result:'已批准', resultTag:'success', sig:'sig-1a2b3c4d5e6f...' },
+  { id:'APR-20260701-001', applicant:'李华', dept:'生产部', type:'签名授权', typeTag:'purple', content:'授权赵勇数字签名', approver:'张明', time:'2026-07-01 09:15:45', result:'已批准', resultTag:'success', sig:'sig-9f8e7d6c5b4a...' },
+  { id:'APR-20260628-005', applicant:'王芳', dept:'合规部', type:'记录删除', typeTag:'error', content:'删除6月10日测试数据', approver:'张明', time:'2026-06-28 17:45:00', result:'已拒绝', resultTag:'error', sig:'—' },
+  { id:'APR-20260627-004', applicant:'赵勇', dept:'生产部', type:'系统参数', typeTag:'warning', content:'调整日志保留期限 3年→5年', approver:'王芳', time:'2026-06-27 11:30:00', result:'已批准', resultTag:'success', sig:'sig-2c3d4e5f6a7b...' }
 ];
 
-function renderReq(data) {
-  document.getElementById('reqTable').innerHTML = data.map(r => `
-    <tr>
-      <td style="color:#1890ff;font-weight:500;">${r.id}</td>
-      <td>${r.applicant}</td>
-      <td><span class="tag tag-${r.typeTag}">${r.type}</span></td>
-      <td style="max-width:250px;">${r.content}</td>
-      <td style="color:#666;font-size:13px;">${r.time}</td>
-      <td><span class="tag tag-${r.statusTag}">${r.status}</span></td>
-      <td>
-        <button class="btn-success" onclick="openSign('${r.id}','${r.content}')">批准</button>
-        <button class="btn-danger" onclick="rejectReq('${r.id}')">拒绝</button>
-        <button class="btn-outline" onclick="showReqDetail('${r.id}')">详情</button>
-      </td>
-    </tr>
-  `).join('');
+function getPriorityLabel(p) {
+  if (p === '紧急') return '<span class="priority-high">⚡ 紧急</span>';
+  if (p === '高') return '<span class="priority-med">▲ 高</span>';
+  if (p === '中') return '<span style="color:#1890ff;">● 中</span>';
+  return '<span class="priority-low">▼ 低</span>';
 }
 
-document.getElementById('histTable').innerHTML = history.map(h => `
-  <tr>
-    <td style="color:#1890ff;">${h.id}</td><td>${h.applicant}</td>
-    <td><span class="tag tag-${h.typeTag}">${h.type}</span></td>
-    <td>${h.approver}</td>
-    <td style="color:#666;font-size:13px;">${h.time}</td>
-    <td><span class="tag tag-${h.resultTag}">${h.result}</span></td>
-    <td><span class="hash-val">${h.sig}</span></td>
-  </tr>
-`).join('');
-
-renderReq(requests);
-
-function filterApproval() { alert('筛选功能演示'); }
-
-function openSign(id, content) {
-  currentSignId = id;
-  document.getElementById('signContent').textContent = content;
-  document.getElementById('signIntent').value = 'APPROVE';
-  document.getElementById('signerTime').textContent = new Date().toLocaleString('zh-CN');
-  document.getElementById('signerIntent').textContent = 'APPROVE';
-  document.getElementById('signerHash').textContent = Math.random().toString(36).substring(2,14) + '...';
-  document.getElementById('signModal').style.display = 'flex';
+function getUrgencyBar(pct) {
+  var color = pct >= 80 ? '#ff4d4f' : pct >= 50 ? '#faad14' : '#52c41a';
+  return '<div class="urgency-bar"><div class="urgency-fill" style="width:' + pct + '%;background:' + color + ';"></div></div><div style="font-size:11px;color:#888;margin-top:2px;">' + pct + '%</div>';
 }
 
+function renderPending() {
+  var tbody = document.getElementById('reqTable');
+  tbody.innerHTML = requests.map(r => {
+    var firstReview = r.hasFirstReview ? '<span class="tag tag-success" style="margin-left:4px;font-size:10px;">初审✓</span>' : '';
+    return '<tr onclick="showDetail(\'' + r.id + '\')">' +
+      '<td onclick="event.stopPropagation()"><input type="checkbox"></td>' +
+      '<td style="color:#1890ff;font-weight:500;">' + r.id + '</td>' +
+      '<td><div style="font-weight:500;">' + r.applicant + '</div><div style="font-size:11px;color:#999;">' + r.dept + '</div></td>' +
+      '<td><span class="tag tag-' + r.typeTag + '">' + r.type + '</span>' + firstReview + '</td>' +
+      '<td style="max-width:220px;"><div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="' + r.content.split("\n")[0] + '">' + r.content.split("\n")[0] + '</div></td>' +
+      '<td>' + getPriorityLabel(r.priority) + '</td>' +
+      '<td>' + getUrgencyBar(r.urgency) + '</td>' +
+      '<td style="color:#666;font-size:12px;">' + r.time + '</td>' +
+      '<td><span style="color:' + (r.urgency >= 80 ? '#ff4d4f' : '#666') + ';font-size:12px;">' + r.deadline + '</span></td>' +
+      '<td><span class="tag tag-' + r.statusTag + '">' + r.status + '</span></td>' +
+      '<td onclick="event.stopPropagation()">' +
+        '<button class="btn-success" onclick="openSign(\'' + r.id + '\',\'' + r.content.split("\n")[0] + '\',\'APPROVE\')">批准</button> ' +
+        '<button class="btn-danger" onclick="openSign(\'' + r.id + '\',\'' + r.content.split("\n")[0] + '\',\'REJECT\')">拒绝</button> ' +
+        '<button class="btn-ghost" onclick="showDetail(\'' + r.id + '\')">详情</button>' +
+      '</td></tr>';
+  }).join('');
+  document.getElementById('rowCount').textContent = requests.length;
+}
+
+function renderHistory() {
+  document.getElementById('histTable').innerHTML = history.map(h => {
+    return '<tr onclick="showDetail(\'' + h.id + '\')">' +
+      '<td style="color:#1890ff;font-weight:500;">' + h.id + '</td>' +
+      '<td><div style="font-weight:500;">' + h.applicant + '</div><div style="font-size:11px;color:#999;">' + h.dept + '</div></td>' +
+      '<td><span class="tag tag-' + h.typeTag + '">' + h.type + '</span></td>' +
+      '<td style="max-width:200px;color:#666;font-size:12px;">' + h.content + '</td>' +
+      '<td>' + h.approver + '</td>' +
+      '<td style="color:#666;font-size:12px;">' + h.time + '</td>' +
+      '<td><span class="tag tag-' + h.resultTag + '">' + h.result + '</span></td>' +
+      '<td><span class="hash-val">' + h.sig + '</span></td>' +
+      '<td><button class="btn-ghost" onclick="showDetail(\'' + h.id + '\')">详情</button></td></tr>';
+  }).join('');
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
+  var mainTable = document.getElementById('mainTable');
+  var historySection = document.getElementById('historySection');
+  if (tab === 'pending') {
+    mainTable.style.display = 'block';
+    historySection.style.display = 'none';
+    renderPending();
+  } else {
+    mainTable.style.display = 'none';
+    historySection.style.display = 'block';
+    renderHistory();
+  }
+}
+
+function showDetail(id) {
+  var req = requests.find(r => r.id === id) || history.find(h => h.id === id);
+  if (!req) return;
+  currentDetailId = id;
+  document.getElementById('dId').textContent = req.id;
+  document.getElementById('dApplicant').textContent = req.applicant;
+  document.getElementById('dDept').textContent = req.dept || '—';
+  document.getElementById('dType').textContent = req.type;
+  document.getElementById('dUrgency').textContent = req.priority + ' (' + req.urgency + '%)';
+  document.getElementById('dTime').textContent = req.time;
+  document.getElementById('dDeadline').textContent = req.deadline || '—';
+  document.getElementById('dContent').textContent = req.content;
+  var statusTag = req.statusTag || req.resultTag;
+  document.getElementById('dStatus').innerHTML = '<span class="tag tag-' + statusTag + '">' + (req.status || req.result) + '</span>';
+  document.getElementById('step1Time').textContent = req.time.split(' ')[0];
+  document.getElementById('step2Time').textContent = req.hasFirstReview ? '2026-07-01' : '—';
+  document.getElementById('detailModal').style.display = 'flex';
+}
+
+function closeDetail() { document.getElementById('detailModal').style.display = 'none'; }
 function closeModal() { document.getElementById('signModal').style.display = 'none'; }
+
+function openSign(id, content, intent) {
+  currentDetailId = id;
+  currentSignIntent = intent || 'APPROVE';
+  document.getElementById('signContent').textContent = content;
+  document.getElementById('signIntent').value = intent || 'APPROVE';
+  document.getElementById('signerIntent').textContent = intent || 'APPROVE';
+  document.getElementById('signerTime').textContent = new Date().toLocaleString('zh-CN');
+  document.getElementById('signerHash').textContent = Math.random().toString(36).substring(2, 10) + Math.random().toString(36).substring(2, 6) + '...';
+  document.getElementById('signPwd').value = '';
+  document.getElementById('signComment').value = '';
+  document.getElementById('signModal').style.display = 'flex';
+  closeDetail();
+}
+
+function openSignFromDetail(intent) {
+  var req = requests.find(r => r.id === currentDetailId);
+  if (!req) { openSign(currentDetailId, ''); return; }
+  openSign(req.id, req.content.split("\n")[0], intent);
+}
 
 function confirmSign() {
   var pwd = document.getElementById('signPwd').value;
   if (!pwd) { alert('请输入签名密码'); return; }
-  alert('✓ 签名成功！\n\n签名人: 张明\n意图: ' + document.getElementById('signIntent').value + '\n时间: ' + new Date().toLocaleString('zh-CN'));
+  var intent = document.getElementById('signIntent').value;
+  var intentLabel = { PREVIEW:'预览', REVIEW:'复核', APPROVE:'批准', REJECT:'拒绝' }[intent];
+  alert('✓ 电子签名成功！\n\n签名人: 张明\n意图: ' + intent + ' (' + intentLabel + ')\n时间: ' + new Date().toLocaleString('zh-CN') + '\n签名哈希: ' + document.getElementById('signerHash').textContent + '\n\n⚠️ 本签名符合 FDA 21 CFR Part 11 规定，具有法律效力。');
   closeModal();
 }
-
-function rejectReq(id) { alert('申请 ' + id + ' 已拒绝'); }
-function showReqDetail(id) { alert('申请详情: ' + id); }
 
 document.getElementById('signIntent').addEventListener('change', function() {
   document.getElementById('signerIntent').textContent = this.value;
 });
+
+function filterReqs() { alert('筛选功能演示'); }
+function resetFilter() { alert('重置筛选'); }
+function batchApprove() { alert('批量批准功能演示'); }
+function batchReject() { alert('批量拒绝功能演示'); }
+function exportHistory() { alert('导出审批历史'); }
+
+renderPending();
 </script>
 </body>
 </html>

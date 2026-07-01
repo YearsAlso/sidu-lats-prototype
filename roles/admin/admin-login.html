@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIDU-LATS - 管理员入口</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+.login-box { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); width: 420px; }
+.login-logo { text-align: center; margin-bottom: 28px; }
+.login-logo h1 { color: #1890ff; font-size: 26px; margin-bottom: 6px; }
+.login-logo p { color: #666; font-size: 14px; }
+.role-badge { display: inline-block; background: #fff2f0; color: #cf1322; border: 1px solid #ffccc7; padding: 5px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-top: 10px; }
+.demo-hint { background: #f6ffed; border: 1px solid #b7eb8f; color: #52c41a; padding: 10px 12px; border-radius: 6px; font-size: 12px; margin-bottom: 16px; line-height: 1.6; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; margin-bottom: 6px; color: #333; font-weight: 500; font-size: 14px; }
+.form-group input { width: 100%; padding: 10px 12px; border: 1px solid #d9d9d9; border-radius: 6px; font-size: 14px; outline: none; }
+.form-group input:focus { border-color: #1890ff; }
+.btn-login { width: 100%; background: #cf1322; color: white; border: none; padding: 12px; border-radius: 6px; font-size: 15px; cursor: pointer; font-weight: 600; }
+.role-cards { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.role-card { display: flex; align-items: center; gap: 12px; padding: 12px; border: 1px solid #f0f0f0; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+.role-card:hover { border-color: #1890ff; background: #f0f5ff; }
+.role-card .icon { font-size: 22px; }
+.role-card .info .name { font-weight: 600; font-size: 14px; color: #333; }
+.role-card .info .desc { font-size: 12px; color: #888; margin-top: 2px; }
+.footer { text-align: center; margin-top: 20px; font-size: 12px; color: #999; }
+</style>
+</head>
+<body>
+<div class="login-box">
+  <div class="login-logo">
+    <h1>SIDU-LATS</h1>
+    <p>缺陷识别数据存管系统 · 合规版</p>
+    <div class="role-badge">👑 管理员角色演示</div>
+  </div>
+  <div class="demo-hint">
+    👑 管理员（Administrator）<br>
+    拥有全部权限：系统配置、用户管理、审批签署、报告签发、参数调整等全部功能。
+  </div>
+  <form id="loginForm" onsubmit="handleLogin(event)">
+    <div class="form-group"><label>用户名</label><input type="text" id="username" value="zhangming" placeholder="请输入用户名"></div>
+    <div class="form-group"><label>密码</label><input type="password" id="password" value="admin1234" placeholder="请输入密码"></div>
+    <button type="submit" class="btn-login">以管理员身份登录</button>
+  </form>
+  <div class="role-cards">
+    <div class="role-card" onclick="location.href='operator-login.html'"><div class="icon">🔧</div><div class="info"><div class="name">切换：操作员</div><div class="desc">检测操作、提交审批申请</div></div></div>
+    <div class="role-card" onclick="location.href='auditor-login.html'"><div class="icon">🔍</div><div class="info"><div class="name">切换：审计员</div><div class="desc">审计日志审查、报告审核</div></div></div>
+    <div class="role-card" onclick="location.href='viewer-login.html'"><div class="icon">👁️</div><div class="info"><div class="name">切换：查看者</div><div class="desc">只读访问、数据查看</div></div></div>
+  </div>
+  <div class="footer">© 2026 SIDU · FDA 21 CFR Part 11 · ALCOA+</div>
+</div>
+<script>
+function handleLogin(e) {
+  e.preventDefault();
+  var u = document.getElementById('username').value.trim();
+  var p = document.getElementById('password').value;
+  if (!u || p.length < 4) { alert('请输入用户名和密码（至少4位）'); return; }
+  sessionStorage.setItem('lats_logged_in', 'true');
+  sessionStorage.setItem('lats_user', u);
+  sessionStorage.setItem('lats_role', 'admin');
+  sessionStorage.setItem('lats_role_name', '管理员');
+  location.href = 'admin-dashboard.html';
+}
+</script>
+</body>
+</html>
