@@ -34,6 +34,7 @@ export default defineConfig({
         'prototype-auditor-dashboard': resolve(__dirname, 'prototype/auditor/dashboard.html'),
         'prototype-auditor-audit-log': resolve(__dirname, 'prototype/auditor/audit-log.html'),
         'prototype-auditor-hash-chain': resolve(__dirname, 'prototype/auditor/hash-chain.html'),
+        'prototype-auditor-storage': resolve(__dirname, 'prototype/auditor/storage.html'),
         'prototype-auditor-report-export': resolve(__dirname, 'prototype/auditor/report-export.html'),
         'prototype-auditor-permission-review': resolve(__dirname, 'prototype/auditor/permission-review.html'),
         // reviewer (3 页,新建)
