@@ -1,7 +1,8 @@
-# Spec Delta: report-export-remove-approval-narrative
+# report-export-approval Specification
 
-## MODIFIED Requirements
-
+## Purpose
+TBD - created by archiving change report-export-remove-approval-narrative. Update Purpose after archive.
+## Requirements
 ### Requirement: admin 报告导出页不得包含导出审批叙事
 
 `prototype/admin/report-export.html` SHALL NOT 包含"导出需审批""审批中心""待审批导出申请"叙事。MUST 将原"报告导出需审批"提示卡替换为"导出合规约束"提示卡,文案对齐 PRD §4.7 M6-004(防篡改哈希)/ M6-005(角色权限)/ M6-006(审计留痕不可删)与 FDA 21 CFR Part 11 §11.10(k)(电子记录精确复制)。MUST 删除"待审批导出申请"块(`APR-20260701-006` 审批中单据)。
@@ -41,3 +42,4 @@
 #### Scenario: auditor 导出页 JS 逻辑不受影响
 - **WHEN** 点击导出/下载/验证按钮
 - **THEN** 仍触发原有函数(直接 alert,无审批前置)
+
