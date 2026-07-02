@@ -87,9 +87,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica N
 
 <div class="layout-sider">
   <div class="menu-item" onclick="location.href='dashboard.html'">仪表盘</div>
-  <div class="menu-item" onclick="location.href='audit-log.html'">审计日志</div>
-  <div class="menu-item" onclick="location.href='hash-chain.html'">哈希链</div>
-  <div class="menu-item" onclick="location.href='approval.html'">审批中心</div>
   <div class="menu-item" onclick="location.href='user-management.html'">用户管理</div>
   <div class="menu-item" onclick="location.href='token-management.html'">Token 管理</div>
   <div class="menu-item" onclick="location.href='system-settings.html'">系统设置</div>
@@ -165,7 +162,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica N
         <div class="notif-meta"> 2026-07-01 15:00 ·  审批中心 · 来自：李华（生产部）</div>
       </div>
       <div class="notif-actions">
-        <button class="btn-approve" onclick="location.href='approval.html'">批准</button>
+        <button class="btn-approve" onclick="dismissNotif(this)">已知悉</button>
         <button class="btn-reject" onclick="dismissNotif(this)">拒绝</button>
       </div>
     </div>
@@ -179,7 +176,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica N
         <div class="notif-meta"> 2026-07-01 14:35 ·  审批中心 · 来自：王芳（合规部）</div>
       </div>
       <div class="notif-actions">
-        <button class="btn-approve" onclick="location.href='approval.html'">批准</button>
+        <button class="btn-approve" onclick="dismissNotif(this)">已知悉</button>
         <button class="btn-reject" onclick="dismissNotif(this)">拒绝</button>
       </div>
     </div>
@@ -193,7 +190,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica N
         <div class="notif-meta"> 2026-07-01 11:25 ·  审批中心 · 来自：张明</div>
       </div>
       <div class="notif-actions">
-        <button class="btn-approve" onclick="location.href='approval.html'">批准</button>
+        <button class="btn-approve" onclick="dismissNotif(this)">已知悉</button>
         <button class="btn-reject" onclick="dismissNotif(this)">拒绝</button>
       </div>
     </div>
@@ -220,7 +217,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica N
         <div class="notif-meta"> 2026-07-01 15:38 ·  哈希链 · 自动触发</div>
       </div>
       <div class="notif-actions">
-        <button class="btn-view" onclick="location.href='hash-chain.html'">查看详情</button>
+        <button class="btn-view" onclick="location.href='report-export.html'">查看详情</button>
       </div>
     </div>
 
