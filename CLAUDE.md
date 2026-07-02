@@ -54,10 +54,10 @@ sidu-lats-prototype/
 ├── index.html                  ← 根入口(GitHub Pages 默认根,自动跳转 → prototype/index.html)
 ├── prototype/                  ← ★ 唯一原型图目录(34 个 HTML)
 │   ├── index.html              ← 角色演示入口(选择 4 角色之一)
-│   ├── admin/                  ← 系统管理员(11 页,全功能 10 项侧栏)
-│   ├── operator/               ← 操作员(5 页,侧栏 4 项)
-│   ├── auditor/                ← QA 审计员(6 页,侧栏 5 项)
-│   └── viewer/                 ← 查看者(11 页,只读仪表盘 + 9 页无权限)
+│   ├── admin/                  ← 系统管理员(8 页:配置/用户/存储/日志导出)
+│   ├── operator/               ← 操作员(3 页:数据录入/自有数据的查询)
+│   ├── auditor/                ← QA 审计员(7 页:审计日志/哈希链/介质抽检/合规导出/权限复审)
+│   └── reviewer/               ← 报告审核员(3 页:报告复核/电子签名 ESig)
 ├── viewer.html + src/viewer/   ← Vite 开发导航器外壳(可选,非原型)
 ├── docs/                       ← 文档目录(见上节)
 └── .claude/agents/             ← 子代理定义(pm / prototype-ui-reviewer / prototype-code-reviewer / prototype-syntax-reviewer / commit-writer)
@@ -169,13 +169,13 @@ location.href = 'dashboard.html';                    // 同目录跳转(prototyp
 
 合规演示围绕 4 个 FDA 21 CFR Part 11 关键能力:
 
-- **电子签名 ESig**:PREVIEW / REVIEW / APPROVE / REJECT 四种意图分离(`prototype/admin/approval.html`)
-- **哈希链**:SHA-256 链式完整性验证(`prototype/admin/hash-chain.html`)
-- **审计日志**:ALCOA+ 合规记录(`prototype/admin/audit-log.html`)
-- **审批流程**:双人知情配置变更(`prototype/admin/approval.html` + `prototype/admin/system-settings.html`)
-- **报告导出**:带哈希+签名的合规报告(`prototype/admin/report-export.html`)
+- **电子签名 ESig**:PREVIEW / REVIEW / APPROVE / REJECT 四种意图分离(`prototype/reviewer/approval.html`)
+- **哈希链**:SHA-256 链式完整性验证(`prototype/auditor/hash-chain.html`)
+- **审计日志**:ALCOA+ 合规记录(`prototype/auditor/audit-log.html`)
+- **审批流程**:双人知情配置变更(`prototype/reviewer/approval.html` + `prototype/admin/system-settings.html`)
+- **报告导出**:带哈希+签名的合规报告(`prototype/admin/report-export.html` + `prototype/auditor/report-export.html`)
 
-四角色分工:**Admin** 管配置/用户,**Operator** 录入数据,**Auditor** 查审计+哈希,**Viewer** 只读。
+四角色分工:**Admin**(一级)管配置/用户/存储/日志导出,**Reviewer**(三级)复核报告/电子签名,**Auditor**(二级)查审计/哈希/介质/权限复审,**Operator**(四级)数据录入/自有数据查询。
 
 ## 开发流程(强制 SDD / OpenSpec)
 
