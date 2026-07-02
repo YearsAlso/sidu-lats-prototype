@@ -195,15 +195,8 @@ tbody tr:hover{background:#fafafa;}
           </div>
         </div>
         <div style="margin-top:16px;padding:14px;background:#fffbe6;border:1px solid #ffe58f;border-radius:8px;">
-          <div style="font-weight:500;font-size:13px;color:#d46b08;margin-bottom:8px;">️ 报告导出需审批</div>
-          <div style="font-size:12px;color:rgba(0,0,0,0.45);line-height:1.6;">根据数据安全策略，导出超1000条记录或含签名的报告，需由审计员或管理员在 <strong>审批中心</strong> 提交申请，经审批通过后方可下载。</div>
-        </div>
-        <div style="margin-top:12px;padding:14px;background:#f5f5f5;border-radius:8px;">
-          <div style="font-weight:500;font-size:13px;color:rgba(0,0,0,0.88);margin-bottom:8px;"> 待审批导出申请</div>
-          <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-size:13px;color:rgba(0,0,0,0.65);">APR-20260701-006（Q2审计报告）</span>
-            <span class="tag tag-warning">审批中</span>
-          </div>
+          <div style="font-weight:500;font-size:13px;color:#d48806;margin-bottom:8px;">导出合规约束</div>
+          <div style="font-size:12px;color:rgba(0,0,0,0.65);line-height:1.6;">依据 FDA 21 CFR Part 11 §11.10(k),导出数据包为电子记录精确复制,离线可核验;内嵌哈希校验码防篡改(M6-004)。仅 QA 审计员 / 系统管理员可执行导出(M6-005);所有导出操作写入 CRITICAL 审计日志且不可删除(M6-006)。</div>
         </div>
       </div>
     </div>
