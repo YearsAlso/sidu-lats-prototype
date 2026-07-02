@@ -1,14 +1,64 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SIDU-LATS — 缺陷识别数据存管系统</title>
-<meta http-equiv="refresh" content="0;url=prototype/index.html">
-<link rel="canonical" href="prototype/index.html">
-<style>body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f5f5;color:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;min-height:100vh;font-size:14px}a{color:#1677ff}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIDU-LATS — 缺陷识别数据存管系统</title>
+  <script type="module" src="/src/viewer/main.js"></script>
 </head>
 <body>
-<div>SIDU-LATS 原型演示 · 正在跳转…如未自动跳转，<a href="prototype/index.html">点此进入</a></div>
+  <button id="viewerDrawerToggle" type="button" class="viewer-fab" aria-label="打开导航抽屉" aria-expanded="false" aria-controls="viewerSidebar">
+    <span class="viewer-fab__icon">☰</span>
+    <span class="viewer-fab__label">导航</span>
+  </button>
+  <div id="viewerDrawerOverlay" class="viewer-drawer-overlay" hidden></div>
+  <div class="viewer-shell">
+    <aside id="viewerSidebar" class="viewer-sidebar" aria-label="原型导航抽屉">
+      <div class="viewer-sidebar__topbar">
+        <span>Prototype Menu</span>
+        <button id="viewerDrawerClose" type="button" class="viewer-sidebar__close" aria-label="关闭导航抽屉">&times;</button>
+      </div>
+      <div class="viewer-brand">
+        <div class="viewer-brand__eyebrow">SIDU-LATS</div>
+        <h1>Prototype Viewer</h1>
+      </div>
+
+      <div class="viewer-sidebar__search">
+        <input id="viewerSearchInput" type="search" placeholder="搜索页面或模块" />
+      </div>
+
+      <section class="viewer-panel">
+        <span class="viewer-panel__label">当前页面</span>
+        <strong id="viewerCurrentTitle">-</strong>
+        <code id="viewerCurrentPath">-</code>
+      </section>
+
+      <section class="viewer-panel viewer-panel--actions">
+        <button id="viewerBackBtn" type="button" aria-label="后退" title="后退">←</button>
+        <button id="viewerForwardBtn" type="button" aria-label="前进" title="前进">→</button>
+        <button id="viewerRefreshBtn" type="button" aria-label="刷新" title="刷新">↻</button>
+        <button id="viewerOpenBtn" type="button" aria-label="独立打开" title="独立打开">↗</button>
+        <button id="viewerCopyBtn" type="button" aria-label="复制分享链接" title="复制分享链接">⧉</button>
+      </section>
+
+      <nav id="viewerNav" class="viewer-nav" aria-label="原型导航"></nav>
+
+      <div class="viewer-panel viewer-panel--status">
+        <span class="viewer-panel__label">状态</span>
+        <span id="viewerStatus">Viewer ready.</span>
+      </div>
+    </aside>
+
+    <main class="viewer-main">
+      <section class="viewer-frame-wrap">
+        <iframe
+          id="viewerFrame"
+          title="SIDU-LATS 原型预览"
+          loading="eager"
+          referrerpolicy="no-referrer"
+        ></iframe>
+      </section>
+    </main>
+  </div>
 </body>
 </html>

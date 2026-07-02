@@ -7,7 +7,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';background:#f5f5f5;}
-.header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.03);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
+.header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 2px rgba(0,0,0,0.03);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
 .header-left{display:flex;align-items:center;gap:20px;}
 .logo{font-size:20px;font-weight:600;color:#1677ff;}
 .role-tag{background:#e6f4ff;color:#0958d9;border:1px solid #91caff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;}
@@ -52,6 +52,23 @@ tbody tr:hover{background:#fafafa;}
 .hash-val{font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,Courier,monospace;font-size:12px;background:#fafafa;padding:2px 6px;border-radius:2px;color:rgba(0,0,0,0.65);}
 .error-msg{background:#fff2f0;border:1px solid #ffccc7;color:#ff4d4f;padding:10px 12px;border-radius:6px;font-size:13px;margin-bottom:16px;display:none;}
 .success-msg{background:#f6ffed;border:1px solid #b7eb8f;color:#389e0d;padding:10px 12px;border-radius:6px;font-size:13px;margin-bottom:16px;display:none;}
+/* 设备推送预览面板 */
+.push-preview{border:1px solid #d9d9d9;border-radius:6px;margin-top:16px;overflow:hidden;}
+.preview-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#fafafa;border-bottom:1px solid #f0f0f0;}
+.preview-title{font-size:14px;font-weight:500;color:rgba(0,0,0,0.88);}
+.preview-close{cursor:pointer;color:rgba(0,0,0,0.45);font-size:16px;line-height:1;}
+.preview-close:hover{color:rgba(0,0,0,0.88);}
+.preview-body{padding:16px;}
+.preview-section{margin-bottom:16px;}
+.preview-section:last-child{margin-bottom:0;}
+.preview-label{font-size:13px;font-weight:500;color:rgba(0,0,0,0.65);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #fafafa;}
+.preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+.preview-grid div{display:flex;justify-content:space-between;align-items:center;font-size:13px;}
+.preview-grid div span:first-child{color:rgba(0,0,0,0.45);flex-shrink:0;margin-right:8px;}
+.preview-grid div span:last-child{color:rgba(0,0,0,0.88);text-align:right;word-break:break-all;}
+#pushTable tbody tr{cursor:pointer;transition:background 0.15s;}
+#pushTable tbody tr.selected{background:#e6f4ff;}
+#pushTable tbody tr.selected td{border-bottom-color:#e6f4ff;}
 </style>
 </head>
 <body>
@@ -70,6 +87,56 @@ tbody tr:hover{background:#fafafa;}
 
   <div id="successMsg" class="success-msg"> 数据已成功录入,已写入审计追踪(mock 留痕)</div>
   <div id="errorMsg" class="error-msg">请检查必填字段与文件</div>
+
+  <!-- 设备推送数据卡片 -->
+  <div class="card">
+    <div class="card-title">设备推送数据 <span style="font-size:12px;color:rgba(0,0,0,0.45);font-weight:400;">mock 模拟设备主动推送,操作员审核后录入</span></div>
+    <table id="pushTable">
+      <thead><tr><th>推送编号</th><th>来源设备</th><th>推送时间</th><th>检测类型</th><th>样品数</th><th>数据摘要</th><th>状态</th></tr></thead>
+      <tbody id="pushTbody"></tbody>
+    </table>
+    <div class="push-preview" id="pushPreview" style="display:none;">
+      <div class="preview-header">
+        <span class="preview-title">推送详情 — <span id="previewPushId">—</span></span>
+        <span class="preview-close" onclick="closePreview()">&#x2715;</span>
+      </div>
+      <div class="preview-body">
+        <div class="preview-section">
+          <div class="preview-label">推送数据详情</div>
+          <div class="preview-grid">
+            <div><span>推送编号</span><span id="pvPushId">—</span></div>
+            <div><span>来源设备</span><span id="pvDevice">—</span></div>
+            <div><span>推送时间</span><span id="pvTime">—</span></div>
+            <div><span>检测类型</span><span id="pvType">—</span></div>
+            <div><span>样品数量</span><span id="pvCount">—</span></div>
+            <div><span>文件名称</span><span class="hash-val" id="pvFile">—</span></div>
+            <div><span>文件大小</span><span id="pvSize">—</span></div>
+            <div><span>数据哈希</span><span class="hash-val" id="pvHash">—</span></div>
+          </div>
+        </div>
+        <!-- 待录入:补充录入表单 -->
+        <div class="preview-section" id="entrySection" style="display:none;">
+          <div class="preview-label">补充录入信息</div>
+          <div class="form-grid">
+            <div class="form-group"><label>批次编号<span class="req">*</span></label><input type="text" id="pushBatchId" placeholder="如 BAT-20260702-X" required></div>
+            <div class="form-group"><label>检测日期<span class="req">*</span></label><input type="date" id="pushDetectDate" required></div>
+          </div>
+          <div class="form-group"><label>备注</label><textarea id="pushRemarks" rows="2" placeholder="可选:填写检测环境/异常说明..." maxlength="500"></textarea></div>
+          <button type="button" class="btn-primary" onclick="confirmPushEntry()">确认录入</button>
+        </div>
+        <!-- 已录入:只读摘要 -->
+        <div class="preview-section" id="doneSection" style="display:none;">
+          <div class="preview-label">录入摘要</div>
+          <div class="preview-grid">
+            <div><span>操作人</span><span id="pvOperator">—</span></div>
+            <div><span>录入时间</span><span id="pvEntryTime">—</span></div>
+            <div><span>批次编号</span><span id="pvBatch">—</span></div>
+            <div><span>审计留痕</span><span class="hash-val" id="pvAuditHash">—</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="card">
     <div class="card-title"> NTA 原始数据上传</div>
@@ -214,6 +281,121 @@ function hideMessages() {
   document.getElementById('errorMsg').style.display = 'none';
   document.getElementById('successMsg').style.display = 'none';
 }
+
+// ======== 设备推送数据审核录入 ========
+var pushData = [
+  { id:'PUSH-001', device:'SIDU-NTA-001', time:'2026-07-02 14:20:33', type:'NTA 粒径分析', count:128, file:'nta-128.dat', size:'2.4 MB', hash:'a3f1b8c2d4e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0', status:'pending' },
+  { id:'PUSH-002', device:'SIDU-DEF-001', time:'2026-07-02 15:10:07', type:'缺陷识别',     count:64,  file:'def-064.zip', size:'5.1 MB', hash:'c8d2e1a4f6b8c0d2e4f6a8b0c2d4e6f8a0b2c4d6e8', status:'pending' },
+  { id:'PUSH-003', device:'SIDU-NTA-001', time:'2026-07-01 09:00:15', type:'颗粒计数',     count:256, file:'cnt-256.csv', size:'0.8 MB', hash:'e7b3d9f2a1c5d7e9b1f3a5c7d9e1b3f5a7c9d1e3f5', status:'done', operator:'李华', entryTime:'2026-07-01 09:15:42', batch:'BAT-20260701-C', auditHash:'3f8a1b9c2d4e6f7a8b0c1d3e5f7a9b1c3d5e7f9a1'}
+];
+var selectedPushIndex = -1;
+
+function renderPushTable() {
+  var tbody = document.getElementById('pushTbody');
+  var html = '';
+  for (var i = 0; i < pushData.length; i++) {
+    var p = pushData[i];
+    var statusTag = p.status === 'done'
+      ? '<span class="tag tag-success">已录入</span>'
+      : '<span class="tag tag-warning">待录入</span>';
+    var rowStyle = p.status === 'done' ? ' style="background:#fafafa;"' : '';
+    html += '<tr id="pushRow' + i + '"' + rowStyle + ' onclick="selectPush(' + i + ')">' +
+      '<td style="color:#1677ff;font-weight:500;">' + p.id + '</td>' +
+      '<td>' + p.device + '</td>' +
+      '<td style="color:rgba(0,0,0,0.65);">' + p.time + '</td>' +
+      '<td><span class="tag tag-info">' + p.type + '</span></td>' +
+      '<td>' + p.count + '</td>' +
+      '<td><span class="hash-val">' + p.file + '</span></td>' +
+      '<td>' + statusTag + '</td>' +
+      '</tr>';
+  }
+  tbody.innerHTML = html;
+}
+
+function selectPush(idx) {
+  selectedPushIndex = idx;
+  // 清除所有选中
+  var rows = document.querySelectorAll('#pushTable tbody tr');
+  for (var i = 0; i < rows.length; i++) rows[i].classList.remove('selected');
+  document.getElementById('pushRow' + idx).classList.add('selected');
+
+  var p = pushData[idx];
+  // 填入只读详情
+  document.getElementById('previewPushId').textContent = p.id;
+  document.getElementById('pvPushId').textContent = p.id;
+  document.getElementById('pvDevice').textContent = p.device;
+  document.getElementById('pvTime').textContent = p.time;
+  document.getElementById('pvType').textContent = p.type;
+  document.getElementById('pvCount').textContent = p.count;
+  document.getElementById('pvFile').textContent = p.file;
+  document.getElementById('pvSize').textContent = p.size;
+  document.getElementById('pvHash').textContent = p.hash.substring(0, 16) + '...';
+
+  if (p.status === 'pending') {
+    document.getElementById('entrySection').style.display = 'block';
+    document.getElementById('doneSection').style.display = 'none';
+    document.getElementById('pushDetectDate').value = new Date().toISOString().substring(0, 10);
+  } else {
+    document.getElementById('entrySection').style.display = 'none';
+    document.getElementById('doneSection').style.display = 'block';
+    document.getElementById('pvOperator').textContent = p.operator;
+    document.getElementById('pvEntryTime').textContent = p.entryTime;
+    document.getElementById('pvBatch').textContent = p.batch;
+    document.getElementById('pvAuditHash').textContent = p.auditHash.substring(0, 16) + '...';
+  }
+
+  document.getElementById('pushPreview').style.display = 'block';
+  document.getElementById('pushPreview').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function confirmPushEntry() {
+  var batchId = document.getElementById('pushBatchId').value.trim();
+  var detectDate = document.getElementById('pushDetectDate').value;
+  if (!batchId) { showError('批次编号不能为空'); return; }
+  if (!detectDate) { showError('请选择检测日期'); return; }
+
+  var p = pushData[selectedPushIndex];
+  p.status = 'done';
+  p.operator = currentUser;
+  p.entryTime = new Date().toLocaleString('zh-CN');
+  p.batch = batchId;
+  p.auditHash = Math.random().toString(16).substring(2, 10) + Math.random().toString(16).substring(2, 10) + Math.random().toString(16).substring(2, 10) + Math.random().toString(16).substring(2, 10);
+
+  // 重新渲染推送列表
+  renderPushTable();
+  // 重新选中(刷新预览面板到已录入视图)
+  selectPush(selectedPushIndex);
+
+  // 追加到最近录入表
+  var recentTbody = document.querySelectorAll('.card table tbody');
+  var lastTbody = recentTbody[recentTbody.length - 1];
+  var typeTag = p.type === 'NTA 粒径分析' ? 'tag-info' : (p.type === '缺陷识别' ? 'tag-warning' : 'tag-info');
+  var newRow = '<tr>' +
+    '<td style="color:#1677ff;font-weight:500;">' + p.batch + '</td>' +
+    '<td><span class="tag ' + typeTag + '">' + p.type + '</span></td>' +
+    '<td>' + p.count + '</td>' +
+    '<td style="color:rgba(0,0,0,0.65);">' + detectDate + '</td>' +
+    '<td><span class="hash-val">' + p.file + '</span></td>' +
+    '<td><span class="tag tag-success">已录入</span></td>' +
+    '</tr>';
+  lastTbody.insertAdjacentHTML('afterbegin', newRow);
+
+  // 清空表单
+  document.getElementById('pushBatchId').value = '';
+  document.getElementById('pushRemarks').value = '';
+
+  showSuccess();
+}
+
+function closePreview() {
+  document.getElementById('pushPreview').style.display = 'none';
+  var rows = document.querySelectorAll('#pushTable tbody tr');
+  for (var i = 0; i < rows.length; i++) rows[i].classList.remove('selected');
+  selectedPushIndex = -1;
+}
+
+// 页面加载时渲染推送列表
+renderPushTable();
 </script>
 </body>
 </html>

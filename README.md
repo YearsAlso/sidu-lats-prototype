@@ -14,10 +14,10 @@
 |-----|------|
 | `index.html` | 根入口(GH Pages 入口,自动跳转 → prototype/index.html) |
 | `prototype/index.html` | **角色演示入口** — 按权限隔离的 4 角色原型 |
-| `prototype/admin/` | 系统管理员（11 页,全功能 10 项侧栏） |
-| `prototype/operator/` | 操作员（5 页,侧栏 4 项） |
-| `prototype/auditor/` | QA 审计员（6 页,侧栏 5 项） |
-| `prototype/viewer/` | 查看者（11 页,只读仪表盘 + 9 页无权限） |
+| `prototype/admin/` | 系统管理员（8 页:配置/用户/存储/日志导出） |
+| `prototype/operator/` | 操作员（3 页:NTA上传/基础录入/自有数据查询） |
+| `prototype/auditor/` | QA 审计员（7 页:审计日志/哈希链/介质抽检/合规导出/权限复审） |
+| `prototype/reviewer/` | 报告审核员（3 页:报告复核/电子签名 ESig） |
 
 ## 登录说明
 

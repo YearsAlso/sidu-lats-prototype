@@ -402,6 +402,7 @@ function confirmSign() {
   if (signUser !== currentUser) { alert('凭证校验失败：签名用户名与登录用户不一致。\n\n演示"双人知情/二次凭证"意图。'); return; }
   var intent = document.getElementById('signIntent').value;
   var comment = document.getElementById('signComment').value.trim();
+  if (intent === 'REJECT' && !comment) { alert('驳回必须填写驳回原因(FDA Part 11 合规要求)'); return; }
   var intentLabel = { PREVIEW: '预览', REVIEW: '复核', APPROVE: '批准', REJECT: '驳回' }[intent];
   var msg = ' 电子签名成功！\n\n' +
     '签名人: ' + currentUser + '（报告审核员）\n' +
