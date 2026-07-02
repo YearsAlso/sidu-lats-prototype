@@ -131,13 +131,12 @@ td{padding:12px;font-size:13px;color:rgba(0,0,0,0.88);border-bottom:1px solid #f
       <div class="tab-panel active" id="panelProfile">
         <div class="profile-avatar">王</div>
         <div style="text-align:center;font-size:18px;font-weight:600;color:rgba(0,0,0,0.88);margin-bottom:4px;">王芳</div>
-        <div style="text-align:center;font-size:13px;color:rgba(0,0,0,0.45);margin-bottom:24px;">QA 审计员 &middot; <span id="valDeptTitle">合规部</span></div>
+        <div style="text-align:center;font-size:13px;color:rgba(0,0,0,0.45);margin-bottom:24px;">QA 审计员</div>
         <div class="msg-success" id="profileSuccess" style="margin-bottom:16px;">个人信息已更新</div>
         <div class="info-row"><span class="key">用户名</span><span class="val">wangfang</span></div>
         <div class="info-row"><span class="key">角色</span><span class="val">QA 审计员（二级）</span></div>
         <div class="info-row"><span class="key">权限范围</span><span class="val">日志审查 + 哈希链验证 + 合规导出</span></div>
         <div class="info-row" id="rowEmailR"><span class="key">邮箱</span><span class="val" id="valEmail">wangfang@company.com</span></div>
-        <div class="info-row" id="rowDeptR"><span class="key">部门</span><span class="val" id="valDept">合规部</span></div>
         <div class="info-row"><span class="key">最后登录</span><span class="val">2026-07-02 09:00:00</span></div>
         <div class="info-row"><span class="key">登录 IP</span><span class="val" style="font-family:'SFMono-Regular',Consolas,monospace;">192.168.1.80</span></div>
         <div class="info-row"><span class="key">账户状态</span><span class="val" style="color:#52c41a;">启用中</span></div>
@@ -146,125 +145,9 @@ td{padding:12px;font-size:13px;color:rgba(0,0,0,0.88);border-bottom:1px solid #f
         </div>
         <div id="profileEditForm" style="display:none;margin-top:16px;padding-top:16px;border-top:1px solid #f0f0f0;">
           <div class="form-group"><label>邮箱</label><input type="email" id="editEmail" value="wangfang@company.com"></div>
-          <div class="form-group"><label>部门</label><select id="editDept"><option>合规部</option><option>IT 部</option><option>生产部</option><option>质量部</option><option>管理部</option></select></div>
           <div style="display:flex;gap:12px;justify-content:flex-end;">
             <button class="btn-default" style="padding:6px 16px;" onclick="cancelEditProfile()">取消</button>
             <button class="btn-primary" style="padding:6px 20px;" onclick="saveProfile()">保存</button>
           </div>
         </div>
       </div>
-      <div class="tab-panel" id="panelPassword">
-        <div class="msg-success" id="pwdSuccess">密码修改成功！请牢记新密码。</div>
-        <div class="msg-error" id="pwdError"></div>
-        <div class="form-group"><label>旧密码 *</label><input type="password" id="oldPassword" placeholder="输入当前密码" required></div>
-        <div class="form-group"><label>新密码 *</label><input type="password" id="newPassword" placeholder="至少4位" required minlength="4"><div class="hint">至少 4 位字符</div></div>
-        <div class="form-group"><label>确认新密码 *</label><input type="password" id="confirmPassword" placeholder="重新输入新密码" required minlength="4"></div>
-        <button class="btn-primary" style="width:100%;" onclick="changePassword()">确认修改</button>
-      </div>
-      <div class="tab-panel" id="panelLogs">
-        <div class="oplog-item"><span class="oplog-time">2026-07-02 09:00</span><span class="oplog-action">系统登录</span><span class="oplog-ip">192.168.1.80</span></div>
-        <div class="oplog-item"><span class="oplog-time">2026-07-01 15:38</span><span class="oplog-action">验证哈希链完整性（通过）</span><span class="oplog-ip">192.168.1.80</span></div>
-        <div class="oplog-item"><span class="oplog-time">2026-07-01 14:00</span><span class="oplog-action">审查6月配置变更记录（合规）</span><span class="oplog-ip">192.168.1.80</span></div>
-        <div class="oplog-item"><span class="oplog-time">2026-07-01 10:30</span><span class="oplog-action">导出Q2审计报告 RPT-2026Q2</span><span class="oplog-ip">192.168.1.80</span></div>
-        <div class="oplog-item"><span class="oplog-time">2026-06-30 16:20</span><span class="oplog-action">复核报告签发 APR-20260701-001</span><span class="oplog-ip">192.168.1.80</span></div>
-        <div class="oplog-item"><span class="oplog-time">2026-06-30 15:00</span><span class="oplog-action">审核签名授权申请（通过）</span><span class="oplog-ip">192.168.1.80</span></div>
-        <div class="oplog-item"><span class="oplog-time">2026-06-30 10:00</span><span class="oplog-action">介质抽检（存储合规）</span><span class="oplog-ip">192.168.1.80</span></div>
-        <div class="oplog-item"><span class="oplog-time">2026-06-30 08:00</span><span class="oplog-action">系统登录</span><span class="oplog-ip">192.168.1.80</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="layout-sider">
-  <div class="menu-item active">仪表盘</div>
-  <div class="menu-item" onclick="location.href='audit-log.html'">审计日志</div>
-  <div class="menu-item" onclick="location.href='hash-chain.html'">数据完整性验证</div>
-  <div class="menu-item" onclick="location.href='storage.html'">存储管理</div>
-  <div class="menu-item" onclick="location.href='report-export.html'">报告导出</div>
-  <div class="menu-item" onclick="location.href='permission-review.html'">权限复审</div>
-</div>
-<div class="main-content">
-  <div class="page-title">审计员工作台 <span>合规审查与数据验证</span></div>
-  <div class="verify-panel">
-    <div class="result"> 数据完整性正常 · 上次验证: 2026-07-01 15:38</div>
-    <button class="btn-primary" onclick="location.href='hash-chain.html'"> 重新验链</button>
-  </div>
-  <div class="stat-grid">
-    <div class="stat-card"><div class="num" style="color:#52c41a;">100%</div><div class="lbl">数据完整性</div><div class="sub" style="color:#52c41a;">验证通过</div></div>
-    <div class="stat-card"><div class="num">128</div><div class="lbl">本月审查项</div><div class="sub">日志/报告/配置</div></div>
-    <div class="stat-card"><div class="num" style="color:#faad14;">3</div><div class="lbl">待复核</div><div class="sub">需尽快处理</div></div>
-    <div class="stat-card"><div class="num">98.7%</div><div class="lbl">合规率</div><div class="sub" style="color:#52c41a;"></div></div>
-    <div class="stat-card"><div class="num" style="color:#52c41a;">0</div><div class="lbl">异常项</div><div class="sub">无告警</div></div>
-  </div>
-  <div class="grid-2">
-    <div class="card">
-      <div class="card-title">审计任务中心</div>
-      <div class="quick-actions">
-        <div class="quick-item" onclick="location.href='audit-log.html'"><div class="icon"></div><div><div class="label">审计日志审查</div><div class="sub">查看完整操作记录</div></div></div>
-        <div class="quick-item" onclick="location.href='hash-chain.html'"><div class="icon"></div><div><div class="label">完整性验证</div><div class="sub">验证数据完整性</div></div></div>
-        <div class="quick-item" onclick="location.href='../reviewer/approval.html'"><div class="icon"></div><div><div class="label">报告/导出审批</div><div class="sub">审查并签署</div></div></div>
-        <div class="quick-item" onclick="location.href='report-export.html'"><div class="icon"></div><div><div class="label">合规报告生成</div><div class="sub">导出审计报告</div></div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title">近期审计发现</div>
-      <div class="timeline-item"><div class="time">2026-06-28</div><div>审查6月配置变更记录 <span class="tag tag-success" style="margin-left:8px;">合规 </span></div></div>
-      <div class="timeline-item"><div class="time">2026-06-25</div><div>验证Q2数据完整性 <span class="tag tag-success" style="margin-left:8px;">通过 </span></div></div>
-      <div class="timeline-item"><div class="time">2026-06-20</div><div>审查签名授权申请记录 <span class="tag tag-success" style="margin-left:8px;">合规 </span></div></div>
-      <div class="timeline-item"><div class="time">2026-06-15</div><div>导出月审报告 <span class="tag tag-info" style="margin-left:8px;">RPT-202606</span></div></div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-title">本月待复核事项</div>
-    <table>
-      <thead><tr><th>编号</th><th>类型</th><th>申请人</th><th>内容摘要</th><th>提交时间</th><th>紧急度</th><th>状态</th><th>操作</th></tr></thead>
-      <tbody>
-        <tr>
-          <td style="color:#1677ff;font-weight:500;">APR-20260701-003</td>
-          <td><span class="tag tag-warning">配置变更</span></td><td>李华</td>
-          <td>阈值调整 0.85→0.90</td>
-          <td style="color:rgba(0,0,0,0.65);font-size:12px;">2026-07-01 14:55</td>
-          <td><span style="color:#faad14;">▲ 高</span></td>
-          <td><span class="tag tag-warning">待复核</span></td>
-          <td><button onclick="location.href='../reviewer/approval.html'" class="btn-primary" style="padding:4px 10px;font-size:12px;">复核</button></td>
-        </tr>
-        <tr>
-          <td style="color:#1677ff;font-weight:500;">APR-20260701-002</td>
-          <td><span class="tag tag-info">数据导出</span></td><td>王芳</td>
-          <td>Q2审计报告导出</td>
-          <td style="color:rgba(0,0,0,0.65);font-size:12px;">2026-07-01 14:30</td>
-          <td><span style="color:#1677ff;">● 中</span></td>
-          <td><span class="tag tag-warning">待复核</span></td>
-          <td><button onclick="location.href='../reviewer/approval.html'" class="btn-primary" style="padding:4px 10px;font-size:12px;">复核</button></td>
-        </tr>
-        <tr>
-          <td style="color:#1677ff;font-weight:500;">APR-20260701-001</td>
-          <td><span class="tag tag-info">报告签发</span></td><td>王芳</td>
-          <td>6月合规月报签发</td>
-          <td style="color:rgba(0,0,0,0.65);font-size:12px;">2026-06-30 16:20</td>
-          <td><span style="color:#52c41a;">▼ 低</span></td>
-          <td><span class="tag tag-warning">待复核</span></td>
-          <td><button onclick="location.href='../reviewer/approval.html'" class="btn-primary" style="padding:4px 10px;font-size:12px;">复核</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<script>
-if(!sessionStorage.getItem('lats_logged_in')){location.href='login.html';}
-
-function toggleUserMenu(e){e.stopPropagation();var d=document.getElementById('userDropdown'),t=document.getElementById('userTrigger');var o=d.style.display==='block';d.style.display=o?'none':'block';if(o)t.classList.remove('open');else t.classList.add('open');}
-document.addEventListener('click',function(){document.getElementById('userDropdown').style.display='none';document.getElementById('userTrigger').classList.remove('open');});
-
-function openUserCenter(tab){document.getElementById('userDropdown').style.display='none';document.getElementById('userTrigger').classList.remove('open');document.getElementById('userCenterModal').style.display='flex';switchUserTab(tab);}
-function closeUserCenter(){document.getElementById('userCenterModal').style.display='none';}
-function switchUserTab(tab){document.querySelectorAll('#userCenterModal .modal-tab').forEach(function(t){t.classList.remove('active');});document.querySelectorAll('#userCenterModal .tab-panel').forEach(function(p){p.classList.remove('active');});var tb=document.querySelector('#userCenterModal [data-tab="'+tab+'"]');if(tb)tb.classList.add('active');var pn=document.getElementById('panel'+tab.charAt(0).toUpperCase()+tab.slice(1));if(pn)pn.classList.add('active');}
-
-function changePassword(){var o=document.getElementById('oldPassword').value.trim(),n=document.getElementById('newPassword').value.trim(),c=document.getElementById('confirmPassword').value.trim(),e=document.getElementById('pwdError'),s=document.getElementById('pwdSuccess');e.style.display='none';s.style.display='none';if(!o){e.textContent='请输入旧密码';e.style.display='block';return;}if(!n||n.length<4){e.textContent='新密码至少4位';e.style.display='block';return;}if(n!==c){e.textContent='两次输入的新密码不一致';e.style.display='block';return;}if(o===n){e.textContent='新密码不能与旧密码相同';e.style.display='block';return;}s.style.display='block';document.getElementById('oldPassword').value='';document.getElementById('newPassword').value='';document.getElementById('confirmPassword').value='';}
-
-function editProfile(){document.getElementById('profileEditForm').style.display='block';document.getElementById('profileSuccess').style.display='none';}
-function cancelEditProfile(){document.getElementById('profileEditForm').style.display='none';document.getElementById('editEmail').value=document.getElementById('valEmail').textContent;document.getElementById('editDept').value=document.getElementById('valDept').textContent;}
-function saveProfile(){var e=document.getElementById('editEmail').value.trim(),d=document.getElementById('editDept').value;if(!e||!e.includes('@')){alert('请输入有效的邮箱地址');return;}document.getElementById('valEmail').textContent=e;document.getElementById('valDept').textContent=d;document.getElementById('valDeptTitle').textContent=d;document.getElementById('profileEditForm').style.display='none';document.getElementById('profileSuccess').style.display='block';}
-</script>
-</body>
-</html>

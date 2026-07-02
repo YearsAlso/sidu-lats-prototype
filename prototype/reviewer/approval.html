@@ -84,6 +84,46 @@ tbody tr:hover { background: #fafafa; cursor: pointer; }
 .step-time { font-size: 10px; color: rgba(0,0,0,0.45); margin-top: 2px; }
 .step-arrow { color: #d9d9d9; font-size: 16px; margin: 0 4px; margin-bottom: 20px; }
 .empty-state { text-align: center; padding: 60px 0; color: rgba(0,0,0,0.45); }
+/* 用户下拉菜单 */
+.user-trigger{display:flex;align-items:center;gap:6px;cursor:pointer;padding:6px 12px;border-radius:4px;transition:background 0.15s;position:relative;user-select:none;}
+.user-trigger:hover{background:#fafafa;}
+.user-trigger .arrow{font-size:10px;color:rgba(0,0,0,0.45);transition:transform 0.2s;}
+.user-trigger.open .arrow{transform:rotate(180deg);}
+.user-dropdown{position:absolute;top:56px;right:24px;background:white;border-radius:8px;box-shadow:0 6px 16px 0 rgba(0,0,0,0.08),0 3px 6px -4px rgba(0,0,0,0.12),0 9px 28px 8px rgba(0,0,0,0.05);min-width:160px;z-index:2001;padding:4px 0;}
+.dropdown-item{padding:10px 16px;cursor:pointer;font-size:14px;color:rgba(0,0,0,0.88);transition:background 0.15s;}
+.dropdown-item:hover{background:#fafafa;}
+.dropdown-divider{height:1px;background:#f0f0f0;margin:4px 0;}
+/* 用户中心 Modal */
+.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:2000;}
+.modal-box{background:white;border-radius:8px;width:540px;max-height:80vh;overflow:hidden;display:flex;flex-direction:column;}
+.modal-header{padding:20px 24px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;}
+.modal-header h3{margin:0;font-size:16px;font-weight:500;}
+.modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:rgba(0,0,0,0.45);line-height:1;}
+.modal-tabs{display:flex;border-bottom:1px solid #f0f0f0;padding:0 24px;}
+.modal-tab{padding:12px 16px;cursor:pointer;font-size:14px;color:rgba(0,0,0,0.65);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s;}
+.modal-tab:hover{color:#1677ff;}
+.modal-tab.active{color:#1677ff;border-bottom-color:#1677ff;font-weight:500;}
+.modal-body{padding:24px;overflow-y:auto;flex:1;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+.profile-avatar{width:64px;height:64px;border-radius:50%;background:#e6f4ff;color:#1677ff;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:600;margin:0 auto 16px;}
+.oplog-item{padding:12px 0;border-bottom:1px solid #fafafa;display:flex;justify-content:space-between;align-items:center;}
+.oplog-item:last-child{border-bottom:none;}
+.oplog-time{font-size:12px;color:rgba(0,0,0,0.45);}
+.oplog-action{font-size:13px;color:rgba(0,0,0,0.88);flex:1;margin:0 16px;}
+.oplog-ip{font-size:12px;color:rgba(0,0,0,0.45);font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,Courier,monospace;}
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;margin-bottom:8px;color:rgba(0,0,0,0.88);font-weight:500;font-size:14px;}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:8px 12px;border:1px solid #d9d9d9;border-radius:4px;font-size:14px;outline:none;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#1677ff;box-shadow:0 0 0 2px rgba(22,119,255,0.1);}
+.form-group .hint{font-size:12px;color:rgba(0,0,0,0.45);margin-top:4px;}
+.btn-default{background:white;border:1px solid #d9d9d9;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;color:rgba(0,0,0,0.65);}
+.msg-success{background:#f6ffed;border:1px solid #b7eb8f;color:#389e0d;padding:10px 12px;border-radius:6px;font-size:13px;margin-bottom:16px;display:none;}
+.msg-error{background:#fff2f0;border:1px solid #ffccc7;color:#ff4d4f;padding:10px 12px;border-radius:6px;font-size:13px;margin-bottom:16px;display:none;}
+.info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #fafafa;font-size:14px;}
+.info-row:last-child{border-bottom:none;}
+.info-row .key{color:rgba(0,0,0,0.45);}
+.info-row .val{color:rgba(0,0,0,0.88);font-weight:500;}
 </style>
 </head>
 <body>
@@ -102,6 +142,73 @@ tbody tr:hover { background: #fafafa; cursor: pointer; }
       </select>
     </div>
     <button onclick="location.href='login.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:rgba(0,0,0,0.65);font-size:14px;">注销</button>
+  </div>
+
+<!-- 用户下拉菜单 -->
+<div class="user-dropdown" id="userDropdown" style="display:none;">
+  <div class="dropdown-item" onclick="openUserCenter('profile')">个人信息</div>
+  <div class="dropdown-item" onclick="openUserCenter('password')">修改密码</div>
+  <div class="dropdown-item" onclick="openUserCenter('logs')">操作日志</div>
+  <div class="dropdown-divider"></div>
+  <div class="dropdown-item" onclick="location.href='login.html'" style="color:#ff4d4f;">注销</div>
+</div>
+
+<!-- 用户中心 Modal -->
+<div class="modal-overlay" id="userCenterModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>用户中心</h3>
+      <button class="modal-close" onclick="closeUserCenter()">&times;</button>
+    </div>
+    <div class="modal-tabs">
+      <div class="modal-tab active" data-tab="profile" onclick="switchUserTab('profile')">个人信息</div>
+      <div class="modal-tab" data-tab="password" onclick="switchUserTab('password')">修改密码</div>
+      <div class="modal-tab" data-tab="logs" onclick="switchUserTab('logs')">操作日志</div>
+    </div>
+    <div class="modal-body">
+      <div class="tab-panel active" id="panelProfile">
+        <div class="profile-avatar" style="background:#e6f4ff;color:#1677ff;">王</div>
+        <div style="text-align:center;font-size:18px;font-weight:600;color:rgba(0,0,0,0.88);margin-bottom:4px;">王芳</div>
+        <div style="text-align:center;font-size:13px;color:rgba(0,0,0,0.45);margin-bottom:24px;">报告审核员</div>
+        <div class="msg-success" id="profileSuccess" style="margin-bottom:16px;">个人信息已更新</div>
+        <div class="info-row"><span class="key">用户名</span><span class="val">wangfang</span></div>
+        <div class="info-row"><span class="key">角色</span><span class="val">报告审核员（三级）</span></div>
+        <div class="info-row"><span class="key">权限范围</span><span class="val">报告复核 + 电子签名 ESig</span></div>
+        <div class="info-row" id="rowEmailR"><span class="key">邮箱</span><span class="val" id="valEmail">wangfang@company.com</span></div>
+        <div class="info-row"><span class="key">最后登录</span><span class="val">2026-07-02 08:45:00</span></div>
+        <div class="info-row"><span class="key">登录 IP</span><span class="val" style="font-family:'SFMono-Regular',Consolas,monospace;">192.168.1.80</span></div>
+        <div class="info-row"><span class="key">账户创建</span><span class="val">2025-07-01</span></div>
+        <div class="info-row"><span class="key">账户状态</span><span class="val" style="color:#52c41a;">启用中</span></div>
+        <div style="text-align:right;margin-top:16px;">
+          <button class="btn-default" style="padding:6px 16px;" onclick="editProfile()">编辑个人信息</button>
+        </div>
+        <div id="profileEditForm" style="display:none;margin-top:16px;padding-top:16px;border-top:1px solid #f0f0f0;">
+          <div class="form-group"><label>邮箱</label><input type="email" id="editEmail" value="wangfang@company.com"></div>
+          <div style="display:flex;gap:12px;justify-content:flex-end;">
+            <button class="btn-default" style="padding:6px 16px;" onclick="cancelEditProfile()">取消</button>
+            <button class="btn-primary" style="padding:6px 20px;" onclick="saveProfile()">保存</button>
+          </div>
+        </div>
+      </div>
+      <div class="tab-panel" id="panelPassword">
+        <div class="msg-success" id="pwdSuccess">密码修改成功！请牢记新密码。</div>
+        <div class="msg-error" id="pwdError"></div>
+        <div class="form-group"><label>旧密码 *</label><input type="password" id="oldPassword" placeholder="输入当前密码" required></div>
+        <div class="form-group"><label>新密码 *</label><input type="password" id="newPassword" placeholder="至少4位" required minlength="4"><div class="hint">至少 4 位字符</div></div>
+        <div class="form-group"><label>确认新密码 *</label><input type="password" id="confirmPassword" placeholder="重新输入新密码" required minlength="4"></div>
+        <button class="btn-primary" style="width:100%;" onclick="changePassword()">确认修改</button>
+      </div>
+      <div class="tab-panel" id="panelLogs">
+        <div class="oplog-item"><span class="oplog-time">2026-07-02 08:45</span><span class="oplog-action">系统登录</span><span class="oplog-ip">192.168.1.80</span></div>
+        <div class="oplog-item"><span class="oplog-time">2026-07-01 16:05</span><span class="oplog-action">批准报告 RPT-20260701-0120</span><span class="oplog-ip">192.168.1.80</span></div>
+        <div class="oplog-item"><span class="oplog-time">2026-07-01 15:30</span><span class="oplog-action">驳回报告 RPT-20260701-0118</span><span class="oplog-ip">192.168.1.80</span></div>
+        <div class="oplog-item"><span class="oplog-time">2026-07-01 14:00</span><span class="oplog-action">复核报告 RPT-20260701-0115</span><span class="oplog-ip">192.168.1.80</span></div>
+        <div class="oplog-item"><span class="oplog-time">2026-07-01 10:45</span><span class="oplog-action">批准报告 RPT-20260701-0112</span><span class="oplog-ip">192.168.1.80</span></div>
+        <div class="oplog-item"><span class="oplog-time">2026-06-30 17:00</span><span class="oplog-action">电子签名 APPROVE - RPT-20260630-0100</span><span class="oplog-ip">192.168.1.80</span></div>
+        <div class="oplog-item"><span class="oplog-time">2026-06-30 15:00</span><span class="oplog-action">预览报告 RPT-20260630-0098</span><span class="oplog-ip">192.168.1.80</span></div>
+        <div class="oplog-item"><span class="oplog-time">2026-06-30 08:00</span><span class="oplog-action">系统登录</span><span class="oplog-ip">192.168.1.80</span></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -301,6 +408,16 @@ tbody tr:hover { background: #fafafa; cursor: pointer; }
 <script>
 if (!sessionStorage.getItem('lats_logged_in')) { location.href = 'login.html'; }
 
+function toggleUserMenu(e){e.stopPropagation();var d=document.getElementById('userDropdown'),t=document.getElementById('userTrigger');var o=d.style.display==='block';d.style.display=o?'none':'block';if(o)t.classList.remove('open');else t.classList.add('open');}
+document.addEventListener('click',function(){document.getElementById('userDropdown').style.display='none';document.getElementById('userTrigger').classList.remove('open');});
+function openUserCenter(tab){document.getElementById('userDropdown').style.display='none';document.getElementById('userTrigger').classList.remove('open');document.getElementById('userCenterModal').style.display='flex';switchUserTab(tab);}
+function closeUserCenter(){document.getElementById('userCenterModal').style.display='none';}
+function switchUserTab(tab){document.querySelectorAll('#userCenterModal .modal-tab').forEach(function(t){t.classList.remove('active');});document.querySelectorAll('#userCenterModal .tab-panel').forEach(function(p){p.classList.remove('active');});var tb=document.querySelector('#userCenterModal [data-tab="'+tab+'"]');if(tb)tb.classList.add('active');var pn=document.getElementById('panel'+tab.charAt(0).toUpperCase()+tab.slice(1));if(pn)pn.classList.add('active');}
+function changePassword(){var o=document.getElementById('oldPassword').value.trim(),n=document.getElementById('newPassword').value.trim(),c=document.getElementById('confirmPassword').value.trim(),e=document.getElementById('pwdError'),s=document.getElementById('pwdSuccess');e.style.display='none';s.style.display='none';if(!o){e.textContent='请输入旧密码';e.style.display='block';return;}if(!n||n.length<4){e.textContent='新密码至少4位';e.style.display='block';return;}if(n!==c){e.textContent='两次输入的新密码不一致';e.style.display='block';return;}if(o===n){e.textContent='新密码不能与旧密码相同';e.style.display='block';return;}s.style.display='block';document.getElementById('oldPassword').value='';document.getElementById('newPassword').value='';document.getElementById('confirmPassword').value='';}
+function editProfile(){document.getElementById('profileEditForm').style.display='block';document.getElementById('profileSuccess').style.display='none';}
+function cancelEditProfile(){document.getElementById('profileEditForm').style.display='none';document.getElementById('editEmail').value=document.getElementById('valEmail').textContent;}
+function saveProfile(){var e=document.getElementById('editEmail').value.trim();if(!e||!e.includes('@')){alert('请输入有效的邮箱地址');return;}document.getElementById('valEmail').textContent=e;document.getElementById('profileEditForm').style.display='none';document.getElementById('profileSuccess').style.display='block';}
+
 var currentTab = 'pending';
 var currentDetailId = '';
 var currentSignIntent = 'APPROVE';
@@ -311,17 +428,17 @@ var reviewLog = {};
 
 // 报告状态机
 var reports = [
-  { id:'RPT-20260701-0128', applicant:'李华', department:'生产部', batch:'BAT-20260701-A', type:'NTA粒径分析', typeTag:'info', priority:'紧急', samples:128, time:'2026-07-01 15:40:12', status:'待初审', statusTag:'warning', hasData:true, content:'NTA粒径分析报告\n\n检测批次：BAT-20260701-A\n样品数量：128\n检测参数：粒径分布(10nm~1000nm)、颗粒浓度、Zeta电位\n\n关键结果：\n· D50 = 156.3 nm（标准范围：150±10 nm）\n· 颗粒浓度 = 2.8×10⁸ particles/mL\n· Zeta电位 = -24.5 mV（稳定区间）\n\n结论：批次质量合格，粒径分布符合标准，建议批准放行。' },
-  { id:'RPT-20260701-0125', applicant:'张丽', department:'质量管理部', batch:'BAT-20260701-B', type:'缺陷识别', typeTag:'warning', priority:'高', samples:64, time:'2026-07-01 14:20:33', status:'待初审', statusTag:'warning', hasData:false, content:'缺陷识别检测报告\n\n检测批次：BAT-20260701-B\n样品数量：64\n检测参数：缺陷尺寸(1μm~50μm)、缺陷密度、缺陷分类\n\n关键结果：\n· 缺陷总数：8处（<10处,达标）\n· 最大缺陷尺寸：12.7μm（允许上限20μm）\n· 缺陷密度：0.13/cm²\n\n结论：缺陷数量与尺寸均在允收范围内，建议批准。' },
-  { id:'RPT-20260701-0119', applicant:'赵刚', department:'生产部', batch:'BAT-20260701-C', type:'颗粒计数', typeTag:'info', priority:'中', samples:256, time:'2026-07-01 11:10:05', status:'待初审', statusTag:'warning', hasData:true, content:'颗粒计数报告\n\n检测批次：BAT-20260701-C\n样品数量：256\n检测参数：≥0.2μm颗粒数、≥0.5μm颗粒数、≥1.0μm颗粒数\n\n关键结果：\n· ≥0.2μm: 1,205（USP <788> 标准: ≤3,520）\n· ≥0.5μm: 287（标准: ≤600）\n· ≥1.0μm: 42（标准: ≤100）\n\n结论：全部粒径区间均满足USP<788>注射剂颗粒物限度要求，建议批准。' },
-  { id:'RPT-20260701-0110', applicant:'李华', department:'生产部', batch:'BAT-20260630-D', type:'NTA粒径分析', typeTag:'info', priority:'中', samples:96, time:'2026-06-30 16:50:18', status:'待初审', statusTag:'warning', hasData:false, content:'NTA粒径分析报告\n\n检测批次：BAT-20260630-D\n样品数量：96\n\n关键结果：\n· D50 = 148.7 nm（标准：150±10 nm,边缘接近下限）\n· 颗粒浓度 = 1.9×10⁸ particles/mL\n\n注意：D50接近下容忍限（148.7 vs 140nm下限），请复核后决定。' },
-  { id:'RPT-20260701-0090', applicant:'张丽', department:'质量管理部', batch:'BAT-20260701-E', type:'缺陷识别', typeTag:'warning', priority:'高', samples:48, time:'2026-07-01 09:30:45', status:'待初审', statusTag:'warning', hasData:true, content:'缺陷识别检测报告\n\n检测批次：BAT-20260701-E\n样品数量：48\n\n关键结果：\n· 缺陷总数：14处（接近上限15处,需复核）\n· 最大缺陷尺寸：18.5μm（允许上限20μm,接近边界）\n\n风险提示：缺陷总数接近允收上限，建议人工复核显微图像后再决定。' },
-  { id:'RPT-20260630-0085', applicant:'赵刚', department:'生产部', batch:'BAT-20260630-F', type:'颗粒计数', typeTag:'info', priority:'低', samples:128, time:'2026-06-30 14:15:00', status:'待初审', statusTag:'warning', hasData:false, content:'颗粒计数报告（复检）\n\n检测批次：BAT-20260630-F\n样品数量：128（复检批次）\n\n关键结果：\n· ≥0.2μm: 980（USP <788>: ≤3,520）\n· ≥0.5μm: 210（标准: ≤600）\n\n结论：初检因管路异常被迫中止，复检全部通过。请复核复检结果的有效性。' }
+  { id:'RPT-20260701-0128', applicant:'李华', batch:'BAT-20260701-A', type:'NTA粒径分析', typeTag:'info', priority:'紧急', samples:128, time:'2026-07-01 15:40:12', status:'待初审', statusTag:'warning', hasData:true, content:'NTA粒径分析报告\n\n检测批次：BAT-20260701-A\n样品数量：128\n检测参数：粒径分布(10nm~1000nm)、颗粒浓度、Zeta电位\n\n关键结果：\n· D50 = 156.3 nm（标准范围：150±10 nm）\n· 颗粒浓度 = 2.8×10⁸ particles/mL\n· Zeta电位 = -24.5 mV（稳定区间）\n\n结论：批次质量合格，粒径分布符合标准，建议批准放行。' },
+  { id:'RPT-20260701-0125', applicant:'张丽', batch:'BAT-20260701-B', type:'缺陷识别', typeTag:'warning', priority:'高', samples:64, time:'2026-07-01 14:20:33', status:'待初审', statusTag:'warning', hasData:false, content:'缺陷识别检测报告\n\n检测批次：BAT-20260701-B\n样品数量：64\n检测参数：缺陷尺寸(1μm~50μm)、缺陷密度、缺陷分类\n\n关键结果：\n· 缺陷总数：8处（<10处,达标）\n· 最大缺陷尺寸：12.7μm（允许上限20μm）\n· 缺陷密度：0.13/cm²\n\n结论：缺陷数量与尺寸均在允收范围内，建议批准。' },
+  { id:'RPT-20260701-0119', applicant:'赵刚', batch:'BAT-20260701-C', type:'颗粒计数', typeTag:'info', priority:'中', samples:256, time:'2026-07-01 11:10:05', status:'待初审', statusTag:'warning', hasData:true, content:'颗粒计数报告\n\n检测批次：BAT-20260701-C\n样品数量：256\n检测参数：≥0.2μm颗粒数、≥0.5μm颗粒数、≥1.0μm颗粒数\n\n关键结果：\n· ≥0.2μm: 1,205（USP <788> 标准: ≤3,520）\n· ≥0.5μm: 287（标准: ≤600）\n· ≥1.0μm: 42（标准: ≤100）\n\n结论：全部粒径区间均满足USP<788>注射剂颗粒物限度要求，建议批准。' },
+  { id:'RPT-20260701-0110', applicant:'李华', batch:'BAT-20260630-D', type:'NTA粒径分析', typeTag:'info', priority:'中', samples:96, time:'2026-06-30 16:50:18', status:'待初审', statusTag:'warning', hasData:false, content:'NTA粒径分析报告\n\n检测批次：BAT-20260630-D\n样品数量：96\n\n关键结果：\n· D50 = 148.7 nm（标准：150±10 nm,边缘接近下限）\n· 颗粒浓度 = 1.9×10⁸ particles/mL\n\n注意：D50接近下容忍限（148.7 vs 140nm下限），请复核后决定。' },
+  { id:'RPT-20260701-0090', applicant:'张丽', batch:'BAT-20260701-E', type:'缺陷识别', typeTag:'warning', priority:'高', samples:48, time:'2026-07-01 09:30:45', status:'待初审', statusTag:'warning', hasData:true, content:'缺陷识别检测报告\n\n检测批次：BAT-20260701-E\n样品数量：48\n\n关键结果：\n· 缺陷总数：14处（接近上限15处,需复核）\n· 最大缺陷尺寸：18.5μm（允许上限20μm,接近边界）\n\n风险提示：缺陷总数接近允收上限，建议人工复核显微图像后再决定。' },
+  { id:'RPT-20260630-0085', applicant:'赵刚', batch:'BAT-20260630-F', type:'颗粒计数', typeTag:'info', priority:'低', samples:128, time:'2026-06-30 14:15:00', status:'待初审', statusTag:'warning', hasData:false, content:'颗粒计数报告（复检）\n\n检测批次：BAT-20260630-F\n样品数量：128（复检批次）\n\n关键结果：\n· ≥0.2μm: 980（USP <788>: ≤3,520）\n· ≥0.5μm: 210（标准: ≤600）\n\n结论：初检因管路异常被迫中止，复检全部通过。请复核复检结果的有效性。' }
 ];
 
 // 已初审（等待复核）的报告
 var reviewedReports = [
-  { id:'RPT-20260701-0112', applicant:'李华', department:'生产部', batch:'BAT-20260701-K', type:'NTA粒径分析', typeTag:'info', priority:'中', samples:96, time:'2026-07-01 10:45:30', status:'已初审-待复核', statusTag:'info', hasData:true, content:'NTA粒径分析报告\n\n检测批次：BAT-20260701-K\n样品数量：96\n\n关键结果：\n· D50 = 153.2 nm（标准范围：150±10 nm）\n· 颗粒浓度 = 2.5×10⁸ particles/mL\n\n结论：批次质量合格。' }
+  { id:'RPT-20260701-0112', applicant:'李华', batch:'BAT-20260701-K', type:'NTA粒径分析', typeTag:'info', priority:'中', samples:96, time:'2026-07-01 10:45:30', status:'已初审-待复核', statusTag:'info', hasData:true, content:'NTA粒径分析报告\n\n检测批次：BAT-20260701-K\n样品数量：96\n\n关键结果：\n· D50 = 153.2 nm（标准范围：150±10 nm）\n· 颗粒浓度 = 2.5×10⁸ particles/mL\n\n结论：批次质量合格。' }
 ];
 
 var history = [

@@ -131,13 +131,12 @@ td{padding:12px;font-size:13px;color:rgba(0,0,0,0.88);border-bottom:1px solid #f
       <div class="tab-panel active" id="panelProfile">
         <div class="profile-avatar">李</div>
         <div style="text-align:center;font-size:18px;font-weight:600;color:rgba(0,0,0,0.88);margin-bottom:4px;">李华</div>
-        <div style="text-align:center;font-size:13px;color:rgba(0,0,0,0.45);margin-bottom:24px;">操作员 &middot; <span id="valDeptTitle">生产部</span></div>
+        <div style="text-align:center;font-size:13px;color:rgba(0,0,0,0.45);margin-bottom:24px;">操作员</div>
         <div class="msg-success" id="profileSuccess" style="margin-bottom:16px;">个人信息已更新</div>
         <div class="info-row"><span class="key">用户名</span><span class="val">lihua</span></div>
         <div class="info-row"><span class="key">角色</span><span class="val">操作员（四级）</span></div>
         <div class="info-row"><span class="key">权限范围</span><span class="val">数据录入 + 自有数据查询</span></div>
         <div class="info-row" id="rowEmailR"><span class="key">邮箱</span><span class="val" id="valEmail">lihua@company.com</span></div>
-        <div class="info-row" id="rowDeptR"><span class="key">部门</span><span class="val" id="valDept">生产部</span></div>
         <div class="info-row"><span class="key">最后登录</span><span class="val">2026-07-02 08:30:15</span></div>
         <div class="info-row"><span class="key">登录 IP</span><span class="val" style="font-family:'SFMono-Regular',Consolas,monospace;">192.168.1.50</span></div>
         <div class="info-row"><span class="key">账户状态</span><span class="val" style="color:#52c41a;">启用中</span></div>
@@ -146,87 +145,9 @@ td{padding:12px;font-size:13px;color:rgba(0,0,0,0.88);border-bottom:1px solid #f
         </div>
         <div id="profileEditForm" style="display:none;margin-top:16px;padding-top:16px;border-top:1px solid #f0f0f0;">
           <div class="form-group"><label>邮箱</label><input type="email" id="editEmail" value="lihua@company.com"></div>
-          <div class="form-group"><label>部门</label><select id="editDept"><option>生产部</option><option>IT 部</option><option>质量部</option><option>合规部</option><option>管理部</option></select></div>
           <div style="display:flex;gap:12px;justify-content:flex-end;">
             <button class="btn-default" style="padding:6px 16px;" onclick="cancelEditProfile()">取消</button>
             <button class="btn-primary" style="padding:6px 20px;" onclick="saveProfile()">保存</button>
           </div>
         </div>
       </div>
-      <div class="tab-panel" id="panelPassword">
-        <div class="msg-success" id="pwdSuccess">密码修改成功！请牢记新密码。</div>
-        <div class="msg-error" id="pwdError"></div>
-        <div class="form-group"><label>旧密码 *</label><input type="password" id="oldPassword" placeholder="输入当前密码" required></div>
-        <div class="form-group"><label>新密码 *</label><input type="password" id="newPassword" placeholder="至少4位" required minlength="4"><div class="hint">至少 4 位字符</div></div>
-        <div class="form-group"><label>确认新密码 *</label><input type="password" id="confirmPassword" placeholder="重新输入新密码" required minlength="4"></div>
-        <button class="btn-primary" style="width:100%;" onclick="changePassword()">确认修改</button>
-      </div>
-      <div class="tab-panel" id="panelLogs">
-        <div class="oplog-item"><span class="oplog-time">2026-07-02 08:30</span><span class="oplog-action">系统登录</span><span class="oplog-ip">192.168.1.50</span></div>
-        <div class="oplog-item"><span class="oplog-time">2026-07-01 15:35</span><span class="oplog-action">录入批次 BAT-20260701-X &middot; NTA粒径分析</span><span class="oplog-ip">192.168.1.50</span></div>
-        <div class="oplog-item"><span class="oplog-time">2026-07-01 14:58</span><span class="oplog-action">上传文件 nta-128.dat (2.4 MB)</span><span class="oplog-ip">192.168.1.50</span></div>
-        <div class="oplog-item"><span class="oplog-time">2026-07-01 10:15</span><span class="oplog-action">录入批次 BAT-20260701-Y</span><span class="oplog-ip">192.168.1.50</span></div>
-        <div class="oplog-item"><span class="oplog-time">2026-07-01 09:20</span><span class="oplog-action">提交审批 APR-20260701-007</span><span class="oplog-ip">192.168.1.50</span></div>
-        <div class="oplog-item"><span class="oplog-time">2026-06-30 16:00</span><span class="oplog-action">确认设备推送数据 SIDU-CAM-001</span><span class="oplog-ip">192.168.1.50</span></div>
-        <div class="oplog-item"><span class="oplog-time">2026-06-30 14:20</span><span class="oplog-action">生成 API Token（MES集成）</span><span class="oplog-ip">192.168.1.50</span></div>
-        <div class="oplog-item"><span class="oplog-time">2026-06-30 08:00</span><span class="oplog-action">系统登录</span><span class="oplog-ip">192.168.1.50</span></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="layout-sider">
-  <div class="menu-item active">仪表盘</div>
-  <div class="menu-item" onclick="location.href='data-entry.html'">数据录入</div>
-</div>
-<div class="main-content">
-  <div class="page-title">操作员工作台 <span>李华 · 生产部</span></div>
-  <div class="stat-grid">
-    <div class="stat-card"><div class="num">284</div><div class="lbl">今日检测</div><div class="sub" style="color:#52c41a;">↑ +12</div></div>
-    <div class="stat-card"><div class="num" style="color:#52c41a;">98.6%</div><div class="lbl">合格率</div><div class="sub">目标 ≥97%</div></div>
-    <div class="stat-card"><div class="num" style="color:#faad14;">3</div><div class="lbl">我的待审批</div><div class="sub">处理中</div></div>
-    <div class="stat-card"><div class="num">2</div><div class="lbl">已获授权签名</div><div class="sub" style="color:#52c41a;"> 有效</div></div>
-  </div>
-  <div class="quick-actions" style="margin-bottom:24px;">
-    <div class="quick-item" onclick="location.href='data-entry.html'"><div class="label">NTA 数据上传</div><div class="sub">上传原始检测数据文件</div></div>
-    <div class="quick-item" onclick="location.href='data-entry.html'"><div class="label">基础数据录入</div><div class="sub">批次/样本/检测项</div></div>
-    <div class="quick-item"><div class="label">查看我的数据</div><div class="sub">自有数据查询(仅本人)</div></div>
-  </div>
-  <div class="grid-2">
-    <div class="card">
-      <div class="card-title">我的录入统计</div>
-      <div class="stat-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:0;">
-        <div class="stat-card"><div class="num">284</div><div class="lbl">本月录入</div></div>
-        <div class="stat-card"><div class="num" style="color:#52c41a;">98.6%</div><div class="lbl">完成率</div></div>
-        <div class="stat-card"><div class="num">18</div><div class="lbl">待提交</div></div>
-        <div class="stat-card"><div class="num">128</div><div class="lbl">文件已上传</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title">我的最近录入</div>
-      <div class="timeline-item"><div class="time">2026-07-01 15:35</div><div>录入批次 BAT-20260701-X · NTA粒径分析 · 128样品</div></div>
-      <div class="timeline-item"><div class="time">2026-07-01 14:58</div><div>上传 nt a-128.dat (2.4 MB)</div></div>
-      <div class="timeline-item"><div class="time">2026-07-01 10:15</div><div>录入批次 BAT-20260701-Y · 缺陷识别 · 64样品</div></div>
-      <div class="timeline-item"><div class="time">2026-07-01 09:20</div><div>登录系统</div></div>
-      <div class="timeline-item"><div class="time">2026-06-28 09:30</div><div>录入批次 BAT-20260628-Z · 颗粒计数</div></div>
-    </div>
-  </div>
-</div>
-<script>
-if(!sessionStorage.getItem('lats_logged_in')){location.href='login.html';}
-
-function toggleUserMenu(e){e.stopPropagation();var d=document.getElementById('userDropdown'),t=document.getElementById('userTrigger');var o=d.style.display==='block';d.style.display=o?'none':'block';if(o)t.classList.remove('open');else t.classList.add('open');}
-document.addEventListener('click',function(){document.getElementById('userDropdown').style.display='none';document.getElementById('userTrigger').classList.remove('open');});
-
-function openUserCenter(tab){document.getElementById('userDropdown').style.display='none';document.getElementById('userTrigger').classList.remove('open');document.getElementById('userCenterModal').style.display='flex';switchUserTab(tab);}
-function closeUserCenter(){document.getElementById('userCenterModal').style.display='none';}
-function switchUserTab(tab){document.querySelectorAll('#userCenterModal .modal-tab').forEach(function(t){t.classList.remove('active');});document.querySelectorAll('#userCenterModal .tab-panel').forEach(function(p){p.classList.remove('active');});var tb=document.querySelector('#userCenterModal [data-tab="'+tab+'"]');if(tb)tb.classList.add('active');var pn=document.getElementById('panel'+tab.charAt(0).toUpperCase()+tab.slice(1));if(pn)pn.classList.add('active');}
-
-function changePassword(){var o=document.getElementById('oldPassword').value.trim(),n=document.getElementById('newPassword').value.trim(),c=document.getElementById('confirmPassword').value.trim(),e=document.getElementById('pwdError'),s=document.getElementById('pwdSuccess');e.style.display='none';s.style.display='none';if(!o){e.textContent='请输入旧密码';e.style.display='block';return;}if(!n||n.length<4){e.textContent='新密码至少4位';e.style.display='block';return;}if(n!==c){e.textContent='两次输入的新密码不一致';e.style.display='block';return;}if(o===n){e.textContent='新密码不能与旧密码相同';e.style.display='block';return;}s.style.display='block';document.getElementById('oldPassword').value='';document.getElementById('newPassword').value='';document.getElementById('confirmPassword').value='';}
-
-function editProfile(){document.getElementById('profileEditForm').style.display='block';document.getElementById('profileSuccess').style.display='none';}
-function cancelEditProfile(){document.getElementById('profileEditForm').style.display='none';document.getElementById('editEmail').value=document.getElementById('valEmail').textContent;document.getElementById('editDept').value=document.getElementById('valDept').textContent;}
-function saveProfile(){var e=document.getElementById('editEmail').value.trim(),d=document.getElementById('editDept').value;if(!e||!e.includes('@')){alert('请输入有效的邮箱地址');return;}document.getElementById('valEmail').textContent=e;document.getElementById('valDept').textContent=d;document.getElementById('valDeptTitle').textContent=d;document.getElementById('profileEditForm').style.display='none';document.getElementById('profileSuccess').style.display='block';}
-</script>
-</body>
-</html>

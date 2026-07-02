@@ -48,6 +48,46 @@ tbody tr:hover { background: #fafafa; }
 .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
 .filter-bar { display: flex; gap: 12px; align-items: center; }
 .filter-bar input, .filter-bar select { padding: 6px 12px; border: 1px solid #d9d9d9; border-radius: 4px; font-size: 14px; outline: none; }
+/* 用户下拉菜单 */
+.user-trigger{display:flex;align-items:center;gap:6px;cursor:pointer;padding:6px 12px;border-radius:4px;transition:background 0.15s;position:relative;user-select:none;}
+.user-trigger:hover{background:#fafafa;}
+.user-trigger .arrow{font-size:10px;color:rgba(0,0,0,0.45);transition:transform 0.2s;}
+.user-trigger.open .arrow{transform:rotate(180deg);}
+.user-dropdown{position:absolute;top:56px;right:24px;background:white;border-radius:8px;box-shadow:0 6px 16px 0 rgba(0,0,0,0.08),0 3px 6px -4px rgba(0,0,0,0.12),0 9px 28px 8px rgba(0,0,0,0.05);min-width:160px;z-index:2001;padding:4px 0;}
+.dropdown-item{padding:10px 16px;cursor:pointer;font-size:14px;color:rgba(0,0,0,0.88);transition:background 0.15s;}
+.dropdown-item:hover{background:#fafafa;}
+.dropdown-divider{height:1px;background:#f0f0f0;margin:4px 0;}
+/* 用户中心 Modal */
+.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:2000;}
+.modal-box{background:white;border-radius:8px;width:540px;max-height:80vh;overflow:hidden;display:flex;flex-direction:column;}
+.modal-header{padding:20px 24px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;}
+.modal-header h3{margin:0;font-size:16px;font-weight:500;}
+.modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:rgba(0,0,0,0.45);line-height:1;}
+.modal-tabs{display:flex;border-bottom:1px solid #f0f0f0;padding:0 24px;}
+.modal-tab{padding:12px 16px;cursor:pointer;font-size:14px;color:rgba(0,0,0,0.65);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s;}
+.modal-tab:hover{color:#1677ff;}
+.modal-tab.active{color:#1677ff;border-bottom-color:#1677ff;font-weight:500;}
+.modal-body{padding:24px;overflow-y:auto;flex:1;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+.profile-avatar{width:64px;height:64px;border-radius:50%;background:#e6f4ff;color:#1677ff;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:600;margin:0 auto 16px;}
+.oplog-item{padding:12px 0;border-bottom:1px solid #fafafa;display:flex;justify-content:space-between;align-items:center;}
+.oplog-item:last-child{border-bottom:none;}
+.oplog-time{font-size:12px;color:rgba(0,0,0,0.45);}
+.oplog-action{font-size:13px;color:rgba(0,0,0,0.88);flex:1;margin:0 16px;}
+.oplog-ip{font-size:12px;color:rgba(0,0,0,0.45);font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,Courier,monospace;}
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;margin-bottom:8px;color:rgba(0,0,0,0.88);font-weight:500;font-size:14px;}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:8px 12px;border:1px solid #d9d9d9;border-radius:4px;font-size:14px;outline:none;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#1677ff;box-shadow:0 0 0 2px rgba(22,119,255,0.1);}
+.form-group .hint{font-size:12px;color:rgba(0,0,0,0.45);margin-top:4px;}
+.btn-default{background:white;border:1px solid #d9d9d9;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;color:rgba(0,0,0,0.65);}
+.msg-success{background:#f6ffed;border:1px solid #b7eb8f;color:#389e0d;padding:10px 12px;border-radius:6px;font-size:13px;margin-bottom:16px;display:none;}
+.msg-error{background:#fff2f0;border:1px solid #ffccc7;color:#ff4d4f;padding:10px 12px;border-radius:6px;font-size:13px;margin-bottom:16px;display:none;}
+.info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #fafafa;font-size:14px;}
+.info-row:last-child{border-bottom:none;}
+.info-row .key{color:rgba(0,0,0,0.45);}
+.info-row .val{color:rgba(0,0,0,0.88);font-weight:500;}
 </style>
 </head>
 <body>
@@ -58,8 +98,77 @@ tbody tr:hover { background: #fafafa; }
     <div class="breadcrumb">用户管理 &raquo; 系统用户与权限配置</div>
   </div>
   <div class="header-right">
-    <span style="color:rgba(0,0,0,0.65);font-size:14px;">当前用户 / 张明</span>
-    <button onclick="location.href='login.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:rgba(0,0,0,0.65);font-size:14px;">注销</button>
+    <div class="user-trigger" id="userTrigger" onclick="toggleUserMenu(event)">
+      <span style="color:rgba(0,0,0,0.65);font-size:14px;">当前用户 / 张明</span>
+      <span class="arrow">▼</span>
+    </div>
+  </div>
+
+<!-- 用户下拉菜单 -->
+<div class="user-dropdown" id="userDropdown" style="display:none;">
+  <div class="dropdown-item" onclick="openUserCenter('profile')">个人信息</div>
+  <div class="dropdown-item" onclick="openUserCenter('password')">修改密码</div>
+  <div class="dropdown-item" onclick="openUserCenter('logs')">操作日志</div>
+  <div class="dropdown-divider"></div>
+  <div class="dropdown-item" onclick="location.href='login.html'" style="color:#ff4d4f;">注销</div>
+</div>
+
+<!-- 用户中心 Modal -->
+<div class="modal-overlay" id="userCenterModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>用户中心</h3>
+      <button class="modal-close" onclick="closeUserCenter()">&times;</button>
+    </div>
+    <div class="modal-tabs">
+      <div class="modal-tab active" data-tab="profile" onclick="switchUserTab('profile')">个人信息</div>
+      <div class="modal-tab" data-tab="password" onclick="switchUserTab('password')">修改密码</div>
+      <div class="modal-tab" data-tab="logs" onclick="switchUserTab('logs')">操作日志</div>
+    </div>
+    <div class="modal-body">
+      <div class="tab-panel active" id="panelProfile">
+        <div class="profile-avatar" style="background:#e6f4ff;color:#1677ff;">张</div>
+        <div style="text-align:center;font-size:18px;font-weight:600;color:rgba(0,0,0,0.88);margin-bottom:4px;">张明</div>
+        <div style="text-align:center;font-size:13px;color:rgba(0,0,0,0.45);margin-bottom:24px;">系统管理员</div>
+        <div class="msg-success" id="profileSuccess" style="margin-bottom:16px;">个人信息已更新</div>
+        <div class="info-row"><span class="key">用户名</span><span class="val">zhangming</span></div>
+        <div class="info-row"><span class="key">角色</span><span class="val">系统管理员（一级）</span></div>
+        <div class="info-row"><span class="key">权限范围</span><span class="val">全部功能 + 用户管理 + 系统配置</span></div>
+        <div class="info-row" id="rowEmailR"><span class="key">邮箱</span><span class="val" id="valEmail">zhangming@company.com</span></div>
+        <div class="info-row"><span class="key">最后登录</span><span class="val">2026-07-02 09:15:32</span></div>
+        <div class="info-row"><span class="key">登录 IP</span><span class="val" style="font-family:'SFMono-Regular',Consolas,monospace;">192.168.1.100</span></div>
+        <div class="info-row"><span class="key">账户创建</span><span class="val">2025-06-01</span></div>
+        <div class="info-row"><span class="key">账户状态</span><span class="val" style="color:#52c41a;">启用中</span></div>
+        <div style="text-align:right;margin-top:16px;">
+          <button class="btn-default" style="padding:6px 16px;" onclick="editProfile()">编辑个人信息</button>
+        </div>
+        <div id="profileEditForm" style="display:none;margin-top:16px;padding-top:16px;border-top:1px solid #f0f0f0;">
+          <div class="form-group"><label>邮箱</label><input type="email" id="editEmail" value="zhangming@company.com"></div>
+          <div style="display:flex;gap:12px;justify-content:flex-end;">
+            <button class="btn-default" style="padding:6px 16px;" onclick="cancelEditProfile()">取消</button>
+            <button class="btn-primary" style="padding:6px 20px;" onclick="saveProfile()">保存</button>
+          </div>
+        </div>
+      </div>
+      <div class="tab-panel" id="panelPassword">
+        <div class="msg-success" id="pwdSuccess">密码修改成功！请牢记新密码。</div>
+        <div class="msg-error" id="pwdError"></div>
+        <div class="form-group"><label>旧密码 *</label><input type="password" id="oldPassword" placeholder="输入当前密码" required></div>
+        <div class="form-group"><label>新密码 *</label><input type="password" id="newPassword" placeholder="至少4位" required minlength="4"><div class="hint">至少 4 位字符</div></div>
+        <div class="form-group"><label>确认新密码 *</label><input type="password" id="confirmPassword" placeholder="重新输入新密码" required minlength="4"></div>
+        <button class="btn-primary" style="width:100%;" onclick="changePassword()">确认修改</button>
+      </div>
+      <div class="tab-panel" id="panelLogs">
+        <div class="oplog-item"><span class="oplog-time">2026-07-02 09:15</span><span class="oplog-action">系统登录</span><span class="oplog-ip">192.168.1.100</span></div>
+        <div class="oplog-item"><span class="oplog-time">2026-07-01 15:42</span><span class="oplog-action">导出检测报告 RPT-20260701-001</span><span class="oplog-ip">192.168.1.100</span></div>
+        <div class="oplog-item"><span class="oplog-time">2026-07-01 14:30</span><span class="oplog-action">审批配置变更 APR-20260701-005</span><span class="oplog-ip">192.168.1.100</span></div>
+        <div class="oplog-item"><span class="oplog-time">2026-07-01 11:00</span><span class="oplog-action">添加用户 赵勇（操作员）</span><span class="oplog-ip">192.168.1.100</span></div>
+        <div class="oplog-item"><span class="oplog-time">2026-07-01 08:30</span><span class="oplog-action">系统登录</span><span class="oplog-ip">192.168.1.100</span></div>
+        <div class="oplog-item"><span class="oplog-time">2026-06-30 17:45</span><span class="oplog-action">日志备份导出（月度报表）</span><span class="oplog-ip">192.168.1.100</span></div>
+        <div class="oplog-item"><span class="oplog-time">2026-06-30 16:20</span><span class="oplog-action">禁用过期 Token（cam-003）</span><span class="oplog-ip">192.168.1.100</span></div>
+        <div class="oplog-item"><span class="oplog-time">2026-06-30 14:00</span><span class="oplog-action">修改系统检测阈值 0.85→0.90</span><span class="oplog-ip">192.168.1.100</span></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -87,7 +196,7 @@ tbody tr:hover { background: #fafafa; }
 
   <div class="card">
     <table>
-      <thead><tr><th>用户名</th><th>姓名</th><th>角色</th><th>部门</th><th>邮箱</th><th>最后登录</th><th>状态</th><th>操作</th></tr></thead>
+      <thead><tr><th>用户名</th><th>姓名</th><th>角色</th><th>邮箱</th><th>最后登录</th><th>状态</th><th>操作</th></tr></thead>
       <tbody id="userTable"></tbody>
     </table>
     <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;">
@@ -110,7 +219,6 @@ tbody tr:hover { background: #fafafa; }
       <div class="form-group"><label>角色 *</label>
         <select id="newRole"><option>管理员</option><option>审核人员</option><option>QA审计员</option><option>操作员</option></select>
       </div>
-      <div class="form-group"><label>部门</label><input type="text" id="newDept" placeholder="请输入部门"></div>
       <div class="form-group"><label>邮箱 *</label><input type="email" id="newEmail" placeholder="请输入邮箱"></div>
       <div class="form-group"><label>初始密码 *</label><input type="password" id="newPwd" placeholder="请输入初始密码"></div>
       <div class="form-group"><label>账号有效期</label><input type="date" id="newExpiry"></div>
@@ -125,12 +233,22 @@ tbody tr:hover { background: #fafafa; }
 <script>
 if (!sessionStorage.getItem('lats_logged_in')) { location.href = 'login.html'; }
 
+function toggleUserMenu(e){e.stopPropagation();var d=document.getElementById('userDropdown'),t=document.getElementById('userTrigger');var o=d.style.display==='block';d.style.display=o?'none':'block';if(o)t.classList.remove('open');else t.classList.add('open');}
+document.addEventListener('click',function(){document.getElementById('userDropdown').style.display='none';document.getElementById('userTrigger').classList.remove('open');});
+function openUserCenter(tab){document.getElementById('userDropdown').style.display='none';document.getElementById('userTrigger').classList.remove('open');document.getElementById('userCenterModal').style.display='flex';switchUserTab(tab);}
+function closeUserCenter(){document.getElementById('userCenterModal').style.display='none';}
+function switchUserTab(tab){document.querySelectorAll('#userCenterModal .modal-tab').forEach(function(t){t.classList.remove('active');});document.querySelectorAll('#userCenterModal .tab-panel').forEach(function(p){p.classList.remove('active');});var tb=document.querySelector('#userCenterModal [data-tab="'+tab+'"]');if(tb)tb.classList.add('active');var pn=document.getElementById('panel'+tab.charAt(0).toUpperCase()+tab.slice(1));if(pn)pn.classList.add('active');}
+function changePassword(){var o=document.getElementById('oldPassword').value.trim(),n=document.getElementById('newPassword').value.trim(),c=document.getElementById('confirmPassword').value.trim(),e=document.getElementById('pwdError'),s=document.getElementById('pwdSuccess');e.style.display='none';s.style.display='none';if(!o){e.textContent='请输入旧密码';e.style.display='block';return;}if(!n||n.length<4){e.textContent='新密码至少4位';e.style.display='block';return;}if(n!==c){e.textContent='两次输入的新密码不一致';e.style.display='block';return;}if(o===n){e.textContent='新密码不能与旧密码相同';e.style.display='block';return;}s.style.display='block';document.getElementById('oldPassword').value='';document.getElementById('newPassword').value='';document.getElementById('confirmPassword').value='';}
+function editProfile(){document.getElementById('profileEditForm').style.display='block';document.getElementById('profileSuccess').style.display='none';}
+function cancelEditProfile(){document.getElementById('profileEditForm').style.display='none';document.getElementById('editEmail').value=document.getElementById('valEmail').textContent;}
+function saveProfile(){var e=document.getElementById('editEmail').value.trim();if(!e||!e.includes('@')){alert('请输入有效的邮箱地址');return;}document.getElementById('valEmail').textContent=e;document.getElementById('profileEditForm').style.display='none';document.getElementById('profileSuccess').style.display='block';}
+
 var users = [
-  { username: 'zhangming', name: '张明', role: '管理员', roleTag: 'error', dept: '质量管理部', email: 'zhangming@sidu.com', lastLogin: '2026-07-01 15:42', status: '启用', statusTag: 'success' },
-  { username: 'lihua', name: '李华', role: '操作员', roleTag: 'info', dept: '生产部', email: 'lihua@sidu.com', lastLogin: '2026-07-01 15:35', status: '启用', statusTag: 'success' },
-  { username: 'wangfang', name: '王芳', role: 'QA审计员', roleTag: 'warning', dept: '合规部', email: 'wangfang@sidu.com', lastLogin: '2026-07-01 15:15', status: '启用', statusTag: 'success' },
-  { username: 'zhaoyong', name: '赵勇', role: '操作员', roleTag: 'info', dept: '生产部', email: 'zhaoyong@sidu.com', lastLogin: '2026-06-30 18:20', status: '启用', statusTag: 'success' },
-  { username: 'sunli', name: '孙丽', role: '操作员', roleTag: 'info', dept: '市场部', email: 'sunli@sidu.com', lastLogin: '2026-06-28 10:30', status: '禁用', statusTag: 'error' }
+  { username: 'zhangming', name: '张明', role: '管理员', roleTag: 'error', email: 'zhangming@sidu.com', lastLogin: '2026-07-01 15:42', status: '启用', statusTag: 'success' },
+  { username: 'lihua', name: '李华', role: '操作员', roleTag: 'info', email: 'lihua@sidu.com', lastLogin: '2026-07-01 15:35', status: '启用', statusTag: 'success' },
+  { username: 'wangfang', name: '王芳', role: 'QA审计员', roleTag: 'warning', email: 'wangfang@sidu.com', lastLogin: '2026-07-01 15:15', status: '启用', statusTag: 'success' },
+  { username: 'zhaoyong', name: '赵勇', role: '操作员', roleTag: 'info', email: 'zhaoyong@sidu.com', lastLogin: '2026-06-30 18:20', status: '启用', statusTag: 'success' },
+  { username: 'sunli', name: '孙丽', role: '操作员', roleTag: 'info', email: 'sunli@sidu.com', lastLogin: '2026-06-28 10:30', status: '禁用', statusTag: 'error' }
 ];
 
 function renderUsers(data) {
@@ -139,7 +257,6 @@ function renderUsers(data) {
       <td style="color:#1677ff;font-weight:500;">${u.username}</td>
       <td>${u.name}</td>
       <td><span class="tag tag-${u.roleTag}">${u.role}</span></td>
-      <td style="color:rgba(0,0,0,0.65);">${u.dept}</td>
       <td style="color:rgba(0,0,0,0.65);">${u.email}</td>
       <td style="color:rgba(0,0,0,0.65);font-size:13px;">${u.lastLogin}</td>
       <td><span class="tag tag-${u.statusTag}">${u.status}</span></td>

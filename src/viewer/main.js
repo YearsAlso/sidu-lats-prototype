@@ -1,4 +1,5 @@
-import './viewer.css';
+// CSS loaded via <link> in HTML; dynamic import for Vite build compat
+import('./viewer.css').catch(() => {});
 import { DEFAULT_PAGE, prototypeGroups, prototypePageMap } from './prototype-pages.js';
 
 const viewerNav = document.getElementById('viewerNav');

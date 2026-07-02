@@ -141,7 +141,7 @@ a { text-decoration: none; color: inherit; }
       <div class="tab-panel active" id="panelProfile">
         <div class="profile-avatar">张</div>
         <div style="text-align:center;font-size:18px;font-weight:600;color:rgba(0,0,0,0.88);margin-bottom:4px;">张明</div>
-        <div style="text-align:center;font-size:13px;color:rgba(0,0,0,0.45);margin-bottom:24px;">系统管理员 &middot; <span id="valDeptTitle">IT 部</span></div>
+        <div style="text-align:center;font-size:13px;color:rgba(0,0,0,0.45);margin-bottom:24px;">系统管理员</div>
         <div class="msg-success" id="profileSuccess" style="margin-bottom:16px;">个人信息已更新</div>
         <!-- 只读信息 -->
         <div class="info-row"><span class="key">用户名</span><span class="val">zhangming</span></div>
@@ -149,7 +149,6 @@ a { text-decoration: none; color: inherit; }
         <div class="info-row"><span class="key">权限范围</span><span class="val">全部功能 + 用户管理 + 系统配置</span></div>
         <!-- 可编辑字段 -->
         <div class="info-row" id="rowEmailR"><span class="key">邮箱</span><span class="val" id="valEmail">zhangming@company.com</span></div>
-        <div class="info-row" id="rowDeptR"><span class="key">部门</span><span class="val" id="valDept">IT 部</span></div>
         <div class="info-row"><span class="key">最后登录</span><span class="val">2026-07-02 09:15:32</span></div>
         <div class="info-row"><span class="key">登录 IP</span><span class="val" style="font-family:'SFMono-Regular',Consolas,monospace;">192.168.1.100</span></div>
         <div class="info-row"><span class="key">账户创建</span><span class="val">2025-06-01</span></div>
@@ -162,16 +161,6 @@ a { text-decoration: none; color: inherit; }
           <div class="form-group">
             <label>邮箱</label>
             <input type="email" id="editEmail" value="zhangming@company.com">
-          </div>
-          <div class="form-group">
-            <label>部门</label>
-            <select id="editDept">
-              <option>IT 部</option>
-              <option>生产部</option>
-              <option>质量部</option>
-              <option>合规部</option>
-              <option>管理部</option>
-            </select>
           </div>
           <div style="display:flex;gap:12px;justify-content:flex-end;">
             <button class="btn-default" style="padding:6px 16px;" onclick="cancelEditProfile()">取消</button>
@@ -383,15 +372,11 @@ function editProfile() {
 function cancelEditProfile() {
   document.getElementById('profileEditForm').style.display = 'none';
   document.getElementById('editEmail').value = document.getElementById('valEmail').textContent;
-  document.getElementById('editDept').value = document.getElementById('valDept').textContent;
 }
 function saveProfile() {
   var email = document.getElementById('editEmail').value.trim();
-  var dept = document.getElementById('editDept').value;
   if (!email || !email.includes('@')) { alert('请输入有效的邮箱地址'); return; }
   document.getElementById('valEmail').textContent = email;
-  document.getElementById('valDept').textContent = dept;
-  document.getElementById('valDeptTitle').textContent = dept;
   document.getElementById('profileEditForm').style.display = 'none';
   document.getElementById('profileSuccess').style.display = 'block';
 }
