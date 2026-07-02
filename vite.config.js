@@ -25,9 +25,10 @@ export default defineConfig({
         'prototype-admin-storage': resolve(__dirname, 'prototype/admin/storage.html'),
         'prototype-admin-report-export': resolve(__dirname, 'prototype/admin/report-export.html'),
         'prototype-admin-notifications': resolve(__dirname, 'prototype/admin/notifications.html'),
-        // operator (2 页,阶段 3 加 data-entry)
+        // operator (3 页,阶段 3 加 data-entry)
         'prototype-operator-login': resolve(__dirname, 'prototype/operator/login.html'),
         'prototype-operator-dashboard': resolve(__dirname, 'prototype/operator/dashboard.html'),
+        'prototype-operator-data-entry': resolve(__dirname, 'prototype/operator/data-entry.html'),
         // auditor (5 页,阶段 4-5 加 permission-review/storage/report-export)
         'prototype-auditor-login': resolve(__dirname, 'prototype/auditor/login.html'),
         'prototype-auditor-dashboard': resolve(__dirname, 'prototype/auditor/dashboard.html'),

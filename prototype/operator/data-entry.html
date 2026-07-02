@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIDU-LATS - 数据录入</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';background:#f5f5f5;}
+.header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.03);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
+.header-left{display:flex;align-items:center;gap:20px;}
+.logo{font-size:20px;font-weight:600;color:#1677ff;}
+.role-tag{background:#e6f4ff;color:#0958d9;border:1px solid #91caff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;}
+.breadcrumb{color:rgba(0,0,0,0.65);font-size:14px;}
+.header-right{display:flex;align-items:center;gap:16px;}
+.layout-sider{position:fixed;left:0;top:64px;bottom:0;width:220px;background:white;box-shadow:2px 0 8px rgba(0,0,0,0.03);z-index:999;overflow-y:auto;}
+.menu-item{padding:14px 24px;cursor:pointer;display:flex;align-items:center;gap:12px;color:rgba(0,0,0,0.88);transition:all 0.2s;border-left:3px solid transparent;font-size:14px;}
+.menu-item:hover{background:#e6f4ff;color:#1677ff;}
+.menu-item.active{background:#e6f4ff;color:#1677ff;border-left-color:#1677ff;font-weight:500;}
+.main-content{margin-left:220px;margin-top:64px;padding:24px;}
+.page-title{font-size:24px;font-weight:600;color:rgba(0,0,0,0.88);margin-bottom:24px;}
+.page-title span{font-size:14px;color:rgba(0,0,0,0.45);font-weight:400;margin-left:12px;}
+.card{background:white;border-radius:8px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,0.03);margin-bottom:24px;}
+.card-title{font-size:16px;font-weight:500;color:rgba(0,0,0,0.88);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;}
+.btn-primary{background:#1677ff;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
+.btn-primary:hover{background:#4096ff;}
+.btn-outline{padding:8px 16px;border:1px solid #d9d9d9;background:white;font-size:14px;cursor:pointer;border-radius:4px;color:rgba(0,0,0,0.65);}
+.tag{padding:2px 8px;border-radius:4px;font-size:12px;}
+.tag-success{background:#f6ffed;color:#52c41a;border:1px solid #b7eb8f;}
+.tag-warning{background:#fffbe6;color:#faad14;border:1px solid #ffe58f;}
+.tag-info{background:#e6f4ff;color:#1677ff;border:1px solid #91caff;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;margin-bottom:8px;color:rgba(0,0,0,0.88);font-weight:500;font-size:14px;}
+.form-group label .req{color:#ff4d4f;margin-left:2px;}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:8px 12px;border:1px solid #d9d9d9;border-radius:4px;font-size:14px;outline:none;background:white;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#1677ff;}
+.upload-zone{border:2px dashed #d9d9d9;border-radius:8px;padding:40px 24px;text-align:center;cursor:pointer;transition:all 0.2s;background:#fafafa;}
+.upload-zone:hover,.upload-zone.dragover{border-color:#1677ff;background:#e6f4ff;}
+.upload-zone .icon{font-size:36px;color:#1677ff;margin-bottom:12px;}
+.upload-zone .label{font-size:14px;color:rgba(0,0,0,0.88);font-weight:500;margin-bottom:4px;}
+.upload-zone .sub{font-size:12px;color:rgba(0,0,0,0.45);}
+.file-info{display:flex;align-items:center;gap:10px;padding:12px;background:#f6ffed;border:1px solid #b7eb8f;border-radius:6px;margin-top:12px;}
+.file-info .name{font-size:13px;font-weight:500;color:rgba(0,0,0,0.88);flex:1;}
+.file-info .size{font-size:12px;color:rgba(0,0,0,0.45);}
+.file-info .remove{color:#ff4d4f;cursor:pointer;font-size:13px;}
+table{width:100%;border-collapse:collapse;}
+thead tr{background:#fafafa;border-bottom:1px solid #f0f0f0;}
+th{padding:12px;text-align:left;font-weight:500;color:rgba(0,0,0,0.88);font-size:14px;}
+td{padding:12px;font-size:13px;color:rgba(0,0,0,0.88);border-bottom:1px solid #fafafa;}
+tbody tr:hover{background:#fafafa;}
+.hash-val{font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,Courier,monospace;font-size:12px;background:#fafafa;padding:2px 6px;border-radius:2px;color:rgba(0,0,0,0.65);}
+.error-msg{background:#fff2f0;border:1px solid #ffccc7;color:#ff4d4f;padding:10px 12px;border-radius:6px;font-size:13px;margin-bottom:16px;display:none;}
+.success-msg{background:#f6ffed;border:1px solid #b7eb8f;color:#389e0d;padding:10px 12px;border-radius:6px;font-size:13px;margin-bottom:16px;display:none;}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-left"><div class="logo">SIDU-LATS</div><div class="breadcrumb">数据录入 &raquo; NTA 上传 / 基础录入</div></div>
+  <div class="header-right"><div style="color:rgba(0,0,0,0.65);font-size:14px;">当前用户 / 李华</div><button onclick="location.href='login.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:rgba(0,0,0,0.65);font-size:14px;">注销</button></div>
+</div>
+
+<div class="layout-sider">
+  <div class="menu-item" onclick="location.href='dashboard.html'">仪表盘</div>
+  <div class="menu-item active">数据录入</div>
+</div>
+
+<div class="main-content">
+  <div class="page-title">数据录入 <span>NTA 原始数据上传 + 基础数据录入 · 四级权限</span></div>
+
+  <div id="successMsg" class="success-msg"> 数据已成功录入,已写入审计追踪(mock 留痕)</div>
+  <div id="errorMsg" class="error-msg">请检查必填字段与文件</div>
+
+  <div class="card">
+    <div class="card-title"> NTA 原始数据上传</div>
+    <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+      <div class="icon"></div>
+      <div class="label">点击或拖拽 NTA 原始数据文件到此区域</div>
+      <div class="sub">支持格式:.dat / .csv / .txt / .zip · 单文件最大 50 MB</div>
+    </div>
+    <input type="file" id="fileInput" accept=".dat,.csv,.txt,.zip" style="display:none;" onchange="onFileSelect(event)">
+    <div id="fileInfo" class="file-info" style="display:none;">
+      <span style="font-size:18px;"></span>
+      <span class="name" id="fileName">—</span>
+      <span class="size" id="fileSize">—</span>
+      <span class="size" id="fileHash"></span>
+      <span class="remove" onclick="removeFile()"> 移除</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"> 基础数据录入</div>
+    <form id="entryForm" onsubmit="submitEntry(event)">
+      <div class="form-grid">
+        <div class="form-group"><label>批次编号<span class="req">*</span></label><input type="text" id="batchId" placeholder="如 BAT-20260701-X" required></div>
+        <div class="form-group"><label>检测类型<span class="req">*</span></label>
+          <select id="detectType" required>
+            <option value="">请选择</option>
+            <option>NTA 粒径分析</option>
+            <option>缺陷识别</option>
+            <option>颗粒计数</option>
+          </select>
+        </div>
+        <div class="form-group"><label>样品数量<span class="req">*</span></label><input type="number" id="sampleCount" min="1" max="9999" placeholder="如 128" required></div>
+        <div class="form-group"><label>检测设备<span class="req">*</span></label>
+          <select id="deviceId" required>
+            <option value="">请选择</option>
+            <option>SIDU-NTA-001</option>
+            <option>SIDU-NTA-002</option>
+            <option>SIDU-DEF-001</option>
+          </select>
+        </div>
+        <div class="form-group"><label>检测日期<span class="req">*</span></label><input type="date" id="detectDate" required></div>
+        <div class="form-group"><label>负责人</label><input type="text" id="operator" placeholder="自动填入当前用户" readonly style="background:#fafafa;"></div>
+      </div>
+      <div class="form-group"><label>备注</label><textarea id="remarks" rows="3" placeholder="可选:填写检测环境/异常说明..." maxlength="500"></textarea></div>
+      <div style="display:flex;gap:12px;margin-top:8px;">
+        <button type="submit" class="btn-primary"> 提交录入</button>
+        <button type="button" class="btn-outline" onclick="resetForm()"> 重置</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="card-title"> 我的最近录入 <span style="font-size:12px;color:rgba(0,0,0,0.45);font-weight:400;">(仅本人数据)</span></div>
+    <table>
+      <thead><tr><th>批次编号</th><th>检测类型</th><th>样品数</th><th>检测日期</th><th>上传文件</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td style="color:#1677ff;font-weight:500;">BAT-20260630-A</td><td><span class="tag tag-info">NTA 粒径分析</span></td><td>128</td><td style="color:rgba(0,0,0,0.65);">2026-06-30</td><td><span class="hash-val">nta-128.dat</span></td><td><span class="tag tag-success">已录入</span></td></tr>
+        <tr><td style="color:#1677ff;font-weight:500;">BAT-20260630-B</td><td><span class="tag tag-warning">缺陷识别</span></td><td>64</td><td style="color:rgba(0,0,0,0.65);">2026-06-30</td><td><span class="hash-val">def-064.zip</span></td><td><span class="tag tag-success">已录入</span></td></tr>
+        <tr><td style="color:#1677ff;font-weight:500;">BAT-20260629-C</td><td><span class="tag tag-info">颗粒计数</span></td><td>256</td><td style="color:rgba(0,0,0,0.65);">2026-06-29</td><td><span class="hash-val">cnt-256.csv</span></td><td><span class="tag tag-success">已录入</span></td></tr>
+        <tr><td style="color:#1677ff;font-weight:500;">BAT-20260629-D</td><td><span class="tag tag-info">NTA 粒径分析</span></td><td>96</td><td style="color:rgba(0,0,0,0.65);">2026-06-29</td><td><span class="hash-val">nta-096.dat</span></td><td><span class="tag tag-success">已录入</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+if(!sessionStorage.getItem('lats_logged_in')){location.href='login.html';}
+
+var currentUser = sessionStorage.getItem('lats_user') || '李华';
+document.getElementById('operator').value = currentUser;
+document.getElementById('detectDate').value = new Date().toISOString().substring(0, 10);
+
+var selectedFile = null;
+var uploadZone = document.getElementById('uploadZone');
+['dragenter','dragover'].forEach(function(e) {
+  uploadZone.addEventListener(e, function(ev) { ev.preventDefault(); ev.stopPropagation(); uploadZone.classList.add('dragover'); });
+});
+['dragleave','drop'].forEach(function(e) {
+  uploadZone.addEventListener(e, function(ev) { ev.preventDefault(); ev.stopPropagation(); uploadZone.classList.remove('dragover'); });
+});
+uploadZone.addEventListener('drop', function(ev) {
+  if (ev.dataTransfer.files.length) onFileSelect({ target: { files: ev.dataTransfer.files } });
+});
+
+function onFileSelect(ev) {
+  var f = ev.target.files[0];
+  if (!f) return;
+  if (f.size > 50 * 1024 * 1024) { showError('文件超过 50 MB 限制'); return; }
+  selectedFile = f;
+  document.getElementById('fileName').textContent = f.name;
+  document.getElementById('fileSize').textContent = '(' + (f.size / 1024 / 1024).toFixed(2) + ' MB)';
+  document.getElementById('fileHash').textContent = 'SHA-256: ' + (Math.random().toString(36).substring(2, 10) + Math.random().toString(36).substring(2, 6) + '...');
+  document.getElementById('fileInfo').style.display = 'flex';
+  hideMessages();
+}
+
+function removeFile() {
+  selectedFile = null;
+  document.getElementById('fileInfo').style.display = 'none';
+  document.getElementById('fileInput').value = '';
+}
+
+function submitEntry(e) {
+  e.preventDefault();
+  var batchId = document.getElementById('batchId').value.trim();
+  var sampleCount = document.getElementById('sampleCount').value;
+  if (!batchId) { showError('批次编号不能为空'); return; }
+  if (!sampleCount || sampleCount < 1) { showError('样品数量必须 ≥ 1'); return; }
+  var msg = '数据录入成功！\n\n' +
+    '批次: ' + batchId + '\n' +
+    '检测类型: ' + document.getElementById('detectType').value + '\n' +
+    '样品数: ' + sampleCount + '\n' +
+    '附件: ' + (selectedFile ? selectedFile.name : '未上传') + '\n' +
+    '操作人: ' + currentUser + '\n' +
+    '时间: ' + new Date().toLocaleString('zh-CN') + '\n\n' +
+    '已写入审计追踪(mock 留痕)。';
+  alert(msg);
+  showSuccess();
+  resetForm();
+}
+
+function resetForm() {
+  document.getElementById('entryForm').reset();
+  document.getElementById('operator').value = currentUser;
+  document.getElementById('detectDate').value = new Date().toISOString().substring(0, 10);
+  removeFile();
+  hideMessages();
+}
+
+function showError(msg) {
+  var el = document.getElementById('errorMsg');
+  el.textContent = msg;
+  el.style.display = 'block';
+  document.getElementById('successMsg').style.display = 'none';
+}
+function showSuccess() {
+  document.getElementById('successMsg').style.display = 'block';
+  document.getElementById('errorMsg').style.display = 'none';
+  window.scrollTo(0, 0);
+}
+function hideMessages() {
+  document.getElementById('errorMsg').style.display = 'none';
+  document.getElementById('successMsg').style.display = 'none';
+}
+</script>
+</body>
+</html>
