@@ -29,12 +29,13 @@ export default defineConfig({
         'prototype-operator-login': resolve(__dirname, 'prototype/operator/login.html'),
         'prototype-operator-dashboard': resolve(__dirname, 'prototype/operator/dashboard.html'),
         'prototype-operator-data-entry': resolve(__dirname, 'prototype/operator/data-entry.html'),
-        // auditor (5 页,阶段 4-5 加 permission-review/storage/report-export)
+        // auditor (6 页,阶段 4-5 加 permission-review/storage/report-export)
         'prototype-auditor-login': resolve(__dirname, 'prototype/auditor/login.html'),
         'prototype-auditor-dashboard': resolve(__dirname, 'prototype/auditor/dashboard.html'),
         'prototype-auditor-audit-log': resolve(__dirname, 'prototype/auditor/audit-log.html'),
         'prototype-auditor-hash-chain': resolve(__dirname, 'prototype/auditor/hash-chain.html'),
         'prototype-auditor-report-export': resolve(__dirname, 'prototype/auditor/report-export.html'),
+        'prototype-auditor-permission-review': resolve(__dirname, 'prototype/auditor/permission-review.html'),
         // reviewer (3 页,新建)
         'prototype-reviewer-login': resolve(__dirname, 'prototype/reviewer/login.html'),
         'prototype-reviewer-dashboard': resolve(__dirname, 'prototype/reviewer/dashboard.html'),
