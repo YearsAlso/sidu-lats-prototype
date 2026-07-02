@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIDU-LATS - 报告审核员工作台</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';background:#f5f5f5;}
+.header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.03);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
+.header-left{display:flex;align-items:center;gap:20px;}
+.logo{font-size:20px;font-weight:600;color:#1677ff;}
+.role-tag{background:#e6f4ff;color:#0958d9;border:1px solid #91caff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;}
+.header-right{display:flex;align-items:center;gap:16px;}
+.layout-sider{position:fixed;left:0;top:64px;bottom:0;width:220px;background:white;box-shadow:2px 0 8px rgba(0,0,0,0.03);z-index:999;overflow-y:auto;}
+.menu-item{padding:14px 24px;cursor:pointer;display:flex;align-items:center;gap:12px;color:rgba(0,0,0,0.88);transition:all 0.2s;border-left:3px solid transparent;font-size:14px;}
+.menu-item:hover{background:#e6f4ff;color:#1677ff;}
+.menu-item.active{background:#e6f4ff;color:#1677ff;border-left-color:#1677ff;font-weight:500;}
+.main-content{margin-left:220px;margin-top:64px;padding:24px;}
+.page-title{font-size:24px;font-weight:600;color:rgba(0,0,0,0.88);margin-bottom:24px;}
+.page-title span{font-size:14px;color:rgba(0,0,0,0.45);font-weight:400;margin-left:12px;}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
+.stat-card{background:white;border-radius:8px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,0.03);}
+.stat-card .num{font-size:28px;font-weight:600;color:rgba(0,0,0,0.88);}
+.stat-card .lbl{font-size:13px;color:rgba(0,0,0,0.45);margin-top:4px;}
+.card{background:white;border-radius:8px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,0.03);margin-bottom:24px;}
+.card-title{font-size:16px;font-weight:500;color:rgba(0,0,0,0.88);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;}
+.btn-primary{background:#1677ff;color:white;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:14px;}
+.btn-primary:hover{background:#4096ff;}
+.tag{padding:2px 8px;border-radius:4px;font-size:12px;}
+.tag-warning{background:#fffbe6;color:#faad14;border:1px solid #ffe58f;}
+.tag-success{background:#f6ffed;color:#52c41a;border:1px solid #b7eb8f;}
+.tag-error{background:#fff2f0;color:#ff4d4f;border:1px solid #ffccc7;}
+.tag-info{background:#e6f4ff;color:#1677ff;border:1px solid #91caff;}
+.hash-val{font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,Courier,monospace;font-size:12px;background:#fafafa;padding:2px 6px;border-radius:2px;color:rgba(0,0,0,0.65);}
+table{width:100%;border-collapse:collapse;}
+thead tr{background:#fafafa;border-bottom:1px solid #f0f0f0;}
+th{padding:12px;text-align:left;font-weight:500;color:rgba(0,0,0,0.88);font-size:14px;}
+td{padding:12px;font-size:13px;color:rgba(0,0,0,0.88);border-bottom:1px solid #fafafa;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-left"><div class="logo">SIDU-LATS</div><div class="role-tag"> 报告审核员</div></div>
+  <div class="header-right"><div style="color:rgba(0,0,0,0.65);font-size:14px;">当前用户 / 王芳</div><button onclick="location.href='login.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:rgba(0,0,0,0.65);font-size:14px;">注销</button></div>
+</div>
+<div class="layout-sider">
+  <div class="menu-item active">仪表盘</div>
+  <div class="menu-item" onclick="location.href='approval.html'">报告复核</div>
+</div>
+<div class="main-content">
+  <div class="page-title">报告审核员工作台 <span>王芳 · 质量管理部</span></div>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="num" style="color:#faad14;">7</div><div class="lbl">待复核报告</div></div>
+    <div class="stat-card"><div class="num" style="color:#52c41a;">156</div><div class="lbl">本月已批准</div></div>
+    <div class="stat-card"><div class="num" style="color:#ff4d4f;">14</div><div class="lbl">本月驳回</div></div>
+    <div class="stat-card"><div class="num">98.7%</div><div class="lbl">通过率</div></div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">待复核报告队列 <span class="tag tag-warning">7 份</span></div>
+      <table>
+        <thead><tr><th>报告编号</th><th>检测批次</th><th>提交人</th><th>提交时间</th><th>优先级</th></tr></thead>
+        <tbody>
+          <tr onclick="location.href='approval.html'" style="cursor:pointer;">
+            <td style="color:#1677ff;font-weight:500;">RPT-20260701-0128</td>
+            <td>BAT-20260701-A</td>
+            <td>李华</td>
+            <td style="color:rgba(0,0,0,0.65);">2026-07-01 15:40</td>
+            <td><span class="tag tag-error">紧急</span></td>
+          </tr>
+          <tr onclick="location.href='approval.html'" style="cursor:pointer;">
+            <td style="color:#1677ff;font-weight:500;">RPT-20260701-0125</td>
+            <td>BAT-20260701-B</td>
+            <td>张丽</td>
+            <td style="color:rgba(0,0,0,0.65);">2026-07-01 14:20</td>
+            <td><span class="tag tag-warning">高</span></td>
+          </tr>
+          <tr onclick="location.href='approval.html'" style="cursor:pointer;">
+            <td style="color:#1677ff;font-weight:500;">RPT-20260701-0119</td>
+            <td>BAT-20260701-C</td>
+            <td>赵刚</td>
+            <td style="color:rgba(0,0,0,0.65);">2026-07-01 11:10</td>
+            <td><span class="tag tag-info">中</span></td>
+          </tr>
+          <tr onclick="location.href='approval.html'" style="cursor:pointer;">
+            <td style="color:#1677ff;font-weight:500;">RPT-20260701-0110</td>
+            <td>BAT-20260630-D</td>
+            <td>李华</td>
+            <td style="color:rgba(0,0,0,0.65);">2026-06-30 16:50</td>
+            <td><span class="tag tag-info">中</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">最近签署记录</div>
+      <table>
+        <thead><tr><th>报告编号</th><th>操作</th><th>时间</th><th>留痕</th></tr></thead>
+        <tbody>
+          <tr><td style="color:#1677ff;font-weight:500;">RPT-20260701-0120</td><td><span class="tag tag-success">批准</span></td><td style="color:rgba(0,0,0,0.65);">2026-07-01 16:05</td><td style="font-family:'SFMono-Regular',Consolas,monospace;font-size:11px;color:rgba(0,0,0,0.45);">a3f2c8...</td></tr>
+          <tr><td style="color:#1677ff;font-weight:500;">RPT-20260701-0118</td><td><span class="tag tag-error">驳回</span></td><td style="color:rgba(0,0,0,0.65);">2026-07-01 15:30</td><td style="font-family:'SFMono-Regular',Consolas,monospace;font-size:11px;color:rgba(0,0,0,0.45);">d7e1a5...</td></tr>
+          <tr><td style="color:#1677ff;font-weight:500;">RPT-20260701-0115</td><td><span class="tag tag-success">复核</span></td><td style="color:rgba(0,0,0,0.65);">2026-07-01 14:00</td><td style="font-family:'SFMono-Regular',Consolas,monospace;font-size:11px;color:rgba(0,0,0,0.45);">b9c4f2...</td></tr>
+          <tr><td style="color:#1677ff;font-weight:500;">RPT-20260701-0112</td><td><span class="tag tag-success">批准</span></td><td style="color:rgba(0,0,0,0.65);">2026-07-01 10:45</td><td style="font-family:'SFMono-Regular',Consolas,monospace;font-size:11px;color:rgba(0,0,0,0.45);">e2f1a8...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script>
+if(!sessionStorage.getItem('lats_logged_in')){location.href='login.html';}
+</script>
+</body>
+</html>
