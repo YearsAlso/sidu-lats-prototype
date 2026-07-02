@@ -75,9 +75,6 @@ a { text-decoration: none; color: inherit; }
 
 <div class="layout-sider">
   <div class="menu-item active">仪表盘</div>
-  <div class="menu-item" onclick="location.href='audit-log.html'">审计日志</div>
-  <div class="menu-item" onclick="location.href='hash-chain.html'">哈希链</div>
-  <div class="menu-item" onclick="location.href='approval.html'">审批中心</div>
   <div class="menu-item" onclick="location.href='user-management.html'">用户管理</div>
   <div class="menu-item" onclick="location.href='token-management.html'">Token 管理</div>
   <div class="menu-item" onclick="location.href='system-settings.html'">系统设置</div>
@@ -87,12 +84,11 @@ a { text-decoration: none; color: inherit; }
 </div>
 
 <div class="main-content">
-  <div class="page-title">管理员仪表盘 <span>系统全局概览 · 全权限视图</span></div>
+  <div class="page-title">系统管理员仪表盘 <span>系统配置 · 用户管理 · WORM存储 · 日志导出</span></div>
 
   <div class="alert-banner">
-    <div class="icon">️</div>
-    <div>您有 <strong>2</strong> 项紧急待审批事项需要在今日18:00前处理，其中包含1项高危配置变更</div>
-    <button onclick="location.href='approval.html'" style="margin-left:auto;background:#ff4d4f;color:white;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:13px;">立即处理</button>
+    <span style="font-size:18px;">⚠</span>
+    <div>系统管理员负责用户管理、系统配置、WORM存储、日志备份导出，<strong>禁止报告签名与数据修改</strong>。</div>
   </div>
 
   <div class="stat-grid">

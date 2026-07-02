@@ -55,9 +55,7 @@ td{padding:12px;font-size:13px;color:rgba(0,0,0,0.88);border-bottom:1px solid #f
 </div>
 <div class="layout-sider">
   <div class="menu-item active">仪表盘</div>
-  <div class="menu-item" onclick="location.href='audit-log.html'">审计日志</div>
-  <div class="menu-item" onclick="location.href='approval.html'">审批中心</div>
-  <div class="menu-item" onclick="location.href='report-export.html'">报告导出</div>
+  <div class="menu-item" onclick="location.href='data-entry.html'">数据录入</div>
 </div>
 <div class="main-content">
   <div class="page-title">操作员工作台 <span>李华 · 生产部</span></div>
@@ -68,29 +66,27 @@ td{padding:12px;font-size:13px;color:rgba(0,0,0,0.88);border-bottom:1px solid #f
     <div class="stat-card"><div class="num">2</div><div class="lbl">已获授权签名</div><div class="sub" style="color:#52c41a;"> 有效</div></div>
   </div>
   <div class="quick-actions" style="margin-bottom:24px;">
-    <div class="quick-item"><div class="icon"></div><div class="label">发起检测任务</div><div class="sub">创建新的检测任务</div></div>
-    <div class="quick-item" onclick="location.href='approval.html'"><div class="icon"></div><div class="label">提交审批申请</div><div class="sub">配置变更/数据导出等</div></div>
-    <div class="quick-item" onclick="location.href='report-export.html'"><div class="icon"></div><div class="label">导出我的报告</div><div class="sub">检测结果/统计报表</div></div>
+    <div class="quick-item" onclick="location.href='data-entry.html'"><div class="label">NTA 数据上传</div><div class="sub">上传原始检测数据文件</div></div>
+    <div class="quick-item" onclick="location.href='data-entry.html'"><div class="label">基础数据录入</div><div class="sub">批次/样本/检测项</div></div>
+    <div class="quick-item"><div class="label">查看我的数据</div><div class="sub">自有数据查询(仅本人)</div></div>
   </div>
   <div class="grid-2">
     <div class="card">
-      <div class="card-title">我的审批申请</div>
-      <table>
-        <thead><tr><th>申请编号</th><th>类型</th><th>内容摘要</th><th>提交时间</th><th>状态</th><th>进度</th></tr></thead>
-        <tbody>
-          <tr><td style="color:#1677ff;font-weight:500;">APR-20260701-007</td><td><span class="tag tag-warning">配置变更</span></td><td>阈值调整 0.85→0.90 (A线)</td><td style="color:rgba(0,0,0,0.65);font-size:12px;">2026-07-01 14:55</td><td><span class="tag tag-warning">待审批</span></td><td style="font-size:12px;">初审 → 复核中</td></tr>
-          <tr><td style="color:#1677ff;font-weight:500;">APR-20260701-004</td><td><span class="tag tag-error">记录删除</span></td><td>删除6月15日测试数据</td><td style="color:rgba(0,0,0,0.65);font-size:12px;">2026-07-01 10:15</td><td><span class="tag tag-warning">待审批</span></td><td style="font-size:12px;">待初审</td></tr>
-          <tr><td style="color:#1677ff;font-weight:500;">APR-20260628-005</td><td><span class="tag tag-success">配置变更</span></td><td>相机参数微调 (CAM-002)</td><td style="color:rgba(0,0,0,0.65);font-size:12px;">2026-06-28 09:30</td><td><span class="tag tag-success">已批准</span></td><td style="font-size:12px;color:#52c41a;"> 完成</td></tr>
-        </tbody>
-      </table>
+      <div class="card-title">我的录入统计</div>
+      <div class="stat-grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:0;">
+        <div class="stat-card"><div class="num">284</div><div class="lbl">本月录入</div></div>
+        <div class="stat-card"><div class="num" style="color:#52c41a;">98.6%</div><div class="lbl">完成率</div></div>
+        <div class="stat-card"><div class="num">18</div><div class="lbl">待提交</div></div>
+        <div class="stat-card"><div class="num">128</div><div class="lbl">文件已上传</div></div>
+      </div>
     </div>
     <div class="card">
-      <div class="card-title">我的操作记录</div>
-      <div class="timeline-item"><div class="time">2026-07-01 15:35</div><div>提交审批申请 APR-20260701-007</div></div>
-      <div class="timeline-item"><div class="time">2026-07-01 14:58</div><div>发起检测任务 #1285 (A线)</div></div>
-      <div class="timeline-item"><div class="time">2026-07-01 10:15</div><div>提交审批申请 APR-20260701-004</div></div>
+      <div class="card-title">我的最近录入</div>
+      <div class="timeline-item"><div class="time">2026-07-01 15:35</div><div>录入批次 BAT-20260701-X · NTA粒径分析 · 128样品</div></div>
+      <div class="timeline-item"><div class="time">2026-07-01 14:58</div><div>上传 nt a-128.dat (2.4 MB)</div></div>
+      <div class="timeline-item"><div class="time">2026-07-01 10:15</div><div>录入批次 BAT-20260701-Y · 缺陷识别 · 64样品</div></div>
       <div class="timeline-item"><div class="time">2026-07-01 09:20</div><div>登录系统</div></div>
-      <div class="timeline-item"><div class="time">2026-06-28 09:30</div><div>提交审批 APR-20260628-005 <span class="tag tag-success" style="margin-left:6px;font-size:10px;"> 已批准</span></div></div>
+      <div class="timeline-item"><div class="time">2026-06-28 09:30</div><div>录入批次 BAT-20260628-Z · 颗粒计数</div></div>
     </div>
   </div>
 </div>
