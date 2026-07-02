@@ -7,7 +7,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   base: './',
   server: {
-    open: '/viewer.html',
+    open: '/',
   },
   build: {
     outDir: 'dist',

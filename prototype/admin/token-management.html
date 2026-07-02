@@ -11,6 +11,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica N
 .header-left{display:flex;align-items:center;gap:20px;}
 .logo{font-size:20px;font-weight:600;color:#1677ff;}
 .breadcrumb{color:rgba(0,0,0,0.65);font-size:14px;}
+.role-tag{background:#fff2f0;color:#cf1322;border:1px solid #ffccc7;padding:3px 10px;border-radius:4px;font-size:12px;font-weight:600;}
 .header-right{display:flex;align-items:center;gap:16px;}
 .layout-sider{position:fixed;left:0;top:64px;bottom:0;width:220px;background:white;box-shadow:2px 0 8px rgba(0,0,0,0.03);z-index:999;overflow-y:auto;}
 .menu-item{padding:14px 24px;cursor:pointer;display:flex;align-items:center;gap:12px;color:rgba(0,0,0,0.88);transition:all 0.2s;border-left:3px solid transparent;font-size:14px;}
@@ -70,8 +71,15 @@ tbody tr:hover{background:#fafafa;}
 </head>
 <body>
 <div class="header">
-  <div class="header-left"><div class="logo">SIDU-LATS</div><div class="breadcrumb">系统设置 &raquo; Token 管理</div></div>
-  <div class="header-right"><span style="color:rgba(0,0,0,0.65);font-size:14px;">管理员: 张明</span><button onclick="location.href='login.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:rgba(0,0,0,0.65);font-size:14px;">注销</button></div>
+  <div class="header-left">
+    <div class="logo">SIDU-LATS</div>
+    <div class="role-tag">管理员</div>
+    <div class="breadcrumb">系统设置 &raquo; Token 管理</div>
+  </div>
+  <div class="header-right">
+    <span style="color:rgba(0,0,0,0.65);font-size:14px;">当前用户 / 张明</span>
+    <button onclick="location.href='login.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:rgba(0,0,0,0.65);font-size:14px;">注销</button>
+  </div>
 </div>
 
 <div class="layout-sider">

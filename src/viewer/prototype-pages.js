@@ -13,8 +13,8 @@ export const prototypeGroups = [
     ],
   },
   {
-    id: 'prototype',
-    label: '角色演示(prototype/)',
+    id: 'role-admin',
+    label: '系统管理员 (admin/)',
     items: [
       { path: 'prototype/admin/login.html', label: 'Admin 登录' },
       { path: 'prototype/admin/dashboard.html', label: 'Admin 仪表盘' },
@@ -24,16 +24,34 @@ export const prototypeGroups = [
       { path: 'prototype/admin/storage.html', label: 'Admin 存储管理' },
       { path: 'prototype/admin/report-export.html', label: 'Admin 报告导出' },
       { path: 'prototype/admin/notifications.html', label: 'Admin 通知中心' },
+    ],
+  },
+  {
+    id: 'role-operator',
+    label: '普通操作员 (operator/)',
+    items: [
       { path: 'prototype/operator/login.html', label: 'Operator 登录' },
       { path: 'prototype/operator/dashboard.html', label: 'Operator 仪表盘' },
       { path: 'prototype/operator/data-entry.html', label: 'Operator 数据录入' },
+    ],
+  },
+  {
+    id: 'role-auditor',
+    label: 'QA 审计员 (auditor/)',
+    items: [
       { path: 'prototype/auditor/login.html', label: 'Auditor 登录' },
       { path: 'prototype/auditor/dashboard.html', label: 'Auditor 仪表盘' },
       { path: 'prototype/auditor/audit-log.html', label: 'Auditor 审计日志' },
-      { path: 'prototype/auditor/hash-chain.html', label: 'Auditor 哈希链' },
+      { path: 'prototype/auditor/hash-chain.html', label: 'Auditor 数据完整性验证' },
       { path: 'prototype/auditor/storage.html', label: 'Auditor 存储管理' },
       { path: 'prototype/auditor/report-export.html', label: 'Auditor 报告导出' },
       { path: 'prototype/auditor/permission-review.html', label: 'Auditor 权限复审' },
+    ],
+  },
+  {
+    id: 'role-reviewer',
+    label: '报告审核员 (reviewer/)',
+    items: [
       { path: 'prototype/reviewer/login.html', label: 'Reviewer 登录' },
       { path: 'prototype/reviewer/dashboard.html', label: 'Reviewer 仪表盘' },
       { path: 'prototype/reviewer/approval.html', label: 'Reviewer 报告复核' },

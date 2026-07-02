@@ -7,7 +7,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';background:#f5f5f5;}
-.header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 2px rgba(0,0,0,0.03);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
+.header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
 .header-left{display:flex;align-items:center;gap:20px;}
 .logo{font-size:20px;font-weight:600;color:#1677ff;}
 .role-tag{background:#e6f4ff;color:#0958d9;border:1px solid #91caff;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;}
@@ -69,12 +69,24 @@ tbody tr:hover{background:#fafafa;}
 #pushTable tbody tr{cursor:pointer;transition:background 0.15s;}
 #pushTable tbody tr.selected{background:#e6f4ff;}
 #pushTable tbody tr.selected td{border-bottom-color:#e6f4ff;}
+/* Tab 切换 */
+.tab-bar{display:flex;gap:0;margin-bottom:24px;border-bottom:1px solid #f0f0f0;}
+.tab-item{padding:10px 20px;cursor:pointer;font-size:14px;color:rgba(0,0,0,0.65);border-bottom:2px solid transparent;transition:all 0.2s;user-select:none;}
+.tab-item:hover{color:#1677ff;}
+.tab-item.active{color:#1677ff;border-bottom-color:#1677ff;font-weight:500;}
 </style>
 </head>
 <body>
 <div class="header">
-  <div class="header-left"><div class="logo">SIDU-LATS</div><div class="breadcrumb">数据录入 &raquo; NTA 上传 / 基础录入</div></div>
-  <div class="header-right"><div style="color:rgba(0,0,0,0.65);font-size:14px;">当前用户 / 李华</div><button onclick="location.href='login.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:rgba(0,0,0,0.65);font-size:14px;">注销</button></div>
+  <div class="header-left">
+    <div class="logo">SIDU-LATS</div>
+    <div class="role-tag">操作员</div>
+    <div class="breadcrumb">数据录入 &raquo; NTA 上传 / 基础录入</div>
+  </div>
+  <div class="header-right">
+    <span style="color:rgba(0,0,0,0.65);font-size:14px;">当前用户 / 李华</span>
+    <button onclick="location.href='login.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:rgba(0,0,0,0.65);font-size:14px;">注销</button>
+  </div>
 </div>
 
 <div class="layout-sider">
@@ -88,6 +100,13 @@ tbody tr:hover{background:#fafafa;}
   <div id="successMsg" class="success-msg"> 数据已成功录入,已写入审计追踪(mock 留痕)</div>
   <div id="errorMsg" class="error-msg">请检查必填字段与文件</div>
 
+  <!-- Tab 切换 -->
+  <div class="tab-bar">
+    <div class="tab-item active" id="tabPushBtn" onclick="switchTab('push')">设备推送数据</div>
+    <div class="tab-item" id="tabManualBtn" onclick="switchTab('manual')">手动录入</div>
+  </div>
+
+  <div id="tabPush">
   <!-- 设备推送数据卡片 -->
   <div class="card">
     <div class="card-title">设备推送数据 <span style="font-size:12px;color:rgba(0,0,0,0.45);font-weight:400;">mock 模拟设备主动推送,操作员审核后录入</span></div>
@@ -137,7 +156,9 @@ tbody tr:hover{background:#fafafa;}
       </div>
     </div>
   </div>
+  </div><!-- /#tabPush -->
 
+  <div id="tabManual" style="display:none;">
   <div class="card">
     <div class="card-title"> NTA 原始数据上传</div>
     <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
@@ -200,6 +221,7 @@ tbody tr:hover{background:#fafafa;}
       </tbody>
     </table>
   </div>
+  </div><!-- /#tabManual -->
 </div>
 
 <script>
@@ -392,6 +414,22 @@ function closePreview() {
   var rows = document.querySelectorAll('#pushTable tbody tr');
   for (var i = 0; i < rows.length; i++) rows[i].classList.remove('selected');
   selectedPushIndex = -1;
+}
+
+function switchTab(tab) {
+  var pushBtn = document.getElementById('tabPushBtn');
+  var manualBtn = document.getElementById('tabManualBtn');
+  var pushPanel = document.getElementById('tabPush');
+  var manualPanel = document.getElementById('tabManual');
+  if (tab === 'push') {
+    pushBtn.classList.add('active'); manualBtn.classList.remove('active');
+    pushPanel.style.display = 'block'; manualPanel.style.display = 'none';
+  } else {
+    manualBtn.classList.add('active'); pushBtn.classList.remove('active');
+    manualPanel.style.display = 'block'; pushPanel.style.display = 'none';
+  }
+  hideMessages();
+  closePreview();
 }
 
 // 页面加载时渲染推送列表

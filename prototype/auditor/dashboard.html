@@ -7,10 +7,11 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';background:#f5f5f5;}
-.header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.03);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
+.header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
 .header-left{display:flex;align-items:center;gap:20px;}
 .logo{font-size:20px;font-weight:600;color:#1677ff;}
 .role-tag{background:#f6ffed;color:#389e0d;border:1px solid #b7eb8f;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;}
+.breadcrumb{color:rgba(0,0,0,0.65);font-size:14px;}
 .header-right{display:flex;align-items:center;gap:16px;}
 .layout-sider{position:fixed;left:0;top:64px;bottom:0;width:220px;background:white;box-shadow:2px 0 8px rgba(0,0,0,0.03);z-index:999;overflow-y:auto;}
 .menu-item{padding:14px 24px;cursor:pointer;display:flex;align-items:center;gap:12px;color:rgba(0,0,0,0.88);transition:all 0.2s;border-left:3px solid transparent;font-size:14px;}
@@ -53,13 +54,20 @@ td{padding:12px;font-size:13px;color:rgba(0,0,0,0.88);border-bottom:1px solid #f
 </head>
 <body>
 <div class="header">
-  <div class="header-left"><div class="logo">SIDU-LATS</div><div class="role-tag"> 审计员</div></div>
-  <div class="header-right"><div style="color:rgba(0,0,0,0.65);font-size:14px;">当前用户 / 王芳</div><button onclick="location.href='login.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:rgba(0,0,0,0.65);font-size:14px;">注销</button></div>
+  <div class="header-left">
+    <div class="logo">SIDU-LATS</div>
+    <div class="role-tag">审计员</div>
+    <div class="breadcrumb">仪表盘 &raquo; 审计概览</div>
+  </div>
+  <div class="header-right">
+    <span style="color:rgba(0,0,0,0.65);font-size:14px;">当前用户 / 王芳</span>
+    <button onclick="location.href='login.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:rgba(0,0,0,0.65);font-size:14px;">注销</button>
+  </div>
 </div>
 <div class="layout-sider">
   <div class="menu-item active">仪表盘</div>
   <div class="menu-item" onclick="location.href='audit-log.html'">审计日志</div>
-  <div class="menu-item" onclick="location.href='hash-chain.html'">哈希链</div>
+  <div class="menu-item" onclick="location.href='hash-chain.html'">数据完整性验证</div>
   <div class="menu-item" onclick="location.href='storage.html'">存储管理</div>
   <div class="menu-item" onclick="location.href='report-export.html'">报告导出</div>
   <div class="menu-item" onclick="location.href='permission-review.html'">权限复审</div>
@@ -67,11 +75,11 @@ td{padding:12px;font-size:13px;color:rgba(0,0,0,0.88);border-bottom:1px solid #f
 <div class="main-content">
   <div class="page-title">审计员工作台 <span>合规审查与数据验证</span></div>
   <div class="verify-panel">
-    <div class="result"> 哈希链完整性正常 · 上次验证: 2026-07-01 15:38</div>
+    <div class="result"> 数据完整性正常 · 上次验证: 2026-07-01 15:38</div>
     <button class="btn-primary" onclick="location.href='hash-chain.html'"> 重新验链</button>
   </div>
   <div class="stat-grid">
-    <div class="stat-card"><div class="num" style="color:#52c41a;"></div><div class="lbl">哈希完整性</div><div class="sub" style="color:#52c41a;">验证通过</div></div>
+    <div class="stat-card"><div class="num" style="color:#52c41a;"></div><div class="lbl">数据完整性</div><div class="sub" style="color:#52c41a;">验证通过</div></div>
     <div class="stat-card"><div class="num">128</div><div class="lbl">本月审查项</div><div class="sub">日志/报告/配置</div></div>
     <div class="stat-card"><div class="num" style="color:#faad14;">3</div><div class="lbl">待复核</div><div class="sub">需尽快处理</div></div>
     <div class="stat-card"><div class="num">98.7%</div><div class="lbl">合规率</div><div class="sub" style="color:#52c41a;"></div></div>
@@ -82,7 +90,7 @@ td{padding:12px;font-size:13px;color:rgba(0,0,0,0.88);border-bottom:1px solid #f
       <div class="card-title">审计任务中心</div>
       <div class="quick-actions">
         <div class="quick-item" onclick="location.href='audit-log.html'"><div class="icon"></div><div><div class="label">审计日志审查</div><div class="sub">查看完整操作记录</div></div></div>
-        <div class="quick-item" onclick="location.href='hash-chain.html'"><div class="icon"></div><div><div class="label">哈希链验证</div><div class="sub">验证数据完整性</div></div></div>
+        <div class="quick-item" onclick="location.href='hash-chain.html'"><div class="icon"></div><div><div class="label">完整性验证</div><div class="sub">验证数据完整性</div></div></div>
         <div class="quick-item" onclick="location.href='approval.html'"><div class="icon"></div><div><div class="label">报告/导出审批</div><div class="sub">审查并签署</div></div></div>
         <div class="quick-item" onclick="location.href='report-export.html'"><div class="icon"></div><div><div class="label">合规报告生成</div><div class="sub">导出审计报告</div></div></div>
       </div>
@@ -90,7 +98,7 @@ td{padding:12px;font-size:13px;color:rgba(0,0,0,0.88);border-bottom:1px solid #f
     <div class="card">
       <div class="card-title">近期审计发现</div>
       <div class="timeline-item"><div class="time">2026-06-28</div><div>审查6月配置变更记录 <span class="tag tag-success" style="margin-left:8px;">合规 </span></div></div>
-      <div class="timeline-item"><div class="time">2026-06-25</div><div>验证Q2哈希链完整性 <span class="tag tag-success" style="margin-left:8px;">通过 </span></div></div>
+      <div class="timeline-item"><div class="time">2026-06-25</div><div>验证Q2数据完整性 <span class="tag tag-success" style="margin-left:8px;">通过 </span></div></div>
       <div class="timeline-item"><div class="time">2026-06-20</div><div>审查签名授权申请记录 <span class="tag tag-success" style="margin-left:8px;">合规 </span></div></div>
       <div class="timeline-item"><div class="time">2026-06-15</div><div>导出月审报告 <span class="tag tag-info" style="margin-left:8px;">RPT-202606</span></div></div>
     </div>
