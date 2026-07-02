@@ -1,0 +1,336 @@
+/* SIDU-LATS Viewer 外壳样式 — 遵循 antd 5 默认视觉(见 .claude/rules/industrial-ui-style.md) */
+
+:root {
+  color-scheme: light;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  --v-primary: #1677ff;
+  --v-primary-hover: #4096ff;
+  --v-primary-bg: #e6f4ff;
+  --v-bg-layout: #f5f5f5;
+  --v-bg-container: #ffffff;
+  --v-fill: #fafafa;
+  --v-split: #f0f0f0;
+  --v-border: #d9d9d9;
+  --v-text: rgba(0, 0, 0, 0.88);
+  --v-text-secondary: rgba(0, 0, 0, 0.65);
+  --v-text-tertiary: rgba(0, 0, 0, 0.45);
+  --v-shadow-side: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --v-shadow-fab: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  background: var(--v-bg-layout);
+  color: var(--v-text);
+  font-size: 14px;
+  line-height: 1.5715;
+}
+
+body.viewer-drawer-open {
+  overflow: hidden;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+/* 外壳布局 */
+.viewer-shell {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* 左侧导航抽屉 */
+.viewer-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: min(340px, calc(100vw - 32px));
+  height: 100vh;
+  padding: 16px 16px 20px;
+  border-right: 1px solid var(--v-split);
+  background: var(--v-bg-container);
+  box-shadow: var(--v-shadow-side);
+  transform: translateX(calc(-100% - 24px));
+  transition: transform 180ms ease;
+}
+
+.viewer-sidebar.is-open {
+  transform: translateX(0);
+}
+
+.viewer-sidebar__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--v-text-tertiary);
+}
+
+.viewer-sidebar__close {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--v-border);
+  border-radius: 4px;
+  background: var(--v-bg-container);
+  color: var(--v-text);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 120ms ease, color 120ms ease;
+}
+
+.viewer-sidebar__close:hover {
+  border-color: var(--v-primary);
+  color: var(--v-primary);
+}
+
+/* 品牌区 */
+.viewer-brand__eyebrow {
+  font-size: 12px;
+  color: var(--v-text-tertiary);
+}
+
+.viewer-brand h1 {
+  margin: 4px 0 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--v-text);
+}
+
+/* 搜索框 */
+.viewer-sidebar__search input {
+  width: 100%;
+  height: 32px;
+  padding: 4px 11px;
+  border: 1px solid var(--v-border);
+  border-radius: 4px;
+  background: var(--v-bg-container);
+  color: var(--v-text);
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.viewer-sidebar__search input::placeholder {
+  color: var(--v-text-tertiary);
+}
+
+.viewer-sidebar__search input:focus {
+  border-color: var(--v-primary);
+  box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+}
+
+/* 信息 / 工具栏 / 状态面板 */
+.viewer-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--v-split);
+  border-radius: 6px;
+  background: var(--v-fill);
+}
+
+.viewer-panel__label {
+  font-size: 12px;
+  color: var(--v-text-tertiary);
+}
+
+.viewer-panel strong {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--v-text);
+}
+
+.viewer-panel code {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--v-text-secondary);
+}
+
+.viewer-panel--actions {
+  display: grid;
+  grid-template-columns: repeat(5, 32px);
+  gap: 8px;
+  justify-content: start;
+}
+
+.viewer-panel--actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--v-border);
+  border-radius: 4px;
+  background: var(--v-bg-container);
+  color: var(--v-text);
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  transition: border-color 120ms ease, color 120ms ease;
+}
+
+.viewer-panel--actions button:hover:not(:disabled) {
+  border-color: var(--v-primary);
+  color: var(--v-primary);
+}
+
+.viewer-panel--actions button:disabled {
+  color: var(--v-text-tertiary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.viewer-panel--status {
+  font-size: 12px;
+  color: var(--v-text-secondary);
+}
+
+/* 分组导航 */
+.viewer-nav {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 12px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.viewer-nav__group h2 {
+  margin: 0 0 6px;
+  padding: 0 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--v-text-tertiary);
+}
+
+.viewer-nav__items {
+  display: grid;
+  gap: 4px;
+}
+
+.viewer-nav__items button {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-start;
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  border-left: 3px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--v-text);
+  text-align: left;
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+.viewer-nav__items button:hover {
+  background: var(--v-primary-bg);
+  color: var(--v-primary);
+}
+
+.viewer-nav__items button.is-active {
+  background: var(--v-primary-bg);
+  border-left-color: var(--v-primary);
+  color: var(--v-primary);
+  font-weight: 500;
+}
+
+.viewer-nav__items button small {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  font-size: 11px;
+  color: var(--v-text-tertiary);
+}
+
+/* iframe 预览区 */
+.viewer-main {
+  min-height: 100vh;
+}
+
+.viewer-frame-wrap {
+  min-height: 100vh;
+}
+
+#viewerFrame {
+  width: 100%;
+  height: 100vh;
+  border: none;
+  background: var(--v-bg-container);
+}
+
+/* 悬浮触发按钮 */
+.viewer-fab {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 35;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--v-border);
+  border-radius: 6px;
+  background: var(--v-bg-container);
+  color: var(--v-text);
+  box-shadow: var(--v-shadow-fab);
+  cursor: pointer;
+  transition: border-color 120ms ease, color 120ms ease, box-shadow 120ms ease;
+}
+
+.viewer-fab:hover,
+.viewer-fab[aria-expanded='true'] {
+  border-color: var(--v-primary);
+  color: var(--v-primary);
+}
+
+.viewer-fab__icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.viewer-fab__label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* 遮罩 */
+.viewer-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+@media (max-width: 720px) {
+  .viewer-fab {
+    bottom: 16px;
+    left: 16px;
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash(git commit *)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"systemMessage\": \"⚠ 提交前建议运行 /review-all 检查 HTML 语法与项目约束合规\"}'",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

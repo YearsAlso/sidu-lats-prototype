@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIDU-LATS — 角色演示入口</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  background: #f5f5f5; color: rgba(0,0,0,0.88); font-size: 14px; line-height: 1.5715;
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+}
+.header { text-align: center; padding: 48px 24px 32px; }
+.header h1 { font-size: 28px; font-weight: 600; color: #1677ff; margin-bottom: 8px; }
+.header p { color: rgba(0,0,0,0.45); font-size: 14px; }
+.role-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 640px; width: 100%; padding: 0 24px; }
+.role-card {
+  background: #ffffff; border-radius: 8px; padding: 32px 24px; text-align: center;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.03), 0 1px 6px -1px rgba(0,0,0,0.02), 0 2px 4px 0 rgba(0,0,0,0.02);
+  cursor: pointer; transition: box-shadow 0.2s, border-color 0.2s; border: 1px solid #f0f0f0; text-decoration: none; color: inherit; display: block;
+}
+.role-card:hover { border-color: #1677ff; box-shadow: 0 6px 16px 0 rgba(0,0,0,0.08), 0 3px 6px -4px rgba(0,0,0,0.12); }
+.role-card .role-icon {
+    width: 40px; height: 4px; border-radius: 2px; background: #1677ff;
+    margin: 0 auto 16px;
+}
+.role-card .role-name { font-size: 18px; font-weight: 600; color: rgba(0,0,0,0.88); margin-bottom: 6px; }
+.role-card .role-code { font-size: 12px; color: rgba(0,0,0,0.45); margin-bottom: 8px; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; }
+.role-card .role-desc { font-size: 13px; color: rgba(0,0,0,0.65); line-height: 1.6; }
+.footer { text-align: center; padding: 32px 24px; color: rgba(0,0,0,0.45); font-size: 12px; }
+.footer a { color: #1677ff; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>SIDU-LATS 原型演示</h1>
+  <p>选择角色进入对应权限范围的交互原型</p>
+</div>
+<div class="role-grid">
+  <a class="role-card" href="admin/login.html">
+    <div class="role-icon"></div>
+    <div class="role-name">系统管理员</div>
+    <div class="role-code">SYS_ADMIN</div>
+    <div class="role-desc">系统配置 / 用户管理 / 备份<br>全部页面可访问</div>
+  </a>
+  <a class="role-card" href="operator/login.html">
+    <div class="role-icon">📋</div>
+    <div class="role-name">操作员</div>
+    <div class="role-code">OPERATOR</div>
+    <div class="role-desc">仪表盘 / 审计日志 / 审批 / 报告导出<br>4 项功能</div>
+  </a>
+  <a class="role-card" href="auditor/login.html">
+    <div class="role-icon">🔍</div>
+    <div class="role-name">QA 审计员</div>
+    <div class="role-code">QA_AUDITOR</div>
+    <div class="role-desc">审计日志 / 哈希链验证 / 审批 / 报告导出<br>5 项功能</div>
+  </a>
+  <a class="role-card" href="viewer/login.html">
+    <div class="role-icon">👁</div>
+    <div class="role-name">查看者</div>
+    <div class="role-code">VIEWER</div>
+    <div class="role-desc">只读查看仪表盘<br>其他功能无权限</div>
+  </a>
+</div>
+<div class="footer">
+  SIDU-LATS 缺陷识别数据存管系统 (FDA 21 CFR Part 11 合规版)
+</div>
+</body>
+</html>

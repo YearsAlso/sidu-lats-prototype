@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIDU-LATS - 审计日志</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'; background: #f5f5f5; }
+.header { background: white; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 2px rgba(0,0,0,0.03); position: fixed; width: 100%; top: 0; z-index: 1000; height: 64px; }
+.header-left { display: flex; align-items: center; gap: 24px; }
+.logo { font-size: 20px; font-weight: 600; color: #1677ff; }
+.breadcrumb { color: rgba(0,0,0,0.65); font-size: 14px; }
+.header-right { display: flex; align-items: center; gap: 16px; }
+.layout-sider { position: fixed; left: 0; top: 64px; bottom: 0; width: 220px; background: white; box-shadow: 1px 0 0 rgba(0,0,0,0.03); z-index: 999; overflow-y: auto; }
+.menu-item { padding: 14px 24px; cursor: pointer; display: flex; align-items: center; gap: 12px; color: rgba(0,0,0,0.88); transition: all 0.2s; border-left: 3px solid transparent; font-size: 14px; }
+.menu-item:hover { background: #e6f4ff; color: #1677ff; }
+.menu-item.active { background: #e6f4ff; color: #1677ff; border-left-color: #1677ff; font-weight: 500; }
+.main-content { margin-left: 220px; margin-top: 64px; padding: 24px; }
+.page-title { font-size: 24px; font-weight: 600; color: rgba(0,0,0,0.88); margin-bottom: 24px; }
+.page-title span { font-size: 14px; color: rgba(0,0,0,0.45); font-weight: 400; margin-left: 12px; }
+.card { background: white; border-radius: 6px; padding: 24px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); margin-bottom: 24px; }
+.card-title { font-size: 16px; font-weight: 500; color: rgba(0,0,0,0.88); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #f0f0f0; }
+.btn-primary { background: #1677ff; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; }
+.btn-primary:hover { background: #4096ff; }
+.btn-outline { padding: 8px 16px; border: 1px solid #d9d9d9; border-radius: 4px; background: white; cursor: pointer; font-size: 14px; color: rgba(0,0,0,0.65); }
+.tag { padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+.tag-success { background: #f6ffed; color: #52c41a; border: 1px solid #b7eb8f; }
+.tag-warning { background: #fffbe6; color: #faad14; border: 1px solid #ffe58f; }
+.tag-error { background: #fff2f0; color: #ff4d4f; border: 1px solid #ffccc7; }
+.tag-info { background: #e6f4ff; color: #1677ff; border: 1px solid #91caff; }
+.hash-val { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 12px; background: #fafafa; padding: 2px 6px; border-radius: 2px; color: rgba(0,0,0,0.65); }
+table { width: 100%; border-collapse: collapse; }
+thead tr { background: #fafafa; border-bottom: 1px solid #f0f0f0; }
+th { padding: 12px; text-align: left; font-weight: 500; color: rgba(0,0,0,0.88); font-size: 14px; }
+td { padding: 12px; font-size: 13px; color: rgba(0,0,0,0.88); border-bottom: 1px solid #fafafa; }
+tbody tr:hover { background: #fafafa; }
+tbody tr:last-child td { border-bottom: none; }
+.filter-bar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
+.filter-bar input, .filter-bar select { padding: 6px 12px; border: 1px solid #d9d9d9; border-radius: 4px; font-size: 14px; outline: none; }
+.filter-bar input:focus, .filter-bar select:focus { border-color: #1677ff; }
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-left"><div class="logo">SIDU-LATS</div><div class="breadcrumb">审计日志 &raquo; 所有操作行为完整记录</div></div>
+  <div class="header-right">
+    <div style="display:flex;align-items:center;gap:8px;"><span style="color:rgba(0,0,0,0.65);font-size:14px;">当前用户 / 王芳</span></div>
+    <button onclick="location.href='login.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:rgba(0,0,0,0.65);font-size:14px;">注销</button>
+  </div>
+</div>
+
+<div class="layout-sider">
+  <div class="menu-item" onclick="location.href='dashboard.html'">仪表盘</div>
+  <div class="menu-item active">审计日志</div>
+  <div class="menu-item" onclick="location.href='hash-chain.html'">哈希链</div>
+  <div class="menu-item" onclick="location.href='approval.html'">审批中心</div>
+  <div class="menu-item" onclick="location.href='report-export.html'">报告导出</div>
+</div>
+
+<div class="main-content">
+  <div class="page-title">审计日志 <span>所有操作行为完整记录</span></div>
+
+  <div class="card">
+    <div class="filter-bar">
+      <input type="date" id="startDate">
+      <span style="color:rgba(0,0,0,0.65);line-height:32px;">至</span>
+      <input type="date" id="endDate">
+      <select id="typeFilter">
+        <option value="">全部类型</option>
+        <option value="登录">登录</option><option value="检测">检测</option>
+        <option value="导出">导出</option><option value="配置">配置</option>
+        <option value="审批">审批</option><option value="签名">签名</option>
+      </select>
+      <select id="userFilter">
+        <option value="">全部用户</option>
+        <option value="张明">张明</option><option value="李华">李华</option>
+        <option value="王芳">王芳</option><option value="系统">系统</option>
+      </select>
+      <input type="text" id="keywordFilter" placeholder="搜索关键词..." style="flex:1;max-width:200px;">
+      <button class="btn-primary" onclick="filterLogs()">查询</button>
+      <button class="btn-outline" onclick="resetFilters()">重置</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>时间戳</th><th>操作用户</th><th>操作类型</th>
+          <th>操作内容</th><th>IP地址</th><th>哈希值</th><th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="logTableBody"></tbody>
+    </table>
+
+    <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;">
+      <span style="color:rgba(0,0,0,0.65);font-size:14px;">共 <span id="totalCount">8</span> 条记录</span>
+      <div style="display:flex;gap:8px;">
+        <button class="btn-outline" style="padding:6px 12px;">上一页</button>
+        <button class="btn-outline" style="padding:6px 12px;background:#e6f4ff;color:#1677ff;border-color:#91caff;">1</button>
+        <button class="btn-outline" style="padding:6px 12px;">2</button>
+        <button class="btn-outline" style="padding:6px 12px;">下一页</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+if (!sessionStorage.getItem('lats_logged_in')) { location.href = 'login.html'; }
+
+const logs = [
+  { time: '2026-07-01 15:42:18', user: '张明', type: '导出', typeTag: 'info', content: '导出检测报告 (ID: RPT-20260701-001)', ip: '192.168.1.105', hash: 'a8f3c9d2e1b4...' },
+  { time: '2026-07-01 15:38:05', user: '系统', type: '验证', typeTag: 'success', content: '哈希链完整性验证通过', ip: 'localhost', hash: '7c2f8a1b3d5e...' },
+  { time: '2026-07-01 15:35:22', user: '李华', type: '审批', typeTag: 'warning', content: '审批配置变更申请 (ID: APR-20260701-003)', ip: '192.168.1.108', hash: '4d6e9f2a1b3c...' },
+  { time: '2026-07-01 15:20:33', user: '系统', type: '检测', typeTag: 'success', content: '检测任务 #1284 完成，结果：合格', ip: 'localhost', hash: '9a1b2c3d4e5f...' },
+  { time: '2026-07-01 15:15:10', user: '王芳', type: '登录', typeTag: 'info', content: '用户登录成功', ip: '192.168.1.110', hash: '2b3c4d5e6f7a...' },
+  { time: '2026-07-01 14:55:12', user: '李华', type: '申请', typeTag: 'warning', content: '提交配置变更审批', ip: '192.168.1.108', hash: '5c6d7e8f9a0b...' },
+  { time: '2026-07-01 14:30:45', user: '张明', type: '配置', typeTag: 'info', content: '修改系统参数: 存储阈值 80%→85%', ip: '192.168.1.105', hash: '8d9e0f1a2b3c...' },
+  { time: '2026-07-01 14:15:30', user: '系统', type: '签名', typeTag: 'success', content: '数字签名验证通过 (签名ID: SIG-2026-0715)', ip: 'localhost', hash: '1c2d3e4f5a6b...' }
+];
+
+function renderLogs(data) {
+  const tbody = document.getElementById('logTableBody');
+  tbody.innerHTML = data.map(log => `
+    <tr>
+      <td style="color:rgba(0,0,0,0.65);">${log.time}</td>
+      <td>${log.user}</td>
+      <td><span class="tag tag-${log.typeTag}">${log.type}</span></td>
+      <td style="max-width:300px;">${log.content}</td>
+      <td style="color:rgba(0,0,0,0.65);">${log.ip}</td>
+      <td><span class="hash-val">${log.hash}</span></td>
+      <td><button style="background:none;border:none;color:#1677ff;cursor:pointer;font-size:13px;" onclick="showDetail('${log.time}','${log.user}','${log.type}','${log.content}','${log.ip}','${log.hash}')">详情</button></td>
+    </tr>
+  `).join('');
+  document.getElementById('totalCount').textContent = data.length;
+}
+
+function filterLogs() {
+  var type = document.getElementById('typeFilter').value;
+  var user = document.getElementById('userFilter').value;
+  var kw = document.getElementById('keywordFilter').value.toLowerCase();
+  var filtered = logs.filter(l =>
+    (!type || l.type === type) && (!user || l.user === user) &&
+    (!kw || l.content.toLowerCase().includes(kw))
+  );
+  renderLogs(filtered);
+}
+
+function resetFilters() {
+  document.getElementById('typeFilter').value = '';
+  document.getElementById('userFilter').value = '';
+  document.getElementById('keywordFilter').value = '';
+  renderLogs(logs);
+}
+
+function showDetail(time, user, type, content, ip, hash) {
+  alert('【审计日志详情】\n\n时间: ' + time + '\n当前用户 / ' + user + '\n类型: ' + type + '\nIP: ' + ip + '\n内容: ' + content + '\n哈希: ' + hash);
+}
+
+renderLogs(logs);
+</script>
+</body>
+</html>
