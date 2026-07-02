@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIDU-LATS - 权限复审</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';background:#f5f5f5;}
+.header{background:white;padding:0 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.06);position:fixed;width:100%;top:0;z-index:1000;height:64px;}
+.header-left{display:flex;align-items:center;gap:20px;}
+.logo{font-size:20px;font-weight:600;color:#1677ff;}
+.role-tag{background:#f6ffed;color:#389e0d;border:1px solid #b7eb8f;padding:3px 10px;border-radius:12px;font-size:12px;font-weight:600;}
+.breadcrumb{color:rgba(0,0,0,0.65);font-size:14px;}
+.header-right{display:flex;align-items:center;gap:16px;}
+.layout-sider{position:fixed;left:0;top:64px;bottom:0;width:220px;background:white;box-shadow:2px 0 8px rgba(0,0,0,0.03);z-index:999;overflow-y:auto;}
+.menu-item{padding:14px 24px;cursor:pointer;display:flex;align-items:center;gap:12px;color:rgba(0,0,0,0.88);transition:all 0.2s;border-left:3px solid transparent;font-size:14px;}
+.menu-item:hover{background:#e6f4ff;color:#1677ff;}
+.menu-item.active{background:#e6f4ff;color:#1677ff;border-left-color:#1677ff;font-weight:500;}
+.main-content{margin-left:220px;margin-top:64px;padding:24px;}
+.page-title{font-size:24px;font-weight:600;color:rgba(0,0,0,0.88);margin-bottom:24px;}
+.page-title span{font-size:14px;color:rgba(0,0,0,0.45);font-weight:400;margin-left:12px;}
+.card{background:white;border-radius:8px;padding:24px;box-shadow:0 1px 4px rgba(0,0,0,0.03);margin-bottom:24px;}
+.card-title{font-size:16px;font-weight:500;color:rgba(0,0,0,0.88);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;}
+.tag{padding:2px 8px;border-radius:4px;font-size:12px;}
+.tag-success{background:#f6ffed;color:#52c41a;border:1px solid #b7eb8f;}
+.tag-warning{background:#fffbe6;color:#faad14;border:1px solid #ffe58f;}
+.tag-info{background:#e6f4ff;color:#1677ff;border:1px solid #91caff;}
+.tag-error{background:#fff2f0;color:#ff4d4f;border:1px solid #ffccc7;}
+.filter-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px;}
+.filter-bar select,.filter-bar input{padding:6px 12px;border:1px solid #d9d9d9;border-radius:4px;font-size:14px;outline:none;}
+.filter-bar select:focus,.filter-bar input:focus{border-color:#1677ff;}
+.btn-outline{padding:6px 14px;border:1px solid #d9d9d9;background:white;font-size:13px;cursor:pointer;border-radius:4px;color:rgba(0,0,0,0.65);}
+.btn-primary{background:#1677ff;color:white;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:13px;}
+table{width:100%;border-collapse:collapse;}
+thead tr{background:#fafafa;border-bottom:1px solid #f0f0f0;}
+th{padding:12px;text-align:left;font-weight:500;color:rgba(0,0,0,0.88);font-size:14px;}
+td{padding:12px;font-size:13px;color:rgba(0,0,0,0.88);border-bottom:1px solid #fafafa;}
+tbody tr:hover{background:#fafafa;}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
+.stat-card{background:white;border-radius:8px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,0.03);}
+.stat-card .num{font-size:28px;font-weight:600;color:rgba(0,0,0,0.88);}
+.stat-card .num.warn{color:#faad14;}
+.stat-card .num.danger{color:#ff4d4f;}
+.stat-card .num.ok{color:#52c41a;}
+.stat-card .lbl{font-size:13px;color:rgba(0,0,0,0.45);margin-top:4px;}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-left">
+    <div class="logo">SIDU-LATS</div>
+    <div class="role-tag">审计员</div>
+    <div class="breadcrumb">权限复审 &raquo; 只读视图</div>
+  </div>
+  <div class="header-right">
+    <span style="color:rgba(0,0,0,0.65);font-size:14px;">当前用户 / 王芳</span>
+    <button onclick="location.href='login.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:rgba(0,0,0,0.65);font-size:14px;">注销</button>
+  </div>
+</div>
+
+<div class="layout-sider">
+  <div class="menu-item" onclick="location.href='dashboard.html'">仪表盘</div>
+  <div class="menu-item" onclick="location.href='audit-log.html'">审计日志</div>
+  <div class="menu-item" onclick="location.href='hash-chain.html'">数据完整性验证</div>
+  <div class="menu-item" onclick="location.href='storage.html'">存储管理</div>
+  <div class="menu-item" onclick="location.href='report-export.html'">报告导出</div>
+  <div class="menu-item active">权限复审</div>
+</div>
+
+<div class="main-content">
+  <div class="page-title">权限复审 <span>用户清单 · 角色 · 权限范围 · 仅审计可看,不可编辑</span></div>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="num">4</div><div class="lbl">角色总数</div></div>
+    <div class="stat-card"><div class="num">28</div><div class="lbl">用户总数</div></div>
+    <div class="stat-card"><div class="num warn">3</div><div class="lbl">待复审</div></div>
+    <div class="stat-card"><div class="num ok">25</div><div class="lbl">已复审</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"> 用户与权限清单 <span class="tag tag-warning">只读视图</span></div>
+
+    <div class="filter-bar">
+      <select id="roleFilter" onchange="applyFilter()">
+        <option value="">全部角色</option>
+        <option value="SYS_ADMIN">系统管理员</option>
+        <option value="REVIEWER">报告审核员</option>
+        <option value="QA_AUDITOR">QA审计员</option>
+        <option value="OPERATOR">普通操作员</option>
+      </select>
+      <select id="deptFilter" onchange="applyFilter()">
+        <option value="">全部部门</option>
+        <option>质量管理部</option>
+        <option>生产部</option>
+        <option>合规部</option>
+        <option>技术部</option>
+      </select>
+      <input type="text" id="kwInput" placeholder="搜索用户名/工号..." style="flex:1;max-width:220px;" oninput="applyFilter()">
+      <button class="btn-primary" onclick="alert('导出复审记录功能演示')"> 导出复审记录</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>用户名</th>
+          <th>工号</th>
+          <th>角色</th>
+          <th>所属部门</th>
+          <th>权限范围</th>
+          <th>最后复审日期</th>
+          <th>复审状态</th>
+        </tr>
+      </thead>
+      <tbody id="userTable"></tbody>
+    </table>
+
+    <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-size:13px;color:rgba(0,0,0,0.45);">共 <span id="rowCount">0</span> 条</div>
+      <div style="font-size:13px;color:rgba(0,0,0,0.45);">说明:本页为只读视图,权限变更请提交至系统管理员(SYS_ADMIN)。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"> 权限矩阵(参考)</div>
+    <table>
+      <thead>
+        <tr><th>功能</th><th>SYS_ADMIN</th><th>REVIEWER</th><th>QA_AUDITOR</th><th>OPERATOR</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>用户管理/权限分配</td><td><span class="tag tag-success">✅</span></td><td><span class="tag tag-error">❌</span></td><td><span class="tag tag-error">❌</span></td><td><span class="tag tag-error">❌</span></td></tr>
+        <tr><td>系统配置</td><td><span class="tag tag-success">✅</span></td><td><span class="tag tag-error">❌</span></td><td><span class="tag tag-error">❌</span></td><td><span class="tag tag-error">❌</span></td></tr>
+        <tr><td>报告复核/电子签名</td><td><span class="tag tag-error">❌</span></td><td><span class="tag tag-success">✅</span></td><td><span class="tag tag-error">❌</span></td><td><span class="tag tag-error">❌</span></td></tr>
+        <tr><td>审计日志/哈希校验/介质抽检</td><td><span class="tag tag-info">日志导出</span></td><td><span class="tag tag-error">❌</span></td><td><span class="tag tag-success">✅</span></td><td><span class="tag tag-error">❌</span></td></tr>
+        <tr><td>数据录入(NTA上传)</td><td><span class="tag tag-error">❌</span></td><td><span class="tag tag-error">❌</span></td><td><span class="tag tag-error">❌</span></td><td><span class="tag tag-success">✅</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+if(!sessionStorage.getItem('lats_logged_in')){location.href='login.html';}
+
+var users = [
+  { userId:'U001', name:'张明', role:'SYS_ADMIN', roleName:'系统管理员', dept:'质量管理部', scope:'系统配置/用户管理/WORM存储/日志导出', lastReview:'2026-04-15', reviewTag:'success', reviewLabel:'已复审' },
+  { userId:'U002', name:'李强', role:'SYS_ADMIN', roleName:'系统管理员', dept:'技术部', scope:'系统配置/用户管理/WORM存储/日志导出', lastReview:'2026-04-15', reviewTag:'success', reviewLabel:'已复审' },
+  { userId:'U003', name:'王芳', role:'REVIEWER', roleName:'报告审核员', dept:'质量管理部', scope:'报告复核/电子签名(初审/复核/批准/驳回)', lastReview:'2026-04-22', reviewTag:'success', reviewLabel:'已复审' },
+  { userId:'U004', name:'陈刚', role:'REVIEWER', roleName:'报告审核员', dept:'质量管理部', scope:'报告复核/电子签名', lastReview:'2026-07-05', reviewTag:'warning', reviewLabel:'待复审' },
+  { userId:'U005', name:'赵红', role:'QA_AUDITOR', roleName:'QA审计员', dept:'合规部', scope:'审计日志/哈希核验/介质抽检/合规导出/权限复审', lastReview:'2026-04-30', reviewTag:'success', reviewLabel:'已复审' },
+  { userId:'U006', name:'孙磊', role:'QA_AUDITOR', roleName:'QA审计员', dept:'合规部', scope:'审计日志/哈希核验/介质抽检/合规导出/权限复审', lastReview:'2026-04-30', reviewTag:'success', reviewLabel:'已复审' },
+  { userId:'U007', name:'周敏', role:'QA_AUDITOR', roleName:'QA审计员', dept:'合规部', scope:'审计日志/哈希核验', lastReview:'2026-08-01', reviewTag:'warning', reviewLabel:'待复审' },
+  { userId:'U008', name:'李华', role:'OPERATOR', roleName:'普通操作员', dept:'生产部', scope:'NTA上传/基础数据录入/自有数据查询', lastReview:'2026-05-10', reviewTag:'success', reviewLabel:'已复审' },
+  { userId:'U009', name:'张丽', role:'OPERATOR', roleName:'普通操作员', dept:'生产部', scope:'NTA上传/基础数据录入/自有数据查询', lastReview:'2026-05-10', reviewTag:'success', reviewLabel:'已复审' },
+  { userId:'U010', name:'赵刚', role:'OPERATOR', roleName:'普通操作员', dept:'生产部', scope:'NTA上传/基础数据录入/自有数据查询', lastReview:'2026-05-10', reviewTag:'success', reviewLabel:'已复审' },
+  { userId:'U011', name:'黄丽', role:'OPERATOR', roleName:'普通操作员', dept:'生产部', scope:'NTA上传/基础数据录入/自有数据查询', lastReview:'2025-12-20', reviewTag:'warning', reviewLabel:'待复审' },
+  { userId:'U012', name:'刘洋', role:'OPERATOR', roleName:'普通操作员', dept:'技术部', scope:'NTA上传/基础数据录入/自有数据查询', lastReview:'2026-05-10', reviewTag:'success', reviewLabel:'已复审' }
+];
+
+function render(filtered) {
+  var tbody = document.getElementById('userTable');
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:rgba(0,0,0,0.45);padding:32px;">— 无匹配用户 —</td></tr>';
+    document.getElementById('rowCount').textContent = 0;
+    return;
+  }
+  tbody.innerHTML = filtered.map(function(u) {
+    return '<tr>' +
+      '<td style="font-weight:500;">' + u.name + '</td>' +
+      '<td style="color:#1677ff;font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,Courier,monospace;">' + u.userId + '</td>' +
+      '<td><span class="tag tag-info">' + u.roleName + '</span></td>' +
+      '<td>' + u.dept + '</td>' +
+      '<td style="font-size:12px;color:rgba(0,0,0,0.65);">' + u.scope + '</td>' +
+      '<td style="color:rgba(0,0,0,0.65);font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,Courier,monospace;font-size:12px;">' + u.lastReview + '</td>' +
+      '<td><span class="tag tag-' + u.reviewTag + '">' + u.reviewLabel + '</span></td></tr>';
+  }).join('');
+  document.getElementById('rowCount').textContent = filtered.length;
+}
+
+function applyFilter() {
+  var role = document.getElementById('roleFilter').value;
+  var dept = document.getElementById('deptFilter').value;
+  var kw = document.getElementById('kwInput').value.trim().toLowerCase();
+  var filtered = users.filter(function(u) {
+    if (role && u.role !== role) return false;
+    if (dept && u.dept !== dept) return false;
+    if (kw && (u.name.toLowerCase().indexOf(kw) === -1 && u.userId.toLowerCase().indexOf(kw) === -1)) return false;
+    return true;
+  });
+  render(filtered);
+}
+
+render(users);
+</script>
+</body>
+</html>

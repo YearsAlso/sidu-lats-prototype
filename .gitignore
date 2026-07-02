@@ -1,0 +1,19 @@
+# 依赖
+node_modules/
+
+# Vite 构建产物(生产部署 dist/,不入库;由 CI 或本地 build 产出)
+dist/
+
+# 本地配置
+*.local
+
+# 系统/编辑器
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# 日志
+*.log
+npm-debug.log*
+/.idea/

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIDU-LATS - 报告复核</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'; background: #f5f5f5; }
+.header { background: white; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); position: fixed; width: 100%; top: 0; z-index: 1000; height: 64px; }
+.header-left { display: flex; align-items: center; gap: 20px; }
+.logo { font-size: 20px; font-weight: 600; color: #1677ff; }
+.breadcrumb { color: rgba(0,0,0,0.65); font-size: 14px; }
+.role-tag { background: #e6f4ff; color: #0958d9; border: 1px solid #91caff; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+.header-right { display: flex; align-items: center; gap: 16px; }
+.layout-sider { position: fixed; left: 0; top: 64px; bottom: 0; width: 220px; background: white; box-shadow: 1px 0 0 rgba(0,0,0,0.03); z-index: 999; overflow-y: auto; }
+.menu-item { padding: 14px 24px; cursor: pointer; display: flex; align-items: center; gap: 12px; color: rgba(0,0,0,0.88); transition: all 0.2s; border-left: 3px solid transparent; font-size: 14px; }
+.menu-item:hover { background: #e6f4ff; color: #1677ff; }
+.menu-item.active { background: #e6f4ff; color: #1677ff; border-left-color: #1677ff; font-weight: 500; }
+.main-content { margin-left: 220px; margin-top: 64px; padding: 24px; }
+.page-title { font-size: 24px; font-weight: 600; color: rgba(0,0,0,0.88); margin-bottom: 24px; }
+.page-title span { font-size: 14px; color: rgba(0,0,0,0.45); font-weight: 400; margin-left: 12px; }
+.card { background: white; border-radius: 6px; padding: 24px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); margin-bottom: 24px; }
+.card-title { font-size: 16px; font-weight: 500; color: rgba(0,0,0,0.88); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
+.btn-primary { background: #1677ff; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; }
+.btn-primary:hover { background: #4096ff; }
+.btn-success { background: #52c41a; color: white; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 13px; }
+.btn-danger { background: #ff4d4f; color: white; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 13px; }
+.btn-outline { padding: 6px 14px; border: 1px solid #d9d9d9; background: white; font-size: 13px; cursor: pointer; border-radius: 4px; color: rgba(0,0,0,0.65); }
+.btn-ghost { background: none; border: none; color: #1677ff; cursor: pointer; font-size: 13px; padding: 4px 8px; }
+.tag { padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+.tag-success { background: #f6ffed; color: #52c41a; border: 1px solid #b7eb8f; }
+.tag-warning { background: #fffbe6; color: #faad14; border: 1px solid #ffe58f; }
+.tag-error { background: #fff2f0; color: #ff4d4f; border: 1px solid #ffccc7; }
+.tag-info { background: #e6f4ff; color: #1677ff; border: 1px solid #91caff; }
+.hash-val { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 12px; background: #fafafa; padding: 2px 6px; border-radius: 2px; color: rgba(0,0,0,0.65); }
+.stat-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 24px; }
+.stat-card { background: white; border-radius: 6px; padding: 18px 20px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); text-align: center; }
+.stat-card .num { font-size: 28px; font-weight: 600; color: rgba(0,0,0,0.88); }
+.stat-card .num.warn { color: #faad14; }
+.stat-card .num.danger { color: #ff4d4f; }
+.stat-card .num.ok { color: #52c41a; }
+.stat-card .lbl { font-size: 13px; color: rgba(0,0,0,0.45); margin-top: 4px; }
+.tabs { display: flex; gap: 0; border-bottom: 2px solid #f0f0f0; margin-bottom: 20px; }
+.tab { padding: 10px 20px; cursor: pointer; font-size: 14px; color: rgba(0,0,0,0.65); border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab:hover { color: #1677ff; }
+.tab.active { color: #1677ff; border-bottom-color: #1677ff; font-weight: 500; }
+.tab .badge { background: #ff4d4f; color: white; font-size: 11px; padding: 1px 6px; border-radius: 6px; margin-left: 6px; }
+.filter-bar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
+.filter-bar select, .filter-bar input { padding: 6px 12px; border: 1px solid #d9d9d9; border-radius: 4px; font-size: 14px; outline: none; }
+.filter-bar select:focus, .filter-bar input:focus { border-color: #1677ff; }
+table { width: 100%; border-collapse: collapse; }
+thead tr { background: #fafafa; border-bottom: 1px solid #f0f0f0; }
+th { padding: 12px; text-align: left; font-weight: 500; color: rgba(0,0,0,0.88); font-size: 14px; }
+td { padding: 12px; font-size: 13px; color: rgba(0,0,0,0.88); border-bottom: 1px solid #fafafa; }
+tbody tr:hover { background: #fafafa; cursor: pointer; }
+.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 2000; }
+.modal-box { background: white; border-radius: 8px; width: 680px; max-height: 85vh; overflow-y: auto; }
+.modal-header { padding: 20px 24px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; background: #fafafa; border-radius: 8px 8px 0 0; }
+.modal-header h3 { margin: 0; font-size: 17px; }
+.modal-close { background: none; border: none; font-size: 22px; cursor: pointer; color: rgba(0,0,0,0.45); }
+.modal-body { padding: 24px; }
+.modal-footer { padding: 16px 24px; border-top: 1px solid #f0f0f0; display: flex; gap: 12px; justify-content: flex-end; }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; margin-bottom: 8px; color: rgba(0,0,0,0.88); font-weight: 500; font-size: 14px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 8px 12px; border: 1px solid #d9d9d9; border-radius: 4px; font-size: 14px; outline: none; resize: vertical; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #1677ff; }
+.signature-panel { background: #fafafa; border: 1px solid #f0f0f0; border-radius: 6px; padding: 16px; margin-top: 16px; }
+.signature-panel .label { font-size: 13px; color: rgba(0,0,0,0.65); margin-bottom: 10px; font-weight: 500; }
+.signature-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.signature-row .key { font-size: 13px; color: rgba(0,0,0,0.45); }
+.signature-row .val { font-size: 13px; color: rgba(0,0,0,0.88); }
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+.detail-item { background: #fafafa; padding: 12px; border-radius: 6px; }
+.detail-item .lbl { font-size: 12px; color: rgba(0,0,0,0.45); margin-bottom: 4px; }
+.detail-item .val { font-size: 14px; color: rgba(0,0,0,0.88); font-weight: 500; }
+.process-flow { display: flex; align-items: center; gap: 0; margin: 20px 0; }
+.process-step { display: flex; flex-direction: column; align-items: center; min-width: 120px; }
+.step-circle { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+.step-circle.done { background: #52c41a; color: white; }
+.step-circle.active { background: #1677ff; color: white; }
+.step-circle.pending { background: #f0f0f0; color: rgba(0,0,0,0.45); border: 2px dashed #d9d9d9; }
+.step-label { font-size: 11px; color: rgba(0,0,0,0.65); text-align: center; }
+.step-time { font-size: 10px; color: rgba(0,0,0,0.45); margin-top: 2px; }
+.step-arrow { color: #d9d9d9; font-size: 16px; margin: 0 4px; margin-bottom: 20px; }
+.empty-state { text-align: center; padding: 60px 0; color: rgba(0,0,0,0.45); }
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-left">
+    <div class="logo">SIDU-LATS</div>
+    <div class="role-tag">报告审核员</div>
+    <div class="breadcrumb">报告复核 &raquo; 电子签名</div>
+  </div>
+  <div class="header-right">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span style="color:rgba(0,0,0,0.65);font-size:14px;">当前用户 / <span id="currentUserName">王芳</span></span>
+      <select id="userSwitcher" style="padding:2px 8px;border:1px solid #d9d9d9;border-radius:4px;font-size:12px;outline:none;cursor:pointer;">
+        <option value="王芳">王芳（初审员）</option>
+        <option value="李明">李明（复核员）</option>
+      </select>
+    </div>
+    <button onclick="location.href='login.html'" style="background:none;border:1px solid #d9d9d9;padding:6px 12px;border-radius:4px;cursor:pointer;color:rgba(0,0,0,0.65);font-size:14px;">注销</button>
+  </div>
+</div>
+
+<div class="layout-sider">
+  <div class="menu-item" onclick="location.href='dashboard.html'">仪表盘</div>
+  <div class="menu-item active">报告复核</div>
+</div>
+
+<div class="main-content">
+  <div class="page-title">报告复核 <span>电子签名 ESig · FDA ALCOA+ 合规 · 双人审核流程</span></div>
+
+  <div id="roleHint" style="background:#e6f4ff;border:1px solid #91caff;border-radius:6px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span style="font-size:16px;"></span>
+      <span style="font-size:14px;color:rgba(0,0,0,0.88);">
+        当前角色：<strong id="roleHintName">王芳</strong>（<span id="roleHintTitle">初审员</span>）
+        — <span id="roleHintDesc">对待初审报告执行初审操作</span>
+      </span>
+    </div>
+    <span style="font-size:12px;color:rgba(0,0,0,0.45);"> 切换用户以体验双人审核流程</span>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="num warn">7</div><div class="lbl">待复核报告</div></div>
+    <div class="stat-card"><div class="num danger">2</div><div class="lbl">紧急</div></div>
+    <div class="stat-card"><div class="num ok">156</div><div class="lbl">本月已签署</div></div>
+    <div class="stat-card"><div class="num">98.7%</div><div class="lbl">通过率</div></div>
+    <div class="stat-card"><div class="num">4.2h</div><div class="lbl">平均处理时长</div></div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" id="tabPending" onclick="switchTab('pending')"><span id="tabPendingLabel">待处理</span> <span class="badge" id="pendingBadge">7</span></div>
+    <div class="tab" id="tabApproved" onclick="switchTab('approved')">已批准</div>
+    <div class="tab" id="tabRejected" onclick="switchTab('rejected')">已驳回</div>
+  </div>
+
+  <div class="card" id="mainTable">
+    <div class="filter-bar">
+      <select><option value="">全部检测类型</option><option>NTA粒径分析</option><option>缺陷识别</option><option>颗粒计数</option></select>
+      <select><option value="">全部优先级</option><option>紧急</option><option>高</option><option>中</option><option>低</option></select>
+      <select><option value="">全部提交人</option><option>李华</option><option>张丽</option><option>赵刚</option></select>
+      <input type="date" placeholder="开始日期">
+      <input type="date" placeholder="结束日期">
+      <input type="text" placeholder="搜索报告编号/批次..." style="flex:1;max-width:220px;">
+      <button class="btn-primary" onclick="filterReqs()">查询</button>
+      <button class="btn-outline" onclick="resetFilter()">重置</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:40px;"><input type="checkbox"></th>
+          <th>报告编号</th>
+          <th>检测批次</th>
+          <th>提交人</th>
+          <th>检测类型</th>
+          <th>优先级</th>
+          <th>提交时间</th>
+          <th>状态</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody id="reqTable"></tbody>
+    </table>
+    <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-size:13px;color:rgba(0,0,0,0.45);">共 <span id="rowCount">7</span> 条</div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <div style="font-size:13px;color:rgba(0,0,0,0.65);">批量操作:</div>
+        <button class="btn-success" onclick="batchSign('APPROVE')"> 批量批准</button>
+        <button class="btn-danger" onclick="batchSign('REJECT')"> 批量驳回</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="historySection" style="display:none;">
+    <div class="card-title">
+      <span>签署记录</span>
+      <button class="btn-outline" onclick="exportHistory()"> 导出</button>
+    </div>
+    <table style="font-size:12px;">
+      <thead>
+        <tr><th>报告编号</th><th>批次</th><th>提交人</th><th>类型</th><th>审核人</th><th>签署时间</th><th>意图</th><th>签名哈希</th></tr>
+      </thead>
+      <tbody id="histTable"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 详情弹窗 -->
+<div id="detailModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="detailTitle"> 报告详情</h3>
+      <button class="modal-close" onclick="closeDetail()">×</button>
+    </div>
+    <div class="modal-body">
+      <div id="detailProcess" class="process-flow">
+        <div class="process-step"><div class="step-circle" id="procStep1">1</div><div class="step-label">数据采集</div><div class="step-time" id="step1Time">—</div></div>
+        <div class="step-arrow">→</div>
+        <div class="process-step"><div class="step-circle" id="procStep2">2</div><div class="step-label" id="procStep2Label">数据初审</div><div class="step-time" id="step2Time">—</div></div>
+        <div class="step-arrow">→</div>
+        <div class="process-step"><div class="step-circle" id="procStep3">3</div><div class="step-label" id="procStep3Label">报告复核</div><div class="step-time" id="step3Time">—</div></div>
+        <div class="step-arrow">→</div>
+        <div class="process-step"><div class="step-circle" id="procStep4">4</div><div class="step-label">最终批准</div><div class="step-time" id="step4Time">—</div></div>
+      </div>
+      <div class="detail-grid">
+        <div class="detail-item"><div class="lbl">报告编号</div><div class="val" id="dId">—</div></div>
+        <div class="detail-item"><div class="lbl">状态</div><div class="val" id="dStatus">—</div></div>
+        <div class="detail-item"><div class="lbl">检测批次</div><div class="val" id="dBatch">—</div></div>
+        <div class="detail-item"><div class="lbl">提交人</div><div class="val" id="dApplicant">—</div></div>
+        <div class="detail-item"><div class="lbl">检测类型</div><div class="val" id="dType">—</div></div>
+        <div class="detail-item"><div class="lbl">优先级</div><div class="val" id="dUrgency">—</div></div>
+        <div class="detail-item"><div class="lbl">提交时间</div><div class="val" id="dTime">—</div></div>
+        <div class="detail-item"><div class="lbl">样品总数</div><div class="val" id="dSamples">—</div></div>
+      </div>
+      <div style="margin-bottom:16px;">
+        <div style="font-weight:500;font-size:14px;margin-bottom:8px;"> 检测摘要</div>
+        <div id="dContent" style="background:#fafafa;padding:14px;border-radius:6px;font-size:14px;line-height:1.7;color:rgba(0,0,0,0.88);"></div>
+      </div>
+      <div style="margin-bottom:16px;">
+        <div style="font-weight:500;font-size:14px;margin-bottom:8px;"> 附件</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#fafafa;border-radius:6px;border:1px solid #f0f0f0;">
+            <span style="font-size:20px;"></span>
+            <div style="flex:1;"><div style="font-size:13px;font-weight:500;">检测数据明细.csv</div><div style="font-size:11px;color:rgba(0,0,0,0.45);">1.5 MB · 2026-07-01</div></div>
+            <button class="btn-ghost">下载</button>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px;background:#fafafa;border-radius:6px;border:1px solid #f0f0f0;">
+            <span style="font-size:20px;"></span>
+            <div style="flex:1;"><div style="font-size:13px;font-weight:500;">NTA原始数据.dat</div><div style="font-size:11px;color:rgba(0,0,0,0.45);">8.2 MB · 2026-07-01</div></div>
+            <button class="btn-ghost">下载</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:500;font-size:14px;margin-bottom:8px;">️ 复核签名</div>
+        <div style="background:#f6ffed;border:1px solid #b7eb8f;border-radius:6px;padding:12px;font-size:13px;">
+          <div id="sigPlaceholder" style="color:rgba(0,0,0,0.45);text-align:center;padding:20px 0;">— 尚未签名 —</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer" id="detailFooter">
+      <button onclick="closeDetail()" style="padding:8px 20px;border:1px solid #d9d9d9;border-radius:4px;background:white;cursor:pointer;">取消</button>
+      <button onclick="openSignFromDetail('REJECT')" style="padding:8px 20px;background:#ff4d4f;color:white;border:none;border-radius:4px;cursor:pointer;font-size:14px;">驳回</button>
+      <button onclick="openSignFromDetail('APPROVE')" class="btn-primary" style="padding:8px 20px;">批准</button>
+    </div>
+  </div>
+</div>
+
+<!-- 签名弹窗 -->
+<div id="signModal" class="modal-overlay" style="display:none;">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>️ 电子签名确认（报告复核）</h3>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <p style="margin-bottom:16px;color:rgba(0,0,0,0.65);font-size:14px;">请确认报告内容，并选择签署意图（FDA 21 CFR Part 11 §11.50）：</p>
+      <div id="dualReviewHint" style="display:none;"></div>
+      <div style="background:#fafafa;padding:12px;border-radius:6px;margin-bottom:16px;font-size:14px;line-height:1.6;">
+        <div id="signContent" style="color:rgba(0,0,0,0.88);"></div>
+      </div>
+      <div class="form-group">
+        <label>签署意图 * <span style="font-weight:400;color:rgba(0,0,0,0.45);font-size:12px;">（四种意图分离,不可混淆）</span></label>
+        <select id="signIntent">
+          <option value="PREVIEW">PREVIEW — 预览/初审报告</option>
+          <option value="REVIEW">REVIEW — 复核/审查报告</option>
+          <option value="APPROVE">APPROVE — 批准放行</option>
+          <option value="REJECT">REJECT — 驳回修改</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>复核意见</label>
+        <textarea id="signComment" rows="3" placeholder="可选：填写复核意见或驳回原因..." maxlength="500"></textarea>
+      </div>
+      <div class="form-group">
+        <label>二次凭证（用户名+密码）* <span style="font-weight:400;color:rgba(0,0,0,0.45);font-size:12px;">（独立于登录密码,演示双人知情意图）</span></label>
+        <input type="text" id="signUser" placeholder="请输入用户名" value="王芳">
+        <input type="password" id="signPwd" placeholder="请输入密码" style="margin-top:8px;">
+      </div>
+      <div class="signature-panel">
+        <div class="label">签名凭证预览</div>
+        <div class="signature-row"><span class="key">签名人:</span><span class="val" id="signerName">王芳</span></div>
+        <div class="signature-row"><span class="key">职务:</span><span class="val">报告审核员</span></div>
+        <div class="signature-row"><span class="key">时间戳:</span><span class="val" id="signerTime">—</span></div>
+        <div class="signature-row"><span class="key">签署意图:</span><span class="val" id="signerIntent">—</span></div>
+        <div class="signature-row"><span class="key">签名哈希(SHA-256):</span><span class="val hash-val" id="signerHash">—</span></div>
+        <div class="signature-row"><span class="key">合规声明:</span><span class="val" style="font-size:11px;color:rgba(0,0,0,0.45);">本签名符合 FDA 21 CFR Part 11 §11.50 电子签名规定,具有法律效力</span></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button onclick="closeModal()" style="padding:8px 20px;border:1px solid #d9d9d9;border-radius:4px;background:white;cursor:pointer;">取消</button>
+      <button onclick="confirmSign()" class="btn-primary" style="padding:8px 20px;">确认签名</button>
+    </div>
+  </div>
+</div>
+
+<script>
+if (!sessionStorage.getItem('lats_logged_in')) { location.href = 'login.html'; }
+
+var currentTab = 'pending';
+var currentDetailId = '';
+var currentSignIntent = 'APPROVE';
+var currentUser = sessionStorage.getItem('lats_user') || '王芳';
+
+// 双人审核追踪：报告ID → { steps: [{user, intent, time}] }
+var reviewLog = {};
+
+// 报告状态机
+var reports = [
+  { id:'RPT-20260701-0128', applicant:'李华', department:'生产部', batch:'BAT-20260701-A', type:'NTA粒径分析', typeTag:'info', priority:'紧急', samples:128, time:'2026-07-01 15:40:12', status:'待初审', statusTag:'warning', hasData:true, content:'NTA粒径分析报告\n\n检测批次：BAT-20260701-A\n样品数量：128\n检测参数：粒径分布(10nm~1000nm)、颗粒浓度、Zeta电位\n\n关键结果：\n· D50 = 156.3 nm（标准范围：150±10 nm）\n· 颗粒浓度 = 2.8×10⁸ particles/mL\n· Zeta电位 = -24.5 mV（稳定区间）\n\n结论：批次质量合格，粒径分布符合标准，建议批准放行。' },
+  { id:'RPT-20260701-0125', applicant:'张丽', department:'质量管理部', batch:'BAT-20260701-B', type:'缺陷识别', typeTag:'warning', priority:'高', samples:64, time:'2026-07-01 14:20:33', status:'待初审', statusTag:'warning', hasData:false, content:'缺陷识别检测报告\n\n检测批次：BAT-20260701-B\n样品数量：64\n检测参数：缺陷尺寸(1μm~50μm)、缺陷密度、缺陷分类\n\n关键结果：\n· 缺陷总数：8处（<10处,达标）\n· 最大缺陷尺寸：12.7μm（允许上限20μm）\n· 缺陷密度：0.13/cm²\n\n结论：缺陷数量与尺寸均在允收范围内，建议批准。' },
+  { id:'RPT-20260701-0119', applicant:'赵刚', department:'生产部', batch:'BAT-20260701-C', type:'颗粒计数', typeTag:'info', priority:'中', samples:256, time:'2026-07-01 11:10:05', status:'待初审', statusTag:'warning', hasData:true, content:'颗粒计数报告\n\n检测批次：BAT-20260701-C\n样品数量：256\n检测参数：≥0.2μm颗粒数、≥0.5μm颗粒数、≥1.0μm颗粒数\n\n关键结果：\n· ≥0.2μm: 1,205（USP <788> 标准: ≤3,520）\n· ≥0.5μm: 287（标准: ≤600）\n· ≥1.0μm: 42（标准: ≤100）\n\n结论：全部粒径区间均满足USP<788>注射剂颗粒物限度要求，建议批准。' },
+  { id:'RPT-20260701-0110', applicant:'李华', department:'生产部', batch:'BAT-20260630-D', type:'NTA粒径分析', typeTag:'info', priority:'中', samples:96, time:'2026-06-30 16:50:18', status:'待初审', statusTag:'warning', hasData:false, content:'NTA粒径分析报告\n\n检测批次：BAT-20260630-D\n样品数量：96\n\n关键结果：\n· D50 = 148.7 nm（标准：150±10 nm,边缘接近下限）\n· 颗粒浓度 = 1.9×10⁸ particles/mL\n\n注意：D50接近下容忍限（148.7 vs 140nm下限），请复核后决定。' },
+  { id:'RPT-20260701-0090', applicant:'张丽', department:'质量管理部', batch:'BAT-20260701-E', type:'缺陷识别', typeTag:'warning', priority:'高', samples:48, time:'2026-07-01 09:30:45', status:'待初审', statusTag:'warning', hasData:true, content:'缺陷识别检测报告\n\n检测批次：BAT-20260701-E\n样品数量：48\n\n关键结果：\n· 缺陷总数：14处（接近上限15处,需复核）\n· 最大缺陷尺寸：18.5μm（允许上限20μm,接近边界）\n\n风险提示：缺陷总数接近允收上限，建议人工复核显微图像后再决定。' },
+  { id:'RPT-20260630-0085', applicant:'赵刚', department:'生产部', batch:'BAT-20260630-F', type:'颗粒计数', typeTag:'info', priority:'低', samples:128, time:'2026-06-30 14:15:00', status:'待初审', statusTag:'warning', hasData:false, content:'颗粒计数报告（复检）\n\n检测批次：BAT-20260630-F\n样品数量：128（复检批次）\n\n关键结果：\n· ≥0.2μm: 980（USP <788>: ≤3,520）\n· ≥0.5μm: 210（标准: ≤600）\n\n结论：初检因管路异常被迫中止，复检全部通过。请复核复检结果的有效性。' }
+];
+
+// 已初审（等待复核）的报告
+var reviewedReports = [
+  { id:'RPT-20260701-0112', applicant:'李华', department:'生产部', batch:'BAT-20260701-K', type:'NTA粒径分析', typeTag:'info', priority:'中', samples:96, time:'2026-07-01 10:45:30', status:'已初审-待复核', statusTag:'info', hasData:true, content:'NTA粒径分析报告\n\n检测批次：BAT-20260701-K\n样品数量：96\n\n关键结果：\n· D50 = 153.2 nm（标准范围：150±10 nm）\n· 颗粒浓度 = 2.5×10⁸ particles/mL\n\n结论：批次质量合格。' }
+];
+
+var history = [
+  { id:'RPT-20260701-0120', applicant:'李华', batch:'BAT-20260701-G', type:'NTA粒径分析', typeTag:'info', reviewer:'王芳', intent:'APPROVE', intentLabel:'批准', time:'2026-07-01 16:05:20', sig:'sig-a3f2c8d1e4b7...' },
+  { id:'RPT-20260701-0118', applicant:'张丽', batch:'BAT-20260701-H', type:'缺陷识别', typeTag:'warning', reviewer:'王芳', intent:'REJECT', intentLabel:'驳回', time:'2026-07-01 15:30:10', sig:'sig-d7e1a5c9f3b2...' },
+  { id:'RPT-20260701-0115', applicant:'赵刚', batch:'BAT-20260701-J', type:'颗粒计数', typeTag:'info', reviewer:'王芳', intent:'REVIEW', intentLabel:'复核', time:'2026-07-01 14:00:05', sig:'sig-b9c4f2a8d6e1...' }
+];
+
+// 初始化 reviewLog：已初审报告记录王芳的PREVIEW
+reviewedReports.forEach(function(r) {
+  reviewLog[r.id] = { steps: [{ user: '王芳', intent: 'PREVIEW', time: '2026-07-01 10:45' }] };
+});
+
+function getVisibleReports() {
+  var all = reports.concat(reviewedReports);
+  // 根据用户角色过滤可操作范围
+  return all.filter(function(r) {
+    if (currentUser === '王芳') {
+      // 王芳（初审员）：只能看到待初审的
+      return r.status === '待初审';
+    } else {
+      // 李明（复核员）：只能看到已初审待复核的
+      return r.status === '已初审-待复核';
+    }
+  });
+}
+
+function getReportById(id) {
+  return reports.concat(reviewedReports).concat(history).find(function(r) { return r.id === id; });
+}
+
+function getReportStatus(id) {
+  var log = reviewLog[id];
+  if (!log || !log.steps || log.steps.length === 0) return '待初审';
+  var lastStep = log.steps[log.steps.length - 1];
+  if (lastStep.intent === 'APPROVE') return '已批准';
+  if (lastStep.intent === 'REJECT') return '已驳回';
+  if (lastStep.intent === 'PREVIEW') return '已初审-待复核';
+  return '待初审';
+}
+
+function renderPending() {
+  var visible = getVisibleReports();
+  var rows = visible.map(function(r) {
+    var priorityColor = r.priority === '紧急' ? '#ff4d4f' : r.priority === '高' ? '#faad14' : r.priority === '中' ? '#1677ff' : '#52c41a';
+    return '<tr onclick="showDetail(\'' + r.id + '\')">' +
+      '<td onclick="event.stopPropagation()"><input type="checkbox"></td>' +
+      '<td style="color:#1677ff;font-weight:500;">' + r.id + '</td>' +
+      '<td><span class="hash-val">' + r.batch + '</span></td>' +
+      '<td><div style="font-weight:500;">' + r.applicant + '</div><div style="font-size:11px;color:rgba(0,0,0,0.45);">' + r.department + '</div></td>' +
+      '<td><span class="tag tag-' + r.typeTag + '">' + r.type + '</span></td>' +
+      '<td><span style="color:' + priorityColor + ';font-weight:500;">' + r.priority + '</span></td>' +
+      '<td style="color:rgba(0,0,0,0.65);font-size:12px;">' + r.time + '</td>' +
+      '<td><span class="tag tag-' + r.statusTag + '">' + r.status + '</span></td>' +
+      '<td onclick="event.stopPropagation()">' +
+        (currentUser === '王芳'
+          ? '<button class="btn-success" onclick="openSign(\'' + r.id + '\',\'' + r.batch + ' ' + r.type + '\',\'PREVIEW\')">初审</button> ' +
+            '<button class="btn-primary" style="padding:4px 12px;font-size:13px;" onclick="showDetail(\'' + r.id + '\')">详情</button>'
+          : '<button class="btn-success" onclick="openSign(\'' + r.id + '\',\'' + r.batch + ' ' + r.type + '\',\'APPROVE\')">批准</button> ' +
+            '<button class="btn-danger" onclick="openSign(\'' + r.id + '\',\'' + r.batch + ' ' + r.type + '\',\'REJECT\')">驳回</button> ' +
+            '<button class="btn-primary" style="padding:4px 12px;font-size:13px;" onclick="showDetail(\'' + r.id + '\')">详情</button>') +
+      '</td></tr>';
+  }).join('');
+  document.getElementById('reqTable').innerHTML = rows || '<tr><td colspan="9" style="text-align:center;padding:40px;color:rgba(0,0,0,0.45);">暂无待处理报告</td></tr>';
+  document.getElementById('rowCount').textContent = visible.length;
+  // 更新统计卡片
+  var pendingCount = getVisibleReports().length;
+  document.querySelector('.stat-card:first-child .num').textContent = pendingCount;
+  document.querySelector('.stat-card:first-child .lbl').textContent = currentUser === '王芳' ? '待初审报告' : '待复核报告';
+  document.getElementById('pendingBadge').textContent = pendingCount;
+  document.getElementById('tabPendingLabel').textContent = currentUser === '王芳' ? '待初审' : '待复核';
+}
+
+function renderHistory() {
+  document.getElementById('histTable').innerHTML = history.map(function(h) {
+    var intentTag = h.intent === 'APPROVE' ? 'tag-success' : h.intent === 'REJECT' ? 'tag-error' : h.intent === 'REVIEW' ? 'tag-info' : 'tag-warning';
+    return '<tr>' +
+      '<td style="color:#1677ff;font-weight:500;">' + h.id + '</td>' +
+      '<td><span class="hash-val">' + h.batch + '</span></td>' +
+      '<td>' + h.applicant + '</td>' +
+      '<td><span class="tag tag-' + h.typeTag + '">' + h.type + '</span></td>' +
+      '<td>' + h.reviewer + '</td>' +
+      '<td style="color:rgba(0,0,0,0.65);font-size:12px;">' + h.time + '</td>' +
+      '<td><span class="tag ' + intentTag + '">' + h.intentLabel + '</span></td>' +
+      '<td><span class="hash-val">' + h.sig + '</span></td></tr>';
+  }).join('');
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+  document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
+  if (tab === 'pending') {
+    document.getElementById('mainTable').style.display = 'block';
+    document.getElementById('historySection').style.display = 'none';
+    renderPending();
+  } else {
+    document.getElementById('mainTable').style.display = 'none';
+    document.getElementById('historySection').style.display = 'block';
+    renderHistory();
+  }
+}
+
+function showDetail(id) {
+  var req = getReportById(id);
+  if (!req) return;
+  currentDetailId = id;
+  document.getElementById('dId').textContent = req.id;
+  document.getElementById('dBatch').textContent = req.batch || '—';
+  document.getElementById('dApplicant').textContent = req.applicant;
+  document.getElementById('dType').textContent = req.type;
+  document.getElementById('dUrgency').textContent = req.priority;
+  document.getElementById('dTime').textContent = req.time;
+  document.getElementById('dSamples').textContent = req.samples ? req.samples + ' 个' : '—';
+  document.getElementById('dContent').textContent = req.content || '';
+  document.getElementById('dStatus').innerHTML = '<span class="tag tag-' + (req.statusTag || 'success') + '">' + (req.status || req.intentLabel || '—') + '</span>';
+
+  // 更新流程状态
+  var log = reviewLog[id];
+  var step1 = document.getElementById('procStep1');
+  var step2 = document.getElementById('procStep2');
+  var step3 = document.getElementById('procStep3');
+  var step4 = document.getElementById('procStep4');
+  var step2Label = document.getElementById('procStep2Label');
+  var step3Label = document.getElementById('procStep3Label');
+
+  [step1, step2, step3, step4].forEach(function(el) {
+    el.className = 'step-circle pending';
+    el.textContent = el.id === 'procStep1' ? '' : el.id.replace('procStep', '');
+  });
+
+  // Step 1: 数据采集始终完成
+  step1.className = 'step-circle done';
+  step1.textContent = '';
+  document.getElementById('step1Time').textContent = (req.time || '').split(' ')[0];
+
+  if (!log || !log.steps || log.steps.length === 0) {
+    // 待初审
+    step2.className = 'step-circle active';
+  } else {
+    // 有初审记录
+    step2.className = 'step-circle done';
+    step2.textContent = '';
+    var previewStep = log.steps.find(function(s) { return s.intent === 'PREVIEW'; });
+    document.getElementById('step2Time').textContent = previewStep ? (previewStep.time || '') : (req.time || '').split(' ')[0];
+    step2Label.textContent = '数据初审（' + (previewStep ? previewStep.user : '—') + '）';
+
+    var lastStep = log.steps[log.steps.length - 1];
+    if (lastStep.intent === 'APPROVE' || lastStep.intent === 'REJECT') {
+      step3.className = 'step-circle done';
+      step3.textContent = '';
+      step3Label.textContent = '报告复核（' + lastStep.user + '）';
+      step4.className = 'step-circle done';
+      step4.textContent = '';
+      document.getElementById('step4Time').textContent = lastStep.time || '—';
+    } else if (lastStep.intent === 'REVIEW') {
+      step3.className = 'step-circle done';
+      step3.textContent = '';
+      step3Label.textContent = '报告复核（' + lastStep.user + '）';
+      step4.className = 'step-circle active';
+    } else {
+      // PREVIEW 已完成，等待复核
+      step3.className = 'step-circle active';
+    }
+  }
+
+  // 更新签名区
+  var sigPlaceholder = document.getElementById('sigPlaceholder');
+  if (log && log.steps && log.steps.length > 0) {
+    var sigHtml = log.steps.map(function(s) {
+      var icon = s.intent === 'APPROVE' ? '' : s.intent === 'REJECT' ? '' : s.intent === 'PREVIEW' ? '' : '';
+      return '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f0f0f0;">' +
+        '<span>' + icon + ' ' + s.user + '</span>' +
+        '<span style="color:rgba(0,0,0,0.45);font-size:12px;">' + s.intent + '</span>' +
+        '<span style="color:rgba(0,0,0,0.45);font-size:12px;">' + s.time + '</span></div>';
+    }).join('');
+    sigPlaceholder.innerHTML = sigHtml;
+  } else {
+    sigPlaceholder.innerHTML = '— 尚未签名 —';
+  }
+
+  // 详情弹窗底部按钮根据用户角色和当前状态决定
+  var footer = document.getElementById('detailFooter');
+  var status = getReportStatus(id);
+  if (currentUser === '王芳' && status === '待初审') {
+    footer.innerHTML = '<button onclick="closeDetail()" style="padding:8px 20px;border:1px solid #d9d9d9;border-radius:4px;background:white;cursor:pointer;">取消</button>' +
+      '<button onclick="openSignFromDetail(\'PREVIEW\')" class="btn-primary" style="padding:8px 20px;">执行初审</button>';
+  } else if (currentUser === '李明' && (status === '已初审-待复核' || status === '待初审')) {
+    var rejectDisabled = status === '待初审' ? 'disabled style="opacity:0.5;"' : '';
+    footer.innerHTML = '<button onclick="closeDetail()" style="padding:8px 20px;border:1px solid #d9d9d9;border-radius:4px;background:white;cursor:pointer;">取消</button>' +
+      '<button onclick="openSignFromDetail(\'REJECT\')" style="padding:8px 20px;background:#ff4d4f;color:white;border:none;border-radius:4px;cursor:pointer;font-size:14px;" ' + rejectDisabled + '>驳回</button>' +
+      '<button onclick="openSignFromDetail(\'APPROVE\')" class="btn-primary" style="padding:8px 20px;">批准</button>';
+  } else {
+    footer.innerHTML = '<button onclick="closeDetail()" style="padding:8px 20px;border:1px solid #d9d9d9;border-radius:4px;background:white;cursor:pointer;">关闭</button>';
+  }
+
+  document.getElementById('detailModal').style.display = 'flex';
+}
+
+function closeDetail() { document.getElementById('detailModal').style.display = 'none'; }
+function closeModal() { document.getElementById('signModal').style.display = 'none'; }
+
+function openSign(id, content, intent) {
+  currentDetailId = id;
+  currentSignIntent = intent || 'APPROVE';
+  document.getElementById('signContent').textContent = content;
+  document.getElementById('signIntent').value = intent || 'APPROVE';
+  document.getElementById('signerIntent').textContent = intent || 'APPROVE';
+  document.getElementById('signerTime').textContent = new Date().toLocaleString('zh-CN');
+  var hash = Math.random().toString(36).substring(2, 10) + Math.random().toString(36).substring(2, 6) + '...';
+  document.getElementById('signerHash').textContent = hash;
+  document.getElementById('signUser').value = currentUser;
+  document.getElementById('signPwd').value = '';
+  document.getElementById('signComment').value = '';
+
+  // 双人审核提示
+  var log = reviewLog[id];
+  var hint = document.getElementById('dualReviewHint');
+  if (intent === 'APPROVE' || intent === 'REVIEW') {
+    var prevUser = log && log.steps && log.steps.length > 0 ? log.steps[0].user : null;
+    if (prevUser) {
+      hint.innerHTML = '<div style="background:#fffbe6;border:1px solid #ffe58f;border-radius:4px;padding:10px 12px;margin-bottom:16px;font-size:13px;">' +
+        '  <strong>双人审核要求：</strong>本报告已由 <strong>' + prevUser + '</strong> 完成初审。' +
+        '复核/批准须由不同审核人员执行（FDA 21 CFR Part 11 §11.10(d) 权限分离要求）。</div>';
+      hint.style.display = 'block';
+    } else {
+      hint.style.display = 'none';
+    }
+  } else {
+    hint.style.display = 'none';
+  }
+
+  document.getElementById('signModal').style.display = 'flex';
+  closeDetail();
+}
+
+function openSignFromDetail(intent) {
+  var req = getReportById(currentDetailId);
+  if (!req) { openSign(currentDetailId, '', intent); return; }
+  openSign(req.id, req.batch + ' — ' + req.type, intent);
+}
+
+function confirmSign() {
+  var signUser = document.getElementById('signUser').value.trim();
+  var pwd = document.getElementById('signPwd').value;
+  if (!signUser) { alert('请输入用户名（二次凭证）'); return; }
+  if (!pwd) { alert('请输入密码（二次凭证）'); return; }
+  if (pwd.length < 4) { alert('密码至少4位'); return; }
+  if (signUser !== currentUser) { alert('凭证校验失败：签名用户名与登录用户不一致。\n\n演示"双人知情/二次凭证"意图。'); return; }
+
+  var intent = document.getElementById('signIntent').value;
+  var comment = document.getElementById('signComment').value.trim();
+  if (intent === 'REJECT' && !comment) { alert('驳回必须填写驳回原因(FDA Part 11 合规要求)'); return; }
+
+  // 双人审核校验
+  var log = reviewLog[currentDetailId];
+  if (intent === 'REVIEW' || intent === 'APPROVE' || intent === 'REJECT') {
+    if (log && log.steps && log.steps.length > 0) {
+      var prevStep = log.steps[log.steps.length - 1];
+      if (prevStep.user === currentUser) {
+        alert(' 合规拦截：初审与复核须由不同审核人员执行！\n\n' +
+          '本报告的上一步操作由 ' + prevStep.user + '（' + prevStep.intent + '）完成。\n' +
+          '请切换账号后再执行此操作。\n\n' +
+          '依据：FDA 21 CFR Part 11 §11.10(d) 权限分离原则');
+        return;
+      }
+    }
+  }
+
+  // 如果是初审（PREVIEW），记录到 reviewLog
+  if (!log) {
+    reviewLog[currentDetailId] = { steps: [] };
+    log = reviewLog[currentDetailId];
+  }
+  log.steps.push({
+    user: currentUser,
+    intent: intent,
+    time: new Date().toLocaleString('zh-CN')
+  });
+
+  // 更新报告状态
+  var report = reports.concat(reviewedReports).find(function(r) { return r.id === currentDetailId; });
+  if (report) {
+    if (intent === 'PREVIEW') {
+      // 从 reports 移到 reviewedReports
+      var idx = reports.indexOf(report);
+      if (idx !== -1) {
+        reports.splice(idx, 1);
+        report.status = '已初审-待复核';
+        report.statusTag = 'info';
+        reviewedReports.push(report);
+      }
+    } else if (intent === 'APPROVE') {
+      report.status = '已批准';
+      report.statusTag = 'success';
+      // 移出待处理列表
+      removeFromActive(report);
+      history.push({
+        id: report.id, applicant: report.applicant, batch: report.batch,
+        type: report.type, typeTag: report.typeTag,
+        reviewer: currentUser, intent: 'APPROVE', intentLabel: '批准',
+        time: new Date().toLocaleString('zh-CN'), sig: 'sig-' + Math.random().toString(36).substring(2, 14)
+      });
+    } else if (intent === 'REJECT') {
+      report.status = '已驳回';
+      report.statusTag = 'error';
+      removeFromActive(report);
+      history.push({
+        id: report.id, applicant: report.applicant, batch: report.batch,
+        type: report.type, typeTag: report.typeTag,
+        reviewer: currentUser, intent: 'REJECT', intentLabel: '驳回',
+        time: new Date().toLocaleString('zh-CN'), sig: 'sig-' + Math.random().toString(36).substring(2, 14)
+      });
+    }
+  }
+
+  var intentLabel = { PREVIEW: '初审', REVIEW: '复核', APPROVE: '批准', REJECT: '驳回' }[intent];
+  var msg = ' 电子签名成功！\n\n' +
+    '签名人: ' + currentUser + '（报告审核员）\n' +
+    '意图: ' + intent + ' (' + intentLabel + ')\n' +
+    '时间: ' + new Date().toLocaleString('zh-CN') + '\n' +
+    '签名哈希: ' + document.getElementById('signerHash').textContent + '\n' +
+    (comment ? '复核意见: ' + comment + '\n' : '') +
+    '\n️ 本签名符合 FDA 21 CFR Part 11 §11.50 电子签名规定，具有法律效力。';
+  alert(msg);
+  closeModal();
+  renderPending();
+}
+
+function removeFromActive(report) {
+  var idx = reports.indexOf(report);
+  if (idx !== -1) { reports.splice(idx, 1); return; }
+  idx = reviewedReports.indexOf(report);
+  if (idx !== -1) { reviewedReports.splice(idx, 1); }
+}
+
+document.getElementById('signIntent').addEventListener('change', function() {
+  document.getElementById('signerIntent').textContent = this.value;
+});
+
+// 用户切换
+document.getElementById('userSwitcher').addEventListener('change', function() {
+  currentUser = this.value;
+  document.getElementById('currentUserName').textContent = currentUser;
+  document.getElementById('roleHintName').textContent = currentUser;
+  if (currentUser === '王芳') {
+    document.getElementById('roleHintTitle').textContent = '初审员';
+    document.getElementById('roleHintDesc').textContent = '对待初审报告执行初审操作';
+  } else {
+    document.getElementById('roleHintTitle').textContent = '复核员';
+    document.getElementById('roleHintDesc').textContent = '对已初审报告执行复核/批准/驳回操作';
+  }
+  sessionStorage.setItem('lats_user', currentUser);
+  renderPending();
+});
+
+function filterReqs() { alert('筛选功能演示'); }
+function resetFilter() { alert('重置筛选'); }
+function batchSign(intent) { alert('批量' + (intent === 'APPROVE' ? '批准' : '驳回') + '功能演示'); }
+function exportHistory() { alert('导出签署记录'); }
+
+renderPending();
+</script>
+</body>
+</html>

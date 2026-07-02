@@ -10,23 +10,40 @@
 
 ## 页面说明
 
-| 文件 | 说明 |
+| 路径 | 说明 |
 |-----|------|
-| `login.html` | 登录页（入口） |
-| `pages/dashboard.html` | 仪表盘 - 系统状态总览 |
-| `pages/audit-log.html` | 审计日志 - 操作行为记录 |
-| `pages/hash-chain.html` | 哈希链 - 数据完整性验证 |
-| `pages/approval.html` | 审批中心 - 审批请求与签名 |
-| `pages/user-management.html` | 用户管理 - 账户与权限 |
-| `pages/storage.html` | 存储管理 - 容量与保留策略 |
-| `pages/report-export.html` | 报告导出 - 合规报告生成 |
+| `index.html` | 根入口(GH Pages 入口,自动跳转 → prototype/index.html) |
+| `prototype/index.html` | **角色演示入口** — 按权限隔离的 4 角色原型 |
+| `prototype/admin/` | 系统管理员（8 页:配置/用户/存储/日志导出） |
+| `prototype/operator/` | 操作员（3 页:NTA上传/基础录入/自有数据查询） |
+| `prototype/auditor/` | QA 审计员（7 页:审计日志/哈希链/介质抽检/合规导出/权限复审） |
+| `prototype/reviewer/` | 报告审核员（3 页:报告复核/电子签名 ESig） |
 
 ## 登录说明
 
 - **用户名**：任意非空字符
 - **密码**：任意 4 位以上字符
 
-## 技术说明
+## 本地开发外壳 (Vite Viewer)
+
+提供侧栏分组导航 + iframe 预览,方便在 prototype/ 34 个原型页之间快速切换。
+
+```bash
+npm install
+npm run dev
+```
+
+浏览器自动打开 `http://localhost:5173/viewer.html`,左侧两组导航(入口/角色演示),搜索可用。
+各原型页保持不变,仍可双击单独打开。
+
+### 构建与部署
+
+```bash
+npm run build    # 产出 dist/ 目录
+npm run preview  # 本地预览构建产物
+```
+
+生产部署时将 `dist/` 目录推送至 GitHub Pages 部署源。
 
 - 纯原生 HTML + CSS + JavaScript，无框架依赖
 - 无需构建工具，双击 `login.html` 即可运行（本地模式）

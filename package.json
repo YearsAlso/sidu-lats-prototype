@@ -1,0 +1,15 @@
+{
+  "name": "sidu-lats-prototype",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "SIDU-LATS 缺陷识别数据存管系统交互原型(FDA 21 CFR Part 11 合规版)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^8.0.5"
+  }
+}
